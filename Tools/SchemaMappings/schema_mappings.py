@@ -66,7 +66,9 @@ def map_bam_to_schema(schema, lisdata):
         'Ageing applied?' : MissingQuantity(),
         'Chemical composition, nominal' : MissingQuantity(),
         'Chemical composition, measured (including precision)' : MissingQuantity(),
-        'Geometry/dimensions of blank' : MissingQuantity(),
+        'Geometry/dimensions of blank' : [Quantity(
+            Value = lisdata['metadata']['Probenform']
+            )], 
         'Blank: Geometry/Dimensions' : MissingQuantity(),
         'Blank: date of supply' : MissingQuantity(),
         'Blank: order number' : MissingQuantity(),
@@ -91,14 +93,13 @@ def map_bam_to_schema(schema, lisdata):
             'Elapsed time from end of loading' : MissingQuantity(), 
             'Test duration' : Quantity(
                 Value = re.findall('[0-9,\.]+', lisdata['metadata']['Versuchsdauer'])[0],
-                Units = re.findall('[^0-9,\.]+', lisdata['metadata']['Versuchsdauer'])[0],
+                Unit = re.findall('[^0-9,\.]+', lisdata['metadata']['Versuchsdauer'])[0],
                 ), 
             'Extension' : Quantity(
                 Symbol = '$\Delta L et$',
-                Unit = 'mm', 
-                Value = 
-
-                )
+                Unit = re.findall('[^0-9,]+', lisdata['metadata']['gesamte Dehnung'])[0],
+                Value = re.findall('[0-9,]+', lisdata['metadata']['gesamte Dehnung'])[0]
+                ), 
             }
 
     
@@ -107,6 +108,16 @@ def map_bam_to_schema(schema, lisdata):
     schemed_data['Metadata']['Tested material']['Material and state'] = schemd_data_material_and_state
     schemed_data['Metadata']['Tested material']['Test piece'] = schemed_data_test_piece
     schemed_data['Primary data']['Test results']['Test sequence'] = schemed_data_TestSequence
+    schemed_data['Primary data']['Test results']['raw_elongations'] = Quantity(
+            Value = lisdata['data']['Dehnung']['values'],
+            Unit = lisdata['data']['Dehnung']['unit'], 
+            Symbol = "$\Delta L$",
+            )
+    schemed_data['Primary data']['Test results']['raw_times' ] = Quantity(
+            Value = lisdata['data']['Zeit']['values'],
+            Unit = lisdata['data']['Zeit']['unit'],
+            Symbol = "t"
+            )
 
 
     return schemed_data
