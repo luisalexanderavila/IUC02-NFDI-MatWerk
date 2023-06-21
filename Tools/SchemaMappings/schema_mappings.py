@@ -121,3 +121,92 @@ def map_bam_to_schema(schema, lisdata):
 
 
     return schemed_data
+
+
+def map_rub_to_schema(schema, jsoneddata):
+    schemed_data = copy.copy(schema)
+    
+    schemed_data_specified_test_params = {
+        'Testing Standard' : MissingQuantity(),
+        'Specified Temperature': Quantity(
+            Value = jsoneddata['metadata']['Temperature']['Value'],
+            Symbol = 'T',
+            Unit = jsoneddata['metadata']['Temperature']['Unit'],
+        ), 
+        'Initial stress' : Quantity(
+            Symbol = "R0", 
+            Unit= 'MPa',
+            Value = jsoneddata['metadata']['Stress']
+        ),
+        'Test type (interrupted/not interrupted)' : MissingQuantity(),
+        'End of experiment (time limit/test piece break/extension limit)': Quantity(
+            Value = 'MISSING - Time limit ?'
+        ),
+        'Test force' : MissingQuantity()
+    }
+    
+    schemed_data_test_order =  {
+        'Test date' : MissingQuantity(), 
+        'Test ID' : MissingQuantity(), 
+        'Project' : 'SFB TR/103',
+        'Operator' : MissingQuantity(),
+    }
+    
+    schemd_data_material_and_state = {
+        'Material ID' : 'TR103/BC/ERBO/1A-1-MA0564-2', 
+        'Manufacturing: Melting' : MissingQuantity(),
+        'Manufacturing: Casting' : MissingQuantity(),
+        'Manufacturing: Remelting' : MissingQuantity(),
+        'Manufacturing: Atmosphere' : MissingQuantity(),
+        'Manufacturing: Single or polycrystal solidified' : MissingQuantity(),
+        'Manufacturing: Thermomechanical treatment' : MissingQuantity(),
+        'Heat treatment: Atmosphere' : MissingQuantity(),
+        'Ageing applied?' : MissingQuantity(),
+        'Chemical composition, nominal' : MissingQuantity(),
+        'Chemical composition, measured (including precision)' : MissingQuantity(),
+        'Geometry/dimensions of blank' : MissingQuantity(),
+        'Blank: Geometry/Dimensions' : 'Plate',
+        'Blank: date of supply' : '20.10.2011',
+        'Blank: order number' : MissingQuantity(),
+        'Blank: supplier sample ID' : MissingQuantity(),
+        'Microstructure: Heat treatment condition (annealed, hardened, …)' : Quantity(Value=jsoneddata['metadata']['Heat treatment']),
+        'Tensile properties at testing temperature available?' : MissingQuantity(),
+        'Proof of syngle crystallinity' : MissingQuantity(),
+        'Single Crystall Orientation ' : Quantity( 
+                                                  Value = jsoneddata['metadata']['Monocrystal']['Orientation']) , 
+        'Angle orientation' : MissingQuantity(),
+        'Crack inspection details' : MissingQuantity(),
+        'X-Ray film?' : MissingQuantity(),
+        'Grain Defects mapzos?' : MissingQuantity(),
+    }
+
+    schemed_data_test_piece = {
+            'Test piece ID' : MissingQuantity(),
+            }
+
+    schemed_data_TestSequence = {
+            'Elapsed time from end of loading' : MissingQuantity(), 
+            'Test duration' : MissingQuantity(),
+            'Extension' : MissingQuantity() , 
+            }
+
+    
+    schemed_data['Metadata']['Test info']['Specified test parameters'] = schemed_data_specified_test_params
+    schemed_data['Metadata']['Test info']['Test order'] = schemed_data_test_order
+    schemed_data['Metadata']['Tested material']['Material and state'] = schemd_data_material_and_state
+    schemed_data['Metadata']['Tested material']['Test piece'] = schemed_data_test_piece
+    schemed_data['Primary data']['Test results']['Test sequence'] = schemed_data_TestSequence
+    schemed_data['Primary data']['Test results']['raw_elongations'] = Quantity(
+            Value = jsoneddata['data']['elongation']['Value'],
+            Unit = jsoneddata['data']['elongation']['Unit'], 
+            Symbol = "$\Delta L$",
+            )
+    schemed_data['Primary data']['Test results']['raw_times' ] = Quantity(
+            Value = jsoneddata['data']['times']['Value'],
+            Unit = jsoneddata['data']['times']['Unit'],
+            Symbol = "t"
+            )
+
+
+    return schemed_data
+
