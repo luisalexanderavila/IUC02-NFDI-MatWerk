@@ -135,8 +135,8 @@ def map_rub_to_schema(schema, jsoneddata):
         ), 
         'Initial stress' : Quantity(
             Symbol = "R0", 
-            Unit= 'MPa',
-            Value = jsoneddata['metadata']['Stress']
+            Unit= jsoneddata['metadata']['Stress']['Unit'],
+            Value = jsoneddata['metadata']['Stress']['Value']
         ),
         'Test type (interrupted/not interrupted)' : MissingQuantity(),
         'End of experiment (time limit/test piece break/extension limit)': Quantity(
@@ -148,7 +148,7 @@ def map_rub_to_schema(schema, jsoneddata):
     schemed_data_test_order =  {
         'Test date' : MissingQuantity(), 
         'Test ID' : MissingQuantity(), 
-        'Project' : 'SFB TR/103',
+        'Project' : Quantity(Value = 'SFB/TR103'),
         'Operator' : MissingQuantity(),
     }
     
