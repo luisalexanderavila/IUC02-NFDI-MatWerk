@@ -39,22 +39,20 @@ class Data():
                 continue
             if line[0] == '-' and len(json_content['metadata']) > 0:
                 break
-            try:
-                key, value = get_key_value(line)
-            except ValueError as E:
-                pdb.set_trace()
+            key, value = get_key_value(line)
 
             json_content['metadata'][key] = value
 
         for ln2, line in enumerate(raw_file_content[ln+2:]):
-            if '[D' in line:
+            if '[Daten]' in line:
                 break
-
         data_titles = raw_file_content[ln+ln2+2+1].split()
         data_units = raw_file_content[ln+ln2+2+2].split()
         json_content['data'][data_titles[0]] = {'unit' : data_units[0], 'values' : []}
         json_content['data'][data_titles[1]] = {'unit' : data_units[1], 'values' : []}
         for ln3, line in enumerate(raw_file_content[ln+ln2+2+2+3:]):
+            if len(line) == 0:
+                continue
             x, y = np.fromstring(line.replace(',','.'), sep='\t', )
             json_content['data'][data_titles[0]]['values'].append(x)
             json_content['data'][data_titles[1]]['values'].append(y)
