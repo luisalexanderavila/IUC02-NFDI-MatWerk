@@ -102,12 +102,20 @@ def map_bam_to_schema(schema, lisdata):
                 ), 
             }
 
+    schemed_data_state_at_test_start = {
+      'Original gauge length' : Quantity(
+                Unit = 'mm',
+                Value = re.findall('[^0-9,]+', lisdata['metadata']['Anfangsmesslänge bei RT'])
+                )
+    }
+
     
     schemed_data['Metadata']['Test info']['Specified test parameters'] = schemed_data_specified_test_params
     schemed_data['Metadata']['Test info']['Test order'] = schemed_data_test_order
     schemed_data['Metadata']['Tested material']['Material and state'] = schemd_data_material_and_state
     schemed_data['Metadata']['Tested material']['Test piece'] = schemed_data_test_piece
     schemed_data['Primary data']['Test results']['Test sequence'] = schemed_data_TestSequence
+    schemed_data['Primary data']['Test results']['State at test start'].update(schemed_data_state_at_test_start)
     schemed_data['Primary data']['Test results']['raw_elongations'] = Quantity(
             Value = lisdata['data']['Dehnung']['values'],
             Unit = lisdata['data']['Dehnung']['unit'], 
@@ -197,12 +205,12 @@ def map_rub_to_schema(schema, jsoneddata):
     schemed_data['Metadata']['Tested material']['Test piece'] = schemed_data_test_piece
     schemed_data['Primary data']['Test results']['Test sequence'] = schemed_data_TestSequence
     schemed_data['Primary data']['Test results']['raw_elongations'] = Quantity(
-            Value = jsoneddata['data']['elongation']['Value'],
+            Value = [ float (v) for v in jsoneddata['data']['elongation']['Value'] if v != ''],
             Unit = jsoneddata['data']['elongation']['Unit'], 
             Symbol = "$\Delta L$",
             )
     schemed_data['Primary data']['Test results']['raw_times' ] = Quantity(
-            Value = jsoneddata['data']['times']['Value'],
+            Value = [ float(v) for v in jsoneddata['data']['times']['Value'] if v != '' ],
             Unit = jsoneddata['data']['times']['Unit'],
             Symbol = "t"
             )
