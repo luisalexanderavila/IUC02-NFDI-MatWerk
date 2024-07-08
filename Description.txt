@@ -1,0 +1,8 @@
+Data schemata templates for IUC02
+- This is the first version of the data schemata for IUC02. It is the product of joint work between BAM (PP18) and KIT (TA-MDI) (started in September 2022). 
+- As discussed in the IUC02 demonstrator meeting on April 18th, this version can be used as a starting point for the demonstrator
+- Ideally, the revised version after BAM-RUB agreement will be the one that we bring to the conference
+- BAM has published a dataset in Zenodo (material: NIMONIC 75; DOI: 10.5281/zenodo.5106606) and will generate another dataset within this IUC (Material: single crystal alloy CMSX-6).
+- This version of the schema is targeted for the CMSX-6 data. However, it is also valid for the NIMONIC75 data. Indeed, the only row directly linked to the CMSX-6 dataset is Row 18 "Single Crystal Orientation".
+- The JSON file corresponds to the uploaded version of the Excel file.
+- IMPORTANT: This data schema (Excel, JSON) can and will change as the project progresses. Changes will include, for instance, adding/deleting rows, changing the ranking of specific items (mandatory/recommended/not mandatory), or changing the input type for specific items.
