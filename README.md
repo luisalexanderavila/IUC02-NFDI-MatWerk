@@ -1,93 +1,32 @@
-# IUC02
+NFDI-MatWerk/IUC02 Data schema for creep data of Ni-based superalloys including a comprehensive documentation of test results and metadata
+Version 1.0 (07/2024)
+Creep testing of metallic materials for high temperature applications, e.g., in turbines and power plants, yields valuable datasets. High experimental efforts are necessary to ensure stable high temperature and constant loading conditions in these long-running tests. Proper, comprehensive documentation of these experiments is a key element to enable the assessment of the quality of respective creep datasets and their targeted use (and future re-use) for specific applications.
+The provided data schema for creep tests was developed within the German NFDI-MatWerk initiative (https://nfdi-matwerk.de/). It is intended to define a structured approach for collecting all required information on a creep experiment using the established terminology of the respective test standard ISO 204:2022. The development goals encompass the following primary aspects:
 
+To ensure a comprehensive description with a hierarchical data structure that can be implemented to data management platforms,
+To define a scope of documentation that allows the assessment of a dataset’s quality by different end users who retrieve datasets from multiple data providers,
+To foster the exchange of high-quality creep datasets according to the FAIR principles [1], by providing easy interoperability and full reusability.
 
+Although originally developed for datasets of Ni-based high temperature alloys, the data schema is largely agnostic to the type of material and may be similarly used for creep tests of different metallic (and other) materials.
+A very detailed approach was chosen to ensure the collection of all related pieces of information, e.g. including a complete description of the material’s manufacturing history and a comprehensive description of the laboratory equipment. In this way, the developed data schema serves to describe or identify high quality datasets, which can be considered as reference data for verification purposes based on their precision and documentation. It is acknowledged that certain datasets, depending on their origin and intended use, may not require this full depth of documentation. Still, the suggested data schema can help to decide which parts of information are relevant for the respective purpose. The authors intend to further optimize the data structure in future versions, defining quality classes for creep datasets based on the extent of available (meta-) information.
+This version of the data schema covers creep tests with the following features:
 
-## Getting started
+It considers single- and polycrystalline specimen material
+Terminology is aligned with ISO 204:2022
+Creep test under tension and constant force
+Temperature measurement with thermocouples
+Contacting extensometer system
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+The data schema is provided in the following formats: .pdf, .xlsx, .csv and JSON, and it is also available in a git repository ([https://git.rwth-aachen.de/nfdi-matwerk/iuc02]).
+The .xlsx/.pdf/.csv version of the data schema contains 12 columns. Columns B to E are categories that define the overarching structure of the schema (Please refer to file "Schema Structure Overview"). This structure mimics the way a domain expert would structure the data. Columns F to H refer to the single entries with the respective symbol and unit, if applicable. The units are community-common units. Column I is the data type. It should give a first hint on how to answer each entry field. Column J provides exemplary answers for most of the entries and the options of the corresponding drop-down list, if applicable. Column K is the requirement profile, while column L includes further explanations on the requirement and on the applicability of some entries.
+The Requirement Profile (column K) refers to the highest quality class of reference creep data, taken from calibrated instruments, and which shall enable the following usages:
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Checking own creep test results on nominally similar material
+Verification of own testing set-up (e.g. by testing same/similar material)
+Using the data as input data for simulations of creep behavior for design and alloy development
 
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://git.rwth-aachen.de/nfdi-matwerk/iuc02.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://git.rwth-aachen.de/nfdi-matwerk/iuc02/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Other quality classes or typical research datasets require less documentation.
+The JSON schema yields the same categorization as the .xlsx/.pdf/.csv files and includes those concepts present in the data schema. The requirement profile and data type are essential features to be provided for each entry. The JSON schema is structured with column B as the first level of categorization and the mapping further builds upon it.
+Our current definition for reference data of materials is available here: [https://zenodo.org/records/11667674].
+Acknowledgment
+This work was carried out in the framework of NFDI-MatWerk and funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under the National Research Data Infrastructure – NFDI 38/1 – project number 460247524. Mariano Forti and Thomas Hammerschmidt acknowledge financial support by the DFG through project C1 of the collaborative research centre SFB/TR 103 (project number 190389738). Rossella Aversa acknowledges financial support by the EU’s H2020 framework program for research and innovation under grant agreement n. 101007417, NFFA-Europe Pilot Project. All authors acknowledge: (i) Klaus Neuking and Gunther Eggeler from Institute for Materials, Ruhr-Universität Bochum, Germany, for fruitful discussions on the detailed description of creep test setups and creep data of single-crystal superalloys, (ii) Irina Roslyakova from Institute for Materials, Ruhr-Universität Bochum, Germany, and Steffen Brinckmann from Forschungszentrum Jülich, Germany for fruitful discussions on data processing, and (iii) Erik Bitzek from Friedrich-Alexander-Universität Erlangen-Nürnberg for fruitful discussions on general requirements on contents and data formats in relation to creep data of Ni-based superalloys.
