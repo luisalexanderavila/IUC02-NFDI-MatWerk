@@ -1,5 +1,9 @@
-**NFDI-MatWerk/IUC02 Data schema for creep data of Ni-based superalloys including a comprehensive documentation of test results and metadata
-Version 1.0 (07/2024)**
+# NFDI-MatWerk/IUC02 Data schema for creep data of Ni-based superalloys including a comprehensive documentation of test results and metadata
+## Version 1.1 (11/2024)
+
+This version replaces the version v1.0 (June 2024). 
+The main changes compared to v1.0 are listed in the last page of this document. 
+DOI: 10.5281/zenodo.11668375 
 
 Creep testing of metallic materials for high temperature applications, e.g., in turbines and power plants, yields valuable datasets. High experimental efforts are necessary to ensure stable high temperature and constant loading conditions in these long-running tests. Proper, comprehensive documentation of these experiments is a key element to enable the assessment of the quality of respective creep datasets and their targeted use (and future re-use) for specific applications.
 The provided data schema for creep tests was developed within the German NFDI-MatWerk initiative (https://nfdi-matwerk.de/). It is intended to define a structured approach for collecting all required information on a creep experiment using the established terminology of the respective test standard ISO 204:2022. The development goals encompass the following primary aspects:
@@ -29,9 +33,15 @@ Other quality classes or typical research datasets require less documentation.
 The JSON schema yields the same categorization as the .xlsx/.pdf/.csv files and includes those concepts present in the data schema. The requirement profile and data type are essential features to be provided for each entry. The JSON schema is structured with column B as the first level of categorization and the mapping further builds upon it.
 Our current definition for reference data of materials is available here: [https://zenodo.org/records/11667674].
 
+### Changes compared to v1.0
+The amendments were mainly editorial and formal changes and are as follows: 
+- Column “Comment”: Text in row 193 was revised and cross-references to rows were revised and corrected for all entries. 
+- Row 142, column “Requirement”: “Deviation detected during calibration” (data acquisition temperature-measuring system) changed to optional. 
+- Rows 164 and 165, column “Entry”: “…primary data and processed data” was changed to “…primary and processed data series”. 
+- Column “Exemplary answer / options (in case of drop-down list)”: Capitalization was revised and corrected. 
+The above-mentioned changes refer to the XLSX and CSV files. The JSON schema was adapted accordingly. The data schema structure (Data Schema IUC02/Schema_Structure_Overview.pdf), remained unchanged. 
 
 Acknowledgment: 
-
 This work was carried out in the framework of NFDI-MatWerk and funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under the National Research Data Infrastructure – NFDI 38/1 – project number 460247524. Mariano Forti and Thomas Hammerschmidt acknowledge financial support by the DFG through project C1 of the collaborative research centre SFB/TR 103 (project number 190389738). Rossella Aversa acknowledges financial support by the EU’s H2020 framework program for research and innovation under grant agreement n. 101007417, NFFA-Europe Pilot Project. All authors acknowledge: (i) Klaus Neuking and Gunther Eggeler from Institute for Materials, Ruhr-Universität Bochum, Germany, for fruitful discussions on the detailed description of creep test setups and creep data of single-crystal superalloys, (ii) Irina Roslyakova from Institute for Materials, Ruhr-Universität Bochum, Germany, and Steffen Brinckmann from Forschungszentrum Jülich, Germany for fruitful discussions on data processing, and (iii) Erik Bitzek from Friedrich-Alexander-Universität Erlangen-Nürnberg for fruitful discussions on general requirements on contents and data formats in relation to creep data of Ni-based superalloys.
 
 Reference:
