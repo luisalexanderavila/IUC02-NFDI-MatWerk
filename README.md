@@ -2,7 +2,7 @@
 ## Version 1.1 (11/2024)
 
 This version replaces the version v1.0 (June 2024). 
-The main changes compared to v1.0 are listed in the last page of this document. 
+The main changes compared to v1.0 are listed towards the end of this description. 
 DOI: 10.5281/zenodo.11668375 
 
 Creep testing of metallic materials for high temperature applications, e.g., in turbines and power plants, yields valuable datasets. High experimental efforts are necessary to ensure stable high temperature and constant loading conditions in these long-running tests. Proper, comprehensive documentation of these experiments is a key element to enable the assessment of the quality of respective creep datasets and their targeted use (and future re-use) for specific applications.
@@ -42,6 +42,7 @@ The amendments were mainly editorial and formal changes and are as follows:
 The above-mentioned changes refer to the XLSX and CSV files. The JSON schema was adapted accordingly. The data schema structure (Data Schema IUC02/Schema_Structure_Overview.pdf), remained unchanged. 
 
 Acknowledgment: 
+
 This work was carried out in the framework of NFDI-MatWerk and funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under the National Research Data Infrastructure – NFDI 38/1 – project number 460247524. Mariano Forti and Thomas Hammerschmidt acknowledge financial support by the DFG through project C1 of the collaborative research centre SFB/TR 103 (project number 190389738). Rossella Aversa acknowledges financial support by the EU’s H2020 framework program for research and innovation under grant agreement n. 101007417, NFFA-Europe Pilot Project. All authors acknowledge: (i) Klaus Neuking and Gunther Eggeler from Institute for Materials, Ruhr-Universität Bochum, Germany, for fruitful discussions on the detailed description of creep test setups and creep data of single-crystal superalloys, (ii) Irina Roslyakova from Institute for Materials, Ruhr-Universität Bochum, Germany, and Steffen Brinckmann from Forschungszentrum Jülich, Germany for fruitful discussions on data processing, and (iii) Erik Bitzek from Friedrich-Alexander-Universität Erlangen-Nürnberg for fruitful discussions on general requirements on contents and data formats in relation to creep data of Ni-based superalloys.
 
 Reference:
