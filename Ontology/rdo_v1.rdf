@@ -40,74 +40,74 @@
 
     <!-- https://purls.helmholtz-metadaten.de/rdo/ReferenceDataSet -->
 
-    <Class rdf:about="http://purls.helmholtz-metadaten.de/mwo/ReferenceDataSet">
+    <owl:Class rdf:about="http://purls.helmholtz-metadaten.de/mwo/ReferenceDataSet">
      <owl:equivalentClass rdf:resource="https://www.niso.org/standards-committees/ssos/ssos01.owl#Reference"/>
         <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdo/DataSet"/>
         <obo:IAO_0000115 xml:lang="en">Reference data of materials are - documented according to certain standards as well as - curated (i.e., generated, maintained, preserved, validated) according to certain standards - quantitative data sets (i.e., data + their corresponding metadata) and - have been measured or simulated to a particularly high standard - for a material that has either experienced a well-documented process or is reference material or its composition and structure has been completely characterized. Reference data of materials can also be derived data from reference data. These data are distributed with a license (e.g., GPL) The here addressed standards for documentation, curation and measurement need to be defined for specific materials characteristics (e.g., creep tests) in terms of domain standards. These domain standards are the result of a steered community process. Standards should integrate as much as possible existing standards (e.g., the individual MatWerk domain standards should be as much as possible consistent).</obo:IAO_0000115>
         <rdfs:isDefinedBy>NFDI-MatWerk-IUC02</rdfs:isDefinedBy>
         <rdfs:label xml:lang="en">Reference dataset</rdfs:label>
-    </Class>
+    </owl:Class>
     
     
   <!-- https://purls.helmholtz-metadaten.de/rdo/DataSet -->
 
 
-    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/ReferenceDataSet">
+    <owl:owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/ReferenceDataSet">
     <owl:equivalentClass rdf:resource="https://nfdi.fiz-karlsruhe.de/ontology/Dataset"/>
         <rdfs:subClassOf rdf:resource="https://nfdi.fiz-karlsruhe.de/ontology/CreativeWork"/>
         <obo:IAO_0000115 xml:lang="en">A creative work that refers to a structured collection of data, organized typically for a specific goal such as analysis, research, or reference.</obo:IAO_0000115>
         <rdfs:comment xml:lang="en">A collection of data that consists of one or more files.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="https://nfdi.fiz-karlsruhe.de/ontology"/>
         <rdfs:label xml:lang="en">Dataset</rdfs:label>
-    </owl:Class>
+    </owl:owl:Class>
 
 
     <!-- https://purls.helmholtz-metadaten.de/rdo/Reference -->
 
-    <Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Reference">
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Reference">
         <owl:equivalentClass rdf:resource="https://www.niso.org/standards-committees/ssos/ssos01.owl#Reference"/>
         <rdfs:subClassOf rdf:resource="https://nfdi.fiz-karlsruhe.de/ontology/Resource"/>
         <obo:IAO_0000115 xml:lang="en">Citation to another standard, part of a standard, or other material.</obo:IAO_0000115>
          <rdfs:isDefinedBy>NISO</rdfs:isDefinedBy>
         <rdfs:label xml:lang="en">Reference</rdfs:label>
-    </Class>
+    </owl:Class>
     
  <!-- https://purls.helmholtz-metadaten.de/rdo/ReferenceMaterial -->
 
-    <Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/ReferenceMaterial">
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/ReferenceMaterial">
         <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/mwo/Material"/>
         <owl:equivalentClass rdf:resource="http://purl.obolibrary.org/obo/CHMO_0002913"/>
         <obo:IAO_0000115 xml:lang="en">Material, sufficiently homogeneous and stable with respect to one or more specified properties, which has been established to be fit for its intended use in a measurement process.</obo:IAO_0000115>
         <rdfs:comment xml:lang="en">Properties can be quantitative or qualitative, e.g. identity of substances or species. Uses may include the calibration of a measurement system, assessment of a measurement procedure, assigning values to other materials, and quality control.</rdfs:comment>
         <rdfs:isDefinedBy>DIN EN ISO 17034:2017</rdfs:isDefinedBy>
         <rdfs:label xml:lang="de">Reference material</rdfs:label>
-    </Class>
+    </owl:Class>
 
     <!-- https://purls.helmholtz-metadaten.de/rdo/BibliographicReference -->
 
-    <Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/BibliographicReference">
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/BibliographicReference">
         <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdo/Reference"/>
         <owl:equivalentClass rdf:resource="http://purl.org/spar/biro/BibliographicReference"/>
         <obo:IAO_0000115 xml:lang="en">An expression of a bibliographic record in a specific format, that references a particular textual or data publication (or a work in preparation for publication). Each bibliographic reference is a list of items containing entities that describe aspects of the referenced work - for example authors, title, journal, publication year - selected from the bibliographic record. Note that because different journal styles may require omission of elements of the bibliographic record in references included in a paper&apos;s reference list (e.g. the title, the identifier, the names of the eighth and subsequent authors), and because errors can be introduced when an author creates a bibliographic reference, the bibliographic reference to a published work may not be a complete or fully accurate expression of the information contained within the authoritative bibliographic record for that work.</obo:IAO_0000115>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/spar/biro"/>
         <rdfs:label xml:lang="en">Bibliographic reference</rdfs:label>
-    </Class>
+    </owl:Class>
     
     <!-- https://purls.helmholtz-metadaten.de/rdo/certifiedReferenceMaterial -->
 
-    <Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/certifiedReferenceMaterial">
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/certifiedReferenceMaterial">
         <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdo/ReferenceMaterial"/>
         <obo:IAO_0000115 xml:lang="en"> 1) Reference material accompanied by documentation issued by an authoritative body and providing one or more specified property values with associated uncertainties and traceabilities, using valid procedures. 2) Reference material characterized by a metrologically valid procedure for one or more specified properties, accompanied by a reference material certificate that provides the value of the specified property, its associated uncertainty, and a statement of metrological traceability.</obo:IAO_0000115>
         <rdfs:comment xml:lang="en">The concept of value includes a nominal property or a qualitative attribute such as identity or sequence. Uncertainties for such attributes may be expressed as probabilities or levels of confidence.</rdfs:comment>
         <rdfs:isDefinedBy>1) ISO/IEC Guide 99: 2007, 2) ISO Guide 30:2015</rdfs:isDefinedBy>
         <owl:equivalentClass rdf:resource="http://purl.obolibrary.org/obo/CHMO_0002879"/>
         <rdfs:label xml:lang="en">Certified reference material</rdfs:label>
-    </Class>
+    </owl:Class>
 
 
       <!-- https://purls.helmholtz-metadaten.de/rdo/Standard -->
 
-    <Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Standard">
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Standard">
         <obo:IAO_0000115 xml:lang="en">A documented instance of rules, guidelines, or characteristics for activities and/or their results, established by consensus and approved by a recognized body, aimed at the achievement of the optimum degree of order in a given context. Note 1: All instances identified by the same standard’s designation are often referred to as a standards’ family. Source: NISO SSOS WG adapting definitions of pre-existing standards</obo:IAO_0000115>
          <rdfs:subClassOf rdf:resource="https://nfdi.fiz-karlsruhe.de/ontology/Specification"/>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
@@ -115,52 +115,52 @@
          <owl:equivalentClass rdf:resource="https://purls.helmholtz-metadaten.de/rdo/Norm"/>
         <rdfs:isDefinedBy>NISO SSOS WG adapting definitions of pre-existing standards</rdfs:isDefinedBy>
         <rdfs:label xml:lang="en">Standard</rdfs:label>
-    </Class>
+    </owl:Class>
 
         <!-- https://purls.helmholtz-metadaten.de/rdo/Norm -->
 
-    <Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Norm">
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Norm">
         <obo:IAO_0000115 xml:lang="en">Document established by consensus and approved by a recognized body, that provides, for common and repeated use, rules, guidelines or characteristics for activities or their results, aimed at the achievement of the optimum degree of order in a given context</obo:IAO_0000115>
         <rdfs:isDefinedBy>SO/IEC Guide 2:2004</rdfs:isDefinedBy>
         <rdfs:label xml:lang="en">Norm</rdfs:label>
-    </Class>
+    </owl:Class>
     
    
         <!-- https://purls.helmholtz-metadaten.de/rdo/MeasurementStandard -->
 
-    <Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/MeasurementStandard">
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/MeasurementStandard">
         <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdo/Standard"/>
         <obo:IAO_0000115 xml:lang="en">Realization of the definition of a given quantity, with stated quantity value and associated measurement uncertainty, used as a reference:<obo:IAO_0000115>
         <rdfs:isDefinedBy>ISO/IEC Guide 99: 2007</rdfs:isDefinedBy>
         <rdfs:label xml:lang="en">Measurement standard</rdfs:label>
-    </Class>
+    </owl:Class>
 
     <!-- https://purls.helmholtz-metadaten.de/rdo/Certificate -->
 
-    <Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Certificate">
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Certificate">
         <rdfs:subClassOf rdf:resource="http://nfdi.fiz-karlsruhe.de/ontology/Specification"/>
         <owl:equivalentClass rdf:resource="http://www.ontologyrepository.com/CommonCoreOntologies/Certificate">
         <obo:IAO_0000115 xml:lang="en"> An Information Bearing Artifact that bears an Information Content Entity which attests to certain demonstrated characteristics of an Object, Person, or Organization.</obo:IAO_0000115>
         <rdfs:isDefinedBy rdf:resource="http://www.ontologyrepository.com/CommonCoreOntologies/Certificate"/>
         <rdfs:label xml:lang="en">Certificate</rdfs:label>
-    </Class>
+    </owl:Class>
     
 
     
     
     <!-- https://purls.helmholtz-metadaten.de/rdo/Documentation -->
 
-    <Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Documentation">
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Documentation">
         <rdfs:subClassOf rdf:resource="https://nfdi.fiz-karlsruhe.de/ontology/Specification"/>
         <obo:IAO_0000115 xml:lang="en">Documentation is any communicable material that is used to describe, explain or instruct regarding some attributes of an object, system or procedure, such as its parts, assembly, installation, maintenance and use</obo:IAO_0000115>
          <owl:equivalentClass rdf:resource="http://purls.helmholtz-metadaten.de/mwo/Documentation"/>
         <rdfs:label xml:lang="en">Documentation</rdfs:label>
-    </Class>
+    </owl:Class>
 
     
     <!-- https://purls.helmholtz-metadaten.de/rdo/Licence -->
 
-    <Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Licence">
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Licence">
      <obo:IAO_0000115 xml:lang="en"> A legal document giving official permission to do something with the resource.</obo:IAO_0000115>
         <rdfs:comment>An information content entity that refers to a legal instrument (usually by way of contract law, with or without printed material) governing the use or redistribution of the resource containing the licence.</rdfs:comment>
          <owl:equivalentClass rdf:resource="https://nfdi.fiz-karlsruhe.de/ontology/License"/>
@@ -168,57 +168,57 @@
          <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/license"/>
          <skos:example xml:lang="en">Creative Commons license</skos:example>
         <rdfs:label xml:lang="en">Licence</rdfs:label>
-    </Class>
+    </owl:Class>
     
    <!-- https://purls.helmholtz-metadaten.de/rdo/Metadata -->
 
-    <Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Metadata">
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Metadata">
         <owl:equivalentClass rdf:resource="https://materialdigital.github.io/core-ontology/index-en.html#Metadata"/>
          <obo:IAO_0000115 xml:lang="en">Attributes and additional data concerning the manufacturing of the tested material, test set-up, test system (measuring and test equipment), and the test piece, which allow for the evaluation of the quality/reliability of the measurements and a systematic search task of a database.</obo:IAO_0000115>
         <rdfs:subClassOf rdf:resource=" https://w3id.org/pmd/co/DataScope"/>
          <rdfs:isDefinedBy>NFDI-MatWerk-IUC02</rdfs:isDefinedBy>
         <rdfs:label xml:lang="en">Metadata</rdfs:label>
-    </Class>
+    </owl:Class>
     
         <!-- https://purls.helmholtz-metadaten.de/rdo/PrimaryData -->
 
-    <Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/PrimaryData">
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/PrimaryData">
         <owl:equivalentClass rdf:resource="https://w3id.org/pmd/co/PrimaryData"/>
          <obo:IAO_0000115 xml:lang="en">Data directly acquired by sensors or measuring instruments during or after an experiment or simulation.</obo:IAO_0000115>
         <rdfs:subClassOf rdf:resource=" https://w3id.org/pmd/co/DataScope"/>
          <rdfs:isDefinedBy>NFDI-MatWerk-IUC02</rdfs:isDefinedBy>
         <rdfs:label xml:lang="en">Primary data</rdfs:label>
-    </Class>
+    </owl:Class>
     
 
 
     <!-- https://purls.helmholtz-metadaten.de/rdo/SecondaryData -->
 
-    <Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/secondaryData">
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/secondaryData">
          <owl:equivalentClass rdf:resource="https://w3id.org/pmd/co/PrimaryData"/>
          <obo:IAO_0000115 xml:lang="en">Data determined by equations or algorithms using primary data and/or metadata.</obo:IAO_0000115>
         <rdfs:subClassOf rdf:resource=" https://w3id.org/pmd/co/DataScope"/>
          <rdfs:isDefinedBy>NFDI-MatWerk-IUC02</rdfs:isDefinedBy>
         <rdfs:label xml:lang="en">Secondary data</rdfs:label>
-    </Class>
+    </owl:Class>
 
     <!-- https://purls.helmholtz-metadaten.de/rdo/Material -->
 
-    <Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Matirial">
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Matirial">
     <owl:equivalentClass rdf:resource="http://purls.helmholtz-metadaten.de/mwo/Material"/>
         <rdfs:label>Material</rdfs:label>
-    </Class>
+    </owl:Class>
     
 
 
     <!-- https://purls.helmholtz-metadaten.de/rdo/MatirialDescription -->
 
-    <Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/MatirialDescription">
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/MatirialDescription">
     <obo:IAO_0000115 xml:lang="en">This information is used to qualitatively and quantitatively describe a material by providing information on e.g. material properties, material structure, etc.</obo:IAO_0000115>
         <rdfs:subClassOf rdf:resource="https://nfdi.fiz-karlsruhe.de/ontology/Specification"/>   
          <owl:equivalentClass rdf:resource="https://w3id.org/pmd/co/MaterialRelated"/>
         <rdfs:label>Matirial description</rdfs:label>
-    </Class>
+    </owl:Class>
     
 
 
@@ -228,7 +228,7 @@
  <!-- https://nfdi.fiz-karlsruhe.de/ontology/Specification -->
 
 
-    <owl:Class rdf:about="https://nfdi.fiz-karlsruhe.de/ontology/Specification">
+    <owl:owl:Class rdf:about="https://nfdi.fiz-karlsruhe.de/ontology/Specification">
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -246,23 +246,6 @@
 
 
  
-    
-
-
-
-   
-
-
-
-  
-
-
-
-    
-
-
-  
-</rdf:RDF>
 
  <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -500,11 +483,7 @@
                       rdf:resource="https://purls.helmholtz-metadaten.de/rdo/SecondaryData"/>  
                 </owl: members>
             </owl:Class>
-        </rdfs:domain>
-        
-        
-        
-        
+        </rdfs:domain>  
         <rdfs:label xml:lang="en">in scope of</rdfs:label>
     </owl:ObjectProperty>
 
@@ -823,42 +802,42 @@ A continuant cannot have an occurrent as part: use &apos;participates in&apos;. 
 
     <!-- http://nfdi.fiz-karlsruhe.de/ontology/example -->
 
-    <AnnotationProperty rdf:about="http://nfdi.fiz-karlsruhe.de/ontology/example"/>
+    <owl:AnnotationProperty rdf:about="http://nfdi.fiz-karlsruhe.de/ontology/example"/>
     
 
   <!-- http://purl.obolibrary.org/obo/BFO_0000054 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000954"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000954"/>
 
 
     <!-- http://purl.obolibrary.org/obo/BFO_0000179 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000179"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000179"/>
     
 
 
     <!-- http://purl.obolibrary.org/obo/BFO_0000180 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000180"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000180"/>
     
     
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000112 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000112"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000112"/>
     
 
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000114 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000114"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000114"/>
     
 
 
    <!-- http://purl.obolibrary.org/obo/IAO_0000115 -->
 
 
-    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000115">
+    <owl:owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000115">
         <obo:IAO_0000111 xml:lang="en">definition</obo:IAO_0000111>
         <obo:IAO_0000111>definition</obo:IAO_0000111>
         <obo:IAO_0000111>textual definition</obo:IAO_0000111>
@@ -891,134 +870,134 @@ We also have the outstanding issue of how to aim different definitions to differ
         <rdfs:label xml:lang="en">definition</rdfs:label>
         <rdfs:label>definition</rdfs:label>
         <rdfs:label>textual definition</rdfs:label>
-    </owl:AnnotationProperty>
+    </owl:owl:AnnotationProperty>
 
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000116 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000116"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000116"/>
     
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000118 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000118"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000118"/>
     
 
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000119 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000119"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000119"/>
 
 
       <!-- http://purl.obolibrary.org/obo/IAO_0000136 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000136"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000136"/>
     
 
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000600 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000600"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000600"/>
     
 
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000602 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000602"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000602"/>
     
 
 
     <!-- http://purl.obolibrary.org/obo/IAO_0010000 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0010000"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0010000"/>
     
 
 
     <!-- http://purl.obolibrary.org/obo/NCIT_C42610 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/NCIT_C42610">
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/NCIT_C42610">
         <obo:IAO_0000115>A shortened form of a word or phrase. [Definition Source: NCI]</obo:IAO_0000115>
         <rdfs:label xml:lang="en">abbreviation</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#altLabel"/>
-    </AnnotationProperty>
+    </owl:AnnotationProperty>
     
 
 
     <!-- http://purl.obolibrary.org/obo/NCIT_C93495 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/NCIT_C93495">
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/NCIT_C93495">
         <obo:IAO_0000115>The non-unique initials or abbreviated name used for identification. [Definition Source: NCI]</obo:IAO_0000115>
         <rdfs:label xml:lang="en">acronym</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#altLabel"/>
-    </AnnotationProperty>
+    </owl:AnnotationProperty>
     
 
 
     <!-- http://purl.org/dc/elements/1.1/contributor -->
 
-    <AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/contributor"/>
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/contributor"/>
     
 
 
     <!-- http://purl.org/dc/elements/1.1/creator -->
 
-    <AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
     
 
 
     <!-- http://purl.org/dc/elements/1.1/date -->
 
-    <AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
     
 
 
     <!-- http://purl.org/dc/elements/1.1/description -->
 
-    <AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/description"/>
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/description"/>
     
 
 
     <!-- http://purl.org/dc/elements/1.1/format -->
 
-    <AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/format"/>
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/format"/>
     
 
 
     <!-- http://purl.org/dc/elements/1.1/identifier -->
 
-    <AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/identifier"/>
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/identifier"/>
     
 
 
     <!-- http://purl.org/dc/terms/bibliographicCitation -->
 
-    <AnnotationProperty rdf:about="http://purl.org/dc/terms/bibliographicCitation"/>
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/bibliographicCitation"/>
     
 
 
     <!-- http://purl.org/dc/terms/created -->
 
-    <AnnotationProperty rdf:about="http://purl.org/dc/terms/created">
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/created">
         <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/date"/>
-    </AnnotationProperty>
+    </owl:AnnotationProperty>
     
 
 
     <!-- http://purl.org/dc/terms/creator -->
 
-    <AnnotationProperty rdf:about="http://purl.org/dc/terms/creator"/>
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/creator"/>
     
 
 
     <!-- http://purl.org/dc/terms/description -->
 
-    <AnnotationProperty rdf:about="http://purl.org/dc/terms/description"/>
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/description"/>
     
 
 
     <!-- http://purl.org/dc/terms/format -->
 
-    <AnnotationProperty rdf:about="http://purl.org/dc/terms/format">
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/format">
         <terms:bibliographicCitation>[MIME] http://www.iana.org/assignments/media-types/</terms:bibliographicCitation>
         <rdfs:comment xml:lang="en-us">Examples of dimensions include size and duration. Recommended best practice is to use a controlled vocabulary such as the list of Internet Media Types [MIME].</rdfs:comment>
         <rdfs:comment xml:lang="en">The file format, physical medium, or dimensions of the resource.
@@ -1030,40 +1009,40 @@ Examples of dimensions include size and duration. Recommended best practice is t
         <skos:definition xml:lang="en-us">The file format, physical medium, or dimensions of the resource.</skos:definition>
         <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/format"/>
         <rdfs:range rdf:resource="http://purl.org/dc/elements/1.1/contributor"/>
-    </AnnotationProperty>
+    </owl:AnnotationProperty>
     
 
 
     <!-- http://purl.org/dc/terms/identifier -->
 
-    <AnnotationProperty rdf:about="http://purl.org/dc/terms/identifier">
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/identifier">
         <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/identifier"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    </AnnotationProperty>
+    </owl:AnnotationProperty>
     
 
 
     <!-- http://purl.org/dc/terms/license -->
 
-    <AnnotationProperty rdf:about="http://purl.org/dc/terms/license"/>
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/license"/>
     
 
 
     <!-- http://purl.org/dc/terms/title -->
 
-    <AnnotationProperty rdf:about="http://purl.org/dc/terms/title"/>
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/title"/>
     
 
 
     <!-- http://purl.org/vocab/vann/preferredNamespacePrefix -->
 
-    <AnnotationProperty rdf:about="http://purl.org/vocab/vann/preferredNamespacePrefix"/>
+    <owl:AnnotationProperty rdf:about="http://purl.org/vocab/vann/preferredNamespacePrefix"/>
     
 
 
     <!-- http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym -->
 
-    <AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym">
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym">
         <oboInOwl:hasDbXref>
             <rdf:Description/>
         </oboInOwl:hasDbXref>
@@ -1072,27 +1051,27 @@ Examples of dimensions include size and duration. Recommended best practice is t
         </oboInOwl:hasDefinition>
         <rdfs:label xml:lang="en">has_broad_synonym</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasSynonym"/>
-    </AnnotationProperty>
+    </owl:AnnotationProperty>
     
 
 
     <!-- http://www.geneontology.org/formats/oboInOwl#hasDbXref -->
 
-    <AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasDbXref">
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasDbXref">
         <rdfs:label>database_cross_reference</rdfs:label>
-    </AnnotationProperty>
+    </owl:AnnotationProperty>
     
 
 
     <!-- http://www.geneontology.org/formats/oboInOwl#hasDefinition -->
 
-    <AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasDefinition"/>
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasDefinition"/>
     
 
 
     <!-- http://www.geneontology.org/formats/oboInOwl#hasExactSynonym -->
 
-    <AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym">
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym">
         <oboInOwl:hasDbXref>
             <rdf:Description/>
         </oboInOwl:hasDbXref>
@@ -1101,13 +1080,13 @@ Examples of dimensions include size and duration. Recommended best practice is t
         </oboInOwl:hasDefinition>
         <rdfs:label xml:lang="en">has_exact_synonym</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasSynonym"/>
-    </AnnotationProperty>
+    </owl:AnnotationProperty>
     
 
 
     <!-- http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym -->
 
-    <AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym">
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym">
         <oboInOwl:hasDbXref>
             <rdf:Description/>
         </oboInOwl:hasDbXref>
@@ -1116,13 +1095,13 @@ Examples of dimensions include size and duration. Recommended best practice is t
         </oboInOwl:hasDefinition>
         <rdfs:label xml:lang="en">has_narrow_synonym</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasSynonym"/>
-    </AnnotationProperty>
+    </owl:AnnotationProperty>
     
 
 
     <!-- http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym -->
 
-    <AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym">
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym">
         <oboInOwl:hasDbXref>
             <rdf:Description/>
         </oboInOwl:hasDbXref>
@@ -1131,13 +1110,13 @@ Examples of dimensions include size and duration. Recommended best practice is t
         </oboInOwl:hasDefinition>
         <rdfs:label xml:lang="en">has_related_synonym</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasSynonym"/>
-    </AnnotationProperty>
+    </owl:AnnotationProperty>
     
 
 
     <!-- http://www.geneontology.org/formats/oboInOwl#hasSynonym -->
 
-    <AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasSynonym">
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasSynonym">
         <oboInOwl:hasDbXref>
             <rdf:Description/>
         </oboInOwl:hasDbXref>
@@ -1146,51 +1125,51 @@ Examples of dimensions include size and duration. Recommended best practice is t
         </oboInOwl:hasDefinition>
         <rdfs:comment>Note that this should be a super-property of hasRelatedSynonym, hasExactSynonym etc; however, we cannot state this and remain in OWL-DL</rdfs:comment>
         <rdfs:label xml:lang="en">has_synonym</rdfs:label>
-    </AnnotationProperty>
+    </owl:AnnotationProperty>
     
 
 
     <!-- http://www.w3.org/2002/07/owl#versionIRI -->
 
-    <AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#versionIRI"/>
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#versionIRI"/>
     
 
 
     <!-- http://www.w3.org/2002/07/owl#versionInfo -->
 
-    <AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#versionInfo"/>
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#versionInfo"/>
     
 
 
     <!-- http://www.w3.org/2004/02/skos/core#altLabel -->
 
-    <AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#altLabel"/>
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#altLabel"/>
     
 
 
     <!-- http://www.w3.org/2004/02/skos/core#definition -->
 
-    <AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#definition"/>
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#definition"/>
     
 
 
     <!-- http://www.w3.org/2004/02/skos/core#prefLabel -->
 
-    <AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#prefLabel"/>
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#prefLabel"/>
     
 
 
     <!-- http://www.w3.org/ns/prov#editorialNote -->
 
-    <AnnotationProperty rdf:about="http://www.w3.org/ns/prov#editorialNote"/>
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/ns/prov#editorialNote"/>
     
 
 
     <!-- https://w3id.org/pmd/co/definitionSource -->
 
-    <AnnotationProperty rdf:about="https://w3id.org/pmd/co/definitionSource"/>
+    <owl:AnnotationProperty rdf:about="https://w3id.org/pmd/co/definitionSource"/>
     
-
+</rdf:RDF>
 
 <!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
 
