@@ -1,6 +1,6 @@
 # NFDI-MatWerk Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets
 
-Welcome to the Git repository of the ["Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets"](https://nfdi-matwerk.de/infrastructure-use-cases/iuc02-framework-for-curation-and-distribution-of-reference-datasets) of the consortium [NFDI-MatWerk](https://nfdi-matwerk.de/).
+Welcome to the Git repository of the ["Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets"](https://nfdi-matwerk.de/project/structure/use-cases/iuc02) of the consortium [NFDI-MatWerk](https://nfdi-matwerk.de/).
 
 In this repository you find information and files regarding our published and current (unpublished) developments.
 
