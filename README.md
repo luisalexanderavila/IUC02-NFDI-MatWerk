@@ -2,7 +2,7 @@
 
 Welcome to the Git repository of the ["Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets"](https://nfdi-matwerk.de/project/structure/use-cases/iuc02) of the consortium [NFDI-MatWerk](https://nfdi-matwerk.de/).
 
-In this repository you find information and files regarding our published and current (unpublished) developments.
+In this repository you find information and files regarding our published and current developments.
 
 # Published Work
 
@@ -30,11 +30,11 @@ The dataset was published in Zenodo and can be found under https://doi.org/10.52
 
 ## Ontology Development
 
-In the folder "Ontology" you will find the current status of the developments related to the IUC02.
+In the folder "Ontology Development" you will find the current status of the developments related to the IUC02.
 
 ## Further work
 
-We are currently agreeing on how to structure and share our current developments regarding, e.g., upstream data processing, downstream data usage, and FAIR Digital Objects. We will update the repository soon in this regard.
+We will soon share our current developments regarding, e.g., upstream data processing, reference dataset validation, downstream data usage, and FAIR Digital Objects.
 
 
 # Acknowledgment:
