@@ -1,0 +1,9 @@
+Dependencies:
+  LISParser:
+    repository: LISParser
+    remotes:
+      demonstrator_notebooks: git@github.com:NFDI-Matwerk-IUC02/demonstrator_notebooks.git
+      origin: git@github.com:NFDI-Matwerk-IUC02/LISParser.git
+
+
+
