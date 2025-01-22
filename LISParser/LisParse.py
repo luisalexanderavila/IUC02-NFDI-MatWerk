@@ -12,8 +12,7 @@ def get_key_value(key_value_line: str):
     value = ''.join(splitted[ 1: ]).strip()
     return key, value
 
-
-class Data():
+class Parser():
 
     def __init__(self, filename, ecncoding='latin1'):
         self.file_lines = self.read_lis(filename)
