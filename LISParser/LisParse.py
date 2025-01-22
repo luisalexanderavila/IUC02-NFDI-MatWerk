@@ -52,9 +52,12 @@ class Parser():
 
         logger.info(f'[data] data starts at line {ln+2}')
 
-        data_titles = raw_file_content[ln+1].split('\t')
-        data_symbols = raw_file_content[ln+2].split('\t')
+        data_titles = [ t.strip() for t in raw_file_content[ln+1].split('\t')]
+        data_symbols = [s.strip() for s in  raw_file_content[ln+2].split('\t')]
         data_units = raw_file_content[ln+3].split('\t')
+        logging.info(f'data_titles: {data_titles}')
+        logging.info(f'data_symbols: {data_symbols}')
+        logging.info(f'data_units: {data_units}')
         if len(data_titles) != len(data_units):
             logger.error(f'Error: data_titles and data_units have different lengths')
         for title, unit in zip(data_titles, data_units):
@@ -69,6 +72,7 @@ class Parser():
                 json_content['data'][title]['values'].append(value)
 #                json_content['data'][data_titles[0]]['values'].append(x)
 #                json_content['data'][data_titles[1]]['values'].append(y)
+        self.json_content = json_content
         return json_content
 
 
