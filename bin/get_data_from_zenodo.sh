@@ -6,9 +6,14 @@ if [ ! -d Data/BAMDataset ]; then
     mkdir -p Data/BAMDataset
 fi
 
-ZENODOID=1234567
+ZENODOID=13937987
 
-wget https://zenodo.org/record/$ZENOOID/files-archive -O Data/BAMDataset/$ZENODOID.zip
+if [ ! -f Data/BAMDataset/$ZENODOID.zip ]; then
+    echo "Downloading $ZENODOID.zip"
+    wget https://zenodo.org/api/records/$ZENODOID/files-archive -O Data/BAMDataset/$ZENODOID.zip
+else
+    echo "File $ZENODOID.zip already exists"
+fi
 
 cd Data/BAMDataset
 
