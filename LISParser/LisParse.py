@@ -52,21 +52,21 @@ class Parser():
 
         logger.info(f'[data] data starts at line {ln+2}')
 
+        data_titles = raw_file_content[ln+1].split('\t')
+        data_symbols = raw_file_content[ln+2].split('\t')
+        data_units = raw_file_content[ln+3].split('\t')
+        if len(data_titles) != len(data_units):
+            logger.error(f'Error: data_titles and data_units have different lengths')
+        for title, unit in zip(data_titles, data_units):
+            json_content['data'][title] = {'unit' : unit, 'values' : []}
         
-        progress = tqdm(enumerate(raw_file_content[ln+3:]), total=len(raw_file_content[ln+3:]))
-        for ln2, line in progress:
-            data_titles = raw_file_content[ln+3+ln2].split('\t')
-            data_units = raw_file_content[ln+3+ln2+2].split('\t')
-            if len(data_titles) != len(data_units):
-                logger.error(f'Error: data_titles and data_units have different lengths')
-            for title, unit in zip(data_titles, data_units):
-                json_content['data'][title] = {'unit' : unit, 'values' : []}
-            for ln3, line in enumerate(raw_file_content[ln+ln2+2+2+3:]):
-                if len(line) == 0:
-                    continue
-                values = np.fromstring(line.replace(',','.'), sep='\t', )
-                for title, value in zip(data_titles, values):
-                    json_content['data'][title]['values'].append(value)
+        progress = tqdm(enumerate(raw_file_content[ln+4:]), total=len(raw_file_content[ln+4:]))
+        for ln3, line in progress: #enumerate(raw_file_content[ln+4:]):
+            if len(line) == 0:
+                continue
+            values = np.fromstring(line.replace(',','.'), sep='\t', )
+            for title, value in zip(data_titles, values):
+                json_content['data'][title]['values'].append(value)
 #                json_content['data'][data_titles[0]]['values'].append(x)
 #                json_content['data'][data_titles[1]]['values'].append(y)
         return json_content
