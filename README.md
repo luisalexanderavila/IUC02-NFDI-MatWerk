@@ -80,3 +80,9 @@ For the moment we need to check consistency.
 
 Any mapping, schema, in json, ttl or rdf formats should reside inside the Mappings directory, 
 at least until we can find a better solution. 
+
+
+7. Achievements so far:
+
+at the moment we are able to convert a LIS file into a schema-complient json file. Please see (Vh5205_C-78.LIS)[Vh5205_C-78.LIS] and (Vh5205_C-78_tranlated.josn)[Vh5205_C-78_tranlated.josn] for an example.
+
