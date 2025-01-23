@@ -62,7 +62,21 @@ The tests create some json files in ./Metadata/Mappings/ and in Data/BAMDataset.
 For the moment we need to check consistency.
 
 
-6. Mappings, schemas and structured data files.
+6. Project structure
+
+
+.
+├── bin                 #    script files to be executed directly
+├── config              # config files (mostly yaml)
+├── Data                # data files
+├── dependencies        # cloned dependencies
+├── Doc                 # documentation
+├── Metadata
+│     └── Mappings      # mapping files, ttl, rdf, json.
+├── Notebooks
+├── src                 # source codea(python files, any other application.
+└── test                # test files
+
 
 Any mapping, schema, in json, ttl or rdf formats should reside inside the Mappings directory, 
 at least until we can find a better solution. 
