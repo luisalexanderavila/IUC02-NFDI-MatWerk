@@ -3,7 +3,7 @@ import os
 import pdb
 import unittest
 import logging
-from mappingsreader.mapreader import read_mapping, translate_bam
+from mappingsreader.mapreader import read_mapping, translate_bam, translate_generic
 from LISParser.LisParse import Parser
 
 logging.basicConfig(level=logging.INFO)
@@ -27,6 +27,7 @@ class TestReadsMapping(unittest.TestCase):
 class TestFillsSchema(unittest.TestCase):
     def setUp(self):
         self.reads_mapping_file = 'Metadata/Mappings/BAM2schema.json'
+        self.mapping_document = json.load(open(self.reads_mapping_file))
         self.placeholder_schema = read_mapping(self.reads_mapping_file)
         self.placeholder_schema_file = os.path.join(os.path.dirname(self.reads_mapping_file), 'placeholder_schema.json')
         with open(self.placeholder_schema_file, 'w') as file:
@@ -44,15 +45,19 @@ class TestFillsSchema(unittest.TestCase):
     def test_is_nested(self):
         self.assertTrue(isinstance(self.placeholder_schema, dict))
         self.assertTrue('MeasurementData' in self.placeholder_schema)
+        self.assertTrue(self.placeholder_schema["MeasurementData"]["additionalMetadata"][ "testInfo" ][ "testJobDetails" ]["dateOfTestStart"] is not None)
 #    
-#    def test_got_lis_dict(self):
-#        self.assertLess(0, len(self.lis_dict))
-#        self.assertTrue(isinstance(self.lis_dict, dict))
+    def test_got_lis_dict(self):
+        self.assertLess(0, len(self.lis_dict))
+        self.assertTrue(isinstance(self.lis_dict, dict))
 #
-#    def test_translate_bam(self):
-#        translated_dict = translate_bam(self.lis_dict, self.placeholder_schema)
-#        self.assertTrue(isinstance(translated_dict, dict))
-#        logging.info(f'Translated dict: {json.dumps(translated_dict, indent=4)}')
+    def test_translate_bam(self):
+        translated_dict = translate_bam(self.lis_dict['metadata'], self.mapping_document)
+        translated_dict_file = self.lisfile.replace('.LIS','_translated.json')
+        pdb.set_trace()
+        with open(translated_dict_file, 'w') as file:
+            json.dump(translated_dict, file, indent=4)
+        self.assertTrue(isinstance(translated_dict, dict))
 
 if __name__ == '__main__':
     unittest.main()

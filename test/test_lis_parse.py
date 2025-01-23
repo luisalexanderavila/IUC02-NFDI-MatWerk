@@ -14,7 +14,7 @@ class TestReadLisFile(unittest.TestCase):
         self.thedict = self.parser.parse_lis()
         logger.info(f'Writing json file: {self.jsonfile}')
         with open(self.jsonfile, 'w') as f:
-            json.dump(self.thedict, f)
+            json.dump(self.thedict, f, indent=4)
 
     def test_read_lis_file(self):
         self.assertLess(0, len(self.thedict))
