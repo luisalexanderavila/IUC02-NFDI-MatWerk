@@ -6,9 +6,13 @@ if [ ! -d Data/BAMDataset ]; then
     mkdir -p Data/BAMDataset
 fi
 
-ZENODOID=1234567
+ZENODOID="13937987"
+url=https://zenodo.org/api/records/$ZENODOID/files-archive
 
-wget https://zenodo.org/record/$ZENOOID/files-archive -O Data/BAMDataset/$ZENODOID.zip
+echo "Downloading $url"
+
+wget $url -O Data/BAMDataset/$ZENODOID.zip
+
 
 cd Data/BAMDataset
 
