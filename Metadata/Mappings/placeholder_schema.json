@@ -1,0 +1,443 @@
+{
+    "MeasurementData": {
+        "additionalMetadata": {
+            "testInfo": {
+                "testJobDetails": {
+                    "dateOfTestStart": "Date of test start_value",
+                    "dateOfTestEnd": "Date of test end_value",
+                    "testID": "Test ID_value",
+                    "project": "Project_value",
+                    "testOrder": "Test order_value"
+                },
+                "testParameters": {
+                    "testStandardApplied": "Test Standard Applied (Yes or No)_value",
+                    "testStandard": "Test standard_value",
+                    "specifiedTemperature": {
+                        "value": "Specified temperature_value",
+                        "unit": "Specified temperature_unit"
+                    },
+                    "typeOfLoading": "Type of loading_value",
+                    "loadControlType": "Load control type_value",
+                    "initialStress": {
+                        "value": "Initial stress_value",
+                        "unit": "Initial stress_unit"
+                    },
+                    "testType": "Test type_value",
+                    "endOfTestCriterium": "End of test criterium_value",
+                    "endOfTestCriteriumValue": "End of test criterium - value (if not test piece break)_value",
+                    "interruptionCourse": {
+                        "value": "Interruption Course_value",
+                        "unit": "Interruption Course_unit"
+                    },
+                    "testForce": {
+                        "value": "Test force_value",
+                        "unit": "Test force_unit"
+                    },
+                    "preloadTestForce": {
+                        "value": "Preload (Part of the test force)_value",
+                        "unit": "Preload (Part of the test force)_unit"
+                    },
+                    "additionalInformation": "Other additional information (e.g. if constant stress)_value"
+                },
+                "relatedResearchOutcome": {
+                    "anyRelatedArticles": "Related article(s) available?_value",
+                    "article1DOI": "DOI Article 1_value",
+                    "shortDescription1": "Short description of content article 1_value",
+                    "article2DOI": "DOI Article 2_value",
+                    "shortDescription2": "Short description of content article 2_value",
+                    "article3DOI": "DOI Article n_value",
+                    "shortDescription3": "Short description of content article n_value"
+                },
+                "materialRelated": {
+                    "materialHistoryAndCondition": {
+                        "digitalMaterialID": "(Digital) Material Identifier_value",
+                        "manufacturedMaterial": {
+                            "phaseEquilibriumInformation": "Information on phase equilibrium_value",
+                            "manufacturedMaterialType": "Type of as-manufactured material(Cast / Ingot / Extrusion rod / \u2026)_value",
+                            "manufacturedMaterialDescription": "Description of the as-manufactured material (geometry and dimensions)_value",
+                            "manufactoringProcessDescription": "Description of the manufacturing process-as-manufactured material_value",
+                            "castingTemperature": {
+                                "value": "Casting temperature_value",
+                                "unit": "Casting temperature_unit"
+                            },
+                            "castingSpeed": "Casting speed_value",
+                            "solidificationType": "Single or polycrystal solidified_value",
+                            "condition": "Condition_value"
+                        },
+                        "testedMaterial": {
+                            "supplier": "Supplier_value",
+                            "testedMaterialDescription": "Description of the as-tested material (geometry and dimensions) - The test piece is manufactured from the tested material_value",
+                            "manufacturingProcessDescription": "Description of the manufacturing process-as-tested material_value",
+                            "supplyDate": "Date of supply_value",
+                            "orderNumber": "Order number_value",
+                            "supplierSampleID": "Supplier sample ID_value"
+                        },
+                        "heatTreatment": {
+                            "heatTreatmentState": "Heat Treatment - State_value",
+                            "multistageAnnealing": "Multistage annealing?_value",
+                            "multistageAgeing": "Multistage ageing?_value",
+                            "atmosphere": "Atmosphere_value",
+                            "heatTreatmentAnnealingDescription": "Heat treatment - Annealing - Description_value",
+                            "heatTreatmentAgeingDescription": "Heat treatment - Ageing - Description_value",
+                            "heatTreatmentProtocolFile": "Heat treatment - Protocol file_value"
+                        },
+                        "chemicalComposition": {
+                            "chemicalCompositionNominal": {
+                                "value": "Chemical composition - nominal_value",
+                                "unit": "Chemical composition - nominal_unit"
+                            },
+                            "chemicalCompositionMeasured": {
+                                "value": "Chemical composition - measured (including precision)_value",
+                                "unit": "Chemical composition - measured (including precision)_unit"
+                            },
+                            "measurementMethod": "Measurement method_value",
+                            "measuringPoint": "Measuring point_value",
+                            "alloyElementsPartitioningInMicrostructure": "Partitioning of alloy elements in microstructure (dendrite cores and ID regions)_value",
+                            "gammaRegionsChemicalComposition": "Chemical composition in gamma and gamma' regions (dendrite cores and ID regions)_value"
+                        },
+                        "microstructure": {
+                            "investigationType": "Type of investigation (characterization method)_value",
+                            "grainSize": {
+                                "value": "Grain size (if polycrystal)_value",
+                                "unit": "Grain size (if polycrystal)_unit"
+                            },
+                            "grainSizeDeterminationMethod": "Grain size - Determination method, measuring point_value",
+                            "grainSizeDocumentation": "Grain size - documentation_value",
+                            "dissolvedGammaRegions": {
+                                "value": "Completely dissolved and re-precipitated gamma-gamma' gegions_value",
+                                "unit": "Completely dissolved and re-precipitated gamma-gamma' gegions_unit"
+                            },
+                            "gammaParticleAverageSize": {
+                                "value": "Gamma'-particles', average size_value",
+                                "unit": "Gamma'-particles', average size_unit"
+                            },
+                            "gammaParticleMaximumSize": {
+                                "value": "Gamma'-particles', maximum size_value",
+                                "unit": "Gamma'-particles', maximum size_unit"
+                            },
+                            "dendriteSpacings": "Dendrite spacings_value",
+                            "microstructureAfterTest": "Microstructure after test (SX/PX, gprime-Vol, gprime-size, dendrites)_value",
+                            "beforeTestMicrostructureImages": "Images of the microstructure before testing_value",
+                            "afterTestMicrostructureImages": "Images of the microstructure after testing_value",
+                            "proofOfSingleCrystallinity": "Proof of single crystallinity_value",
+                            "singleCrystalOrientation": "Single crystal orientation (Laue Crystal Verification. Must be documented for each test piece)_value",
+                            "singleCrystalOrientationDeterminationMethod": "Single crystal orientation - Determination method, measuring point_value",
+                            "singleCrystalOrientationDeterminationAccuracy": "Accuracy of the determination of the single crystal orientation_value"
+                        },
+                        "ndtResults": {
+                            "crackInspection": "Crack inspection: e.g., Penetrant certification/Radiographic Certification/XCT_value",
+                            "xrayFilm": "X-Ray film_value"
+                        },
+                        "mechTestResults": {
+                            "proofStrengthRoomTemperature": {
+                                "value": "0.2 % Proof strength at room temperature_value",
+                                "unit": "0.2 % Proof strength at room temperature_unit"
+                            },
+                            "proofStrengthCreepTestTemperature": {
+                                "value": "0.2 % Proof strength at creep test temperature_value",
+                                "unit": "0.2 % Proof strength at creep test temperature_unit"
+                            },
+                            "hardness": "Hardness_value"
+                        }
+                    },
+                    "testPiece": {
+                        "testpieceID": "Test piece ID_value",
+                        "workshopOrderID": "Workshop order ID/ref._value",
+                        "testPieceHistory": "Test piece history_value",
+                        "testPieceItype": "Type of test piece I_value",
+                        "testPieceIItype": "Type of test piece II_value",
+                        "testPieceIIItype": "Type of test piece III_value",
+                        "testPieceTechnicalDrawing": "Test piece technical drawing_value",
+                        "testPieceLocation": "Location of the test piece within the as-tested material_value",
+                        "positioning": "Positioning (Laue, precision) - Description whether coordinate systems of as-tested material and test piece coincide, and of the alignment in the test machine_value",
+                        "furtherInformationOnSample": "Further information about sample(s)_value"
+                    }
+                }
+            },
+            "measuringAndTestEquipment": {
+                "testMachine": {
+                    "testMachineID": "Test machine ID_value",
+                    "testMachineType": "Type of test machine_value",
+                    "minApplied Force": {
+                        "value": "Minimum applied force_value",
+                        "unit": "Minimum applied force_unit"
+                    },
+                    "maxApplied Force": {
+                        "value": "Maximum applied force_value",
+                        "unit": "Maximum applied force_unit"
+                    },
+                    "testFrameVerification": "Verification of Test Frame and Specimen Alignment according to ASTM E1012?_value",
+                    "descriptionTestFrameVerification": "Please provide a description on the procedure followed for the Verification of Test Frame and Specimen Alignment if different from ASTM E1012_value",
+                    "caliberationClass": "Calibration class (Alignment)_value",
+                    "dataAcquisition": {
+                        "dataAcquisitionUnitModelInformation": "Data acquisition unit - Model information_value",
+                        "dataAcquisitionUnitLabID": "Data acquisition unit - Laboratory ID_value",
+                        "dataAcquisitionSoftwareAndVersion": "Data acquisition software and version_value",
+                        "dataAcquisitionDescription": "Data acquisition - description_value",
+                        "dataAcquisitionTimeCheck": "Was the time checked during data acquisition?_value"
+                    }
+                },
+                "testForce": {
+                    "loadingSystem": {
+                        "loadingSystemVerified": "Was the loading system calibrated/verified?_value",
+                        "caliberatedWeightsApplied": "Were calibrated weights used to apply the test force?_value"
+                    },
+                    "loadingSensor": {
+                        "loadSensorUsed": "Was a load sensor used during loading?_value",
+                        "loadSensorCaliberated": "Was the load sensor calibrated?_value"
+                    },
+                    "dataAcquisition": {
+                        "forceRecording": "Was the force recorded continuously or phase-wise (e.g. during loading)?_value",
+                        "caliberationTestForce": "Has a calibration of the test force data acquisition been performed?_value"
+                    }
+                },
+                "extensometerSystem": {
+                    "contactingExtensometer": {
+                        "caliberationCertificate": "Calibration certificate_value",
+                        "caliberationDate": "Calibration date_value",
+                        "calibertaionValidityTimePeriod": "Calibration validity time period_value",
+                        "caliberationStandard": "Calibration standard_value",
+                        "caliberationClass": "Calibration class_value",
+                        "caliberationRange": {
+                            "value": "Range of calibration_value",
+                            "unit": "Range of calibration_unit"
+                        },
+                        "measurementType": "Measurement is one-sided or two-sided?_value",
+                        "measurementAction": "Measurement: axial or diametrical action?_value",
+                        "mountingType": "Mounting type_value",
+                        "extensometerModelInformation": "Extensometer model information _value",
+                        "extensometerEquipmentID": "Equipment ID - Extensometer_value",
+                        "descriptionOfLegs": "Description of upper/lower legs (LVDT systems)_value",
+                        "measuringAmplifier": "Measuring amplifier_value",
+                        "extensionRangeUpperLimit": {
+                            "value": "Extension range - Upper limit_value",
+                            "unit": "Extension range - Upper limit_unit"
+                        },
+                        "extensionRangeLowerLimit": {
+                            "value": "Extension range - Lower limit_value",
+                            "unit": "Extension range - Lower limit_unit"
+                        },
+                        "nominalGaugeLength": {
+                            "value": "Nominal gauge length (if applicable)_value",
+                            "unit": "Nominal gauge length (if applicable)_unit"
+                        },
+                        "extensometerCaliberation": "Is the extensometer including the data acquisition calibrated?_value"
+                    },
+                    "strainMeasuringDeviceType": "Type of strain measuring device_value",
+                    "contactingExtensometerSensorType": "Sensor type - Contacting extensometer_value",
+                    "nonContactingExtensometerSensorType": "Sensor type - Non-contacting extensometer_value"
+                },
+                "laboratoryConditions": {
+                    "roomTemperature": "Was the room temperature recorded and checked?_value",
+                    "humidityCheck": "Was the humidity recorded and checked?_value"
+                },
+                "temperatureMeasuringSystem": {
+                    "sampleControl": "Control via thermocouples on sample/via furnace_value",
+                    "furnaceType": "Furnace type_value",
+                    "metrologicalTraceability": "Metrological traceability (Yes, if Sensor AND Data acquisition checked)_value",
+                    "measuringInstrument": {
+                        "sensorType": "Sensor type_value",
+                        "equipmentID": "Equipment ID_value",
+                        "thermocoupleType": "Type of thermocouple_value",
+                        "wireGauge": {
+                            "value": "Wire gauge_value",
+                            "unit": "Wire gauge_unit"
+                        },
+                        "layout": "Layout_value",
+                        "thermocoupleCaliberated": "Is/are the thermocouples calibrated?_value",
+                        "contactMethod": "Application: contact method_value",
+                        "numberOfThermocouples": "Application: number of thermocouples_value",
+                        "gaugeSectionLocation": "Application: location with respect to gauge section_value"
+                    },
+                    "dataAcquisition": {
+                        "caliberationMethod": "Calibration method_value",
+                        "caliberationDeviation": {
+                            "value": "Deviation detected during calibration_value",
+                            "unit": "Deviation detected during calibration_unit"
+                        },
+                        "dataAcquisitionUnitCaliberated": "Is/are the data acquisition unit calibrated?_value",
+                        "referenceJunction": "Reference junction_value"
+                    }
+                }
+            },
+            "dataProcessingProcedures": {
+                "dataDescription": "Description of primary and processed data series - Primary data is data that is directly acquired by sensors or measuring instruments during or after a test. Processed data is obtained as a result of using procedures (equations, algorithms, methods, unit conversions) to transform data_value",
+                "dataProcessingDescription": "Description of primary data series processing (incl. averaging, smoothing)_value",
+                "dataAnalysisDescription": "Description of the data processing and analysis procedures used to obtain specific test results, e.g. percentage elastic extension, ee_value",
+                "automatedAnalysisWorkflow": "Were automated (user-independent) analysis workflows used?_value",
+                "software": "Software, if applicable, including product and version_value",
+                "relatedPublications": "Related publications, if applicable_value"
+            }
+        },
+        "primaryData": {
+            "testResult": {
+                "valuesAtTestStart": {
+                    "minimumTestPieceDiameterAtRoomTemperature": {
+                        "value": "Min. test piece diameter at room temperature_value",
+                        "unit": "Min. test piece diameter at room temperature_unit"
+                    },
+                    "originalGaugeLength": {
+                        "value": "Original gauge length_value",
+                        "unit": "Original gauge length_unit"
+                    },
+                    "parallelLength": {
+                        "value": "Parallel length_value",
+                        "unit": "Parallel length_unit"
+                    },
+                    "extensometerGaugeLength": {
+                        "value": "Extensometer gauge length_value",
+                        "unit": "Extensometer gauge length_unit"
+                    },
+                    "referenceLengthToCalculatePercentageElongations": {
+                        "value": "Reference length for calculation of percentage elongations_value",
+                        "unit": "Reference length for calculation of percentage elongations_unit"
+                    },
+                    "referenceLengthToCalculatePercentageElongationsOutsideParallelLength": {
+                        "value": "Reference length for calculation of percentage elongations if Lo and/or extensometer Le are outside the parallel length._value",
+                        "unit": "Reference length for calculation of percentage elongations if Lo and/or extensometer Le are outside the parallel length._unit"
+                    },
+                    "referenceLengthToCalculatePercentageExtensions": {
+                        "value": "Reference length for calculation of percentage extensions_value",
+                        "unit": "Reference length for calculation of percentage extensions_unit"
+                    },
+                    "ratioLrD": {
+                        "value": "Ratio Lr / D ; (if Lr = Lo)_value",
+                        "unit": "Ratio Lr / D ; (if Lr = Lo)_unit"
+                    },
+                    "kValueLr": {
+                        "value": "k-Value for Lr (if Lr = Lo)_value",
+                        "unit": "k-Value for Lr (if Lr = Lo)_unit"
+                    },
+                    "ratioLrD1": {
+                        "value": "Ratio Lr / D ; (if Lr > Lc)_value",
+                        "unit": "Ratio Lr / D ; (if Lr > Lc)_unit"
+                    },
+                    "kValueLr1": {
+                        "value": "k-Value for Lr (if Lr > Lc)_value",
+                        "unit": "k-Value for Lr (if Lr > Lc)_unit"
+                    },
+                    "ratioLrD2": {
+                        "value": "Ratio Lr / D ; (if Lr = Le)_value",
+                        "unit": "Ratio Lr / D ; (if Lr = Le)_unit"
+                    },
+                    "kValueLr2": {
+                        "value": "k-Value for Lr  (if Lr = Le)_value",
+                        "unit": "k-Value for Lr  (if Lr = Le)_unit"
+                    }
+                },
+                "valuesDuringTestRun": {
+                    "elapsedTimeFromEndOfLoading": {
+                        "value": "Elapsed time from end of loading_value",
+                        "unit": "Elapsed time from end of loading_unit"
+                    },
+                    "extension": {
+                        "value": "Extension_value",
+                        "unit": "Extension_unit"
+                    },
+                    "elongation": {
+                        "value": "Elongation_value",
+                        "unit": "Elongation_unit"
+                    },
+                    "heatingTime": {
+                        "value": "Heating time_value",
+                        "unit": "Heating time_unit"
+                    },
+                    "soakTime": {
+                        "value": "Soak time before the test_value",
+                        "unit": "Soak time before the test_unit"
+                    },
+                    "testDuration": {
+                        "value": "Test duration_value",
+                        "unit": "Test duration_unit"
+                    }
+                },
+                "valuesAfterTestEnd": {
+                    "creepRuptureTime": {
+                        "value": "Creep rupture time_value",
+                        "unit": "Creep rupture time_unit"
+                    },
+                    "positionOfFracture": "Position of the fracture_value",
+                    "finalGaugeLengthAfterFracture": {
+                        "value": "Final gauge length after fracture_value",
+                        "unit": "Final gauge length after fracture_unit"
+                    }
+                }
+            }
+        },
+        "secondaryData": {
+            "testResult": {
+                "valuesDuringTestRun": {
+                    "correctedMeasuredTemperature": {
+                        "value": "Corrected measured temperature_value",
+                        "unit": "Corrected measured temperature_unit"
+                    },
+                    "force": {
+                        "value": "Force_value",
+                        "unit": "Force_unit"
+                    },
+                    "loadingRate": {
+                        "value": "Loading rate_value",
+                        "unit": "Loading rate_unit"
+                    },
+                    "unloadingRate": {
+                        "value": "Unloading rate_value",
+                        "unit": "Unloading rate_unit"
+                    },
+                    "heatingSpeed": {
+                        "value": "Heating speed_value",
+                        "unit": "Heating speed_unit"
+                    },
+                    "coolingSpeed": {
+                        "value": "Cooling speed_value",
+                        "unit": "Cooling speed_unit"
+                    },
+                    "percentagePlasticExtension": {
+                        "value": "Percentage plastic extension from end of loading_value",
+                        "unit": "Percentage plastic extension from end of loading_unit"
+                    }
+                },
+                "elongationValues": {
+                    "percentagePermanentElongation": {
+                        "value": "Percentage permanent elongation_value",
+                        "unit": "Percentage permanent elongation_unit"
+                    },
+                    "percentageElongationAfterCreepFracture": {
+                        "value": "Percentage elongation after creep fracture_value",
+                        "unit": "Percentage elongation after creep fracture_unit"
+                    },
+                    "percentageReduction": {
+                        "value": "Percentage reduction of area after creep fracture_value",
+                        "unit": "Percentage reduction of area after creep fracture_unit"
+                    }
+                },
+                "extensionValues": {
+                    "averagingValue": "Was there an averaging of the strain/distance values? (two-sided extensometer)_value",
+                    "percentageTotalExtension": {
+                        "value": "Percentage total extension_value",
+                        "unit": "Percentage total extension_unit"
+                    },
+                    "percentageInitialTotalExtension": {
+                        "value": "Percentage initial total extension_value",
+                        "unit": "Percentage initial total extension_unit"
+                    },
+                    "percentageElasticExtension": {
+                        "value": "Percentage elastic extension_value",
+                        "unit": "Percentage elastic extension_unit"
+                    },
+                    "percentageInitialPlasticExtension": {
+                        "value": "Percentage initial plastic extension_value",
+                        "unit": "Percentage initial plastic extension_unit"
+                    },
+                    "percentagePlasticExtension": {
+                        "value": "Percentage plastic extension_value",
+                        "unit": "Percentage plastic extension_unit"
+                    },
+                    "percentageCreepExtension": {
+                        "value": "Percentage creep extension_value",
+                        "unit": "Percentage creep extension_unit"
+                    }
+                }
+            }
+        }
+    }
+}
