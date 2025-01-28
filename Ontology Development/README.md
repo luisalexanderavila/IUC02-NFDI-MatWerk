@@ -5,8 +5,8 @@ version v1.0 (December 2024).
 
 
 The Reference Datasets Ontology for Creep (RDOC) represents:
- i) concepts, which are relevant for the description of a reference dataset (in any domain), including standard, reference material and bibliographic reference, documentation, licence, etC. on  a general level, and 
- ii) concepts related specific to creep testing, including the dscription of metadata (research project, material description, testing parameters, etc.), and primary and secondary data collected during the creep testing. The RDOC will estalish a detailed and unified representation of the related terms and with this eanble the interopeability and reusability of data, making it also searchable.  The ontology will be used by researchers in the filed of Materials Science and Engineering (MSE). 
+ i) concepts, which are relevant for the description of a reference dataset (in any domain), including standard, reference material and bibliographic reference, documentation, license, etc. on  a general level, and 
+ ii) concepts related specific to creep testing, including the description of metadata (research project, material description, testing parameters, etc.), and primary and secondary data collected during the creep testing. The RDOC will establish a detailed and unified representation of the related terms and with this enable the interoperability and reusability of data, making it also searchable.  The ontology will be used by researchers in the fieled of Materials Science and Engineering (MSE). 
 
 The purpose of the Reference Dataset Ontology is to describe concepts, which are required to qualify a dataset as a reference dataset.
 
