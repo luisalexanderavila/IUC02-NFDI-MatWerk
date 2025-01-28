@@ -38,25 +38,30 @@ class Parser():
         json_content = {'title': raw_file_content[0], 'metadata':{}, 'data':{}}
 
 
-        for ln, line in enumerate(raw_file_content[2:]):
+        for ln, line in enumerate(raw_file_content):
             if len(line) < 1:
+                continue
+            if line.startswith('--'):
+                continue
+            if 'LIS' in line:
                 continue
             if  ( len(line.strip()) == 0 ):
                 continue
-            if ( '[data]' in line ):
+            if ( '[data]' in line.strip() ):
+                logging.info(f'[data] found at line {ln} {line}')
                 break
             key, value = get_key_value(line)
             logger.info(f'key: {key}, value: {value}')
 
             json_content['metadata'][key] = value
 
-        logger.info(f'[data] data starts at line {ln+2}')
+        logger.info(f'[data] data starts at line {ln+4}')
 
         data_titles = [ t.strip() for t in raw_file_content[ln+1].split('\t')]
-        data_symbols = [s.strip() for s in  raw_file_content[ln+2].split('\t')]
-        data_units = raw_file_content[ln+3].split('\t')
         logging.info(f'data_titles: {data_titles}')
+        data_symbols = [s.strip() for s in  raw_file_content[ln+2].split('\t')]
         logging.info(f'data_symbols: {data_symbols}')
+        data_units = raw_file_content[ln+3].split('\t')
         logging.info(f'data_units: {data_units}')
         if len(data_titles) != len(data_units):
             logger.error(f'Error: data_titles and data_units have different lengths')
@@ -78,14 +83,14 @@ class Parser():
 
 
 
-if __name__ == '__main__':
-    filename = sys.argv[1] 
-    srcdir = os.path.dirname(filename)
-    json_file = filename.replace('LIS', 'json')
-    data = Data(sys.argv[1])
-    jsoned_data = data.parse_lis()
-    with open(json_file, 'w') as f:
-        json.dump(jsoned_data, f,indent=True)
-        
-
-        
+#if __name__ == '__main__':
+#    filename = sys.argv[1] 
+#    srcdir = os.path.dirname(filename)
+#    json_file = filename.replace('LIS', 'json')
+#    data = Data(sys.argv[1])
+#    jsoned_data = data.parse_lis()
+#    with open(json_file, 'w') as f:
+#        json.dump(jsoned_data, f,indent=True)
+#        
+#
+#        
