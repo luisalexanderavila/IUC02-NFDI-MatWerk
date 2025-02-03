@@ -34,13 +34,12 @@ s:TestJob a sh:NodeShape ;
        sh:path :testStandardApplied ;
        sh:datatype xsd:boolean ;
        sh:minCount 1 ;
-       sh:maxCount 1 ;
    ] ;
    sh:property [
         sh:path :testStandard ;
        sh:datatype rdf:langString ;
        sh:minCount 1 ;
-       sh:maxCount 0 ;
+       sh:maxCount 1;
      ] .
 
 s:SpecifiedTemperature a sh:NodeShape ;
@@ -49,13 +48,11 @@ s:SpecifiedTemperature a sh:NodeShape ;
        sh:path :hasSpecifiedNumericValue ;
        sh:datatype xsd:float ;
        sh:minCount 1 ;
-       sh:maxCount 0 ;
    ] ;
   sh:property [
        sh:path :hasUnit ;
        sh:in ("°C" "K" "F") ;
        sh:minCount 1 ;
-       sh:maxCount 0 ;
    ] .
 
 
@@ -76,13 +73,11 @@ s:InitialStress a sh:NodeShape ;
        sh:path :hasSpecifiedNumericValue ;
        sh:datatype xsd:float ;
        sh:minCount 1 ;
-       sh:maxCount 0 ;
    ] ;
   sh:property [
        sh:path :hasUnit ;
        sh:in ("N/mm^2" "MPa") ;
        sh:minCount 1 ;
-       sh:maxCount 0 ;
    ] .
 
 
@@ -101,5 +96,4 @@ s:DescriptionOfManufacturingProcess a sh:NodeShape ;
        sh:path :hasDescription ;
        sh:datatype xsd:string;
        sh:minCount 1 ;
-       sh:maxCount 0 ;
    ] .

@@ -23,6 +23,5 @@ class TestReadLisFile(unittest.TestCase):
         logging.info(f'test data titles')
         logging.info(f'data_titles: {self.thedict["data"].keys()}')
 
-
 if __name__ == '__main__':
     unittest.main()

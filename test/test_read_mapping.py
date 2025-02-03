@@ -37,6 +37,7 @@ class TestFillsSchema(unittest.TestCase):
         self.lisfile = 'Data/BAMDataset/Vh5205_C-78.LIS'
         lis_parser = Parser(self.lisfile)
         self.lis_dict = lis_parser.parse_lis()
+        self.translated_dict = translate_bam(self.lis_dict['metadata'], self.mapping_document)
 
     def test_got_mapping_doc(self):
         self.assertLess(0, len(self.placeholder_schema))
@@ -52,12 +53,21 @@ class TestFillsSchema(unittest.TestCase):
         self.assertTrue(isinstance(self.lis_dict, dict))
 #
     def test_translate_bam(self):
-        translated_dict = translate_bam(self.lis_dict['metadata'], self.mapping_document)
         translated_dict_file = self.lisfile.replace('.LIS','_translated.json')
-        pdb.set_trace()
         with open(translated_dict_file, 'w') as file:
-            json.dump(translated_dict, file, indent=4)
+            json.dump(self.translated_dict, file, indent=4)
         self.assertTrue(isinstance(translated_dict, dict))
+
+
+    def test_parsed_correctly(self):
+        self.assertTrue(isinstance(
+        self.translated_dict["mappedMeasurementData"]["MeasurementData"]['additionalMetadata']["testInfo"]["testParameters"]["specifiedTemperature"]["value"],
+        float
+        ))
+        self.assertTrue(
+        self.translated_dict["mappedMeasurementData"]["MeasurementData"]['additionalMetadata']["testInfo"]["testParameters"]["specifiedTemperature"]["unit"] \
+        in ['C', 'F']
+        )
 
 if __name__ == '__main__':
     unittest.main()
