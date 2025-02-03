@@ -105,8 +105,8 @@
 :DescriptionOfManufacturingProcess :hasDescription "Description of the manufacturing process - as-tested material. Single Crystal Investment Casting from a Vacuum Induction Refined Ingot and subsequent Heat Treatment (annealed and aged)."^^xsd:string.
 
 
-:TestJob:TestID "Vh5205_C-78"^^xsd:string.
+:TestJob :TestID "Vh5205_C-78"^^xsd:string.
 
 
-:TestJob:dateOfTestStart "2023-08-02T09:06"^^xsd:dateTime.
+:TestJob :dateOfTestStart "2023-08-02T09:06"^^xsd:dateTime.
  
