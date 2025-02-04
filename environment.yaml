@@ -306,8 +306,3 @@ dependencies:
   - zlib=1.3.1=hb9d3cd8_2
   - zstandard=0.23.0=py312hef9b889_1
   - zstd=1.5.6=ha6fb4c9_0
-  - pip:
-    - LISParser==0.1.0
-    - Mappingsreader==0.1
-
-prefix: "/home/users/fortimtb/.local/python-envs/DataManagement"
