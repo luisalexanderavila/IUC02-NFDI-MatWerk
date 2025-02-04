@@ -3,7 +3,7 @@ dependencies:
     target_dir: dependencies/LISParser
     remotes:
       origin: 
-        url: https://github.com/NFDI-Matwerk-IUC02/LISParser.git
+        url: git@github.com:NFDI-Matwerk-IUC02/LISParser.git
     worktrees:
       LISParser_main:
         path: dependencies/LISParser_main
@@ -13,7 +13,7 @@ dependencies:
     target_dir: dependencies/mappingsreader
     remotes:
       origin:
-        url: https://github.com/NFDI-Matwerk-IUC02/mappingsreader.git
+        url: git@github.com:NFDI-Matwerk-IUC02/mappingsreader.git
 
 
 
