@@ -4,11 +4,6 @@ dependencies:
     remotes:
       origin: 
         url: git@github.com:NFDI-Matwerk-IUC02/LISParser.git
-    worktrees:
-      LISParser_main:
-        path: dependencies/LISParser_main
-        branch: main
-        description: "Main development of the lis parser"
   mappingsreader:
     target_dir: dependencies/mappingsreader
     remotes:
