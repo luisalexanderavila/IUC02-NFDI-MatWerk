@@ -78,7 +78,7 @@ def setup_repository(dep_name, dep_data):
 
     origin = remotes.pop('origin')
 
-    logger.info(f'cloning repository: {origin['url']} to {repo_path}')
+    logger.info(f'cloning repository: {origin["url"]} to {repo_path}')
     if os.path.exists(repo_path):
         logger.info(f"Repository already exists at {repo_path}. Skipping clone.")
     else:
