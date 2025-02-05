@@ -1,9 +1,11 @@
 import json
 from rdflib import Graph, Namespace, URIRef, Literal
 from rdflib.namespace import RDF, RDFS, XSD
+import sys
 
+convert_f = sys.argv[1]
 # Load the JSON document
-with open('/home/storage/fortimtb/CuadernoTrabajo/2025_IUC02_KGintegration.git/Data/BAMDataset/Vh5205_C-78_translated.json', 'r') as file:
+with open(convert_f, 'r') as file:
     data = json.load(file)
 
 # Define namespaces
@@ -44,6 +46,6 @@ def create_shape(g, node, path, json_data):
 root_shape = create_shape(g, "MeasurementData", [], data["mappedMeasurementData"]["MeasurementData"])
 
 # Serialize the graph to a file
-g.serialize(destination='/home/storage/fortimtb/CuadernoTrabajo/2025_IUC02_KGintegration.git/Data/BAMDataset/Vh5205_C-78_translated.ttl', format='turtle')
+g.serialize(destination=convert_f.replace('json','ttl'), format='turtle')
 
-print("SHACL shape created and saved to Vh5205_C-78_translated.ttl")
+print(f"SHACL shape created and saved to {convert_f.replace('json','ttl')}")
