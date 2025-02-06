@@ -2,7 +2,7 @@ import json
 import os
 import sys
 import logging
-
+import pdb
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(os.path.basename(__file__))
 
@@ -43,6 +43,72 @@ def get_initalStressParagraph(theInitialStress):
     ]
     return paragraph
 
+def get_digitalMaterialIdParagraph(theDigitalID): 
+    #:CMSX-6 a :TestedMaterial;
+    #    :digitalMaterialIdentifier "CMSX-6"^^xsd:string.
+    #
+    digitalmaterialid_value = theDigitalID
+    paragraph_id = [
+    f':{digitalmaterialid_value} a : TestedMaterial;\n',
+    f'  :digitalMaterialIdentifier \"{digitalmaterialid_value}\"^^xsd:string.\n'
+    ]
+    return paragraph_id
+
+def get_specifiedTempParagraph(theSpecifiedTemp):
+    #:SpecifiedTemperature a :Quality;	
+    #        :hasSpecifiedNumericValue "980"^^xsd:float;
+    #        :hasUnit "°C"^^xsd:string.	
+    #
+    if 'value' not in theSpecifiedTemp:
+        logger.error('specifiedTemperature value is missing')
+        sys.exit(1)
+    if 'unit' not in theSpecifiedTemp:
+        logger.error('specifiedTemperature unit is missing')
+        sys.exit(1)
+    try: 
+        temp_value = float(theSpecifiedTemp['value'])
+    except ValueError as E:
+        logger.error('specifiedTemperature is not a float')
+        sys.exit(1)
+    paragraph_temp = [
+            f':SpecifiedTemperature a :Quality;\n',
+            f'   :hasSpecifiedNumericValue \"{temp_value}\"^^xsd:float;\n',
+            f'   :hasUnit \"{theSpecifiedTemp['unit']}\"^^xsd:string.\n'
+            ]
+    return paragraph_temp
+
+
+def get_typeOfLoading_paragraph(theTypeOfLoading):
+    #:TypeOfLoading :typeOfLoading "Tension"^^xsd:string.
+    paragraph_typeOfLoading = [
+    f':TypeOfLoading :typeOfLoading \"{theTypeOfLoading}\"^^xsd:string.\n'
+    ]
+    return paragraph_typeOfLoading
+    #
+def get_descManufacturingProc_paragraph(theDescManufacturingProc):
+    #:DescriptionOfManufacturingProcess :hasDescription "Description of the manufacturing process - as-tested material. Single Crystal Investment Casting from a Vacuum Induction Refined Ingot and subsequent Heat Treatment (annealed and aged)."^^xsd:string.
+    paragraph_descManufacturingProc = [
+            f':DescriptionOfManufacturingProcess :hasDescription \"{theDescManufacturingProc}\"^^xsd:string.\n'
+            ]
+    return paragraph_descManufacturingProc
+
+    #
+    #
+def get_testJob_paragraph(theTestId):
+    #:TestJob :TestID "Vh5205_C-78"^^xsd:string.
+    paragraph_testJob = [
+            f':TestJob :TestID \"{theTestId}\"^^xsd:string.\n'
+            ]
+    return paragraph_testJob
+    #
+    #
+def get_DateOfStart_paragraph(theDateOfStart):
+    #:TestJob :dateOfTestStart "2023-08-02T09:06"^^xsd:dateTime.
+    paragraph_DateOfStart = [
+            f':TestJob :dateOfTestStart \"{theDateOfStart}\"^^xsd:dateTime.\n'
+            ]
+    return paragraph_DateOfStart
+
 def write_shacl_metadata(json_metadata):
     parent = json_metadata['testInfo']['testParameters']#['materialHistoryAndConditions']
     if 'testStandard' in parent:
@@ -56,8 +122,40 @@ def write_shacl_metadata(json_metadata):
     if 'initialStress' in parent:
         initialStress = parent['initialStress']
         initialStress_paragraph = get_initalStressParagraph(initialStress)
+    if 'specifiedTemperature' in parent:
+        specifiedTemperature = parent['specifiedTemperature']
+        specifiedTemperature_paragraph = get_specifiedTempParagraph(specifiedTemperature)
+    if 'typeOfLoading' in parent:
+        typeOfLoading = parent['typeOfLoading']
+        typeOfLoading_paragraph = get_typeOfLoading_paragraph(typeOfLoading)
 
-    return test_standard_paragraph+['\n']+initialStress_paragraph
+    parent = json_metadata['testInfo']['materialRelated']['materialHistoryAndCondition']
+    if 'digitalMaterialID' in parent:
+        digitalMaterialID = parent['digitalMaterialID']
+        digitalMaterialIdParagraph = get_digitalMaterialIdParagraph(digitalMaterialID)
+
+    parent = json_metadata['testInfo']['testJobDetails']        
+    if 'dateOfTestStart' in parent:
+        dateOfStart = parent['dateOfTestStart']
+        dateOfStart_paragraph = get_DateOfStart_paragraph(dateOfStart)
+    if 'testID' in parent:
+        testID = parent['testID']
+        testJob_paragraph = get_testJob_paragraph(testID)
+
+
+
+        
+    data_block = \
+        test_standard_paragraph+['\n']+\
+        initialStress_paragraph+['\n']+\
+        digitalMaterialIdParagraph+['\n']+\
+        specifiedTemperature_paragraph+['\n']+\
+        typeOfLoading_paragraph+['\n']+\
+        dateOfStart_paragraph+['\n']+\
+        testJob_paragraph+['\n']
+
+    return data_block
+
 
 
 if __name__ == '__main__':
@@ -86,21 +184,5 @@ if __name__ == '__main__':
 		
 
 
-    #:CMSX-6 a :TestedMaterial;
-    #    :digitalMaterialIdentifier "CMSX-6"^^xsd:string.
-    #
-    #:SpecifiedTemperature a :Quality;	
-    #        :hasSpecifiedNumericValue "980"^^xsd:float;
-    #        :hasUnit "°C"^^xsd:string.	
-    #
-    #:TypeOfLoading :typeOfLoading "Tension"^^xsd:string.
-    #
-    #:DescriptionOfManufacturingProcess :hasDescription "Description of the manufacturing process - as-tested material. Single Crystal Investment Casting from a Vacuum Induction Refined Ingot and subsequent Heat Treatment (annealed and aged)."^^xsd:string.
-    #
-    #
-    #:TestJob :TestID "Vh5205_C-78"^^xsd:string.
-    #
-    #
-    #:TestJob :dateOfTestStart "2023-08-02T09:06"^^xsd:dateTime.
     #
 
