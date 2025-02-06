@@ -4,7 +4,7 @@ import sys
 import logging
 import pdb
 
-from creep_shacl_maker import write_shacl_metadata
+from creep_shacl_maker.shacl_maker import header, write_shacl_metadata
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(os.path.basename(__file__))
