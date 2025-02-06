@@ -59,7 +59,7 @@ This data can be downloaded automatically.
 bash bin/get_data_from_zenodo.sh
 ```
 
-or, if you prefer (thans  @teman67!)
+or, if you prefer (thanks  @teman67!)
 
 ```
 python bin/get_data_from_zenodo.py
