@@ -100,7 +100,7 @@
 
 :TypeOfLoading :typeOfLoading "Tension*"^^xsd:string.
 
-:TestJob :dateOfTestStart "8.2.23 9:06 AM"^^xsd:dateTime.
+:TestJob :dateOfTestStart "1.3.23 9:07 AM"^^xsd:dateTime.
 
-:TestJob :TestID "Vh5205_C-78"^^xsd:string.
+:TestJob :TestID "Vh5205_C-89"^^xsd:string.
 

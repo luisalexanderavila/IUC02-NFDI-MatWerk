@@ -87,8 +87,8 @@
 :testStandardApplied "True"^^xsd:boolean ;
 :testStandard "DIN EN ISO 204:2019-4*"^^xsd:string.
 
-:InitialStress_230.0_RoMPa a :Quality;
-  :hasSpecifiedNumericValue "230.0"^^xsd:float;
+:InitialStress_170.0_RoMPa a :Quality;
+  :hasSpecifiedNumericValue "170.0"^^xsd:float;
   :hasUnit "RoMPa"^^xsd:string.
 
 :CMSX-6* a : TestedMaterial;
@@ -100,7 +100,7 @@
 
 :TypeOfLoading :typeOfLoading "Tension*"^^xsd:string.
 
-:TestJob :dateOfTestStart "8.2.23 9:06 AM"^^xsd:dateTime.
+:TestJob :dateOfTestStart "3.4.23 9:18 AM"^^xsd:dateTime.
 
-:TestJob :TestID "Vh5205_C-78"^^xsd:string.
+:TestJob :TestID "Vh5205_C-91"^^xsd:string.
 
