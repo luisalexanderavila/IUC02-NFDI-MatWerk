@@ -7,7 +7,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(os.path.basename(__file__))
 
 
-header_file  = os.path.join(os.path.dirname(__file__),  'shaclShapes_Graph_small_exampl.ttl')
+header_file  = os.path.join(os.path.dirname(__file__), 'header.ttl') # 'shaclShapes_Graph_small_exampl.ttl')
 
 with open(header_file, 'r') as head:
     header = head.readlines()
