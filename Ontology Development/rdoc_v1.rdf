@@ -1,0 +1,1529 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://purls.helmholtz-metadaten.de/rdoc/"
+     xml:base="https://purls.helmholtz-metadaten.de/rdoc/"
+     xmlns:co="https://w3id.org/pmd/co/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:obo="http://purl.obolibrary.org/obo/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:emmo="http://emmo.info/emmo#"
+     xmlns:prov="http://www.w3.org/ns/prov#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#"
+     xmlns:ro ="http://purl.obolibrary.org/obo/ro.owl#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:mwo="http://purls.helmholtz-metadaten.de/mwo/"
+     xmlns:nfdico="http://nfdi.fiz-karlsruhe.de/ontology/"
+     xmlns:rdo="https://purls.helmholtz-metadaten.de/rdo/"
+     xmlns:om="http://www.ontology-of-units-of-measure.org/resource/om-2/"
+     xmlns:si="https://si-digital-framework.org/SI#Constant"
+
+     >
+  
+ <owl:Ontology rdf:about="">
+        <owl:versionIRI rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/1.0.0"/>
+        <dc:contributor rdf:resource="https://orcid.org/0000-0001-9560-4728"/>
+        <terms:created>2024-15-11</terms:created>
+        <terms:creator rdf:resource="https://orcid.org/0000-0001-9560-4728"</terms:creator>
+        <terms:description>The Reference Datasets Ontology for Creep (RDOC) represents: i) concepts, which are relevant for the description of a reference dataset, including standard, reference material, documentation, etc. on  a general level, and ii) concepts related specific to creep testing, including the description of metadata (research project, material description, testing parameters, etc.), and primary and secondary data collected during the creep testing. The RDOC will establish a detailed and unified representation of the related terms and with this enable the interoperability and reusability of data, making it also searchable.  The ontology will be used by researchers in the fieled of Materials Science and Engineering (MSE).The purpose of the Reference Dataset Ontology is to describe concepts, which are required to qualify a dataset as a reference dataset. </terms:description>
+        <terms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+        <terms:title>The Reference Dataset Ontology for Creep data</terms:title>
+        <owl:versionInfo>1.0.0</owl:versionInfo>
+    </owl:Ontology>
+    
+ <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdo/ReferenceDataSet -->
+
+    <owl:Class rdf:about="http://purls.helmholtz-metadaten.de/rdo/ReferenceDataSet">
+     <owl:equivalentClass rdf:resource="http://purls.helmholtz-metadaten.de/mwo/ReferenceDataset"/>
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdo/DataSet"/>
+        <obo:IAO_0000115 xml:lang="en">Reference data of materials are - documented according to certain standards as well as - curated (i.e., generated, maintained, preserved, validated) according to certain standards - quantitative data sets (i.e., data + their corresponding metadata) and - have been measured or simulated to a particularly high standard - for a material that has either experienced a well-documented process or is reference material or its composition and structure has been completely characterized. Reference data of materials can also be derived data from reference data. These data are distributed with a license (e.g., GPL) The here addressed standards for documentation, curation and measurement need to be defined for specific materials characteristics (e.g., creep tests) in terms of domain standards. These domain standards are the result of a steered community process. Standards should integrate as much as possible existing standards (e.g., the individual MatWerk domain standards should be as much as possible consistent).</obo:IAO_0000115>
+        <rdfs:isDefinedBy>NFDI-MatWerk-IUC02</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Reference dataset</rdfs:label>
+    </owl:Class>
+    
+
+    <!-- https://purls.helmholtz-metadaten.de/rdo/Reference -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Reference">
+        <owl:equivalentClass rdf:resource="https://www.niso.org/standards-committees/ssos/ssos01.owl#Reference"/>
+        <rdfs:subClassOf rdf:resource="https://nfdi.fiz-karlsruhe.de/ontology/Resource"/>
+        <obo:IAO_0000115 xml:lang="en">Citation to another standard, part of a standard, or other material.</obo:IAO_0000115>
+         <rdfs:isDefinedBy>NISO</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Reference</rdfs:label>
+    </owl:Class>
+  
+<!-- https://purls.helmholtz-metadaten.de/rdo/ReferenceMaterial -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/ReferenceMaterial">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/mwo/Material"/>
+        <owl:equivalentClass rdf:resource="http://purl.obolibrary.org/obo/CHMO_0002913"/>
+        <obo:IAO_0000115 xml:lang="en">Material, sufficiently homogeneous and stable with respect to one or more specified properties, which has been established to be fit for its intended use in a measurement process.</obo:IAO_0000115>
+        <rdfs:comment xml:lang="en">Properties can be quantitative or qualitative, e.g. identity of substances or species. Uses may include the calibration of a measurement system, assessment of a measurement procedure, assigning values to other materials, and quality control.</rdfs:comment>
+        <rdfs:isDefinedBy>DIN EN ISO 17034:2017</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="de">Reference material</rdfs:label>
+    </owl:Class>
+
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdo/DataSet -->
+
+
+    <owl:owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/ReferenceDataSet">
+    <owl:equivalentClass rdf:resource="https://nfdi.fiz-karlsruhe.de/ontology/Dataset"/>
+        <rdfs:subClassOf rdf:resource="https://nfdi.fiz-karlsruhe.de/ontology/CreativeWork"/>
+        <obo:IAO_0000115 xml:lang="en">A creative work that refers to a structured collection of data, organized typically for a specific goal such as analysis, research, or reference.</obo:IAO_0000115>
+        <rdfs:comment xml:lang="en">A collection of data that consists of one or more files.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://nfdi.fiz-karlsruhe.de/ontology"/>
+        <rdfs:label xml:lang="en">Dataset</rdfs:label>
+    </owl:owl:Class>
+
+      <!-- https://purls.helmholtz-metadaten.de/rdo/Standard -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Standard">
+        <obo:IAO_0000115 xml:lang="en">A documented instance of rules, guidelines, or characteristics for activities and/or their results, established by consensus and approved by a recognized body, aimed at the achievement of the optimum degree of order in a given context. Note 1: All instances identified by the same standard’s designation are often referred to as a standards’ family. Source: NISO SSOS WG adapting definitions of pre-existing standards</obo:IAO_0000115>
+         <rdfs:subClassOf rdf:resource="https://nfdi.fiz-karlsruhe.de/ontology/Specification"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+         <owl:equivalentClass rdf:resource="https://www.niso.org/standards-committees/ssos/ssos01.owl#Standard"/>
+         <owl:equivalentClass rdf:resource="https://purls.helmholtz-metadaten.de/rdo/Norm"/>
+        <rdfs:isDefinedBy>NISO SSOS WG adapting definitions of pre-existing standards</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Standard</rdfs:label>
+    </owl:Class>
+
+        <!-- https://purls.helmholtz-metadaten.de/rdo/Norm -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Norm">
+        <obo:IAO_0000115 xml:lang="en">Document established by consensus and approved by a recognized body, that provides, for common and repeated use, rules, guidelines or characteristics for activities or their results, aimed at the achievement of the optimum degree of order in a given context</obo:IAO_0000115>
+        <rdfs:isDefinedBy>SO/IEC Guide 2:2004</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Norm</rdfs:label>
+    </owl:Class>
+    
+
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdo/MeasurementStandard -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/MeasurementStandard">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdo/Standard"/>
+        <owl:equivalentClass rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TestStandard"/>
+        <obo:IAO_0000115 xml:lang="en">Realization of the definition of a given quantity, with stated quantity value and associated measurement uncertainty, used as a reference.<obo:IAO_0000115>
+        <rdfs:isDefinedBy>ISO/IEC Guide 99: 2007</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Measurement standard</rdfs:label>
+    </owl:Class>
+
+
+     <!-- https://purls.helmholtz-metadaten.de/rdoc/TestStandard -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/TestStandard">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdo/Standard"/>
+        <owl:equivalentClass rdf:resource="https://purls.helmholtz-metadaten.de/rdo/MeasurementStandard"/>
+        <obo:IAO_0000115 xml:lang="en">Realization of the definition of a given quantity, with stated quantity value and associated measurement uncertainty, used as a reference:<obo:IAO_0000115>
+        <rdfs:isDefinedBy>ISO/IEC Guide 99: 2007</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Measurement standard</rdfs:label>
+    </owl:Class>
+
+    <!-- https://purls.helmholtz-metadaten.de/rdo/Certificate -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Certificate">
+        <rdfs:subClassOf rdf:resource="http://nfdi.fiz-karlsruhe.de/ontology/Specification"/>
+        <owl:equivalentClass rdf:resource="http://www.ontologyrepository.com/CommonCoreOntologies/Certificate">
+        <obo:IAO_0000115 xml:lang="en"> An Information Bearing Artifact that bears an Information Content Entity which attests to certain demonstrated characteristics of an Object, Person, or Organization.</obo:IAO_0000115>
+        <rdfs:isDefinedBy rdf:resource="http://www.ontologyrepository.com/CommonCoreOntologies/Certificate"/>
+        <rdfs:label xml:lang="en">Certificate</rdfs:label>
+    </owl:Class>
+    
+    
+    <!-- https://purls.helmholtz-metadaten.de/rdo/Documentation -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Documentation">
+        <rdfs:subClassOf rdf:resource="https://nfdi.fiz-karlsruhe.de/ontology/Specification"/>
+        <obo:IAO_0000115 xml:lang="en">Documentation is any communicable material that is used to describe, explain or instruct regarding some attributes of an object, system or procedure, such as its parts, assembly, installation, maintenance and use</obo:IAO_0000115>
+         <owl:equivalentClass rdf:resource="http://purls.helmholtz-metadaten.de/mwo/Documentation"/>
+        <rdfs:label xml:lang="en">Documentation</rdfs:label>
+    </owl:Class>
+
+    
+    <!-- https://purls.helmholtz-metadaten.de/rdo/Licence -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Licence">
+     <obo:IAO_0000115 xml:lang="en"> A legal document giving official permission to do something with the resource.</obo:IAO_0000115>
+        <rdfs:comment>An information content entity that refers to a legal instrument (usually by way of contract law, with or without printed material) governing the use or redistribution of the resource containing the licence.</rdfs:comment>
+         <owl:equivalentClass rdf:resource="https://nfdi.fiz-karlsruhe.de/ontology/License"/>
+        <rdfs:subClassOf rdf:resource="https://nfdi.fiz-karlsruhe.de/ontology/Resource"/>
+         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/license"/>
+         <skos:example xml:lang="en">Creative Commons license</skos:example>
+        <rdfs:label xml:lang="en">Licence</rdfs:label>
+    </owl:Class>
+    
+   <!-- https://purls.helmholtz-metadaten.de/rdo/Metadata -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Metadata">
+        <owl:equivalentClass rdf:resource="https://materialdigital.github.io/core-ontology/index-en.html#Metadata"/>
+         <obo:IAO_0000115 xml:lang="en">Attributes and additional data concerning the manufacturing of the tested material, test set-up, test system (measuring and test equipment), and the test piece, which allow for the evaluation of the quality/reliability of the measurements and a systematic search task of a database.</obo:IAO_0000115>
+        <rdfs:subClassOf rdf:resource=" https://w3id.org/pmd/co/DataScope"/>
+        <owl:disjointWith rdf:resource="https://purls.helmholtz-metadaten.de/rdo/PrimaryData"/>
+        <owl:disjointWith rdf:resource="https://purls.helmholtz-metadaten.de/rdo/SecondaryData"/>
+         <rdfs:isDefinedBy>NFDI-MatWerk-IUC02</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Metadata</rdfs:label>
+    </owl:Class>
+    
+        <!-- https://purls.helmholtz-metadaten.de/rdo/PrimaryData -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/PrimaryData">
+        <owl:equivalentClass rdf:resource="https://w3id.org/pmd/co/PrimaryData"/>
+         <obo:IAO_0000115 xml:lang="en">Data directly acquired by sensors or measuring instruments during or after an experiment or simulation.</obo:IAO_0000115>
+        <rdfs:subClassOf rdf:resource=" https://w3id.org/pmd/co/DataScope"/>
+        <owl:disjointWith rdf:resource="https://purls.helmholtz-metadaten.de/rdo/Metaata"/>
+        <owl:disjointWith rdf:resource="https://purls.helmholtz-metadaten.de/rdo/SecondaryData"/>
+         <rdfs:isDefinedBy>NFDI-MatWerk-IUC02</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Primary data</rdfs:label>
+    </owl:Class>
+    
+
+    <!-- https://purls.helmholtz-metadaten.de/rdo/SecondaryData -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/secondaryData">
+         <owl:equivalentClass rdf:resource="https://w3id.org/pmd/co/PrimaryData"/>
+         <obo:IAO_0000115 xml:lang="en">Data determined by equations or algorithms using primary data and/or metadata.</obo:IAO_0000115>
+        <rdfs:subClassOf rdf:resource=" https://w3id.org/pmd/co/DataScope"/>
+         <owl:disjointWith rdf:resource="https://purls.helmholtz-metadaten.de/rdo/PrimaryData"/>
+        <owl:disjointWith rdf:resource="https://purls.helmholtz-metadaten.de/rdo/Metadata"/>
+         <rdfs:isDefinedBy>NFDI-MatWerk-IUC02</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Secondary data</rdfs:label>
+    </owl:Class>
+
+    <!-- https://purls.helmholtz-metadaten.de/rdo/Material -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/Material">
+    <owl:equivalentClass rdf:resource="http://purls.helmholtz-metadaten.de/mwo/Material"/>
+        <rdfs:label>Material</rdfs:label>
+    </owl:Class>
+    
+
+    <!-- https://purls.helmholtz-metadaten.de/rdo/MaterialDescription -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/MaterialDescription">
+    <obo:IAO_0000115 xml:lang="en">This information is used to qualitatively and quantitatively describe a material by providing information on e.g. material properties, material structure, etc.</obo:IAO_0000115>
+        <rdfs:subClassOf rdf:resource="https://nfdi.fiz-karlsruhe.de/ontology/Specification"/>   
+         <owl:equivalentClass rdf:resource="https://w3id.org/pmd/co/MaterialRelated"/>
+        <rdfs:label>Material description</rdfs:label>
+    </owl:Class>
+    
+        <!-- https://purls.helmholtz-metadaten.de/rdo/DataProcessing -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/Data_processing">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/OWLClass_84bc12d6_ecbb_4186_86b1_03059e621ad9"/>
+        <rdfs:label>Data processing</rdfs:label>
+    </owl:Class>
+
+
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/TestInfo -->
+
+    <owl:owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/TestInfo">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+        <rdfs:comment>This property is used to formally describe the metadata on the testing process  by providing information such as testdate, test ID, related project and the operator.<rdfs:comment>
+        <rdfs:label>Test information</rdfs:label>
+    </owl:owl:Class>
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/TestJob-->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/TestJob"
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000011"/>
+        <rdfs:comment>A process that realizes a plan which is the concretization of a plan specification.</rdfs:comment>
+        <rdfs:label>Test job </rdfs:label>
+    </owl:Class>
+    
+   <!-- https://purls.helmholtz-metadaten.de/rdoc/TestJobDetails -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/TestJobDetails">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TestInfo"/>
+        <rdfs:comment>Test-related administrative information, such as test ID, testing date, related project, etc.</rdfs:comment>
+        <rdfs:isDefinedBy>DIN 55350-11:2008</rdfs:isDefinedBy>
+        <rdfs:label>Test job details</rdfs:label>
+    </owl:Class>
+    
+
+ 
+   <!-- https://purls.helmholtz-metadaten.de/rdoc/AsManufacturedMaterial -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/As_manufactured_material">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/Material"/>
+        <rdfs:label xml:lang="en">As manufactured material</rdfs:label>
+        <obo:IAO_0000115 xml:lang="en">Piece of finite material, manufactured in a specific manner (e.g. casting, additive manufacturing) which can be used for further use (e.g. analysis) or machined to other products/parts/samples (in any form or shape).> </obo:IAO_0000115>
+    </owl:Class>
+
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/HistoryAndConditionOfMaterial -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/HistoryAndConditionOfMaterial">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/MaterialDescription"/>
+        </obo:IAO_0000115>Information related to the material to be tested. It includes manufacturing and heat treatment history, the chemical composition,  description of the microstructure, and other results obtained from destructive or nondestructive characterization techniques.</obo:IAO_0000115>
+        <rdfs:label>History and condition of the material</rdfs:label>
+    </owl:Class>
+
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/TestedMaterial -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/Testedmaterial">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/HistoryAndConditionOfMaterial"/>
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/Material"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/pmd/co/MaterialRelated"/>
+       </obo:IAO_0000115>The provenance of the as-manufactured material, for instance, chemical composition, heat treatment/condition, and manufacturing-related information, is documented.</obo:IAO_0000115>
+        <rdfs:isDefinedBy>https://w3id.org/pmd/co</rdfs:isDefinedBy>
+        <rdfs:label>As tested material</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/TestingParameter -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/TestingParameter">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/Test_information"/>
+       </obo:IAO_0000115>Parameter which have to be defined to achieve the test result. In a creep test under constant force these can be the initial stress and the specified temperature.</obo:IAO_0000115>
+        <rdfs:isDefinedBy>ISO 12718:2019(en)</rdfs:isDefinedBy>
+        <rdfs:label>Testing parameter</rdfs:label>
+    </owl:Class>
+    
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/SpecifiedTemperature-->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/SpecifiedTemperature">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/Test_information"/>
+        </obo:IAO_0000115>Specified  temperature for the creep test. It is the target value of the measured temperature during the test.</obo:IAO_0000115>
+        <rdfs:isDefinedBy>ISO 12718:2019(en)</rdfs:isDefinedBy>
+        <rdfs:label>Specified temperature</rdfs:label>
+    </owl:Class>
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/TypeOfLoading -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/TypeOfLoading ">
+      <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TestingParameter"/>
+        </obo:IAO_0000115>Type of Loading encompasses various forms of loading that can be applied to materials and structures, including bending, tension, compression, shear, and torsion or mixed types.</obo:IAO_0000115>
+        <rdfs:label>Type of loading</rdfs:label>
+    </owl:Class>
+
+
+  <!-- https://purls.helmholtz-metadaten.de/rdoc/InitialStress -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/InitialStress ">
+      <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TestingParameter"/>
+        </obo:IAO_0000115>Specified stress for the creep test. It is the target value of the stress in the test piece at the beginning of the test, after it has been heated up to the specified temperature. In a creep test conducted under constant tensile force, it will change over the test's duration, as the specimen deforms.</obo:IAO_0000115>
+        <rdfs:label>Initial stress</rdfs:label>
+    </owl:Class>
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/AcquisitionRate -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/AcquisitionRate">
+        <obo:IAO_0000111 rdf:resource="http://www.w3.org/2002/07/owl"/>
+        <rdfs:comment>This property denotes the number of measurements / queries per time period for a considered measurement of a measurement parameter (sampling / query rate during data acquisition).</rdfs:comment>
+        <rdfs:label xml:lang="en">Acquisition rate</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/ExtensionRangeUpperLimit -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/ExtensionRangeUpperLimit">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/extensometer"/>
+        <rdfs:label xml:lang="en">Extension range - upper limit</rdfs:label>
+    </owl:Class>
+    
+
+
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/Preload -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/Preload">
+        <rdfs:comment xml:lang="en">A load applied to the sample before heating to keep it on position. It can not be more than 10% than the test force. Its objective is to secure the sample during the initial stage of the creep test.</rdfs:comment>
+        <rdfs:label xml:lang="en">Preload</rdfs:label>
+    </owl:Class>
+    
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/TestResult -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/TestResult">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/OWLClass_84bc12d6_ecbb_4186_86b1_03059e621ad9"/>
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/PrimaryData"/>
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/secondaryData"/>
+        <rdfs:comment xml:lang="en">Value of a characteristic, obtained by carrying out a specified test method.</rdfs:comment>
+        <rdfs:isDefinedBy>ISO 3534-2:2006</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Test result</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/TestingAndMeasurementEquipment -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/TestingAndMeasurementEquipment">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/OWLClass_84bc12d6_ecbb_4186_86b1_03059e621ad9"/>
+        <rdfs:comment>Mechanical devices and all related measuring instruments or systems used to test, calibrate, or measure parameters or physical  quantities (e.g., extension, temperature, force).</rdfs:comment>
+        <rdfs:isDefinedBy>Astm_e6_2023
+https://www.directives.doe.gov/terms_definitions/measuring-test-equipment-m-te</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Testing and measurement equipment</rdfs:label>
+    </owl:Class>
+    
+
+  <!-- https://purls.helmholtz-metadaten.de/rdo/certifiedReferenceMaterial -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdo/certifiedReferenceMaterial">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdo/ReferenceMaterial"/>
+        <obo:IAO_0000115 xml:lang="en"> 1) Reference material accompanied by documentation issued by an authoritative body and providing one or more specified property values with associated uncertainties and traceabilities, using valid procedures. 2) Reference material characterized by a metrologically valid procedure for one or more specified properties, accompanied by a reference material certificate that provides the value of the specified property, its associated uncertainty, and a statement of metrological traceability.</obo:IAO_0000115>
+        <rdfs:comment xml:lang="en">The concept of value includes a nominal property or a qualitative attribute such as identity or sequence. Uncertainties for such attributes may be expressed as probabilities or levels of confidence.</rdfs:comment>
+        <rdfs:isDefinedBy>1) ISO/IEC Guide 99: 2007, 2) ISO Guide 30:2015</rdfs:isDefinedBy>
+        <owl:equivalentClass rdf:resource="http://purl.obolibrary.org/obo/CHMO_0002879"/>
+        <rdfs:label xml:lang="en">Certified reference material</rdfs:label>
+    </owl:Class>
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/chemicalComposition -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/chemicalComposition">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/materialAndState"/>
+        <rdfs:label xml:lang="en">Chemical composition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/controlViaThermocouples -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/controlViaThermocouples">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/temperatureControl"/>
+        <rdfs:label xml:lang="en">Control via thermocouples on sample/via furnace</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/dataAcquisition -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/dataAcquisition">
+        <rdfs:label xml:lang="en">Data acquisition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/dataAcquisitionEquipment -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/dataAcquisitionEquipment">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/testingMachine"/>
+        <rdfs:label xml:lang="en">Data acquisition equipment</rdfs:label>
+    </owl:Class>
+    
+
+
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/elongationAndExtension -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/elongationAndExtension">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TestResult"/>
+        <rdfs:label xml:lang="en">Elongation and extension</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/equipmentIDExtensometer -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/equipmentIDExtensometer">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/extensometer"/>
+        <rdfs:label xml:lang="en">Equipment ID extensometer</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/equipmentIDmeasurAmplifier -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/equipmentIDmeasurAmplifier">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/temperatureControl"/>
+        <rdfs:label xml:lang="en">Equipment ID - measurement amplifier</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/equipmentIDthermocouple -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/equipmentIDthermocouple">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/temperatureControl"/>
+        <rdfs:label xml:lang="en">Equipment ID - thermocouple(s)</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/extensionRangeLowerLimit -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/extensionRangeLowerLimit">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/extensometer"/>
+        <rdfs:label xml:lang="en">Extension range - lower limit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/extensometer -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/extensometer">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TestingAndMeasurementEquipment"/>
+        <rdfs:label xml:lang="en">Extensometer</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/extensometerModelInfo -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/extensometerModelInfo">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/extensometer"/>
+        <rdfs:label xml:lang="en">Extensometer model Information</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/HeatTreatment -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/heatTreatment">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/materialAndState"/>
+        <rdfs:label xml:lang="en">Heat treatment</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/manufactoringProcess -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/manufactoringProcess">
+        <rdfs:subowl:ClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/materialAndState"/>
+        <rdfs:label xml:lang="en">Manufactoring process</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/materialAndState -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/materialAndState">
+        <rdfs:label xml:lang="en">Material and state</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/materialID -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/materialID">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/materialAndState"/>
+        <rdfs:label xml:lang="en">MaterialID</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/maxAppliedForce -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/maxAppliedForce">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/testingMachine"/>
+        <rdfs:label xml:lang="en">Max. applied force</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/measuredComposition -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/measuredComposition">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/chemicalComposition"/>
+        <rdfs:label xml:lang="en">Measured composition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/measurementAmplifier -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/measurementAmplifier">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/temperatureControl"/>
+        <rdfs:label xml:lang="en">Measurement amplifier</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/minTestPieceDiameterAtRoomTemperature -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/minTestPieceDiameterAtRoomTemperature">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/stateAtTestStart"/>
+        <rdfs:label xml:lang="en">Min. test piece diameter at room temperature</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/nominaclComposition -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/nominaclComposition">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/chemicalComposition"/>
+        <rdfs:label xml:lang="en">Nominal composition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/nominalGaugeLength -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/nominalGaugeLength">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/extensometer"/>
+        <rdfs:label xml:lang="en">Nominal gauge length</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/originalGaugeLength -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/originalGaugeLength">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/stateAtTestStart"/>
+        <rdfs:label xml:lang="en">Original gauge length</rdfs:label>
+    </owl:Class>
+
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/refLengthForCalcOfPercentageElongation -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/refLengthForCalcOfPercentageElongation">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/stateAtTestStart"/>
+        <rdfs:label xml:lang="en">Reference length for calculation of percentage elongation</rdfs:label>
+    </owl:Class>
+    
+
+
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/singleCrystalOrientation -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/singleCrystalOrientation">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/materialAndState"/>
+        <rdfs:label xml:lang="en">Single crystal orientation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/stateAtTestEnd -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/stateAtTestEnd">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TestResult"/>
+        <rdfs:label xml:lang="en">State at test end</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/stateAtTestStart -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/stateAtTestStart">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TestResult"/>
+        <rdfs:comment xml:lang="en">Measurement (result) acquired before the test .</rdfs:comment>
+        <rdfs:label xml:lang="en">State at test start</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/temperatureControl -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/temperatureControl">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TestingAndMeasurementEquipment"/>
+        <rdfs:label xml:lang="en">Temperature control</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/testSequence -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/testSequence">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TestResult"/>
+        <rdfs:comment xml:lang="en">Measurement (results) that describe the test sequence.</rdfs:comment>
+        <rdfs:label xml:lang="en">Test sequence</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/testingMachine -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/testingMachine">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TestingAndMeasurementEquipment"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/pmd/co/TestingMachine"/>
+        <rdfs:comment xml:lang="en">A mechanical device used for applying a force to a specimen or testpiece. </rdfs:comment>
+        <rdfs:label xml:lang="en">Testing machine</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/testingMachineID -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/testingMachineID">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/testingMachine"/>
+        <rdfs:label xml:lang="en">Testing machine ID</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/thermocoupleQuantity -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/thermocoupleQuantity">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/temperatureControl"/>
+        <rdfs:label xml:lang="en">Thermocouple:quantity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/thermocoupleType -->
+
+    <owl:Class rdf:about="https://purls.helmholtz-metadaten.de/rdoc/thermocoupleType">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/temperatureControl"/>
+        <rdfs:label xml:lang="en">Thermocouple:type</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/pmd/co/DataAcquisitionRate -->
+
+    <owl:Class rdf:about="https://w3id.org/pmd/co/DataAcquisitionRate"/>
+    
+
+
+    <!-- https://w3id.org/pmd/co/MaterialRelated -->
+
+    <owl:Class rdf:about="https://w3id.org/pmd/co/MaterialRelated"/>
+    
+
+
+    <!-- https://w3id.org/pmd/co/SetPoint -->
+
+    <owl:Class rdf:about="https://w3id.org/pmd/co/SetPoint"/>
+    
+
+
+    <!-- https://w3id.org/pmd/co/Temperature -->
+
+    <owl:Class rdf:about="https://w3id.org/pmd/co/Temperature"/>
+    
+
+
+    <!-- https://w3id.org/pmd/co/TestPiece -->
+
+    <owl:Class rdf:about="https://w3id.org/pmd/co/TestPiece">
+        <rdfs:subClassOf rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/MaterialDescription"/>
+        <rdfs:comment>Specimen. Portion or piece of material to be used for a single test and normally prepared to a predetermined shape and dimensions</rdfs:comment>
+        <rdfs:isDefinedBy>ISO 23718:2007(en)</rdfs:isDefinedBy>
+        <rdfs:label>Testpiece</rdfs:label>
+    </owl:Class>
+    
+
+    <!-- https://w3id.org/pmd/co/TestingMachine --> 
+
+    <owl:Class rdf:about="https://w3id.org/pmd/co/TestingMachine"/>
+    </owl:Class>
+
+
+   <!-- http://purls.helmholtz-metadaten.de/mwo/Material -->
+
+    <owl:Class rdf:about="http://purls.helmholtz-metadaten.de/mwo/Material">
+        <owl:equivalentClass rdf:resource="https://w3id.org/mdo/core/Material"/>
+        <obo:IAO_0000115 xml:lang="en">Material is a broad term used to define a physical substance or mixture of substances of which something is composed or can be made.</obo:IAO_0000115>
+        <rdfs:comment xml:lang="en">Can also be defined as an instance of matter.</rdfs:comment>
+        <rdfs:comment xml:lang="en">It refers to the most common name of a material instance, e.g.&quot;invar&quot;.</rdfs:comment>
+        <rdfs:label xml:lang="en">Material</rdfs:label>
+    </owl:Class>
+
+<!--https://si-digital-framework.org/SI#MeasurementUnit -->
+    <owl:Class rdf:about="https://si-digital-framework.org/SI#MeasurementUnit">
+        <owl:equivalentClass rdf:resource=" http://purl.obolibrary.org/obo/IAO_0000003"/>
+        <rdfs:comment xml:lang="en">Class for all measurement units.</rdfs:comment>
+        <rdfs:comment xml:lang="fr">La classe pour toutes les unités de mesure.</rdfs:comment>
+        <rdfs:isDefinedBy>VIM3 1.9</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">measurement unit</rdfs:label>
+        <rdfs:label xml:lang="fr">unité de mesure</rdfs:label>
+    </owl:Class>
+    
+
+
+
+
+
+ <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <!--  https://purls.helmholtz-metadaten.de/rdoc/dateOfTestStart -->
+
+
+    <owl:DataTypeProperty rdf:about=" https://purls.helmholtz-metadaten.de/rdoc/dateOfTestStart">
+        <rdfs:domain rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TestJob">
+        <obo:IAO_0000115 xml:lang="en">Date and time on which the test started.<obo:IAO_0000115>
+        <rdfs:label xml:lang="en"> date of test start"</rdfs:label>
+    </owl:DataTypeProperty>
+    
+
+  <!--  https://purls.helmholtz-metadaten.de/rdoc/dateOfTestEnd -->
+
+
+    <owl:DataTypeProperty rdf:about=" https://purls.helmholtz-metadaten.de/rdoc/dateOfTestEnd">
+        <rdfs:domain rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TestJob">
+        <obo:IAO_0000115 xml:lang="en"> Date and time on which the test has finished.<obo:IAO_0000115>
+        <rdfs:label xml:lang="en"> date of test end"</rdfs:label>
+    </owl:DataTypeProperty>
+    
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/testID -->
+
+
+    <owl:DatatypeProperty rdf:about="https://purls.helmholtz-metadaten.de/rdoc/testID ">
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/identifier"/>
+        <rdfs:domain rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TestJob">
+        <obo:IAO_0000115 xml:lang="en">Unique designation (alphanumeric code, name, or other unique designations) assigned to the creep test for identification purposes.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">test identifier</rdfs:label>
+    </owl:DatatypeProperty>
+
+
+ <!-- https://purls.helmholtz-metadaten.de/rdoc/testStandardApplied -->
+
+
+    <owl:DatatypeProperty rdf:about="https://purls.helmholtz-metadaten.de/rdoc/testStandardApplied ">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean">
+         <rdfs:domain rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TestStandard">
+        <obo:IAO_0000115 xml:lang="en">Specifies if the test was performed according to a  measurement or test standard, bolean (Yes/No).</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">was a test standard applied ?</rdfs:label>
+    </owl:DatatypeProperty>
+
+
+
+
+
+ <!-- https://purls.helmholtz-metadaten.de/rdoc/hasSpecifiedNumericValue -->
+
+    <owl:DatatypeProperty rdf:about="https://purls.helmholtz-metadaten.de/rdoc/hasSpecifiedNumericValue">
+        <owl:equivalentProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0001937">
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0002135"/>
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/OBI_0001933"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float">
+        <obo:IAO_0000115 xml:lang="en">A relation between a value specification and a number that quantifies it.</obo:IAO_0000115>
+        <rdfs:label>has specified numeric value</rdfs:label>
+    </owl:DatatypeProperty>
+
+
+
+
+    <!-- http://purl.obolibrary.org/obo/OBI_0002135 -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0002135">
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/OBI_0001933"/>
+        <obo:IAO_0000111 xml:lang="en">has specified value</obo:IAO_0000111>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
+        <obo:IAO_0000115 xml:lang="en">A relation between a value specification and a literal.</obo:IAO_0000115>
+        <obo:IAO_0000116>This is not an RDF/OWL object property. It is intended to link a value found in e.g. a database column of &apos;M&apos; (the literal) to an instance of a value specification class, which can then be linked to indicate that this is about the biological gender of a human subject.</obo:IAO_0000116>
+        <obo:IAO_0000119>OBI</obo:IAO_0000119>
+        <rdfs:label xml:lang="en">has specified value</rdfs:label>
+    </owl:DatatypeProperty>
+
+
+<!-- https://purls.helmholtz-metadaten.de/rdo/digitalMaterialIdentifier -->
+
+
+    <owl:DatatypeProperty rdf:about="https://purls.helmholtz-metadaten.de/rdo/digitalMaterialIdentifier">
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/identifier"/>
+        <rdfs:domain rdf:resource="http://nfdi.fiz-karlsruhe.de/ontology/Resource"/>
+        <rdfs:range rdf:resource="https://purls.helmholtz-metadaten.de/rdo/Material"/>
+        <obo:IAO_0000115 xml:lang="en">The Digital Material Identifier value object refers to a dmi:DigitalMaterialIdentifier.
+A dmi:DigitalMaterialIdentifier is a resource identifier (IRI) that represents the specification of a material (in the sense of a material class) described in a specification document. The specification document can be, e.g., a standard, a datasheet, or any other citable document. Typically, a specification document requires some qualities that a material (in the sense of a portion of matter) has to comply with. Typical requirements include chemical compositions or physical properties.</obo:IAO_0000115>
+        <rdfs:label>digital material identifier</rdfs:label>
+    </owl:DatatypeProperty>
+
+
+
+    <!-- http://nfdi.fiz-karlsruhe.de/ontology/url -->
+
+
+    <owl:DatatypeProperty rdf:about="http://nfdi.fiz-karlsruhe.de/ontology/url">
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+        <rdfs:comment xml:lang="en">URL of a thing.</rdfs:comment>
+        <rdfs:label xml:lang="en">url</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/dc/terms/title -->
+
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/dc/terms/title">
+        <rdfs:domain rdf:resource="http://nfdi.fiz-karlsruhe.de/ontology/Resource"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purls.helmholtz-metadaten.de/mwo/description -->
+
+
+    <owl:DatatypeProperty rdf:about="http://purls.helmholtz-metadaten.de/mwo/description">
+        <obo:IAO_0000115 xml:lang="en">A data property linking an entity to its description.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">description</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purls.helmholtz-metadaten.de/mwo/hasDOI -->
+
+
+    <owl:DatatypeProperty rdf:about="http://purls.helmholtz-metadaten.de/mwo/hasDOI">
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/identifier"/>
+        <rdfs:domain rdf:resource="http://nfdi.fiz-karlsruhe.de/ontology/Resource"/>
+        <obo:IAO_0000115 xml:lang="en">A data property relating a work to its Digital Object Identifier (DOI).</obo:IAO_0000115>
+        <rdfs:label>has DOI</rdfs:label>
+    </owl:DatatypeProperty>
+
+
+
+    <!-- http://purls.helmholtz-metadaten.de/mwo/hasProjectIdentifier -->
+
+
+    <owl:DatatypeProperty rdf:about="http://purls.helmholtz-metadaten.de/mwo/hasProjectIdentifier">
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/identifier"/>
+        <rdfs:domain rdf:resource="http://nfdi.fiz-karlsruhe.de/ontology/Project"/>
+        <obo:IAO_0000115 xml:lang="en">A data property relating a research project with a unique identifier, defined in a given context.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">has project identifier</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purls.helmholtz-metadaten.de/mwo/hasSerialNumber -->
+
+
+    <owl:DatatypeProperty rdf:about="http://purls.helmholtz-metadaten.de/mwo/hasSerialNumber">
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/identifier"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://schema.org/Product"/>
+                    <rdf:Description rdf:about="https://w3id.org/skgo/modsci#Instrument"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:comment xml:lang="en">A data property linking something, for example a piece of equipment, to its serial number.</rdfs:comment>
+        <rdfs:label xml:lang="en">has serial number</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purls.helmholtz-metadaten.de/mwo/hasVersion -->
+
+
+    <owl:DatatypeProperty rdf:about="http://purls.helmholtz-metadaten.de/mwo/hasVersion">
+        <rdfs:domain rdf:resource="http://nfdi.fiz-karlsruhe.de/ontology/Resource"/>
+        <obo:IAO_0000115 xml:lang="en">A number or string that identifies different variants or releases of a resource.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">has version</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purls.helmholtz-metadaten.de/mwo/instrumentModel -->
+
+
+    <owl:DatatypeProperty rdf:about="http://purls.helmholtz-metadaten.de/mwo/instrumentModel">
+        <rdfs:domain rdf:resource="https://w3id.org/skgo/modsci#Instrument"/>
+        <obo:IAO_0000115 xml:lang="en">A data property relating an instrument with the model information.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">instrument model</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/firstName -->
+
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/firstName">
+        <rdfs:subPropertyOf rdf:resource="http://purls.helmholtz-metadaten.de/mwo/hasPersonalInformation"/>
+        <rdfs:domain rdf:resource="http://nfdi.fiz-karlsruhe.de/ontology/Person"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/surname -->
+
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/surname">
+        <rdfs:subPropertyOf rdf:resource="http://purls.helmholtz-metadaten.de/mwo/hasPersonalInformation"/>
+        <rdfs:domain rdf:resource="http://nfdi.fiz-karlsruhe.de/ontology/Person"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/title -->
+
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/title">
+        <rdfs:subPropertyOf rdf:resource="http://purls.helmholtz-metadaten.de/mwo/hasPersonalInformation"/>
+        <rdfs:domain rdf:resource="http://nfdi.fiz-karlsruhe.de/ontology/Person"/>
+        <rdfs:comment>Title (Mr, Mrs, Ms, Dr. etc)</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:label>title</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://schema.org/dateCreated -->
+
+
+    <owl:DatatypeProperty rdf:about="https://schema.org/dateCreated">
+        <rdfs:domain rdf:resource="http://nfdi.fiz-karlsruhe.de/ontology/Resource"/>
+        <rdfs:comment xml:lang="en">The date on which the CreativeWork was created or the item was added to a DataFeed.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://schema.org/dateCreated"/>
+        <rdfs:label xml:lang="en">dateCreated</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://schema.org/datePublished -->
+
+
+    <owl:DatatypeProperty rdf:about="https://schema.org/datePublished">
+        <rdfs:domain rdf:resource="http://nfdi.fiz-karlsruhe.de/ontology/Resource"/>
+        <rdfs:comment xml:lang="en">Date of first broadcast/publication.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://schema.org/datePublished"/>
+        <rdfs:label xml:lang="en">datePublished</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+    <!-- https://schema.org/startTime -->
+
+
+    <owl:DatatypeProperty rdf:about="https://schema.org/startTime">
+        <rdfs:domain rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TestJob"/>
+        <rdfs:comment xml:lang="en">The startTime of something. For a reserved event or service (eg FoodEstablishmentReservation), the time that it is expected to start.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://schema.org/startTime"/>
+        <rdfs:label xml:lang="en">startTime</rdfs:label>
+    </owl:DatatypeProperty>
+
+   
+    
+    <!-- https://w3id.org/scholarlydata/ontology/conference-ontology.owl#duration -->
+
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#duration">
+        <rdfs:domain rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisedEvent"/>
+        <rdfs:comment xml:lang="en">duration</rdfs:comment>
+        <rdfs:label xml:lang="en">duration</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/scholarlydata/ontology/conference-ontology.owl#endDate -->
+
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#endDate">
+        <rdfs:domain rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisedEvent"/>
+        <rdfs:comment xml:lang="en">end date</rdfs:comment>
+        <rdfs:label xml:lang="en">end date</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/scholarlydata/ontology/conference-ontology.owl#startDate -->
+
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#startDate">
+        <rdfs:domain rdf:resource="https://w3id.org/scholarlydata/ontology/conference-ontology.owl#OrganisedEvent"/>
+        <rdfs:comment xml:lang="en">start date</rdfs:comment>
+        <rdfs:label xml:lang="en">start date</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+
+
+
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+ <!-- https://purls.helmholtz-metadaten.de/rdoc/hasUnit -->
+
+
+    <owl:ObjectProperty rdf:about="https://purls.helmholtz-metadaten.de/rdoc/hasUnit ">
+    	<owl:equivalentProperty rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit">
+        <owl:equivalentProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000039">
+        <rdfs:range rdf:resource="https://si-digital-framework.org/SI#MeasuremenUnit"/>
+        <rdfs:domain rdf:resource="http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity">
+        <rdfs:label xml:lang="en">has unit</rdfs:label>
+    </owl:ObjectProperty>
+  
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/typeOfLoading -->
+
+
+    <owl:ObjectProperty rdf:about="https://purls.helmholtz-metadaten.de/rdoc/typeOfLoading">
+        <rdfs:range rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TypeOfLoading"/>
+        <obo:IAO_0000115 xml:lang="en">A relation between an instrument and the organization that acts as its owner.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">type of loading</rdfs:label>
+    </owl:ObjectProperty>
+
+
+<!--  https://purls.helmholtz-metadaten.de/rdo/hasDescription  -->
+
+    <owl:ObjectProperty rdf:about=" https://purls.helmholtz-metadaten.de/rdo/hasDescription ">
+        <rdfs:equivalentProperty rdf:resource="http://purls.helmholtz-metadaten.de/mwo/description"/>
+        <rdfs:domain rdf:resource="http://nfdi.fiz-karlsruhe.de/ontology/Resource"/>
+        <obo:IAO_0000115 xml:lang="en">Relation between a resource, e.g. Material and it's description resource, e.g. Material description. </obo:IAO_0000115>
+        <rdfs:label xml:lang="en">has description</rdfs:label>
+    </owl:ObjectProperty>
+
+    <!--  https://purls.helmholtz-metadaten.de/rdo/issuesCertificate  -->
+
+    <owl:ObjectProperty rdf:about=" https://purls.helmholtz-metadaten.de/rdo/issuesCertificate  ">
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
+         <rdfs:range rdf:resource="https://purls.helmholtz-metadaten.de/rdo/Certificate "/>
+        <obo:IAO_0000115 xml:lang="en">A general relation linking a certification process to the certificate it produces. </obo:IAO_0000115>
+        <rdfs:label xml:lang="en">issues certificate</rdfs:label>
+    </owl:ObjectProperty>
+
+<!-- http://purls.helmholtz-metadaten.de/mwo/aboutMaterial -->
+
+
+    <owl:ObjectProperty rdf:about="http://purls.helmholtz-metadaten.de/mwo/aboutMaterial">
+        <rdfs:domain rdf:resource="http://schema.org/CreativeWork"/>
+        <rdfs:range rdf:resource="http://purls.helmholtz-metadaten.de/mwo/Material"/>
+        <obo:IAO_0000115 xml:lang="en">A relation between a dataset and the material it contains data on.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">about material</rdfs:label>
+    </owl:ObjectProperty>
+
+
+    <!-- http://purls.helmholtz-metadaten.de/mwo/hasOwner -->
+
+
+    <owl:ObjectProperty rdf:about="http://purls.helmholtz-metadaten.de/mwo/hasOwner">
+        <rdfs:domain rdf:resource="https://w3id.org/skgo/modsci#Instrument"/>
+        <rdfs:range rdf:resource="http://nfdi.fiz-karlsruhe.de/ontology/Organization"/>
+        <obo:IAO_0000115 xml:lang="en">A relation between an instrument and the organization that acts as its owner.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">has owner</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+     <!-- http://purls.helmholtz-metadaten.de/mwo/hasMember -->
+
+
+    <owl:ObjectProperty rdf:about="http://purls.helmholtz-metadaten.de/mwo/hasMember">
+        <owl:inverseOf rdf:resource="http://purls.helmholtz-metadaten.de/mwo/memberOf"/>
+        <rdfs:domain rdf:resource="http://nfdi.fiz-karlsruhe.de/ontology/Project"/>
+        <rdfs:range rdf:resource="http://purls.helmholtz-metadaten.de/mwo/ProjectMember"/>
+        <obo:IAO_0000115 xml:lang="en">A relation between a research project and its members.</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">has member</rdfs:label>
+    </owl:ObjectProperty>
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+
+    <!-- https://purls.helmholtz-metadaten.de/rdoc/Tension -->
+
+
+    <owl:NamedIndividual rdf:about=" https://purls.helmholtz-metadaten.de/rdoc/Tension">
+        <rdf:type rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TypeOfLoading"/>
+        <rdfs:comment xml:lang="en">Beside tension, bendingm compression, sheas and torsion or also mixed loading are types of loading applied to a material.</rdfs:comment>
+        <rdfs:label xml:lang="en">Tension</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+   <!-- https://purls.helmholtz-metadaten.de/rdoc/Compression -->
+
+
+    <owl:NamedIndividual rdf:about=" https://purls.helmholtz-metadaten.de/rdoc/Compression">
+        <rdf:type rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TypeOfLoading"/>
+        <rdfs:comment xml:lang="en">Beside tension, bendingm compression, sheas and torsion or also mixed loading are types of loading applied to a material.</rdfs:comment>
+        <rdfs:label xml:lang="en">Compression</rdfs:label>
+    </owl:NamedIndividual>
+
+   <!-- https://purls.helmholtz-metadaten.de/rdoc/Bending -->
+
+
+    <owl:NamedIndividual rdf:about=" https://purls.helmholtz-metadaten.de/rdoc/Bending">
+        <rdf:type rdf:resource="https://purls.helmholtz-metadaten.de/rdoc/TypeOfLoading"/>
+        <rdfs:comment xml:lang="en">Beside tension, bendingm compression, sheas and torsion or also mixed loading are types of loading applied to a material.</rdfs:comment>
+        <rdfs:label xml:lang="en">Compression</rdfs:label>
+    </owl:NamedIndividual>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    <!-- http://nfdi.fiz-karlsruhe.de/ontology/example -->
+
+    <owl:owl:AnnotationProperty rdf:about="http://nfdi.fiz-karlsruhe.de/ontology/example"/>
+    
+
+  <!-- http://purl.obolibrary.org/obo/BFO_0000054 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000954"/>
+
+
+    <!-- http://purl.obolibrary.org/obo/BFO_0000179 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000179"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/BFO_0000180 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000180"/>
+    
+    
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000112 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000112"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000114 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000114"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000115 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000115">
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000116 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000116"/>
+    
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000118 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000118"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000119 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000119"/>
+
+
+      <!-- http://purl.obolibrary.org/obo/IAO_0000136 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000136"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000600 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000600"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000602 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000602"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0010000 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0010000"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCIT_C42610 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/NCIT_C42610">
+        <obo:IAO_0000115>A shortened form of a word or phrase. [Definition Source: NCI]</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">abbreviation</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#altLabel"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCIT_C93495 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/NCIT_C93495">
+        <obo:IAO_0000115>The non-unique initials or abbreviated name used for identification. [Definition Source: NCI]</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">acronym</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2004/02/skos/core#altLabel"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/contributor -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/contributor"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/description -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/description"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/format -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/format"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/identifier -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/identifier"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/bibliographicCitation -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/bibliographicCitation"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/created -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/created">
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/date"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://purl.org/dc/terms/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/description -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/description"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/format -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/format">
+        <terms:bibliographicCitation>[MIME] http://www.iana.org/assignments/media-types/</terms:bibliographicCitation>
+        <rdfs:comment xml:lang="en-us">Examples of dimensions include size and duration. Recommended best practice is to use a controlled vocabulary such as the list of Internet Media Types [MIME].</rdfs:comment>
+        <rdfs:comment xml:lang="en">The file format, physical medium, or dimensions of the resource.
+
+Examples of dimensions include size and duration. Recommended best practice is to use a controlled vocabulary such as the list of Internet Media Types.</rdfs:comment>
+        <rdfs:label xml:lang="en-us">Format</rdfs:label>
+        <rdfs:label xml:lang="en">has format</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://www.iana.org/assignments/media-types/"/>
+        <skos:definition xml:lang="en-us">The file format, physical medium, or dimensions of the resource.</skos:definition>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/format"/>
+        <rdfs:range rdf:resource="http://purl.org/dc/elements/1.1/contributor"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://purl.org/dc/terms/identifier -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/identifier">
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/identifier"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://purl.org/dc/terms/license -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/license"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/title -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/title"/>
+    
+
+
+    <!-- http://purl.org/vocab/vann/preferredNamespacePrefix -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/vocab/vann/preferredNamespacePrefix"/>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym -->
+
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym">
+        <oboInOwl:hasDbXref>
+            <rdf:Description/>
+        </oboInOwl:hasDbXref>
+        <oboInOwl:hasDefinition>
+            <rdf:Description/>
+        </oboInOwl:hasDefinition>
+        <rdfs:label xml:lang="en">has_broad_synonym</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasSynonym"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasDbXref -->
+
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasDbXref">
+        <rdfs:label>database_cross_reference</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasDefinition -->
+
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasDefinition"/>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasExactSynonym -->
+
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym">
+        <oboInOwl:hasDbXref>
+            <rdf:Description/>
+        </oboInOwl:hasDbXref>
+        <oboInOwl:hasDefinition>
+            <rdf:Description/>
+        </oboInOwl:hasDefinition>
+        <rdfs:label xml:lang="en">has_exact_synonym</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasSynonym"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym -->
+
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym">
+        <oboInOwl:hasDbXref>
+            <rdf:Description/>
+        </oboInOwl:hasDbXref>
+        <oboInOwl:hasDefinition>
+            <rdf:Description/>
+        </oboInOwl:hasDefinition>
+        <rdfs:label xml:lang="en">has_narrow_synonym</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasSynonym"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym -->
+
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym">
+        <oboInOwl:hasDbXref>
+            <rdf:Description/>
+        </oboInOwl:hasDbXref>
+        <oboInOwl:hasDefinition>
+            <rdf:Description/>
+        </oboInOwl:hasDefinition>
+        <rdfs:label xml:lang="en">has_related_synonym</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasSynonym"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasSynonym -->
+
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasSynonym">
+        <oboInOwl:hasDbXref>
+            <rdf:Description/>
+        </oboInOwl:hasDbXref>
+        <oboInOwl:hasDefinition>
+            <rdf:Description/>
+        </oboInOwl:hasDefinition>
+        <rdfs:comment>Note that this should be a super-property of hasRelatedSynonym, hasExactSynonym etc; however, we cannot state this and remain in OWL-DL</rdfs:comment>
+        <rdfs:label xml:lang="en">has_synonym</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#versionIRI -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#versionIRI"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#versionInfo -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#versionInfo"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#altLabel -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#altLabel"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#definition -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#definition"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#prefLabel -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#prefLabel"/>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#editorialNote -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/ns/prov#editorialNote"/>
+    
+
+
+    <!-- https://w3id.org/pmd/co/definitionSource -->
+
+    <owl:AnnotationProperty rdf:about="https://w3id.org/pmd/co/definitionSource"/>
+    
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+
