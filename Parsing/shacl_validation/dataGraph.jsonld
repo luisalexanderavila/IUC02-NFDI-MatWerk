@@ -1,0 +1,328 @@
+[
+    {
+        "@id": "http://example.org/Bending",
+        "@type": [
+            "http://example.org/TypeOfLoading"
+        ]
+    },
+    {
+        "@id": "http://example.org/hasUnit",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#DatatypeProperty"
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#domain": [
+            {
+                "@id": "http://example.org/Quality"
+            }
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#range": [
+            {
+                "@id": "http://www.w3.org/2001/XMLSchema#string"
+            }
+        ]
+    },
+    {
+        "@id": "http://example.org/dateOfTestEnd",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#DatatypeProperty"
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#domain": [
+            {
+                "@id": "http://example.org/TestJob"
+            }
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#range": [
+            {
+                "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+            }
+        ]
+    },
+    {
+        "@id": "http://example.org/TestedMaterial",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#Class"
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+            {
+                "@id": "http://example.org/Material"
+            }
+        ]
+    },
+    {
+        "@id": "http://example.org/TestStandard",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#Class"
+        ],
+        "http://example.org/testStandard": [
+            {
+                "@type": "http://www.w3.org/2001/XMLSchema#string",
+                "@value": "DIN EN ISO 204:2019-4"
+            }
+        ],
+        "http://example.org/testStandardApplied": [
+            {
+                "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+                "@value": true
+            }
+        ]
+    },
+    {
+        "@id": "http://example.org/dateOfTestStart",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#DatatypeProperty"
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#domain": [
+            {
+                "@id": "http://example.org/TestJob"
+            }
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#range": [
+            {
+                "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+            }
+        ]
+    },
+    {
+        "@id": "http://example.org/SpecifiedTemperature",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://example.org/Quality"
+        ],
+        "http://example.org/hasSpecifiedNumericValue": [
+            {
+                "@type": "http://www.w3.org/2001/XMLSchema#float",
+                "@value": "980.0"
+            }
+        ],
+        "http://example.org/hasUnit": [
+            {
+                "@type": "http://www.w3.org/2001/XMLSchema#string",
+                "@value": "°C"
+            }
+        ]
+    },
+    {
+        "@id": "http://example.org/Compression",
+        "@type": [
+            "http://example.org/TypeOfLoading"
+        ]
+    },
+    {
+        "@id": "http://example.org/TypeOfLoading",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#Class"
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+            {
+                "@id": "http://example.org/TestingParameter"
+            }
+        ]
+    },
+    {
+        "@id": "http://example.org/testID",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#DatatypeProperty"
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#domain": [
+            {
+                "@id": "http://example.org/TestJob"
+            }
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#range": [
+            {
+                "@id": "http://www.w3.org/2001/XMLSchema#string"
+            }
+        ]
+    },
+    {
+        "@id": "http://example.org/testStandardApplied",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#DatatypeProperty"
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#domain": [
+            {
+                "@id": "http://example.org/TestStandard"
+            }
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#range": [
+            {
+                "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+            }
+        ]
+    },
+    {
+        "@id": "http://example.org/DescriptionOfManufacturingProcess",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#Class"
+        ],
+        "http://example.org/hasDescription": [
+            {
+                "@type": "http://www.w3.org/2001/XMLSchema#string",
+                "@value": "Description of the manufacturing process - as-tested material. Single Crystal Investment Casting from a Vacuum Induction Refined Ingot and subsequent Heat Treatment (annealed and aged)."
+            }
+        ]
+    },
+    {
+        "@id": "http://example.org/Quality",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#Class"
+        ]
+    },
+    {
+        "@id": "http://example.org/TestJob",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#Class"
+        ],
+        "http://example.org/dateOfTestStart": [
+            {
+                "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                "@value": "2023-08-02T09:06:00"
+            }
+        ],
+        "http://example.org/testID": [
+            {
+                "@type": "http://www.w3.org/2001/XMLSchema#string",
+                "@value": "Vh5205_C-78"
+            }
+        ],
+        "http://example.org/typeOfLoading": [
+            {
+                "@id": "http://example.org/Tension"
+            }
+        ]
+    },
+    {
+        "@id": "http://example.org/Tension",
+        "@type": [
+            "http://example.org/TypeOfLoading"
+        ]
+    },
+    {
+        "@id": "http://example.org/Material",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#Class"
+        ]
+    },
+    {
+        "@id": "http://example.org/InitialStress",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://example.org/Quality"
+        ],
+        "http://example.org/hasSpecifiedNumericValue": [
+            {
+                "@type": "http://www.w3.org/2001/XMLSchema#float",
+                "@value": "230.0"
+            }
+        ],
+        "http://example.org/hasUnit": [
+            {
+                "@type": "http://www.w3.org/2001/XMLSchema#string",
+                "@value": "MPa"
+            }
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+            {
+                "@id": "http://example.org/TestingParameter"
+            }
+        ]
+    },
+    {
+        "@id": "http://example.org/TestingParameter",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#Class"
+        ]
+    },
+    {
+        "@id": "http://example.org/hasDescription",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#DatatypeProperty"
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#domain": [
+            {
+                "@id": "http://example.org/DescriptionOfManufacturingProcess"
+            }
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#range": [
+            {
+                "@id": "http://www.w3.org/2001/XMLSchema#string"
+            }
+        ]
+    },
+    {
+        "@id": "http://example.org/digitalMaterialIdentifier",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#DatatypeProperty"
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#domain": [
+            {
+                "@id": "http://example.org/TestedMaterial"
+            }
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#range": [
+            {
+                "@id": "http://www.w3.org/2001/XMLSchema#string"
+            }
+        ]
+    },
+    {
+        "@id": "http://example.org/typeOfLoading",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#ObjectProperty"
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#domain": [
+            {
+                "@id": "http://example.org/TestJob"
+            }
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#range": [
+            {
+                "@id": "http://example.org/TypeOfLoading"
+            }
+        ]
+    },
+    {
+        "@id": "http://example.org/hasSpecifiedNumericValue",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#DatatypeProperty"
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#domain": [
+            {
+                "@id": "http://example.org/Quality"
+            }
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#range": [
+            {
+                "@id": "http://www.w3.org/2001/XMLSchema#float"
+            }
+        ]
+    },
+    {
+        "@id": "http://example.org/CMSX-6",
+        "@type": [
+            "http://example.org/TestedMaterial"
+        ],
+        "http://example.org/digitalMaterialIdentifier": [
+            {
+                "@type": "http://www.w3.org/2001/XMLSchema#string",
+                "@value": "CMSX-6"
+            }
+        ]
+    },
+    {
+        "@id": "http://example.org/testStandard",
+        "@type": [
+            "http://www.w3.org/2002/07/owl#DatatypeProperty"
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#domain": [
+            {
+                "@id": "http://example.org/TestStandard"
+            }
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#range": [
+            {
+                "@id": "http://www.w3.org/2001/XMLSchema#string"
+            }
+        ]
+    }
+]
