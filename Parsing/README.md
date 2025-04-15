@@ -2,55 +2,33 @@ knowledge graph integration of BAM creep dataset
 ==================================================
 
 
-This is the main project repository for the task for KG integration of BAM creep dataset. 
+This is the sub-project repository for the task for KG integration of BAM creep dataset. 
 The project is a part of IUC02 of NFDI-Matwerk.
 
 # Instructions
 
 The project uses several tools developed in the past, 
-and all the dependencies are in separate repositories.
+and all the dependencies have been cloned into the `./dependencies` directory as subtrees. 
 
-# 1. clone this repository and cd to its root directory.
-
-# 2. install the python environment.
+# 1. install the python environment.
 
 ```
 conda create -f environment.yaml
 conda activate DataManagement
 ```
 
-3. Install the dependencies.
+# 2. Install the dependencies.
 
-There is one dependency which was created from scratch for this project and is included in the main repository so you dont need to 
-download it. For practicity, it was included as an independent package and you need to cd to its location and
-install it in the python environment.
+
+All dependenies have been included in the `dependencies` directory as subtrees. However, for ease of use they should be installed manually.
+For this, cd into the depnendency folder and insatll it in development mode.
 
 ```
 cd dependencies/creep_shacl_maker
 pip install -e .
 ```
 
-Other dependencies which were created before and are applied now were brought from the old repositories (mainly Aachen gitlab instance). 
-as all the repositories are private for the moment and maybe to small as to put them in pipy, you need to install each of them separately.
-There is a script that can help, with the aid of a configuration file in `config/dependencies_config.yaml`,
-To execute the scirpt, simply do:
-
-```
-python bin/setup_dependencies.py
-```
-which will clone a couple repositories into the ./dependencies directory.
-For the moment all dependencies must be installed manually. 
-You can cd into ./dependencies and install all of them as editable packages to allow development (at the moment its only
-two small packages).
-
-For instance
-
-```
-cd dependencies/LISParser 
-pip install -e .
-```
-
-# 4. Use case data
+# 3. Use case data
 
 Application data is taken from the BAM creep dataset, which is available at https://doi.org/10.5281/zenodo.13937986 .
 This data can be downloaded automatically.
@@ -102,10 +80,12 @@ For the moment we need to check consistency.
 Any mapping, schema, in json, ttl or rdf formats should reside inside the Mappings directory, 
 at least until we can find a better solution. 
 
+TODO: this needs  to be adapted to the new project structue!
+
 
 # 7. Achievements so far:
 
-at the moment we are able to convert a LIS file into a schema-complient json file. Please see (Vh5205_C-78.LIS)[Vh5205_C-78.LIS] and (Vh5205_C-78_tranlated.josn)[Vh5205_C-78_tranlated.josn] for an example.
+at the moment we are able to convert a LIS file into a schemka-complient json file. Please see (Vh5205_C-78.LIS)[Vh5205_C-78.LIS] and (Vh5205_C-78_tranlated.josn)[Vh5205_C-78_tranlated.josn] for an example.
 
 ## 7.1 LIS to JSON
 ```
