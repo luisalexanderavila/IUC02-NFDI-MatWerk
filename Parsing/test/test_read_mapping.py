@@ -56,7 +56,7 @@ class TestFillsSchema(unittest.TestCase):
         translated_dict_file = self.lisfile.replace('.LIS','_translated.json')
         with open(translated_dict_file, 'w') as file:
             json.dump(self.translated_dict, file, indent=4)
-        self.assertTrue(isinstance(translated_dict, dict))
+        self.assertTrue(isinstance(self.translated_dict, dict))
 
 
     def test_parsed_correctly(self):

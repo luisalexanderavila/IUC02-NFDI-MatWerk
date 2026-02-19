@@ -73,7 +73,7 @@ def get_specifiedTempParagraph(theSpecifiedTemp):
     paragraph_temp = [
             f':SpecifiedTemperature a :Quality;\n',
             f'   :hasSpecifiedNumericValue \"{temp_value}\"^^xsd:float;\n',
-            f'   :hasUnit \"{theSpecifiedTemp['unit']}\"^^xsd:string.\n'
+            f'   :hasUnit \"{theSpecifiedTemp["unit"]}\"^^xsd:string.\n'
             ]
     return paragraph_temp
 

@@ -5,3 +5,9 @@ build-backend = "hatchling.build"
 [project]
 name = "LISParser"
 version = "0.1.0"
+dependencies = [
+	"numpy",
+	"tqdm",
+	"pytest",
+	"requests",
+]

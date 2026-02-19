@@ -43,8 +43,19 @@ def translate_bam(lis_dict: dict, mapping: dict) -> dict:
                     nested_value = dict_to_translate[local_key]
                     if 'unit' in key:
                         nested_value = re.sub(r'[^a-zA-Z]', '', nested_value)
+                        if 'temperature' in key.lower() and nested_value:
+                            if 'F' in nested_value:
+                                nested_value = 'F'
+                            elif 'C' in nested_value:
+                                nested_value = 'C'
                     elif 'value' in key:
-                        nested_value = re.sub(r'[^0-9.]', '', nested_value)
+                        numeric_value_keys = ['temperature_value', 'stress_value']
+                        if any(marker in key.lower() for marker in numeric_value_keys):
+                            cleaned_value = re.sub(r'[^0-9.]', '', nested_value)
+                            try:
+                                nested_value = float(cleaned_value) if cleaned_value else None
+                            except ValueError:
+                                nested_value = None
                     set_nested_value(result, value.split('.'), nested_value)
                 else:
                     set_nested_value(result, key.split('.'), None)
