@@ -17,6 +17,14 @@ conda create -f environment.yaml
 conda activate DataManagement
 ```
 
+or for a fresh pip-based environment:
+
+```
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
 # 2. Install the dependencies.
 
 
@@ -104,4 +112,42 @@ python bin/json_to_shacl_2.py Data/BAMDataset_Json/Vh5205_C-95_translated.json -
 
 ```
 python bin/bam2shacl.py -i Data/BAMDataset/Vh5205_C-78.LIS  -o Data/BAMDataset_Graph/Vh5205_C-78_translated.ttl
+```
+
+## 7.4 Web visualization (browser)
+
+Generate a standalone HTML graph visualization:
+
+```
+python bin/create_visualization.py
+```
+
+Optional input/output:
+
+```
+python bin/create_visualization.py --input shacl_validation/rdfGraph_smallExample.ttl --output Notebooks/rdf_graph_viewer.html
+```
+
+## 7.5 One-command checks (tests + visualization)
+
+Run everything needed before handoff:
+
+```
+python bin/run_all_checks.py
+```
+
+Use a different micromamba env name (optional):
+
+```
+python bin/run_all_checks.py <env_name>
+```
+
+Platform wrappers:
+
+```bash
+bash bin/run_all_checks.sh
+```
+
+```bat
+bin\run_all_checks.bat
 ```
