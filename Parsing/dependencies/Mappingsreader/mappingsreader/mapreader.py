@@ -42,9 +42,22 @@ def translate_bam(lis_dict: dict, mapping: dict) -> dict:
                 if local_key in dict_to_translate:
                     nested_value = dict_to_translate[local_key]
                     if 'unit' in key:
-                        nested_value = re.sub(r'[^a-zA-Z]', '', nested_value)
+                        raw_unit = str(nested_value)
+                        cleaned_unit = re.sub(r'[^a-zA-Z]', '', raw_unit)
+                        if 'temperature' in key.lower():
+                            temperature_match = re.search(r'([CF])(?=[^A-Za-z]*$)', raw_unit.upper())
+                            nested_value = temperature_match.group(1) if temperature_match else cleaned_unit
+                        else:
+                            nested_value = cleaned_unit
                     elif 'value' in key:
-                        nested_value = re.sub(r'[^0-9.]', '', nested_value)
+                        cleaned_value = re.sub(r'[^0-9.]', '', str(nested_value))
+                        if cleaned_value:
+                            try:
+                                nested_value = float(cleaned_value)
+                            except ValueError:
+                                nested_value = cleaned_value
+                        else:
+                            nested_value = None
                     set_nested_value(result, value.split('.'), nested_value)
                 else:
                     set_nested_value(result, key.split('.'), None)

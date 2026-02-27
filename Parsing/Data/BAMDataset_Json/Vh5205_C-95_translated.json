@@ -4,16 +4,16 @@
             "additionalMetadata": {
                 "testInfo": {
                     "testJobDetails": {
-                        "dateOfTestStart": "30.8.23 9:06 AM",
-                        "testID": "Vh5205_C-95"
+                        "dateOfTestStart": "30.8.23906",
+                        "testID": "520595"
                     },
                     "testParameters": {
-                        "testStandard": "DIN EN ISO 204:2019-4*",
+                        "testStandard": "20420194",
                         "specifiedTemperature": {
                             "value": "980",
                             "unit": "TC"
                         },
-                        "typeOfLoading": "Tension*",
+                        "typeOfLoading": "",
                         "initialStress": {
                             "value": "140",
                             "unit": "RoMPa"
@@ -21,17 +21,17 @@
                     },
                     "materialRelated": {
                         "materialHistoryAndCondition": {
-                            "digitalMaterialID": "CMSX-6*"
+                            "digitalMaterialID": "6"
                         },
                         "testPiece": {
-                            "testPieceIItype": "Round cross section*",
-                            "testPieceIIItype": "Smooth test piece*"
+                            "testPieceIItype": "",
+                            "testPieceIIItype": ""
                         }
                     }
                 },
                 "measuringAndTestEquipment": {
                     "extensometerSystem": {
-                        "contactingExtensometerSensorType": "Clip-on extensometer*"
+                        "contactingExtensometerSensorType": ""
                     }
                 }
             },
