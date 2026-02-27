@@ -1,0 +1,391 @@
+﻿{
+
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+
+    "$id": "https://github.com/kit-data-manager/Metadata-Schemas-for-Materials-Science",
+
+    "type": "object",
+
+    "title": "BAM Dataset: Creating FDO for MatWerk",
+
+    "description": "JSON Schema description for BAM MatWerk project.",
+    "$defs": {
+        "ComplexValue": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "string"
+                },
+                "unit": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+
+    "properties": {
+        "MeasurementData": {
+            "description": "Details about measurement data of creep tests",
+            "type": "object",
+            "required": [
+                "additionalMetadata",
+                "primaryData",
+                "secondaryData"
+            ],
+
+            "properties": {
+                "additionalMetadata": {
+                    "type": "object",
+                    "properties": {
+                        "testInfo": {
+                            "type": "object",
+                            "properties": {
+                                "testOrder": {
+                                    "type": "object",
+                                    "required": [
+                                        "testDate",
+                                        "testID"
+                                    ],
+                                    "properties": {
+                                        "testDate": {
+                                            "type": "string"
+                                        },
+                                        "testID": {
+                                            "type": "string"
+                                        },
+                                        "project": {
+                                            "type": "string"
+                                        },
+                                        "operator": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "specifiedTestParameters": {
+                                    "type": "object",
+                                    "required": [
+                                        "testingStandard",
+                                        "specifiedTemperature",
+                                        "initialStress",
+                                        "testType",
+                                        "endOfExperiment"
+                                    ],
+                                    "properties": {
+                                        "testingStandard": {
+                                            "type": "string"
+                                        },
+                                        "specifiedTemperature": {
+                                            "description": "Symbol usually indicated as T",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "initialStress": {
+                                            "description": "Symbol usually indicated as $R_{o}$",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "testType": {
+                                            "type": "string"
+                                        },
+                                        "endOfExperiment": {
+                                            "type": "string"
+                                        },
+                                        "testForce": {
+                                            "$ref": "#/$defs/ComplexValue"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "testedMaterial": {
+                            "type": "object",
+                            "properties": {
+                                "materialAndState": {
+                                    "type": "object",
+                                    "required": [
+                                        "materialID",
+                                        "singleCrystalOrientation"
+                                    ],
+                                    "properties": {
+                                        "materialID": {
+                                            "type": "string"
+                                        },
+                                        "manufacturingProcess": {
+                                            "type": "string"
+                                        },
+                                        "heatTreatment": {
+                                            "type": "string"
+                                        },
+                                        "singleCrystalOrientation": {
+                                            "$ref": "#/$defs/ComplexValue"
+                                        }
+                                    }
+                                },
+                                "testPiece": {
+                                    "type": "object",
+                                    "required": [
+                                        "testPieceID",
+                                        "typeOfTestPiece"
+                                    ],
+                                    "properties": {
+                                        "testPieceID": {
+                                            "type": "string"
+                                        },
+                                        "typeOfTestPiece": {
+                                            "type": "string"
+                                        },
+                                        "testPieceTechnicalDrawing": {
+                                            "type": "string"
+                                        },
+                                        "locationOfSampleInBlank": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+
+                            }
+
+                        },
+                        "testingAndMeasuringEquipment": {
+                            "type": "object",
+                            "properties": {
+                                "testingMachine": {
+                                    "type": "object",
+                                    "required": [
+                                        "testingMachineID"
+                                    ],
+                                    "properties": {
+                                        "testingMachineID": {
+                                            "type": "string"
+                                        },
+                                        "maximumAppliedForce": {
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "dataAcquisitionEquipment": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "temperatureControl": {
+                                    "type": "object",
+                                    "required": [
+                                        "thermocoupleEquipmentID",
+                                        "amplifierEquipmentID"
+                                    ],
+                                    "properties": {
+                                        "thermocoupleTemperatureControl": {
+                                            "type": "string"
+                                        },
+                                        "thermocoupleType": {
+                                            "type": "string"
+                                        },
+                                        "thermocoupleQuantity": {
+                                            "type": "string"
+                                        },
+                                        "thermocoupleEquipmentID": {
+                                            "type": "string"
+                                        },
+                                        "measurementAmplifier": {
+                                            "type": "string"
+                                        },
+                                        "amplifierEquipmentID": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "extensometer": {
+                                    "type": "object",
+                                    "required": [
+                                        "extensometerEquipmentID"
+                                    ],
+                                    "properties": {
+                                        "extensometerModelInformation": {
+                                            "type": "string"
+                                        },
+                                        "extensometerEquipmentID": {
+                                            "type": "string"
+                                        },
+                                        "nominalGaugeLength": {
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "extensionRangeUpperLimit": {
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "extensionRangeLowerLimit": {
+                                            "$ref": "#/$defs/ComplexValue"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "primaryData": {
+                    "type": "object",
+                    "properties": {
+                        "testResults": {
+                            "type": "object",
+                            "properties": {
+                                "stateAtTestStart": {
+                                    "type": "object",
+                                    "required": [
+                                        "minimumTestPieceDiameterAtRoomTemperature",
+                                        "originalGaugeLength",
+                                        "referenceLengthToCalculatePercentageElongations",
+                                        "extensometerGaugeLength",
+                                        "referenceLengthToCalculatePercentageExtensions"
+                                    ],
+                                    "properties": {
+                                        "minimumTestPieceDiameterAtRoomTemperature": {
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "originalGaugeLength": {
+                                            "description": "Symbol usually indicated as $L_{o}$",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "referenceLengthToCalculatePercentageElongations": {
+                                            "description": "Symbol usually indicated as $L_{r} (L_{o})$",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "extensometerGaugeLength": {
+                                            "description": "Symbol usually indicated as $L_{g}$",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "referenceLengthToCalculatePercentageExtensions": {
+                                            "description": "Symbol usually indicated as $L_{r} (L_{e})$",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        }
+                                    }  
+                                },
+                                "testSequence": {
+                                    "type": "object",
+                                    "required": [
+                                        "elapsedTimeFromEndOfLoading",
+                                        "testDuration"
+                                    ],
+                                    "properties": {
+                                        "elapsedTimeFromEndOfLoading": {
+                                            "description": "Symbol usually indicated as t",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "extension": {
+                                            "description": "Symbol usually indicated as $L_{et}$",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "heatingTime": {
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "soakTime": {
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "testDuration": {
+                                            "$ref": "#/$defs/ComplexValue"
+                                        }
+                                    }  
+                                },
+                                "stateAtTestEnd": {
+                                    "type": "object",
+                                    "required": [
+                                        "creepRuptureTime",
+                                        "positionOfTheFracture"
+                                    ],
+                                    "properties": {
+                                        "creepRuptureTime": {
+                                            "description": "Symbol usually indicated as $t_{u}$",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "positionOfTheFracture": {
+                                            "type": "string"
+                                        },
+                                        "finalGaugeLengthAfterFracture": {
+                                            "description": "Symbol usually indicated as $L_{u}$",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        }
+                                    }  
+                                }
+                            }
+                        }
+                    }
+                },
+                "secondaryData": {
+                    "type": "object",
+                    "properties": {
+                        "testResults": {
+                            "type": "object",
+                            "properties": {
+                                "testSequence": {
+                                    "type": "object",
+                                    "required": [
+                                        "correctedMeasuredTemperature"
+                                    ],
+                                    "properties": {
+                                        "correctedMeasuredTemperature": {
+                                            "description": "Symbol usually indicated as $T_{c})$",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "loadingRate": {
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "unloadingRate": {
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "heatingSpeed": {
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "coolingSpeed": {
+                                            "$ref": "#/$defs/ComplexValue"
+                                        }
+                                    } 
+                                },
+                                "elongationAndExtension": {
+                                    "type": "object",
+                                    "required": [
+                                        "percentageExtension"
+                                    ],
+                                    "properties": {
+                                        "percentageExtension": {
+                                            "description": "Symbol usually indicated as e",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "percentageElongation": {
+                                            "description": "Symbol usually indicated as A",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "percentageElongationAfterCreepFracture": {
+                                            "description": "Symbol usually indicated as $A_{u}$",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "percentageTotalExtension": {
+                                            "description": "Symbol usually indicated as $e_{t}$",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "percentageInitialTotalExtension": {
+                                            "description": "Symbol usually indicated as $e_{ti}$",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "percentageElasticExtension": {
+                                            "description": "Symbol usually indicated as $e_{e}$",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "percentageInitialPlasticExtension": {
+                                            "description": "Symbol usually indicated as $e_{i}$",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "percentagePlasticExtension": {
+                                            "description": "Symbol usually indicated as $e_{p}$",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        },
+                                        "percentageCreepExtension": {
+                                            "description": "Symbol usually indicated as $e_{f}$",
+                                            "$ref": "#/$defs/ComplexValue"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+                            
