@@ -1,31 +1,63 @@
+import argparse
 import os
+from pathlib import Path
 import zipfile
+
 import requests
-# Define paths
-base_dir = os.path.join(os.getcwd(), "Data", "BAMDataset")
-os.makedirs(base_dir, exist_ok=True)  # Create directory if not exists
-ZENODO_ID = "13937987"
-url = f"https://zenodo.org/api/records/{ZENODO_ID}/files-archive"
-zip_path = os.path.join(base_dir, f"{ZENODO_ID}.zip")
-# Download the dataset
-print(f"Downloading {url} to {zip_path}...")
-response = requests.get(url, stream=True)
-if response.status_code == 200:
-    with open(zip_path, "wb") as file:
-        for chunk in response.iter_content(chunk_size=1024):
-            file.write(chunk)
-    print("Download completed.")
-else:
-    print(f"Failed to download: HTTP {response.status_code}")
-    exit(1)
 
 
-# Unzip the file if it exists
-if os.path.exists(zip_path):
+def parse_args():
+    parser = argparse.ArgumentParser(description="Download and extract BAM dataset from Zenodo.")
+    parser.add_argument(
+        "--zenodo-id",
+        default="13937987",
+        help="Zenodo record ID (default: 13937987)",
+    )
+    parser.add_argument(
+        "--output-dir",
+        default=os.path.join("Data", "BAMDataset"),
+        help="Directory where zip file is saved and extracted (default: Data/BAMDataset)",
+    )
+    return parser.parse_args()
+
+
+def download_file(url: str, destination: Path) -> None:
+    print(f"Downloading {url} to {destination}...")
+    response = requests.get(url, stream=True, timeout=120)
+    response.raise_for_status()
+
+    with destination.open("wb") as file_handle:
+        for chunk in response.iter_content(chunk_size=1024 * 64):
+            if chunk:
+                file_handle.write(chunk)
+
+
+def extract_zip(zip_path: Path, output_dir: Path) -> None:
     print(f"Uncompressing {zip_path}...")
     with zipfile.ZipFile(zip_path, "r") as zip_ref:
-        zip_ref.extractall(base_dir)
+        zip_ref.extractall(output_dir)
+
+
+def main() -> None:
+    args = parse_args()
+
+    base_dir = Path(args.output_dir).resolve()
+    base_dir.mkdir(parents=True, exist_ok=True)
+
+    zenodo_id = str(args.zenodo_id)
+    url = f"https://zenodo.org/api/records/{zenodo_id}/files-archive"
+    zip_path = base_dir / f"{zenodo_id}.zip"
+
+    download_file(url, zip_path)
+    print("Download completed.")
+
+    if not zip_path.exists():
+        raise FileNotFoundError(f"File does not exist: {zip_path}")
+
+    extract_zip(zip_path, base_dir)
     print("Extraction completed.")
-else:
-    print(f"File {ZENODO_ID}.zip does not exist.")
-print("Process finished.")
+    print(f"Process finished. Dataset available at: {base_dir}")
+
+
+if __name__ == "__main__":
+    main()

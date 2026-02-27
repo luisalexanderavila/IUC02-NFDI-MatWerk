@@ -12,16 +12,24 @@ and all the dependencies have been cloned into the `./dependencies` directory as
 
 # 1. install the python environment.
 
-```
-conda create -f environment.yaml
-conda activate DataManagement
-```
+Recommended (cross-platform): use `pyenv` + local virtual environment.
 
-or for a fresh pip-based environment:
+Linux/macOS:
 
 ```
-python -m venv .venv
+pyenv install -s 3.11.0
+PYENV_VERSION=3.11.0 pyenv exec python -m venv .venv
 source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Windows (PowerShell):
+
+```
+pyenv install -s 3.11.0
+$env:PYENV_VERSION="3.11.0"
+pyenv exec python -m venv .venv
+.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
 
@@ -42,13 +50,13 @@ Application data is taken from the BAM creep dataset, which is available at http
 This data can be downloaded automatically.
 
 ```
-bash bin/get_data_from_zenodo.sh
-```
-
-or, if you prefer (thanks  @teman67!)
-
-```
 python bin/get_data_from_zenodo.py
+```
+
+Linux-only legacy wrapper (optional):
+
+```
+bash bin/get_data_from_zenodo.sh
 ```
 
 This will download and unzip the datafiles to the Data/BAMDataset directory.
@@ -136,10 +144,10 @@ Run everything needed before handoff:
 python bin/run_all_checks.py
 ```
 
-Use a different micromamba env name (optional):
+Use a different Python version from pyenv (optional):
 
 ```
-python bin/run_all_checks.py <env_name>
+python bin/run_all_checks.py --python-version 3.11.9
 ```
 
 Platform wrappers:
