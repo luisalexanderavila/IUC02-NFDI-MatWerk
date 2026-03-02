@@ -12,25 +12,28 @@ and all the dependencies have been cloned into the `./dependencies` directory as
 
 # 1. install the python environment.
 
-Recommended (cross-platform): use `pyenv` + local virtual environment.
+Recommended: use the `python311` conda environment.
 
 Linux/macOS:
 
 ```
-pyenv install -s 3.11.0
-PYENV_VERSION=3.11.0 pyenv exec python -m venv .venv
-source .venv/bin/activate
+conda activate python311
+python --version
 pip install -r requirements.txt
 ```
 
 Windows (PowerShell):
 
 ```
-pyenv install -s 3.11.0
-$env:PYENV_VERSION="3.11.0"
-pyenv exec python -m venv .venv
-.venv\Scripts\Activate.ps1
+conda activate python311
+python --version
 pip install -r requirements.txt
+```
+
+Expected version:
+
+```
+Python 3.11.x
 ```
 
 # 2. Install the dependencies.
@@ -64,8 +67,8 @@ This will download and unzip the datafiles to the Data/BAMDataset directory.
 
 # 4. Run the tests
 
-Now the results from the mapping can be reproduced bu execuiting the tests. 
-pytest will discover all of the tests in the `./tests` and execute them.
+Now the results from the mapping can be reproduced by executing the tests. 
+pytest will discover all tests under `./test` and execute them.
 
 ```
 pytest
@@ -142,12 +145,6 @@ Run everything needed before handoff:
 
 ```
 python bin/run_all_checks.py
-```
-
-Use a different Python version from pyenv (optional):
-
-```
-python bin/run_all_checks.py --python-version 3.11.9
 ```
 
 Platform wrappers:
