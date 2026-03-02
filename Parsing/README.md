@@ -29,24 +29,6 @@ conda activate python311
 python --version
 pip install -r requirements.txt
 ```
-
-Expected version:
-
-```
-Python 3.11.x
-```
-
-# 2. Install the dependencies.
-
-
-All dependenies have been included in the `dependencies` directory as subtrees. However, for ease of use they should be installed manually.
-For this, cd into the depnendency folder and insatll it in development mode.
-
-```
-cd dependencies/creep_shacl_maker
-pip install -e .
-```
-
 # 3. Use case data
 
 Application data is taken from the BAM creep dataset, which is available at https://doi.org/10.5281/zenodo.13937986 .
