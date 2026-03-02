@@ -112,7 +112,7 @@ python bin/translate_bam_data.py Data/BAMDataset/Vh5205_C-95.LIS  --output Data/
 ## 7.2 JSON to SHACL
 
 ```
-python bin/json_to_shacl_2.py Data/BAMDataset_Json/Vh5205_C-95_translated.json --output  Data/BAMDataset_Graph/Vh5205_C-78_translated.ttl
+python bin/json_to_shacl.py Data/BAMDataset_Json/Vh5205_C-95_translated.json --output  Data/BAMDataset_Graph/Vh5205_C-78_translated.ttl
 ```
 
 

@@ -1,51 +1,34 @@
+import argparse
 import json
-from rdflib import Graph, Namespace, URIRef, Literal
-from rdflib.namespace import RDF, RDFS, XSD
-import sys
+import logging
+import os
 
-convert_f = sys.argv[1]
-# Load the JSON document
-with open(convert_f, 'r') as file:
-    data = json.load(file)
+from creep_shacl_maker.shacl_maker import header, write_shacl_metadata
 
-# Define namespaces
-SH = Namespace("http://www.w3.org/ns/shacl#")
-EX = Namespace("http://example.org/")
-S = Namespace("http://example.org/shapes#")
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(os.path.basename(__file__))
 
-# Create a graph
-g = Graph()
-g.bind("sh", SH)
-g.bind("ex", EX)
-g.bind("s", S)
 
-# Function to create SHACL shapes from JSON
-def create_shape(g, node, path, json_data):
-    shape = URIRef(S[node])
-    g.add((shape, RDF.type, SH.NodeShape))
-    g.add((shape, SH.targetClass, EX[node]))
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('input_json', type=str, help='input json file with creep test metadata')
+    parser.add_argument('-o', '--output', type=str, dest='output_ttl', help='output shacl file', default=None)
+    args = parser.parse_args()
 
-    for key, value in json_data.items():
-        property_shape = URIRef(S[f"{node}_{key}_PropertyShape"])
-        g.add((property_shape, RDF.type, SH.PropertyShape))
-        g.add((property_shape, SH.path, URIRef(EX[key])))
+    if args.output_ttl is None:
+        args.output_ttl = os.path.splitext(args.input_json)[0] + '.ttl'
 
-        if isinstance(value, dict):
-            nested_shape = create_shape(g, f"{node}_{key}", path + [key], value)
-            g.add((property_shape, SH.node, nested_shape))
-        else:
-            g.add((property_shape, SH.datatype, XSD.string))
-            g.add((property_shape, SH.minCount, Literal(1, datatype=XSD.integer)))
-            g.add((property_shape, SH.maxCount, Literal(1, datatype=XSD.integer)))
+    logger.info(f'input json file: {args.input_json}')
+    logger.info(f'output json file: {args.output_ttl}')
 
-        g.add((shape, SH.property, property_shape))
+    with open(args.input_json, 'r', encoding='utf-8') as input_file:
+        json_metadata = json.load(input_file)
 
-    return shape
+    logger.info(f'keys : {json_metadata.keys()}')
+    json_metadata = json_metadata['mappedMeasurementData']['MeasurementData']['additionalMetadata']
 
-# Create the SHACL shape
-root_shape = create_shape(g, "MeasurementData", [], data["mappedMeasurementData"]["MeasurementData"])
+    shacl_metadata = write_shacl_metadata(json_metadata)
 
-# Serialize the graph to a file
-g.serialize(destination=convert_f.replace('json','ttl'), format='turtle')
-
-print(f"SHACL shape created and saved to {convert_f.replace('json','ttl')}")
+    with open(args.output_ttl, 'w', encoding='utf-8') as output_file:
+        output_file.writelines(header)
+        output_file.writelines(shacl_metadata)
