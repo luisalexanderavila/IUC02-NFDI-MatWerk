@@ -12,38 +12,23 @@ and all the dependencies have been cloned into the `./dependencies` directory as
 
 # 1. install the python environment.
 
-Recommended (cross-platform): use `pyenv` + local virtual environment.
+Recommended: use the `python311` conda environment.
 
 Linux/macOS:
 
 ```
-pyenv install -s 3.11.0
-PYENV_VERSION=3.11.0 pyenv exec python -m venv .venv
-source .venv/bin/activate
+conda activate python311
+python --version
 pip install -r requirements.txt
 ```
 
 Windows (PowerShell):
 
 ```
-pyenv install -s 3.11.0
-$env:PYENV_VERSION="3.11.0"
-pyenv exec python -m venv .venv
-.venv\Scripts\Activate.ps1
+conda activate python311
+python --version
 pip install -r requirements.txt
 ```
-
-# 2. Install the dependencies.
-
-
-All dependenies have been included in the `dependencies` directory as subtrees. However, for ease of use they should be installed manually.
-For this, cd into the depnendency folder and insatll it in development mode.
-
-```
-cd dependencies/creep_shacl_maker
-pip install -e .
-```
-
 # 3. Use case data
 
 Application data is taken from the BAM creep dataset, which is available at https://doi.org/10.5281/zenodo.13937986 .
@@ -64,8 +49,8 @@ This will download and unzip the datafiles to the Data/BAMDataset directory.
 
 # 4. Run the tests
 
-Now the results from the mapping can be reproduced bu execuiting the tests. 
-pytest will discover all of the tests in the `./tests` and execute them.
+Now the results from the mapping can be reproduced by executing the tests. 
+pytest will discover all tests under `./test` and execute them.
 
 ```
 pytest
@@ -112,7 +97,7 @@ python bin/translate_bam_data.py Data/BAMDataset/Vh5205_C-95.LIS  --output Data/
 ## 7.2 JSON to SHACL
 
 ```
-python bin/json_to_shacl_2.py Data/BAMDataset_Json/Vh5205_C-95_translated.json --output  Data/BAMDataset_Graph/Vh5205_C-78_translated.ttl
+python bin/json_to_shacl.py Data/BAMDataset_Json/Vh5205_C-95_translated.json --output  Data/BAMDataset_Graph/Vh5205_C-78_translated.ttl
 ```
 
 
@@ -142,12 +127,6 @@ Run everything needed before handoff:
 
 ```
 python bin/run_all_checks.py
-```
-
-Use a different Python version from pyenv (optional):
-
-```
-python bin/run_all_checks.py --python-version 3.11.9
 ```
 
 Platform wrappers:
