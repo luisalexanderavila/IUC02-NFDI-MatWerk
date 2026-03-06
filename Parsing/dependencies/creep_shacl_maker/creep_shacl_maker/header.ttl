@@ -63,7 +63,7 @@
    
 
 :hasSpecifiedNumericValue a owl:DatatypeProperty ;
-    rdfs:domain:Quality ;
+    rdfs:domain :Quality ;
     rdfs:range xsd:float .
 
 :hasDescription a owl:DatatypeProperty ;
@@ -71,7 +71,7 @@
     rdfs:range xsd:string .
 
 :digitalMaterialIdentifier a owl:DatatypeProperty ;
-    rdfs:domain:TestedMaterial ;
+    rdfs:domain :TestedMaterial ;
     rdfs:range xsd:string .
 
 ### Object Properties
