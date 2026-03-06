@@ -2,66 +2,7 @@ import argparse
 import os
 from pathlib import Path
 
-from pyvis.network import Network
-from rdflib import Graph
-
-
-def build_graph_from_ttl(ttl_path: Path) -> Graph:
-    graph = Graph()
-    graph.parse(str(ttl_path), format="ttl")
-    return graph
-
-
-def create_html(graph: Graph, output_path: Path, title: str) -> None:
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-
-    network = Network(height="750px", width="100%", directed=True, notebook=False)
-    network.barnes_hut()
-    network.set_options(
-        """
-        {
-            "layout": {
-                "hierarchical": {
-                    "enabled": true,
-                    "direction": "LR",
-                    "sortMethod": "directed"
-                }
-            },
-            "physics": {
-                "hierarchicalRepulsion": {
-                    "nodeDistance": 150
-                },
-                "solver": "hierarchicalRepulsion"
-            },
-            "edges": {
-                "smooth": {
-                    "enabled": true,
-                    "type": "cubicBezier"
-                }
-            }
-        }
-        """
-    )
-
-    nodes = set()
-    for subject, predicate, obj in graph:
-        source = str(subject)
-        target = str(obj)
-        edge_label = str(predicate).split("/")[-1].split("#")[-1]
-
-        if source not in nodes:
-            network.add_node(source, label=source.split("/")[-1].split("#")[-1], title=source)
-            nodes.add(source)
-
-        if target not in nodes:
-            network.add_node(target, label=target.split("/")[-1].split("#")[-1], title=target)
-            nodes.add(target)
-
-        network.add_edge(source, target, label=edge_label, title=str(predicate), arrows="to")
-
-    html = network.generate_html(notebook=False)
-    html = html.replace("<title>" + network.heading + "</title>", f"<title>{title}</title>")
-    output_path.write_text(html, encoding="utf-8")
+from visualization_core import build_graph_from_ttl, create_html
 
 
 def parse_args() -> argparse.Namespace:

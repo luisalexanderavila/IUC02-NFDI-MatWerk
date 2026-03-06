@@ -2,6 +2,6 @@
 setlocal
 
 set "SCRIPT_DIR=%~dp0"
-python "%SCRIPT_DIR%run_all_checks.py" %*
+conda run -n python311 python "%SCRIPT_DIR%run_all_checks.py" %*
 
 endlocal

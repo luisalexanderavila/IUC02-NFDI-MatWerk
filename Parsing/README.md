@@ -112,13 +112,43 @@ python bin/bam2shacl.py -i Data/BAMDataset/Vh5205_C-78.LIS  -o Data/BAMDataset_G
 Generate a standalone HTML graph visualization:
 
 ```
-python bin/create_visualization.py
+conda run -n python311 python bin/create_visualization.py
 ```
 
 Optional input/output:
 
 ```
-python bin/create_visualization.py --input shacl_validation/rdfGraph_smallExample.ttl --output Notebooks/rdf_graph_viewer.html
+conda run -n python311 python bin/create_visualization.py --input shacl_validation/rdfGraph_smallExample.ttl --output Notebooks/rdf_graph_viewer.html
+```
+
+Windows wrapper:
+
+```bat
+bin\create_visualization_python311.bat
+```
+
+Notebook workflow (same visualization task, step-by-step):
+
+```
+conda run -n python311 jupyter notebook Notebooks/build_visualization.ipynb
+```
+
+Minimal local website for this visualization task:
+
+```
+conda run -n python311 python bin/visualization_web_app.py
+```
+
+Then open:
+
+```
+http://127.0.0.1:8502
+```
+
+Windows wrapper:
+
+```bat
+bin\visualization_web_app_python311.bat
 ```
 
 ## 7.5 One-command checks (tests + visualization)
@@ -126,7 +156,7 @@ python bin/create_visualization.py --input shacl_validation/rdfGraph_smallExampl
 Run everything needed before handoff:
 
 ```
-python bin/run_all_checks.py
+conda run -n python311 python bin/run_all_checks.py
 ```
 
 Platform wrappers:
