@@ -10,3 +10,4 @@ requests>=2.31
 pytest>=8.0
 ipykernel>=6.0
 jupyter>=1.0
+flask>=3.0

@@ -53,7 +53,7 @@
                         "digitalMaterialID": "(Digital) Material Identifier_value",
                         "manufacturedMaterial": {
                             "phaseEquilibriumInformation": "Information on phase equilibrium_value",
-                            "manufacturedMaterialType": "Type of as-manufactured material(Cast / Ingot / Extrusion rod / \u2026)_value",
+                            "manufacturedMaterialType": "Type of as-manufactured material(Cast / Ingot / Extrusion rod / \u00e2\u20ac\u00a6)_value",
                             "manufacturedMaterialDescription": "Description of the as-manufactured material (geometry and dimensions)_value",
                             "manufactoringProcessDescription": "Description of the manufacturing process-as-manufactured material_value",
                             "castingTemperature": {
