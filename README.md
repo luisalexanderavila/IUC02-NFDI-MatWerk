@@ -1,12 +1,8 @@
 # NFDI-MatWerk Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets
 
-<<<<<<< HEAD
-Welcome to the Git repository of the ["Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets"](https://nfdi-matwerk.de/project/structure/use-cases/iuc02) of the consortium [NFDI-MatWerk](https://nfdi-matwerk.de/).
-=======
-Welcome to the Git repository of the [Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets](https://nfdi-matwerk.de/about/nfdi-matwerk-structure/use-cases/iuc02) of the consortium [NFDI-MatWerk](https://nfdi-matwerk.de/). Our demonstrator concept is explained [here](https://nfdi-matwerk.de/solutions/demonstrators/development-and-application-framework-for-distribution-of-reference-datasets).
->>>>>>> fa4b950 (Update README: describe recent changes)
+Welcome to the Git repository of the ["Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets"](https://nfdi-matwerk.de/about/nfdi-matwerk-structure/use-cases/iuc02) of the consortium [NFDI-MatWerk](https://nfdi-matwerk.de/). Our demonstrator concept is explained ["here"](https://nfdi-matwerk.de/solutions/demonstrators/development-and-application-framework-for-distribution-of-reference-datasets).
 
-In this repository you find information and files regarding our published and current developments.
+In this repository you find all related information and files regarding our published and ongoing work.
 
 # Published Work
 
@@ -16,35 +12,42 @@ This definition was agreed within the IUC02. It is broadly formulated to cover e
 
 The current version can be found under https://doi.org/10.5281/zenodo.11667674.
 
-
 ## NFDI-MatWerk/IUC02 Data schema for creep data of Ni-based superalloys including a comprehensive documentation of test results and metadata
 
-This data schema was developed within the infrastructure use case IUC02: “Framework for curation and distribution of reference datasets” of the consortium NFDI-MatWerk. It intends to define a structured approach for collecting all required information on a creep experiment using the established terminology of the respective test standard ISO 204:2022 and additional terminology agreed upon by the domain experts. The individual entries are grouped according to their content type and sub-summarized under respective headlines, thereby suggesting a basic categorization and a related hierarchy of concepts. This hierarchy can be similarly applied to other test methods and different metallic (and other) materials.
-
-The corresponding documents including the JSON schema can be found under https://doi.org/10.5281/zenodo.11668375, and in the folder "Data Schema".
-
+The basis for data structuring and reporting. It includes a community-agreed requirements profile for reference data of materials as proposed. Please see https://doi.org/10.5281/zenodo.11668375 and the folder "Data Schema". Current version: v2.0
 
 ## BAM Reference Data: Creep of Single-Crystal Ni-Based Superalloy CMSX-6
 
-This publication provides comprehensive metadata and test results of constant force creep tests according to DIN EN ISO 204:2019-4 on the single crystal Ni-based superalloy CMSX-6 at T = 980 °C and initial stresses between 140 MPa and 230 MPa. The tests were carried out in an accredited test laboratory using calibrated measuring equipment. The data were audited and are BAM reference data. The NFDI-MatWerk/IUC02 Data schema is used as a template for data provision and documentation.
+The dataset can be found under https://doi.org/10.5281/zenodo.13937987. Current version: v2.0. The demonstrator works currently with v1.0.
 
-The dataset was published in Zenodo and can be found under https://doi.org/10.5281/zenodo.13937987.
+## Data descriptor Article: Creep reference data of single-crystal Ni-based superalloy CMSX-6
+
+The article describes the reference dataset in a comprehensive manner. DOI: https://doi.org/10.1016/j.dib.2025.112436
+
+## Demonstrator App
+
+Application that exemplary shows a data validation workflow considering RDF files and SHACL shapes based on the community-agreed requirements profile. https://iuc-02-demonstrator.vercel.app. Currently with limited functionality. Further development is ongoing.
+
+## AgentSem: Agent-based semantic data generator.
+
+Agent-based semantic data generator. Try out and read more about the App on its Webpage: https://agent-rdf-shacl-creator-0f2d13e6fb10.herokuapp.com/
 
 # Ongoing Work
 
 ## Ontology Development
 
-<<<<<<< HEAD
-In the folder "Ontology Development" you will find the current status of the developments related to the IUC02.
-=======
-In the folder "Ontology Development" you will find the current status of the developments related to the semantical representation of the published dataset and the integration into the [The Materials Science and Engineering (MSE) Knowledge Graph](https://nfdi.fiz-karlsruhe.de/matwerk/).
->>>>>>> fa4b950 (Update README: describe recent changes)
+In the folder "Ontology Development" you will find the current status of the developments related to the semantical representation of the published dataset and the integration into the ["The Materials Science and Engineering (MSE) Knowledge Graph"](https://nfdi.fiz-karlsruhe.de/matwerk/).
 
-## Further work
+## Parsing and Mapping Scripts
 
-We will soon share our current developments regarding, e.g., upstream data processing, reference dataset validation, downstream data usage, and FAIR Digital Objects.
+In the branch "ParSing_Scripts" you will find several documentation and scripts regarding the data parsing, mapping, and (exemplary) usage workflows. A data validation against the community-agreed requirements profile at the level of JSON files is also covered.
 
+## Demonstrator App
+
+As mentioned above, the app is updated upon new releases of the further work packages.
 
 # Acknowledgment:
 
 This work is carried out in the framework of NFDI-MatWerk and funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under the National Research Data Infrastructure – NFDI 38/1 – project number 460247524. Mariano Forti and Thomas Hammerschmidt acknowledge financial support by the DFG through project C1 of the collaborative research centre SFB/TR 103 (project number 190389738). Rossella Aversa acknowledges financial support by the EU’s H2020 framework program for research and innovation under grant agreement n. 101007417, NFFA-Europe Pilot Project.
+
+
