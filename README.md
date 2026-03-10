@@ -1,6 +1,10 @@
 # NFDI-MatWerk Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets
 
+<<<<<<< HEAD
 Welcome to the Git repository of the ["Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets"](https://nfdi-matwerk.de/project/structure/use-cases/iuc02) of the consortium [NFDI-MatWerk](https://nfdi-matwerk.de/).
+=======
+Welcome to the Git repository of the [Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets](https://nfdi-matwerk.de/about/nfdi-matwerk-structure/use-cases/iuc02) of the consortium [NFDI-MatWerk](https://nfdi-matwerk.de/). Our demonstrator concept is explained [here](https://nfdi-matwerk.de/solutions/demonstrators/development-and-application-framework-for-distribution-of-reference-datasets).
+>>>>>>> fa4b950 (Update README: describe recent changes)
 
 In this repository you find information and files regarding our published and current developments.
 
@@ -30,7 +34,11 @@ The dataset was published in Zenodo and can be found under https://doi.org/10.52
 
 ## Ontology Development
 
+<<<<<<< HEAD
 In the folder "Ontology Development" you will find the current status of the developments related to the IUC02.
+=======
+In the folder "Ontology Development" you will find the current status of the developments related to the semantical representation of the published dataset and the integration into the [The Materials Science and Engineering (MSE) Knowledge Graph](https://nfdi.fiz-karlsruhe.de/matwerk/).
+>>>>>>> fa4b950 (Update README: describe recent changes)
 
 ## Further work
 
