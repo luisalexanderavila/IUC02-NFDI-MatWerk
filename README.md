@@ -1,6 +1,6 @@
 # NFDI-MatWerk Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets
 
-Welcome to the Git repository of the ["Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets"](https://nfdi-matwerk.de/about/nfdi-matwerk-structure/use-cases/iuc02) of the consortium [NFDI-MatWerk](https://nfdi-matwerk.de/). Our demonstrator concept is explained ["here"](https://nfdi-matwerk.de/solutions/demonstrators/development-and-application-framework-for-distribution-of-reference-datasets).
+Welcome to the Git repository of the [Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets](https://nfdi-matwerk.de/about/nfdi-matwerk-structure/use-cases/iuc02) of the consortium [NFDI-MatWerk](https://nfdi-matwerk.de/). Our demonstrator concept is explained [here](https://nfdi-matwerk.de/solutions/demonstrators/development-and-application-framework-for-distribution-of-reference-datasets).
 
 In this repository you find all related information and files regarding our published and ongoing work.
 
@@ -39,7 +39,7 @@ Agent-based semantic data generator. Try out and read more about the App on its 
 
 ## Ontology Development
 
-In the folder "Ontology Development" you will find the current status of the developments related to the semantical representation of the published dataset and the integration into the ["The Materials Science and Engineering (MSE) Knowledge Graph"](https://nfdi.fiz-karlsruhe.de/matwerk/).
+In the folder "Ontology Development" you will find the current status of the developments related to the semantical representation of the published dataset and the integration into the [The Materials Science and Engineering (MSE) Knowledge Graph](https://nfdi.fiz-karlsruhe.de/matwerk/).
 
 ## Parsing and Mapping Scripts
 
