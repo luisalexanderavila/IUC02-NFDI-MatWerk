@@ -1,6 +1,6 @@
 # NFDI-MatWerk Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets
 
-Welcome to the Git repository of the ["Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets"](https://nfdi-matwerk.de/about/nfdi-matwerk-structure/use-cases/iuc02) of the consortium [NFDI-MatWerk](https://nfdi-matwerk.de/). Our demonstrator concept is explained ["here"](https://nfdi-matwerk.de/solutions/demonstrators/development-and-application-framework-for-distribution-of-reference-datasets).
+Welcome to the Git repository of the ["Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets"](https://nfdi-matwerk.de/about/nfdi-matwerk-structure/use-cases/iuc02) of the consortium [NFDI-MatWerk](https://nfdi-matwerk.de/). Our demonstrator concept is explained [here](https://nfdi-matwerk.de/solutions/demonstrators/development-and-application-framework-for-distribution-of-reference-datasets).
 
 In this repository you find all related information and files regarding our published and ongoing work.
 
@@ -40,7 +40,7 @@ In the folder "Ontology Development" you will find the current status of the dev
 
 ## Parsing and Mapping Scripts
 
-In the branch "ParSing_Scripts" you will find several documentation and scripts regarding the data parsing, mapping, and (exemplary) usage workflows. A data validation against the community-agreed requirements profile at the level of JSON files is also covered.
+In the branch "Parsing_Scripts" you will find several documentation and scripts regarding the data parsing, mapping, and (exemplary) usage workflows. A data validation against the community-agreed requirements profile at the level of JSON files is also covered.
 
 ## Demonstrator App
 
