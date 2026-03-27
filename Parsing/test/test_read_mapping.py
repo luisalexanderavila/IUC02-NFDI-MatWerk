@@ -1,8 +1,15 @@
 import json
 import os
-import pdb
+import sys
+import tempfile
 import unittest
 import logging
+from pathlib import Path
+
+PARSING_DIR = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PARSING_DIR / "dependencies" / "Mappingsreader"))
+sys.path.insert(0, str(PARSING_DIR / "dependencies" / "LISParser"))
+
 from mappingsreader.mapreader import read_mapping, translate_bam, translate_generic
 from LISParser.LisParse import Parser
 
@@ -12,9 +19,10 @@ logger = logging.getLogger(__file__)
 class TestReadsMapping(unittest.TestCase):
 
     def setUp(self):
-        self.reads_mapping_file = 'Metadata/Mappings/BAM2schema.json'
-        self.mapping_document = json.load(open(self.reads_mapping_file))
-        logging.info(f'Loaded mapping document')
+        self.reads_mapping_file = PARSING_DIR / "Metadata" / "Mappings" / "BAM2schema.json"
+        with open(self.reads_mapping_file, "r", encoding="utf-8") as handle:
+            self.mapping_document = json.load(handle)
+        logging.info("Loaded mapping document")
 
     def test_read_reads_mapping(self):
         self.assertLess(0, len(self.mapping_document))
@@ -26,16 +34,17 @@ class TestReadsMapping(unittest.TestCase):
     
 class TestFillsSchema(unittest.TestCase):
     def setUp(self):
-        self.reads_mapping_file = 'Metadata/Mappings/BAM2schema.json'
-        self.mapping_document = json.load(open(self.reads_mapping_file))
+        self.reads_mapping_file = PARSING_DIR / "Metadata" / "Mappings" / "BAM2schema.json"
+        with open(self.reads_mapping_file, "r", encoding="utf-8") as handle:
+            self.mapping_document = json.load(handle)
         self.placeholder_schema = read_mapping(self.reads_mapping_file)
-        self.placeholder_schema_file = os.path.join(os.path.dirname(self.reads_mapping_file), 'placeholder_schema.json')
-        with open(self.placeholder_schema_file, 'w') as file:
+        self.placeholder_schema_file = Path(tempfile.gettempdir()) / "placeholder_schema.json"
+        with open(self.placeholder_schema_file, 'w', encoding="utf-8") as file:
             json.dump(self.placeholder_schema, file, indent=4)
-        logging.info(f'Loaded mapping document')
+        logging.info('Loaded mapping document')
 
-        self.lisfile = 'Data/BAMDataset/Vh5205_C-78.LIS'
-        lis_parser = Parser(self.lisfile)
+        self.lisfile = PARSING_DIR / 'Data' / 'BAMDataset' / 'Vh5205_C-78.LIS'
+        lis_parser = Parser(str(self.lisfile))
         self.lis_dict = lis_parser.parse_lis()
         self.translated_dict = translate_bam(self.lis_dict['metadata'], self.mapping_document)
 
@@ -53,8 +62,8 @@ class TestFillsSchema(unittest.TestCase):
         self.assertTrue(isinstance(self.lis_dict, dict))
 #
     def test_translate_bam(self):
-        translated_dict_file = self.lisfile.replace('.LIS','_translated.json')
-        with open(translated_dict_file, 'w') as file:
+        translated_dict_file = Path(tempfile.gettempdir()) / f"{self.lisfile.stem}_translated.json"
+        with open(translated_dict_file, 'w', encoding="utf-8") as file:
             json.dump(self.translated_dict, file, indent=4)
         self.assertTrue(isinstance(self.translated_dict, dict))
 

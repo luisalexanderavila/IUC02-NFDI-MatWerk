@@ -3,6 +3,7 @@
 -e ./dependencies/creep_shacl_maker
 networkx>=3.3
 rdflib>=7.0
+pyshacl>=0.25
 pyvis>=0.2
 matplotlib>=3.8
 tqdm>=4.66
