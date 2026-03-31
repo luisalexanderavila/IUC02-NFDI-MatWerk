@@ -2,6 +2,7 @@ import argparse
 import copy
 import json
 import os
+import re
 import sys
 from html import escape
 from pathlib import Path
@@ -292,6 +293,17 @@ def autofix_experiment_json(schema_doc: dict, experiment_doc: dict):
     return fixed_doc, changes
 
 
+def path_to_dom_id(path: str) -> str:
+    normalized = path.strip()
+    if not normalized:
+        return "field-root"
+    safe = re.sub(r"[^0-9A-Za-z_-]+", "-", normalized)
+    safe = re.sub(r"-+", "-", safe).strip("-")
+    if not safe:
+        safe = "field"
+    return f"field-{safe}"
+
+
 def _set_by_path(root_obj, path_parts, value):
     if not path_parts:
         return value
@@ -471,7 +483,7 @@ def convert_lis_to_json(project_root: Path, lis_path: Path, output_json_path: Pa
     return output_json_path
 
 
-def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node):
+def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node, base_path=()):
     node = resolve_ref(schema_root, schema_node) if isinstance(schema_node, dict) else {}
     props = node.get("properties", {}) if isinstance(node, dict) else {}
 
@@ -488,6 +500,9 @@ def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node):
     required_set = set(node.get("required", [])) if isinstance(node, dict) else set()
 
     for key, child_schema in props.items():
+        current_path = base_path + (key,)
+        current_path_str = ".".join(current_path)
+        anchor_id = path_to_dom_id(current_path_str)
         required_here = key in required_set
         present = isinstance(data_node, dict) and key in data_node
         value = data_node.get(key) if isinstance(data_node, dict) and key in data_node else None
@@ -507,8 +522,8 @@ def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node):
         if is_branch:
             html_parts.append(
                 "<li>"
-                f"<details open><summary><span style='{key_style}'>{escape(key)}</span>{req_tag}</summary>"
-                f"{tree_html_from_schema(schema_root, child_schema, value if isinstance(value, (dict, list)) else {})}"
+                f"<details open><summary><span id='{escape(anchor_id)}' style='{key_style}'>{escape(key)}</span>{req_tag}</summary>"
+                f"{tree_html_from_schema(schema_root, child_schema, value if isinstance(value, (dict, list)) else {}, current_path)}"
                 "</details>"
                 "</li>"
             )
@@ -524,7 +539,7 @@ def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node):
 
             html_parts.append(
                 "<li>"
-                f"<span style='{key_style}'>{escape(key)}</span>{req_tag}: "
+                f"<span id='{escape(anchor_id)}' style='{key_style}'>{escape(key)}</span>{req_tag}: "
                 f"<span>{rendered_val}</span>"
                 "</li>"
             )
@@ -678,6 +693,17 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
       <p class="ok">All required keywords are defined.</p>
     {% else %}
       <p class="error">Missing or undefined required keywords: {{ required_warnings|length }}</p>
+            <details open>
+                <summary><b>Missing required field list</b></summary>
+                <ul>
+                    {% for warning in required_warnings %}
+                        <li>
+                            <a href="#{{ warning.anchor }}">{{ warning.path }}</a>
+                            {% if warning.reason %} ({{ warning.reason }}){% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </details>
     {% endif %}
 
         <h2>Tree View</h2>
@@ -904,7 +930,14 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
                 experiment_doc = validation_core.load_json(json_file)
 
                 req_paths, warnings, schema_target, data_target = validation_core.validate_required_keywords(schema_doc, experiment_doc)
-                state["required_warnings"] = warnings
+                state["required_warnings"] = [
+                    {
+                        "path": warning.get("path", ""),
+                        "reason": warning.get("reason", ""),
+                        "anchor": path_to_dom_id(warning.get("path", "")),
+                    }
+                    for warning in warnings
+                ]
                 state["required_count"] = len(req_paths)
                 state["tree_html"] = tree_html_from_schema(schema_target, schema_target, data_target)
                 state["validated_file"] = str(json_file)

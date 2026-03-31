@@ -42,10 +42,12 @@ def validate_one(file_path: Path, schema_doc: dict):
     experiment_doc = validation_core.load_json(file_path)
     req_paths, warnings, schema_target, data_target = validation_core.validate_required_keywords(schema_doc, experiment_doc)
     schema_errors = validation_core.run_jsonschema_validation(schema_target, data_target)
+    missing_required_fields = [warning.get("path", "") for warning in warnings if isinstance(warning, dict)]
     return {
         "file": str(file_path),
         "required_total": len(req_paths),
         "missing_required": len(warnings),
+        "missing_required_fields": missing_required_fields,
         "required_warnings": warnings,
         "schema_error_count": len(schema_errors),
         "schema_errors": schema_errors,
@@ -84,6 +86,15 @@ def main() -> int:
             print(f"- [{status}] {report['file']}")
             if not report["is_valid"]:
                 print(f"  missing_required={report['missing_required']}, schema_errors={report['schema_error_count']}")
+                if report["required_warnings"]:
+                    print("  Missing required fields:")
+                    for warning in report["required_warnings"]:
+                        path = warning.get("path", "<unknown>")
+                        reason = warning.get("reason", "")
+                        if reason:
+                            print(f"    - {path} ({reason})")
+                        else:
+                            print(f"    - {path}")
 
     if args.output:
         output_path = Path(args.output)
