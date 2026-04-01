@@ -2,12 +2,38 @@ import argparse
 import copy
 import json
 import os
+import re
 import sys
 from html import escape
 from pathlib import Path
 
 from flask import Flask, redirect, render_template_string, request, url_for
 from markupsafe import Markup
+import validation_core
+import shacl_validation_core
+
+
+def extract_missing_required_key(error_obj) -> str | None:
+    """Best-effort extraction of missing key from jsonschema 'required' errors."""
+    params = getattr(error_obj, "params", None)
+    if isinstance(params, dict):
+        key = params.get("property") or params.get("required")
+        if isinstance(key, str) and key:
+            return key
+
+    message = str(getattr(error_obj, "message", ""))
+    if not message:
+        return None
+
+    parts = message.split("'")
+    if len(parts) >= 2 and parts[1].strip():
+        return parts[1].strip()
+
+    parts = message.split('"')
+    if len(parts) >= 2 and parts[1].strip():
+        return parts[1].strip()
+
+    return None
 
 
 def parse_args() -> argparse.Namespace:
@@ -16,7 +42,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--port", type=int, default=8503, help="Port (default: 8503)")
     parser.add_argument(
         "--schema",
-        default=os.path.join("..", "Data Schema", "2024-09_Schema_IUC02_v1.1.json"),
+        default=os.path.join("..", "Data Schema", "2025-12_Data-Schema_Creep_v2.0.json"),
         help="Default schema JSON path",
     )
     parser.add_argument(
@@ -267,6 +293,17 @@ def autofix_experiment_json(schema_doc: dict, experiment_doc: dict):
     return fixed_doc, changes
 
 
+def path_to_dom_id(path: str) -> str:
+    normalized = path.strip()
+    if not normalized:
+        return "field-root"
+    safe = re.sub(r"[^0-9A-Za-z_-]+", "-", normalized)
+    safe = re.sub(r"-+", "-", safe).strip("-")
+    if not safe:
+        safe = "field"
+    return f"field-{safe}"
+
+
 def _set_by_path(root_obj, path_parts, value):
     if not path_parts:
         return value
@@ -332,7 +369,7 @@ def autofix_schema_errors(schema_target: dict, data_target):
             path_parts = list(err.path)
 
             if err.validator == "required":
-                missing = err.message.split("'")[1] if "'" in err.message else None
+                missing = extract_missing_required_key(err)
                 if missing and isinstance(err.instance, dict):
                     parent_schema = err.schema if isinstance(err.schema, dict) else {}
                     child_schema = parent_schema.get("properties", {}).get(missing, {}) if isinstance(parent_schema.get("properties", {}), dict) else {}
@@ -371,13 +408,56 @@ def autofix_schema_errors(schema_target: dict, data_target):
 
 def convert_lis_to_json(project_root: Path, lis_path: Path, output_json_path: Path, mapping_path: Path):
     import importlib
+    import subprocess
 
     if not lis_path.exists():
         raise FileNotFoundError(f"LIS file not found: {lis_path}")
-    if not mapping_path.exists():
-        raise FileNotFoundError(f"Mapping file not found: {mapping_path}")
 
     output_json_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Newest dataset files use the hierarchical v2 LIS format and must go
+    # through the v2 translator stack (ParserV2 + BAM2schema_v2 mapping).
+    is_v2_lis = False
+    for enc in ("latin1", "utf-8"):
+        try:
+            with lis_path.open("r", encoding=enc) as handle:
+                for _ in range(15):
+                    line = handle.readline()
+                    if not line:
+                        break
+                    if line.strip().startswith("CATEGORIZATION"):
+                        is_v2_lis = True
+                        break
+            if is_v2_lis:
+                break
+        except UnicodeDecodeError:
+            continue
+
+    if is_v2_lis:
+        v2_script = project_root / "bin" / "translate_bam_data_v2.py"
+        if not v2_script.exists():
+            raise FileNotFoundError(f"v2 translator script not found: {v2_script}")
+
+        v2_mapping = project_root / "Metadata" / "Mappings" / "BAM2schema_v2.json"
+        cmd = [
+            sys.executable,
+            str(v2_script),
+            str(lis_path),
+            "--output",
+            str(output_json_path),
+        ]
+        if v2_mapping.exists():
+            cmd.extend(["--mapping", str(v2_mapping)])
+
+        proc = subprocess.run(cmd, cwd=str(project_root), capture_output=True, text=True)
+        if proc.returncode != 0:
+            detail = (proc.stderr or "").strip() or (proc.stdout or "").strip()
+            raise RuntimeError(detail or f"v2 translation failed (exit code {proc.returncode})")
+
+        return output_json_path
+
+    if not mapping_path.exists():
+        raise FileNotFoundError(f"Mapping file not found: {mapping_path}")
 
     lis_pkg_root = project_root / "dependencies" / "LISParser"
     mappings_pkg_root = project_root / "dependencies" / "Mappingsreader"
@@ -403,7 +483,7 @@ def convert_lis_to_json(project_root: Path, lis_path: Path, output_json_path: Pa
     return output_json_path
 
 
-def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node):
+def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node, base_path=()):
     node = resolve_ref(schema_root, schema_node) if isinstance(schema_node, dict) else {}
     props = node.get("properties", {}) if isinstance(node, dict) else {}
 
@@ -420,6 +500,9 @@ def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node):
     required_set = set(node.get("required", [])) if isinstance(node, dict) else set()
 
     for key, child_schema in props.items():
+        current_path = base_path + (key,)
+        current_path_str = ".".join(current_path)
+        anchor_id = path_to_dom_id(current_path_str)
         required_here = key in required_set
         present = isinstance(data_node, dict) and key in data_node
         value = data_node.get(key) if isinstance(data_node, dict) and key in data_node else None
@@ -439,8 +522,8 @@ def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node):
         if is_branch:
             html_parts.append(
                 "<li>"
-                f"<details open><summary><span style='{key_style}'>{escape(key)}</span>{req_tag}</summary>"
-                f"{tree_html_from_schema(schema_root, child_schema, value if isinstance(value, (dict, list)) else {})}"
+                f"<details open><summary><span id='{escape(anchor_id)}' style='{key_style}'>{escape(key)}</span>{req_tag}</summary>"
+                f"{tree_html_from_schema(schema_root, child_schema, value if isinstance(value, (dict, list)) else {}, current_path)}"
                 "</details>"
                 "</li>"
             )
@@ -456,7 +539,7 @@ def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node):
 
             html_parts.append(
                 "<li>"
-                f"<span style='{key_style}'>{escape(key)}</span>{req_tag}: "
+                f"<span id='{escape(anchor_id)}' style='{key_style}'>{escape(key)}</span>{req_tag}: "
                 f"<span>{rendered_val}</span>"
                 "</li>"
             )
@@ -481,6 +564,8 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         "json_file": "",
         "lis_folder": str(default_lis_folder),
         "lis_file": "",
+        "shacl_data_graph": str((root_dir / "shacl_validation" / "rdfGraph_smallExample.ttl").resolve()),
+        "shacl_shapes_graph": str((root_dir / "shacl_validation" / "shaclShape_smallExample.ttl").resolve()),
         "output_name": "selected_from_lis_translated.json",
         "message": "",
         "error": "",
@@ -488,6 +573,8 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         "required_count": 0,
         "tree_html": "",
         "schema_errors": [],
+        "shacl_conforms": None,
+        "shacl_report_text": "",
         "validated_file": "",
         "fixed_json_path": "",
         "fixed_json_preview": "",
@@ -531,7 +618,7 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         <h3>JSON Selection</h3>
         <div class="row">
           <label>JSON Folder</label>
-          <select name="json_folder">
+                    <select name="json_folder" onchange="this.form.submit()">
             {% for label, value in json_folder_options %}
             <option value="{{ value }}" {% if value == json_folder %}selected{% endif %}>{{ label }}</option>
             {% endfor %}
@@ -553,7 +640,7 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         <h3>LIS to JSON</h3>
         <div class="row">
           <label>LIS Folder</label>
-          <select name="lis_folder">
+                    <select name="lis_folder" onchange="this.form.submit()">
             {% for label, value in lis_folder_options %}
             <option value="{{ value }}" {% if value == lis_folder %}selected{% endif %}>{{ label }}</option>
             {% endfor %}
@@ -581,6 +668,19 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
     </div>
   </form>
 
+    <form method="post" action="{{ url_for('action') }}" class="panel">
+        <h2>RDF + SHACL Validation</h2>
+        <div class="row">
+            <label>Data graph path (RDF)</label>
+            <input type="text" name="shacl_data_graph" value="{{ shacl_data_graph }}" />
+        </div>
+        <div class="row">
+            <label>SHACL shapes path</label>
+            <input type="text" name="shacl_shapes_graph" value="{{ shacl_shapes_graph }}" />
+        </div>
+        <button type="submit" name="action" value="validate_shacl">Run SHACL Validation</button>
+    </form>
+
   {% if message %}<p class="ok">{{ message }}</p>{% endif %}
   {% if error %}<p class="error">{{ error }}</p>{% endif %}
 
@@ -593,6 +693,17 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
       <p class="ok">All required keywords are defined.</p>
     {% else %}
       <p class="error">Missing or undefined required keywords: {{ required_warnings|length }}</p>
+            <details open>
+                <summary><b>Missing required field list</b></summary>
+                <ul>
+                    {% for warning in required_warnings %}
+                        <li>
+                            <a href="#{{ warning.anchor }}">{{ warning.path }}</a>
+                            {% if warning.reason %} ({{ warning.reason }}){% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </details>
     {% endif %}
 
         <h2>Tree View</h2>
@@ -614,6 +725,21 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         </details>
     </div>
     {% endif %}
+
+        {% if shacl_conforms is not none %}
+        <div class="panel">
+            <h2>SHACL Validation Summary</h2>
+            {% if shacl_conforms %}
+                <p class="ok">RDF graph conforms to SHACL shapes.</p>
+            {% else %}
+                <p class="error">RDF graph does not conform to SHACL shapes.</p>
+            {% endif %}
+            <details open>
+                <summary>Show SHACL report</summary>
+                <pre style="white-space:pre-wrap;background:#fafafa;border:1px solid #ddd;padding:10px;max-height:420px;overflow:auto;">{{ shacl_report_text }}</pre>
+            </details>
+        </div>
+        {% endif %}
 </body>
 </html>
     """
@@ -671,6 +797,8 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
             json_file=state["json_file"],
             lis_folder=state["lis_folder"],
             lis_file=state["lis_file"],
+            shacl_data_graph=state["shacl_data_graph"],
+            shacl_shapes_graph=state["shacl_shapes_graph"],
             output_name=state["output_name"],
             message=state["message"],
             error=state["error"],
@@ -678,6 +806,8 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
             required_count=state["required_count"],
             tree_html=Markup(state["tree_html"]),
             schema_errors=state["schema_errors"],
+            shacl_conforms=state["shacl_conforms"],
+            shacl_report_text=state["shacl_report_text"],
             validated_file=state["validated_file"],
             fixed_json_path=state["fixed_json_path"],
             fixed_json_preview=state["fixed_json_preview"],
@@ -698,6 +828,8 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         state["json_file"] = request.form.get("json_file", state["json_file"]).strip()
         state["lis_folder"] = request.form.get("lis_folder", state["lis_folder"]).strip()
         state["lis_file"] = request.form.get("lis_file", state["lis_file"]).strip()
+        state["shacl_data_graph"] = request.form.get("shacl_data_graph", state["shacl_data_graph"]).strip()
+        state["shacl_shapes_graph"] = request.form.get("shacl_shapes_graph", state["shacl_shapes_graph"]).strip()
         state["output_name"] = request.form.get("output_name", state["output_name"]).strip()
 
         selected_action = request.form.get("action", "")
@@ -707,6 +839,10 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         if selected_action != "autofix_json":
             state["fixed_json_path"] = ""
             state["fixed_json_preview"] = ""
+
+        if selected_action != "validate_shacl":
+            state["shacl_conforms"] = None
+            state["shacl_report_text"] = ""
 
         if selected_action == "convert_lis":
             try:
@@ -743,13 +879,13 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
                 if json_file is None or not json_file.exists():
                     raise FileNotFoundError("Select a valid JSON experiment file.")
 
-                schema_doc = load_json(schema_path)
-                experiment_doc = load_json(json_file)
+                schema_doc = validation_core.load_json(schema_path)
+                experiment_doc = validation_core.load_json(json_file)
 
-                fixed_doc, changes = autofix_experiment_json(schema_doc, experiment_doc)
+                fixed_doc, changes = validation_core.autofix_experiment_json(schema_doc, experiment_doc)
 
                 # Second pass: repair common schema errors directly from validator feedback.
-                schema_target, data_target = normalize_experiment_data(schema_doc, fixed_doc)
+                schema_target, data_target = validation_core.normalize_experiment_data(schema_doc, fixed_doc)
                 fixed_data_target, schema_fix_changes = autofix_schema_errors(schema_target, data_target)
                 changes += schema_fix_changes
 
@@ -790,38 +926,49 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
                 if json_file is None or not json_file.exists():
                     raise FileNotFoundError("Select a valid JSON experiment file.")
 
-                schema_doc = load_json(schema_path)
-                experiment_doc = load_json(json_file)
+                schema_doc = validation_core.load_json(schema_path)
+                experiment_doc = validation_core.load_json(json_file)
 
-                req_paths, warnings, schema_target, data_target = validate_required_keywords(schema_doc, experiment_doc)
-                state["required_warnings"] = warnings
+                req_paths, warnings, schema_target, data_target = validation_core.validate_required_keywords(schema_doc, experiment_doc)
+                state["required_warnings"] = [
+                    {
+                        "path": warning.get("path", ""),
+                        "reason": warning.get("reason", ""),
+                        "anchor": path_to_dom_id(warning.get("path", "")),
+                    }
+                    for warning in warnings
+                ]
                 state["required_count"] = len(req_paths)
                 state["tree_html"] = tree_html_from_schema(schema_target, schema_target, data_target)
                 state["validated_file"] = str(json_file)
 
-                try:
-                    from jsonschema import Draft201909Validator
-                except ImportError as exc:
-                    raise ImportError(
-                        "jsonschema is not installed. Install it with: pip install jsonschema"
-                    ) from exc
-
-                validator = Draft201909Validator(schema_target)
-                errors = sorted(validator.iter_errors(data_target), key=lambda e: list(e.path))
-
-                schema_errors = []
-                for err in errors[:200]:
-                    schema_errors.append(
-                        {
-                            "data_path": ".".join([str(p) for p in err.path]) if list(err.path) else "<root>",
-                            "message": str(err.message),
-                            "schema_path": "/".join([str(p) for p in err.schema_path]),
-                        }
-                    )
-                state["schema_errors"] = schema_errors
+                state["schema_errors"] = validation_core.run_jsonschema_validation(
+                    schema_target,
+                    data_target,
+                    max_errors=200,
+                )
                 state["message"] = "Validation completed."
             except Exception as exc:
                 state["error"] = f"Validation failed: {exc}"
+
+            return redirect(url_for("home"))
+
+        if selected_action == "validate_shacl":
+            try:
+                data_graph = Path(state["shacl_data_graph"])
+                shacl_shapes = Path(state["shacl_shapes_graph"])
+                report = shacl_validation_core.run_shacl_validation(
+                    data_graph_path=data_graph,
+                    shacl_shapes_path=shacl_shapes,
+                    data_graph_format="turtle",
+                    shacl_graph_format="turtle",
+                )
+
+                state["shacl_conforms"] = report["conforms"]
+                state["shacl_report_text"] = report["report_text"]
+                state["message"] = "SHACL validation completed."
+            except Exception as exc:
+                state["error"] = f"SHACL validation failed: {exc}"
 
             return redirect(url_for("home"))
 
