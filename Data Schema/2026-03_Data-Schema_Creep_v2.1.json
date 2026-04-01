@@ -13,6 +13,9 @@
           },
           "unit": {
             "type": "string"
+          },
+          "measurementMethod": {
+            "type": "string"
           }
         }
       },
@@ -33,6 +36,13 @@
             },
             {
               "$ref": "#/$defs/ComplexValue"
+            },
+            {
+              "required": [
+                "value",
+                "unit",
+                "measurementMethod"
+              ]
             }
           ]
         }
