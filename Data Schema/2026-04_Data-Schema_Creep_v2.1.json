@@ -13,9 +13,6 @@
           },
           "unit": {
             "type": "string"
-          },
-          "measurementMethod": {
-            "type": "string"
           }
         }
       },
@@ -27,6 +24,9 @@
               "type": "object",
               "properties": {
                 "element": {
+                  "type": "string"
+                },
+                "measurementMethod": {
                   "type": "string"
                 }
               },
