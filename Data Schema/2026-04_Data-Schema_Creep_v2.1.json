@@ -47,6 +47,33 @@
           ]
         }
       },
+      "ChemicalCompositionNominalElementsList": {
+        "type": "array",
+        "items": {
+          "allOf": [
+            {
+              "type": "object",
+              "properties": {
+                "element": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "element"
+              ]
+            },
+            {
+              "$ref": "#/$defs/ComplexValue"
+            },
+            {
+              "required": [
+                "value",
+                "unit"
+              ]
+            }
+          ]
+        }
+      },
       "ChemicalCompositionExternalFile": {
         "type": "object",
         "properties": {
@@ -679,7 +706,7 @@
                     "chemicalCompositionNominal": {
                       "oneOf": [
                         {
-                          "$ref": "#/$defs/ChemicalCompositionElementsList",
+                          "$ref": "#/$defs/ChemicalCompositionNominalElementsList",
                           "description": "Add element by element with respective value and unit"
                         },
                         {
