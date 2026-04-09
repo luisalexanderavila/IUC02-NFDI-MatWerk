@@ -30,6 +30,40 @@ def resolve_ref(schema_root: dict, schema_node: dict) -> dict:
     return target if isinstance(target, dict) else schema_node
 
 
+def _normalize_legacy_chemical_composition_methods(data_target):
+    """Map legacy chemical-composition element key `method` to `measurementMethod`."""
+    if not isinstance(data_target, dict):
+        return
+
+    measurement_data = data_target.get("MeasurementData")
+    if not isinstance(measurement_data, dict):
+        return
+
+    additional_metadata = measurement_data.get("additionalMetadata")
+    if not isinstance(additional_metadata, dict):
+        return
+
+    chemical_composition = additional_metadata.get("chemicalComposition")
+    if not isinstance(chemical_composition, list):
+        return
+
+    for comp_item in chemical_composition:
+        if not isinstance(comp_item, dict):
+            continue
+
+        for list_key in ("chemicalCompositionMeasured", "chemicalCompositionNominal"):
+            elements = comp_item.get(list_key)
+            if not isinstance(elements, list):
+                continue
+
+            for elem in elements:
+                if not isinstance(elem, dict):
+                    continue
+                if "measurementMethod" not in elem and isinstance(elem.get("method"), str):
+                    if elem.get("method", "").strip():
+                        elem["measurementMethod"] = elem["method"]
+
+
 def normalize_experiment_data(schema_doc: dict, data_doc: dict):
     schema_properties = schema_doc.get("properties", {}) if isinstance(schema_doc, dict) else {}
     schema_target = schema_doc
@@ -43,6 +77,8 @@ def normalize_experiment_data(schema_doc: dict, data_doc: dict):
     if isinstance(data_target, dict) and "MeasurementData" not in data_target and "MeasurementData" in schema_properties:
         if "additionalMetadata" in data_target or "primaryData" in data_target or "secondaryData" in data_target:
             data_target = {"MeasurementData": data_target}
+
+    _normalize_legacy_chemical_composition_methods(data_target)
 
     return schema_target, data_target
 

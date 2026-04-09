@@ -1,6 +1,6 @@
 """
 translate_bam_data_v2.py - Convert a v2 BAM LIS file to a JSON conforming to
-the 2025-12 data schema (v2.0).
+the 2026-03 data schema (v2.1).
 
 Usage:
     python translate_bam_data_v2.py <path/to/file.lis> [-o output.json]
@@ -9,12 +9,13 @@ The script:
 1. Detects whether the LIS file is v1 (old) or v2 (new 2026 format).
 2. Parses the LIS file using the appropriate parser.
 3. Applies the mapping document (BAM2schema_v2.json) to produce a JSON that
-   mirrors the 2025-12_Data-Schema_Creep_v2.0.json structure.
+    mirrors the 2026-03_Data-Schema_Creep_v2.1.json structure.
 4. Writes the output JSON file.
 """
 
 import json
 import os
+import re
 import sys
 import logging
 import argparse
@@ -45,7 +46,7 @@ logging.basicConfig(level=logging.INFO)
 Logger = logging.getLogger(__name__)
 
 DEFAULT_MAPPING_FILE = os.path.join(_parsing_root, "Metadata", "Mappings", "BAM2schema_v2.json")
-DEFAULT_SCHEMA_FILE = os.path.join(_parsing_root, "..", "Data Schema", "2025-12_Data-Schema_Creep_v2.0.json")
+DEFAULT_SCHEMA_FILE = os.path.join(_parsing_root, "..", "Data Schema", "2026-03_Data-Schema_Creep_v2.1.json")
 
 
 # ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -249,7 +250,78 @@ def _fix_int_keys(obj):
     return obj
 
 
-def translate_v2(parsed: dict, mapping_doc: dict) -> dict:
+def _extract_quoted_file_reference(text: str):
+    """Extract filename from a value like: See file "name.lis"."""
+    m = re.search(r'"([^"]+)"', text)
+    return m.group(1).strip() if m else None
+
+
+def _parse_chemical_composition_file(file_path: str, measured: bool):
+    """Parse complementary chemical composition LIS tables into schema items.
+
+    Returns:
+        tuple[list[dict], list[str]]: Parsed composition rows and unique methods
+        (method list is only populated for measured composition files).
+    """
+    if not os.path.isfile(file_path):
+        return [], []
+
+    rows = []
+    methods = []
+    with open(file_path, "r", encoding="utf-8", errors="replace") as fh:
+        for raw_line in fh:
+            line = raw_line.strip()
+            if not line:
+                continue
+            if line.lower().startswith("symbol\t"):
+                continue
+
+            cols = [c.strip() for c in line.split("\t")]
+            if len(cols) < 3:
+                continue
+
+            element = cols[0]
+            unit = cols[1]
+            if not element:
+                continue
+
+            if measured:
+                # Symbol | Unit | Measured Value | Method | Equipment
+                value = cols[2].strip() if len(cols) > 2 else ""
+                method = cols[3].strip() if len(cols) > 3 else ""
+                equipment = cols[4].strip() if len(cols) > 4 else ""
+            else:
+                # Symbol | Unit | Min. | Max.
+                min_value = cols[2].strip() if len(cols) > 2 else ""
+                max_value = cols[3].strip() if len(cols) > 3 else ""
+                if min_value and max_value:
+                    value = f"{min_value} - {max_value}"
+                else:
+                    value = min_value or max_value
+
+            if not value:
+                continue
+
+            row = {
+                "element": element,
+                "value": value,
+                "unit": unit,
+            }
+
+            if measured:
+                if method:
+                    row["measurementMethod"] = method
+                    methods.append(method)
+                if equipment:
+                    row["equipment"] = equipment
+
+            rows.append(row)
+
+    unique_methods = list(dict.fromkeys(methods))
+    return rows, unique_methods
+
+
+def translate_v2(parsed: dict, mapping_doc: dict, source_lis_file: str = "") -> dict:
     """
     Apply the v2 mapping document to the v2 parsed LIS output and produce a
     schema-conforming nested dict.
@@ -281,6 +353,8 @@ def translate_v2(parsed: dict, mapping_doc: dict) -> dict:
     for section_name in ("metadata", "primary_data", "secondary_data"):
         _flatten_records(parsed.get(section_name, {}), section_name)
 
+    source_dir = os.path.dirname(os.path.abspath(source_lis_file)) if source_lis_file else ""
+
     for lis_key, schema_path in mapping.items():
         record = flat_records.get(lis_key)
         if record is None:
@@ -299,13 +373,56 @@ def translate_v2(parsed: dict, mapping_doc: dict) -> dict:
         raw_value = _normalize_value_for_schema_path(schema_path, raw_value)
 
         schema_keys = schema_path.split(".")
-        _set_nested_safe(result, schema_keys, raw_value)
 
-        # Chemical composition items in schema require an `element` field.
-        # LIS files often provide a file reference or aggregate text, not per-element rows.
-        # Create a minimal placeholder so the converted structure is schema-complete.
-        if ".chemicalCompositionNominal." in schema_path or ".chemicalCompositionMeasured." in schema_path:
-            _set_default_sibling_if_missing(result, schema_keys, "element", "unspecified")
+        _is_chem_comp = (
+            ".chemicalCompositionNominal." in schema_path
+            or ".chemicalCompositionMeasured." in schema_path
+        )
+
+        # If composition points to an external LIS file, try to parse and inline it.
+        # Fall back to ChemicalCompositionExternalFile if parsing is not possible.
+        if _is_chem_comp and raw_value.strip().lower().startswith("see file"):
+            _external_link = _extract_quoted_file_reference(raw_value) or raw_value.strip()
+            _is_measured = ".chemicalCompositionMeasured." in schema_path
+
+            parsed_rows = []
+            parsed_methods = []
+            if source_dir:
+                _external_path = os.path.join(source_dir, _external_link)
+                parsed_rows, parsed_methods = _parse_chemical_composition_file(
+                    _external_path,
+                    measured=_is_measured,
+                )
+
+            for _comp_key in ("chemicalCompositionNominal", "chemicalCompositionMeasured"):
+                if _comp_key in schema_keys:
+                    _parent_keys = schema_keys[:schema_keys.index(_comp_key) + 1]
+                    if parsed_rows:
+                        _set_nested_safe(result, _parent_keys, parsed_rows)
+
+                        # For measured compositions, derive top-level measurementMethod
+                        # from the complementary file when that field is not present
+                        # in the main LIS mapping.
+                        if _is_measured and parsed_methods:
+                            _method_value = "; ".join(parsed_methods)
+                            _composition_parent_keys = schema_keys[:schema_keys.index(_comp_key)]
+                            _set_default_sibling_if_missing(
+                                result,
+                                _composition_parent_keys + ["_placeholder"],
+                                "measurementMethod",
+                                _method_value,
+                            )
+                    else:
+                        _set_nested_safe(result, _parent_keys, {"externalFileLink": _external_link})
+                    break
+        else:
+            _set_nested_safe(result, schema_keys, raw_value)
+
+            # Chemical composition items in schema require an `element` field.
+            # LIS files often provide a file reference or aggregate text, not per-element rows.
+            # Create a minimal placeholder so the converted structure is schema-complete.
+            if _is_chem_comp:
+                _set_default_sibling_if_missing(result, schema_keys, "element", "unspecified")
 
     return _fix_int_keys(result)
 
@@ -398,7 +515,7 @@ def main(argv=None):
         )
 
     # Translate
-    output_dict = translate_v2(parsed, mapping_doc)
+    output_dict = translate_v2(parsed, mapping_doc, source_lis_file=args.filename)
 
     # Inject version metadata
     output_dict["_lis_version"] = lis_version

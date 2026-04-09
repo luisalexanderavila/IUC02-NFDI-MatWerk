@@ -67,7 +67,7 @@ def data_generation_page():
     file3a = "./data/rdfGraph_smallExample.ttl"  # First file for Step 3
     file3b = "./data/shaclShape_smallExample.ttl"  # Second file for Step 3
     ext_file1 = "./data/mapping document.json"  # First file for Extra Step
-    ext_file2 = "./data/2024-09_Schema_IUC02_v1.json"  # Second file for Extra Step
+    ext_file2 = "../Data Schema/2026-03_Data-Schema_Creep_v2.1.json"  # Second file for Extra Step
 
     # First row for extra box above the first arrow
     col1, col2, col3, col4, col5, col6, col7 = st.columns([2, 1, 2, 1, 2, 1, 2])
@@ -210,7 +210,7 @@ def data_generation_page():
         "./data/rdfGraph_smallExample.ttl": "Populated Data Graph",
         "./data/shaclShape_smallExample.ttl": "Shape Graph",
         "./data/mapping document.json": "Mapping Document",
-        "./data/2024-09_Schema_IUC02_v1.json": "Metadata Schema"
+        "../Data Schema/2026-03_Data-Schema_Creep_v2.1.json": "Metadata Schema"
     }
 
     st.markdown(

@@ -7,7 +7,7 @@ from pathlib import Path
 import validation_core
 
 
-DEFAULT_SCHEMA_FILE = (Path(__file__).resolve().parents[1] / ".." / "Data Schema" / "2025-12_Data-Schema_Creep_v2.0.json").resolve()
+DEFAULT_SCHEMA_FILE = (Path(__file__).resolve().parents[1] / ".." / "Data Schema" / "2026-03_Data-Schema_Creep_v2.1.json").resolve()
 
 
 def parse_args() -> argparse.Namespace:

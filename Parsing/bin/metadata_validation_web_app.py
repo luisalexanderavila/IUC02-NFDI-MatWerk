@@ -42,7 +42,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--port", type=int, default=8503, help="Port (default: 8503)")
     parser.add_argument(
         "--schema",
-        default=os.path.join("..", "Data Schema", "2025-12_Data-Schema_Creep_v2.0.json"),
+        default=os.path.join("..", "Data Schema", "2026-04_Data-Schema_Creep_v2.1.json"),
         help="Default schema JSON path",
     )
     parser.add_argument(
@@ -483,8 +483,112 @@ def convert_lis_to_json(project_root: Path, lis_path: Path, output_json_path: Pa
     return output_json_path
 
 
-def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node, base_path=()):
-    node = resolve_ref(schema_root, schema_node) if isinstance(schema_node, dict) else {}
+def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node, base_path=(), show_validation: bool = True):
+    def _resolve_for_render(node_candidate: dict, current_data):
+        node_local = resolve_ref(schema_root, node_candidate) if isinstance(node_candidate, dict) else {}
+
+        # Choose a compatible branch when combiners are used (common for oneOf).
+        for combiner in ("oneOf", "anyOf"):
+            members = node_local.get(combiner, []) if isinstance(node_local, dict) else []
+            if isinstance(members, list) and members:
+                for member in members:
+                    resolved_member = resolve_ref(schema_root, member) if isinstance(member, dict) else {}
+                    member_type = resolved_member.get("type") if isinstance(resolved_member, dict) else None
+                    if isinstance(current_data, list) and (member_type == "array" or "items" in resolved_member):
+                        return resolved_member
+                    if isinstance(current_data, dict) and (member_type == "object" or isinstance(resolved_member.get("properties"), dict)):
+                        return resolved_member
+                first_member = members[0]
+                return resolve_ref(schema_root, first_member) if isinstance(first_member, dict) else node_local
+
+        if isinstance(node_local, dict) and "allOf" in node_local:
+            members = node_local.get("allOf", [])
+            if isinstance(members, list) and members:
+                # Merge allOf members for rendering so composite objects expose
+                # all fields (e.g., element + value + unit).
+                merged = {"properties": {}, "required": []}
+                merged_type = None
+
+                for member in members:
+                    if not isinstance(member, dict):
+                        continue
+                    resolved_member = resolve_ref(schema_root, member)
+                    if not isinstance(resolved_member, dict):
+                        continue
+
+                    member_type = resolved_member.get("type")
+                    if isinstance(member_type, str) and merged_type is None:
+                        merged_type = member_type
+
+                    member_props = resolved_member.get("properties", {})
+                    if isinstance(member_props, dict):
+                        merged["properties"].update(member_props)
+
+                    member_required = resolved_member.get("required", [])
+                    if isinstance(member_required, list):
+                        for req_key in member_required:
+                            if isinstance(req_key, str) and req_key not in merged["required"]:
+                                merged["required"].append(req_key)
+
+                if merged_type is not None:
+                    merged["type"] = merged_type
+
+                if merged["properties"]:
+                    return merged
+
+                first_member = members[0]
+                if isinstance(first_member, dict):
+                    return resolve_ref(schema_root, first_member)
+
+        return node_local
+
+    node = _resolve_for_render(schema_node, data_node)
+
+    # Render arrays using their item schema for a structured expandable view.
+    items_schema = node.get("items") if isinstance(node, dict) else None
+    is_array_node = isinstance(node, dict) and (node.get("type") == "array" or isinstance(items_schema, dict))
+    if is_array_node:
+        if not isinstance(data_node, list):
+            if data_node is None:
+                return "<span style='color:#999;'>(not provided)</span>"
+            return escape(str(data_node))
+
+        if len(data_node) == 0:
+            return "<span style='color:#a00;font-weight:600;'>(empty array)</span>"
+
+        # Readability tweak: for single-entry arrays, render the item directly
+        # instead of showing a synthetic [0] layer.
+        if len(data_node) == 1:
+            return tree_html_from_schema(
+                schema_root,
+                items_schema if isinstance(items_schema, dict) else {},
+                data_node[0],
+                base_path,
+                show_validation=show_validation,
+            )
+
+        html_parts = ["<ul style='list-style-type:none;padding-left:18px;margin:4px 0;'>"]
+        for idx, item in enumerate(data_node):
+            item_path = base_path + (str(idx),)
+            item_path_str = ".".join(item_path)
+            anchor_id = path_to_dom_id(item_path_str)
+            rendered_item = tree_html_from_schema(
+                schema_root,
+                items_schema if isinstance(items_schema, dict) else {},
+                item,
+                item_path,
+                show_validation=show_validation,
+            )
+            html_parts.append(
+                "<li>"
+                f"<details><summary><span id='{escape(anchor_id)}' style='color:#1f2937;font-weight:600;'>[{idx}]</span></summary>"
+                f"{rendered_item}"
+                "</details>"
+                "</li>"
+            )
+        html_parts.append("</ul>")
+        return "".join(html_parts)
+
     props = node.get("properties", {}) if isinstance(node, dict) else {}
 
     if not isinstance(props, dict) or not props:
@@ -507,23 +611,33 @@ def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node, base_
         present = isinstance(data_node, dict) and key in data_node
         value = data_node.get(key) if isinstance(data_node, dict) and key in data_node else None
 
-        missing_or_empty = required_here and (not present or not is_defined(value))
+        missing_or_empty = show_validation and required_here and (not present or not is_defined(value))
         key_style = "color:#a00;font-weight:700;" if missing_or_empty else "color:#1f2937;font-weight:600;"
-        req_tag = (
-            " <span style='color:#a00;'>(required, missing)</span>"
-            if missing_or_empty
-            else (" <span style='color:#0a7a2a;'>(required)</span>" if required_here else "")
-        )
+        req_tag = ""
+        if show_validation:
+            req_tag = (
+                " <span style='color:#a00;'>(required, missing)</span>"
+                if missing_or_empty
+                else (" <span style='color:#0a7a2a;'>(required)</span>" if required_here else "")
+            )
 
-        child_node = resolve_ref(schema_root, child_schema) if isinstance(child_schema, dict) else {}
+        child_node = _resolve_for_render(child_schema, value)
         child_props = child_node.get("properties", {}) if isinstance(child_node, dict) else {}
-        is_branch = isinstance(child_props, dict) and len(child_props) > 0
+        child_items = child_node.get("items") if isinstance(child_node, dict) else None
+        is_branch = (
+            (isinstance(child_props, dict) and len(child_props) > 0)
+            or child_node.get("type") == "array"
+            or isinstance(child_items, dict)
+            or "oneOf" in child_node
+            or "anyOf" in child_node
+            or "allOf" in child_node
+        ) if isinstance(child_node, dict) else False
 
         if is_branch:
             html_parts.append(
                 "<li>"
                 f"<details open><summary><span id='{escape(anchor_id)}' style='{key_style}'>{escape(key)}</span>{req_tag}</summary>"
-                f"{tree_html_from_schema(schema_root, child_schema, value if isinstance(value, (dict, list)) else {}, current_path)}"
+                f"{tree_html_from_schema(schema_root, child_schema, value if isinstance(value, (dict, list)) else {}, current_path, show_validation=show_validation)}"
                 "</details>"
                 "</li>"
             )
@@ -556,6 +670,7 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
     default_schema_path = (root_dir / default_schema).resolve()
     default_json_folder = (data_root / "BAMDataset_Json").resolve()
     default_lis_folder = (data_root / "BAMDataset").resolve()
+    schema_root = (root_dir / ".." / "Data Schema").resolve()
     default_mapping = (root_dir / "Metadata" / "Mappings" / "BAM2schema.json").resolve()
 
     state = {
@@ -572,6 +687,8 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         "required_warnings": [],
         "required_count": 0,
         "tree_html": "",
+        "displayed_json_file": "",
+        "validation_ran": False,
         "schema_errors": [],
         "shacl_conforms": None,
         "shacl_report_text": "",
@@ -579,6 +696,12 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         "fixed_json_path": "",
         "fixed_json_preview": "",
     }
+
+    def suggested_output_name_from_lis(lis_file: str) -> str:
+        if not lis_file:
+            return "selected_from_lis_translated.json"
+        stem = Path(lis_file).stem
+        return f"{stem}_translated.json"
 
     template = """
 <!doctype html>
@@ -608,9 +731,17 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
 
   <form method="post" action="{{ url_for('action') }}" class="panel">
     <h2>Inputs</h2>
+        <div class="row">
+            <label>Schema file selection</label>
+            <select id="schema_select" onchange="setSchemaPathAndSubmit(this.value)">
+                {% for label, value in schema_options %}
+                <option value="{{ value }}" {% if value == schema_path %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
     <div class="row">
       <label>Schema file path</label>
-      <input type="text" name="schema_path" value="{{ schema_path }}" />
+            <input id="schema_path" type="text" name="schema_path" value="{{ schema_path }}" />
     </div>
 
     <div class="split">
@@ -648,7 +779,7 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         </div>
         <div class="row">
           <label>LIS File</label>
-          <select name="lis_file">
+                                        <select id="lis_file" name="lis_file" onchange="this.form.submit()">
             {% for label, value in lis_file_options %}
             <option value="{{ value }}" {% if value == lis_file %}selected{% endif %}>{{ label }}</option>
             {% endfor %}
@@ -656,7 +787,7 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         </div>
         <div class="row">
           <label>Output JSON filename</label>
-          <input type="text" name="output_name" value="{{ output_name }}" />
+                    <input id="output_name" type="text" name="output_name" value="{{ output_name }}" />
         </div>
         <button type="submit" name="action" value="convert_lis">Convert LIS to JSON</button>
       </div>
@@ -684,10 +815,12 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
   {% if message %}<p class="ok">{{ message }}</p>{% endif %}
   {% if error %}<p class="error">{{ error }}</p>{% endif %}
 
-  {% if validated_file %}
+    {% if displayed_json_file %}
   <div class="panel">
-        <h2>Validation Summary</h2>
-    <p><b>File:</b> {{ validated_file }}</p>
+                <h2>JSON Render</h2>
+        <p><b>File:</b> {{ displayed_json_file }}</p>
+        {% if validation_ran %}
+        <h3>Validation Summary</h3>
     <p><b>Total required keywords declared:</b> {{ required_count }}</p>
     {% if required_warnings|length == 0 %}
       <p class="ok">All required keywords are defined.</p>
@@ -705,12 +838,17 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
                 </ul>
             </details>
     {% endif %}
+    {% else %}
+      <p>Preview of the current JSON. Run validation to add required-field tags to this render.</p>
+    {% endif %}
 
         <h2>Tree View</h2>
+        {% if validation_ran %}
         <div>
             <span style="color:#0a7a2a;font-weight:600;">(required)</span> = required and defined,
             <span style="color:#a00;font-weight:700;">(required, missing)</span> = required but missing/empty.
         </div>
+        {% endif %}
         <div>{{ tree_html|safe }}</div>
   </div>
   {% endif %}
@@ -740,6 +878,32 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
             </details>
         </div>
         {% endif %}
+
+<script>
+    function setSchemaPathAndSubmit(schemaPath) {
+        const input = document.getElementById("schema_path");
+        if (!input) return;
+        input.value = schemaPath || "";
+        if (input.form) {
+            input.form.submit();
+        }
+    }
+
+    function setOutputNameFromLis(lisPath) {
+        const outputInput = document.getElementById("output_name");
+        if (!outputInput) return;
+        const filename = (lisPath || "").split(/[/\\]/).pop();
+        if (!filename) return;
+        const stem = filename.replace(/\.[^.]+$/i, "");
+        outputInput.value = stem + "_translated.json";
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const lisSelect = document.getElementById("lis_file");
+        if (!lisSelect) return;
+        setOutputNameFromLis(lisSelect.value);
+    });
+</script>
 </body>
 </html>
     """
@@ -788,11 +952,73 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
 
         return json_folder_options, json_file_options, lis_folder_options, lis_file_options
 
+    def build_schema_options():
+        if not schema_root.exists() or not schema_root.is_dir():
+            return [(state["schema_path"], state["schema_path"])]
+
+        schema_files = sorted([p for p in schema_root.glob("*.json") if p.is_file()])
+        options = [(str(p.relative_to(root_dir.parent)), str(p)) for p in schema_files]
+
+        if state["schema_path"] not in [value for _, value in options]:
+            options.insert(0, (f"(custom) {state['schema_path']}", state["schema_path"]))
+
+        return options or [(state["schema_path"], state["schema_path"])]
+
+    def clear_validation_state():
+        state["required_warnings"] = []
+        state["required_count"] = 0
+        state["schema_errors"] = []
+        state["validated_file"] = ""
+        state["validation_ran"] = False
+
+    def render_json_file(json_file: Path, *, show_validation: bool) -> None:
+        schema_path = Path(state["schema_path"])
+
+        if not schema_path.exists():
+            raise FileNotFoundError(f"Schema file not found: {schema_path}")
+        if not json_file.exists():
+            raise FileNotFoundError(f"JSON file not found: {json_file}")
+
+        schema_doc = validation_core.load_json(schema_path)
+        experiment_doc = validation_core.load_json(json_file)
+
+        if show_validation:
+            req_paths, warnings, schema_target, data_target = validation_core.validate_required_keywords(schema_doc, experiment_doc)
+            state["required_warnings"] = [
+                {
+                    "path": warning.get("path", ""),
+                    "reason": warning.get("reason", ""),
+                    "anchor": path_to_dom_id(warning.get("path", "")),
+                }
+                for warning in warnings
+            ]
+            state["required_count"] = len(req_paths)
+            state["schema_errors"] = validation_core.run_jsonschema_validation(
+                schema_target,
+                data_target,
+                max_errors=200,
+            )
+            state["validated_file"] = str(json_file)
+            state["validation_ran"] = True
+        else:
+            schema_target, data_target = validation_core.normalize_experiment_data(schema_doc, experiment_doc)
+            clear_validation_state()
+
+        state["displayed_json_file"] = str(json_file)
+        state["tree_html"] = tree_html_from_schema(
+            schema_target,
+            schema_target,
+            data_target,
+            show_validation=show_validation,
+        )
+
     def render_home():
         json_folder_options, json_file_options, lis_folder_options, lis_file_options = build_folder_file_options()
+        schema_options = build_schema_options()
         return render_template_string(
             template,
             schema_path=state["schema_path"],
+            schema_options=schema_options,
             json_folder=state["json_folder"],
             json_file=state["json_file"],
             lis_folder=state["lis_folder"],
@@ -805,6 +1031,8 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
             required_warnings=state["required_warnings"],
             required_count=state["required_count"],
             tree_html=Markup(state["tree_html"]),
+            displayed_json_file=state["displayed_json_file"],
+            validation_ran=state["validation_ran"],
             schema_errors=state["schema_errors"],
             shacl_conforms=state["shacl_conforms"],
             shacl_report_text=state["shacl_report_text"],
@@ -823,6 +1051,7 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
 
     @app.post("/action")
     def action():
+        prev_lis_file = state["lis_file"]
         state["schema_path"] = request.form.get("schema_path", state["schema_path"]).strip()
         state["json_folder"] = request.form.get("json_folder", state["json_folder"]).strip()
         state["json_file"] = request.form.get("json_file", state["json_file"]).strip()
@@ -830,9 +1059,13 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         state["lis_file"] = request.form.get("lis_file", state["lis_file"]).strip()
         state["shacl_data_graph"] = request.form.get("shacl_data_graph", state["shacl_data_graph"]).strip()
         state["shacl_shapes_graph"] = request.form.get("shacl_shapes_graph", state["shacl_shapes_graph"]).strip()
-        state["output_name"] = request.form.get("output_name", state["output_name"]).strip()
-
+        posted_output_name = request.form.get("output_name", state["output_name"]).strip()
         selected_action = request.form.get("action", "")
+        if state["lis_file"] and (state["lis_file"] != prev_lis_file or selected_action in {"", "refresh_json", "convert_lis"}):
+            state["output_name"] = suggested_output_name_from_lis(state["lis_file"])
+        else:
+            state["output_name"] = posted_output_name
+
         state["message"] = ""
         state["error"] = ""
 
@@ -843,6 +1076,9 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         if selected_action != "validate_shacl":
             state["shacl_conforms"] = None
             state["shacl_report_text"] = ""
+
+        if selected_action in {"refresh_json", "", "convert_lis", "autofix_json"}:
+            clear_validation_state()
 
         if selected_action == "convert_lis":
             try:
@@ -863,6 +1099,7 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
                     default_mapping,
                 )
                 state["json_file"] = str(converted)
+                render_json_file(converted, show_validation=False)
                 state["message"] = f"LIS converted successfully: {converted}"
             except Exception as exc:
                 state["error"] = f"LIS conversion failed: {exc}"
@@ -908,6 +1145,7 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
                     json.dump(fixed_doc, f, indent=4, ensure_ascii=False)
 
                 state["json_file"] = str(fixed_path)
+                render_json_file(fixed_path, show_validation=False)
                 state["message"] = f"Auto-fix finished: {changes} update(s). Saved to {fixed_path}"
                 state["fixed_json_path"] = str(fixed_path)
                 state["fixed_json_preview"] = json.dumps(fixed_doc, indent=2, ensure_ascii=False)
@@ -926,27 +1164,7 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
                 if json_file is None or not json_file.exists():
                     raise FileNotFoundError("Select a valid JSON experiment file.")
 
-                schema_doc = validation_core.load_json(schema_path)
-                experiment_doc = validation_core.load_json(json_file)
-
-                req_paths, warnings, schema_target, data_target = validation_core.validate_required_keywords(schema_doc, experiment_doc)
-                state["required_warnings"] = [
-                    {
-                        "path": warning.get("path", ""),
-                        "reason": warning.get("reason", ""),
-                        "anchor": path_to_dom_id(warning.get("path", "")),
-                    }
-                    for warning in warnings
-                ]
-                state["required_count"] = len(req_paths)
-                state["tree_html"] = tree_html_from_schema(schema_target, schema_target, data_target)
-                state["validated_file"] = str(json_file)
-
-                state["schema_errors"] = validation_core.run_jsonschema_validation(
-                    schema_target,
-                    data_target,
-                    max_errors=200,
-                )
+                render_json_file(json_file, show_validation=True)
                 state["message"] = "Validation completed."
             except Exception as exc:
                 state["error"] = f"Validation failed: {exc}"
