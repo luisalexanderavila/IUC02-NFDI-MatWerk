@@ -39,11 +39,15 @@ def _normalize_legacy_chemical_composition_methods(data_target):
     if not isinstance(measurement_data, dict):
         return
 
-    additional_metadata = measurement_data.get("additionalMetadata")
+    # Support both old camelCase key (legacy) and new PascalCase key (v2.1.2+).
+    additional_metadata = measurement_data.get("AdditionalMetadata") or measurement_data.get("additionalMetadata")
     if not isinstance(additional_metadata, dict):
         return
 
-    chemical_composition = additional_metadata.get("chemicalComposition")
+    # chemicalComposition may live directly in additionalMetadata (v2.1 legacy)
+    # or inside MaterialHistoryAndCondition (v2.1.2+).
+    material_section = additional_metadata.get("MaterialHistoryAndCondition") or additional_metadata
+    chemical_composition = material_section.get("chemicalComposition")
     if not isinstance(chemical_composition, list):
         return
 
@@ -75,7 +79,10 @@ def normalize_experiment_data(schema_doc: dict, data_doc: dict):
             data_target = {"MeasurementData": mapped["MeasurementData"]}
 
     if isinstance(data_target, dict) and "MeasurementData" not in data_target and "MeasurementData" in schema_properties:
-        if "additionalMetadata" in data_target or "primaryData" in data_target or "secondaryData" in data_target:
+        # Accept both old camelCase keys (legacy) and new PascalCase keys (v2.1.2+).
+        old_keys = {"additionalMetadata", "primaryData", "secondaryData"}
+        new_keys = {"AdditionalMetadata", "PrimaryData", "SecondaryData"}
+        if old_keys & data_target.keys() or new_keys & data_target.keys():
             data_target = {"MeasurementData": data_target}
 
     _normalize_legacy_chemical_composition_methods(data_target)
@@ -103,12 +110,13 @@ def collect_required_paths(schema_root: dict, schema_node: dict, base_path=()):
     if isinstance(items, dict):
         paths.extend(collect_required_paths(schema_root, items, base_path + ("*",)))
 
-    for combiner in ("allOf", "anyOf", "oneOf"):
-        members = node.get(combiner, []) if isinstance(node, dict) else []
-        if isinstance(members, list):
-            for member in members:
-                if isinstance(member, dict):
-                    paths.extend(collect_required_paths(schema_root, member, base_path))
+    # Only traverse allOf (all sub-schemas must apply).
+    # oneOf/anyOf are mutually exclusive alternatives — collecting required
+    # paths from every branch produces false positives (e.g. externalFileLink
+    # flagged when element-by-element list form is used instead).
+    for member in node.get("allOf", []) if isinstance(node, dict) else []:
+        if isinstance(member, dict):
+            paths.extend(collect_required_paths(schema_root, member, base_path))
 
     return paths
 

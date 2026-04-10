@@ -9,7 +9,7 @@ def main() -> int:
     parsing = Path(__file__).resolve().parents[1]
     script_translate = parsing / "bin" / "translate_bam_data_v2.py"
     script_validate = parsing / "bin" / "validate_json.py"
-    schema = parsing.parent / "Data Schema" / "2026-03_Data-Schema_Creep_v2.1.json"
+    schema = parsing.parent / "Data Schema" / "2026-04_Data-Schema_Creep_v2.1.2.json"
 
     lis_dir = parsing / "Data" / "BAMDataset_v032026"
     out_dir = lis_dir / "_batch_translated"

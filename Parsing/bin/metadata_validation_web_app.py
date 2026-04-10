@@ -42,7 +42,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--port", type=int, default=8503, help="Port (default: 8503)")
     parser.add_argument(
         "--schema",
-        default=os.path.join("..", "Data Schema", "2026-04_Data-Schema_Creep_v2.1.json"),
+        default=os.path.join("..", "Data Schema", "2026-04_Data-Schema_Creep_v2.1.2.json"),
         help="Default schema JSON path",
     )
     parser.add_argument(
@@ -128,12 +128,13 @@ def collect_required_paths(schema_root: dict, schema_node: dict, base_path=()) -
     if isinstance(items, dict):
         paths.extend(collect_required_paths(schema_root, items, base_path + ("*",)))
 
-    for combiner in ("allOf", "anyOf", "oneOf"):
-        members = node.get(combiner, []) if isinstance(node, dict) else []
-        if isinstance(members, list):
-            for member in members:
-                if isinstance(member, dict):
-                    paths.extend(collect_required_paths(schema_root, member, base_path))
+    # Only traverse allOf (all sub-schemas must apply).
+    # oneOf/anyOf represent mutually exclusive alternatives — collecting required
+    # paths from every branch would flag missing fields that belong to the
+    # unchosen alternative (e.g., externalFileLink vs element-by-element list).
+    for member in node.get("allOf", []) if isinstance(node, dict) else []:
+        if isinstance(member, dict):
+            paths.extend(collect_required_paths(schema_root, member, base_path))
 
     return paths
 
