@@ -10,8 +10,8 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Download and extract BAM dataset from Zenodo.")
     parser.add_argument(
         "--zenodo-id",
-        default="13937987",
-        help="Zenodo record ID (default: 13937987)",
+        default="18933930" #"13937987",
+        help="Zenodo record ID (default: 18933930)",
     )
     parser.add_argument(
         "--output-dir",

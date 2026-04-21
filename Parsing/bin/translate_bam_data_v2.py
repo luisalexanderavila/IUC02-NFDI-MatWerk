@@ -1,4 +1,4 @@
-"""
+﻿"""
 translate_bam_data_v2.py - Convert a v2 BAM LIS file to a JSON conforming to
 the 2026-03 data schema (v2.1).
 
@@ -268,7 +268,14 @@ def _parse_chemical_composition_file(file_path: str, measured: bool):
 
     rows = []
     methods = []
-    with open(file_path, "r", encoding="utf-8", errors="replace") as fh:
+    # Complementary LIS files can be UTF-8 or latin1; try UTF-8 first.
+    try:
+        raw_bytes = open(file_path, "rb").read()
+        raw_bytes.decode("utf-8")
+        _enc = "utf-8"
+    except UnicodeDecodeError:
+        _enc = "latin1"
+    with open(file_path, "r", encoding=_enc) as fh:
         for raw_line in fh:
             line = raw_line.strip()
             if not line:
@@ -418,6 +425,13 @@ def translate_v2(parsed: dict, mapping_doc: dict, source_lis_file: str = "") -> 
         else:
             _set_nested_safe(result, schema_keys, raw_value)
 
+            # When the mapping target is a ComplexValue leaf (path ends in
+            # ".value"), also write the sibling ".unit" from the LIS record.
+            if schema_keys[-1] == "value" and isinstance(record, dict):
+                unit = record.get("unit", "").strip()
+                if unit:
+                    _set_nested_safe(result, schema_keys[:-1] + ["unit"], unit)
+
             # Chemical composition items in schema require an `element` field.
             # LIS files often provide a file reference or aggregate text, not per-element rows.
             # Create a minimal placeholder so the converted structure is schema-complete.
@@ -559,4 +573,4 @@ def main(argv=None):
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    sys.exit(main())

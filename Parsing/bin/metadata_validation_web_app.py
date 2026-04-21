@@ -1,4 +1,4 @@
-import argparse
+﻿import argparse
 import copy
 import json
 import os
@@ -633,6 +633,22 @@ def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node, base_
             or "anyOf" in child_node
             or "allOf" in child_node
         ) if isinstance(child_node, dict) else False
+
+        # Dropdown shortcut: if the value is a dict produced by a dropdown schema
+        # (single "*Options" key), render only the selected string — not the raw object.
+        if isinstance(value, dict) and value:
+            _opt_keys = [_k for _k in value if _k.endswith("Options")]
+            if len(_opt_keys) == 1:
+                _selected = value[_opt_keys[0]]
+                if isinstance(_selected, str):
+                    _rval = escape(_selected) if _selected.strip() else "<span style='color:#a00;font-weight:600;'>(empty)</span>"
+                    html_parts.append(
+                        "<li>"
+                        f"<span id='{escape(anchor_id)}' style='{key_style}'>{escape(key)}</span>{req_tag}: "
+                        f"<span>{_rval}</span>"
+                        "</li>"
+                    )
+                    continue
 
         if is_branch:
             html_parts.append(
