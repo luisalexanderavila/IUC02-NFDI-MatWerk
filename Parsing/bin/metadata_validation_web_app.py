@@ -62,7 +62,7 @@ def list_json_files(folder_path: Path) -> list[Path]:
 def list_lis_files(folder_path: Path) -> list[Path]:
     if not folder_path.exists() or not folder_path.is_dir():
         return []
-    return sorted([p for p in folder_path.rglob("*.LIS") if p.is_file()])
+    return sorted([p for p in folder_path.rglob("*.[Ll][Ii][Ss]") if p.is_file()])
 
 
 def candidate_folders_with_pattern(data_root: Path, pattern: str) -> list[Path]:
