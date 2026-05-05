@@ -303,21 +303,18 @@ class ParserV2:
                        or next_cat_normalized.startswith(_normalize_key(_PRIMARY_PREFIX)) \
                        or next_cat_normalized.startswith(_normalize_key(_SECONDARY_PREFIX)):
                         break  # a new record starts
-                # continuation line (possibly just text or tab-less text)
+                # continuation line — join with a space so multi-line values
+                # become space-separated strings instead of newline-separated.
                 if "\t" in next_line:
-                    # Some malformed LIS rows spill requirement/value into the next line.
-                    # Prefer the value column; otherwise use the last non-empty field.
-                    candidate = ""
-                    if len(next_cols) > V2_COL_VALUE and next_cols[V2_COL_VALUE].strip():
-                        candidate = next_cols[V2_COL_VALUE].strip()
-                    else:
-                        non_empty_tokens = [tok.strip() for tok in next_cols if tok.strip()]
-                        if non_empty_tokens:
-                            candidate = non_empty_tokens[-1]
+                    # Col[0] is the value fragment; a trailing "\t*" means
+                    # the parent record is common-to-all.
+                    candidate = next_cols[0].strip()
+                    if next_cols[-1].strip() == "*":
+                        common = "*"
                     if candidate:
-                        value = value + "\n" + candidate
+                        value = value + " " + candidate
                 else:
-                    value = value + "\n" + next_stripped
+                    value = value + " " + next_stripped
                 j += 1
             i = j   # advance outer loop past all continuation lines
 
