@@ -1,0 +1,50 @@
+1. Annealing						
+Data according to protocol (PCC Airfoils, INC. 1996)						
+Step description	Temperature	±	Temperature	±	Dwell time	Duration
+	°F	°F	°C	°C	h	min
+Heat in vacuum to	1900	25	1038	14		
+Backfill with argon to approx. 400 micron						
+Heat to	2240	10	1227	6		60
+Hold at	2240		1227		2	
+Heat to	2260	10	1238	6		20
+Hold at	2260		1238		2	
+Heat to	2320	10	1271	6		60
+Hold at	2320		1271		2	
+Heat to	2330	5	1277	3		10
+Hold at	2330		1277		3	
+Heat to	2335	5	1279	3		10
+Hold at	2335		1279		2	
+Gas Furnace Cooling						
+						
+2. Ageing						
+Data from inquiry (1997)						
+Step description	Temperature	±	Temperature	±	Dwell time	Duration
+	°F	°F	°C	°C	h	min
+Hold at (gas recirculation)	1976		1080		4	
+Hold at (electric furnace)	1598		870		16	
+Air cooling						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
