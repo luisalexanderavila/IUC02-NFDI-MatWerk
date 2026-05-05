@@ -1,4 +1,4 @@
-"""
+﻿"""
 LisParseV2.py - Parser for the new v2 LIS format (BAMDataset_v032026)
 
 The v2 LIS format has the following header structure:
@@ -131,7 +131,7 @@ class ParserV2:
         }
     """
 
-    def __init__(self, filename: str, encoding: str = "latin1"):
+    def __init__(self, filename: str, encoding: str = "auto"):
         self.filename = filename
         self.encoding = encoding
         self.file_lines = self._read_raw(filename)
@@ -141,7 +141,21 @@ class ParserV2:
     # ──────────────────────────────────────────────────
 
     def _read_raw(self, filename: str):
-        with open(filename, "r", encoding=self.encoding) as fh:
+        enc = self.encoding
+        if enc == "auto":
+            # LIS files in BAMDataset_v032026 (*-MD-TR.lis) are UTF-8 encoded;
+            # older files may be latin1.  Try UTF-8 first, fall back silently.
+            try:
+                with open(filename, "r", encoding="utf-8") as fh:
+                    lines = fh.readlines()
+                self.encoding = "utf-8"
+                return lines
+            except UnicodeDecodeError:
+                with open(filename, "r", encoding="latin1") as fh:
+                    lines = fh.readlines()
+                self.encoding = "latin1"
+                return lines
+        with open(filename, "r", encoding=enc) as fh:
             return fh.readlines()
 
     # ──────────────────────────────────────────────────
@@ -270,6 +284,7 @@ class ParserV2:
             requirement = cols[V2_COL_REQUIREMENT].strip() if len(cols) > V2_COL_REQUIREMENT else ""
             value = cols[V2_COL_VALUE].strip() if len(cols) > V2_COL_VALUE else ""
             common = cols[V2_COL_COMMON].strip() if len(cols) > V2_COL_COMMON else ""
+            additional_info = cols[2].strip() if len(cols) > 2 else ""
 
             # ── Multi-line value handling ─────────────────────────────
             # Collect continuation lines that follow if they don't start a
@@ -314,6 +329,7 @@ class ParserV2:
                 "symbol": symbol,
                 "requirement": requirement,
                 "common": common == "*",
+                "_additional_info": additional_info,
             }
 
             # Store under the full hierarchical path
@@ -322,7 +338,23 @@ class ParserV2:
                 continue
 
             full_path = path_parts + [entry]
-            _set_nested(result[top_bucket], full_path, record)
+            # Navigate to parent to detect duplicate entry-label collisions.
+            # When two rows share the same col[1] label (e.g. "k-Value") but differ in
+            # col[2] additional info ("Lr = Lo" vs "Lr = Le"), append the normalised
+            # col[2] to both keys so each is stored separately.
+            _parent = result[top_bucket]
+            for _k in path_parts:
+                _parent = _parent.setdefault(_k, {})
+            if entry in _parent and isinstance(_parent[entry], dict) and "value" in _parent[entry]:
+                _existing = _parent[entry]
+                _old_sfx = _normalize_key(_existing.get("_additional_info", ""))
+                _new_sfx = _normalize_key(additional_info)
+                _compound_old = (entry + " " + _old_sfx).strip() if _old_sfx else entry
+                _compound_new = (entry + " " + _new_sfx).strip() if _new_sfx else entry
+                _parent[_compound_old] = _parent.pop(entry)
+                _parent[_compound_new] = record
+            else:
+                _set_nested(result[top_bucket], full_path, record)
 
         # ── Parse [data] section ──────────────────────────────────────
         if data_section_idx is not None:
@@ -393,7 +425,7 @@ class ParserV2:
                 normalized_k = _normalize_key(str(k))
                 key = f"{prefix}.{normalized_k}" if prefix else normalized_k
                 if isinstance(v, dict):
-                    if "value" in v and set(v.keys()) <= {"value", "unit", "symbol", "requirement", "common"}:
+                    if "value" in v and set(v.keys()) - {"_additional_info"} <= {"value", "unit", "symbol", "requirement", "common"}:
                         # Leaf record
                         flat[key] = v
                     else:
