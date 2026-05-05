@@ -1,4 +1,5 @@
 import json
+import copy
 import subprocess
 import sys
 import tempfile
@@ -66,6 +67,55 @@ class TestTranslateBamDataV2(unittest.TestCase):
                 first_error = report["errors"][0]
                 self.assertIn("path", first_error)
                 self.assertIn("message", first_error)
+
+    def test_derives_measurement_method_from_complementary_measured_file(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output_file = Path(tmp) / "converted.json"
+            mapping_override = Path(tmp) / "mapping_without_measurement_method.json"
+
+            mapping_doc = json.loads(self.mapping_file.read_text(encoding="utf-8"))
+            mapped = copy.deepcopy(mapping_doc.get("mappedMeasurementData", {}))
+            mapped.pop(
+                "metadata.material history and condition.chemical composition.measurement method",
+                None,
+            )
+            mapping_doc["mappedMeasurementData"] = mapped
+            mapping_override.write_text(json.dumps(mapping_doc, indent=2), encoding="utf-8")
+
+            cmd = [
+                sys.executable,
+                str(self.script),
+                str(self.lis_file),
+                "--mapping",
+                str(mapping_override),
+                "--output",
+                str(output_file),
+            ]
+            result = subprocess.run(cmd, cwd=self.parsing_dir, capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            converted = json.loads(output_file.read_text(encoding="utf-8"))
+            measurement_method = (
+                converted
+                .get("MeasurementData", {})
+                .get("additionalMetadata", {})
+                .get("chemicalComposition", [{}])[0]
+                .get("measurementMethod")
+            )
+
+            self.assertIsInstance(measurement_method, str)
+            self.assertIn("Atomic Absorption", measurement_method)
+
+            measured_elements = (
+                converted
+                .get("MeasurementData", {})
+                .get("additionalMetadata", {})
+                .get("chemicalComposition", [{}])[0]
+                .get("chemicalCompositionMeasured", [])
+            )
+            self.assertIsInstance(measured_elements, list)
+            self.assertGreater(len(measured_elements), 0)
+            self.assertIn("measurementMethod", measured_elements[0])
 
 
 if __name__ == "__main__":
