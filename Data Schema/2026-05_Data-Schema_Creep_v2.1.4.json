@@ -319,7 +319,7 @@
               "properties": {
                 "materialIdentifier": {
                   "type": "string",
-                  "description": "E.g., NIMONIC 75, 2.4630, CMSX-6, CMSX-4, ERBO1,\u00e2\u20ac\u00a6"
+                  "description": "E.g., NIMONIC 75, 2.4630, CMSX-6, CMSX-4, ERBO1,â€¦"
                 },
                 "asManufacturedMaterial": {
                   "type": "object",
@@ -530,7 +530,7 @@
                       },
                       "characterizationMethod": {
                         "type": "string",
-                        "description": "E.g., STEM, HRTEM, TEM-EDX, AFM, SEM, SEM-EBSD, \u00e2\u20ac\u00a6."
+                        "description": "E.g., STEM, HRTEM, TEM-EDX, AFM, SEM, SEM-EBSD, â€¦."
                       },
                       "measuredCondition": {
                         "type": "string",
@@ -1725,7 +1725,136 @@
                     }
                   }
                 },
-                "elongationValuesAndCrossSectionalDimensions": {
+                "crossSectionalDimensions": {
+                  "type": "object",
+                  "required": [
+                    "measuringEquipment",
+                    "measuringEquipmentsUsage",
+                    "resolution",
+                    "calibrationStatus",
+                    "calibrationDate",
+                    "calibrationValidityTimePeriod",
+                    "calibrationResult",
+                    "calibrationRange",
+                    "calibrationStandard"
+                  ],
+                  "properties": {
+                    "measuringEquipment": {
+                      "type": "object",
+                      "properties": {
+                        "measuringEquipmentOptions": {
+                          "type": "string",
+                          "enum": [
+                            "Caliper gauge",
+                            "Measuring microscope",
+                            "Micrometer screw gauge",
+                            "Other (Please specify in the comment)"
+                          ]
+                        }
+                      },
+                      "allOf": [
+                        {
+                          "if": {
+                            "properties": {
+                              "measuringEquipmentOptions": {
+                                "const": "Other (Please specify in the comment)"
+                              }
+                            }
+                          },
+                          "then": {
+                            "required": [
+                              "otherMeasuringEquipment"
+                            ],
+                            "properties": {
+                              "otherMeasuringEquipment": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "measuringEquipmentsUsage": {
+                      "type": "string"
+                    },
+                    "resolution": {
+                      "$ref": "#/$defs/ComplexValue"
+                    },
+                    "type": {
+                      "type": "object",
+                      "properties": {
+                        "typeOptions": {
+                          "type": "string",
+                          "enum": [
+                            "Digital",
+                            "Analog",
+                            "Other (Please specify in the comment)"
+                          ]
+                        }
+                      },
+                      "allOf": [
+                        {
+                          "if": {
+                            "properties": {
+                              "typeOptions": {
+                                "const": "Other (Please specify in the comment)"
+                              }
+                            }
+                          },
+                          "then": {
+                            "required": [
+                              "otherType"
+                            ],
+                            "properties": {
+                              "otherType": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "equipmentModelInformation": {
+                      "type": "string"
+                    },
+                    "equipmentID": {
+                      "type": "string",
+                      "description": "The ID used for identification in the laboratory."
+                    },
+                    "calibrationStatus": {
+                      "type": "string",
+                      "description": "Is the measuring equipment calibrated?",
+                      "enum": [
+                        "Yes",
+                        "No"
+                      ]
+                    },
+                    "calibrationCertificate": {
+                      "type": "string",
+                      "description": "(Link to) File, preferably with machine-readable (meta)data."
+                    },
+                    "calibrationDate": {
+                      "type": "string"
+                    },
+                    "calibrationValidityTimePeriod": {
+                      "type": "string"
+                    },
+                    "calibrationResult": {
+                      "type": "string",
+                      "enum": [
+                        "Meets calibration requirements",
+                        "Does not meet calibration requirements"
+                      ]
+                    },
+                    "calibrationRange": {
+                      "$ref": "#/$defs/ComplexValue"
+                    },
+                    "calibrationStandard": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "elongationValues": {
                   "type": "object",
                   "required": [
                     "measuringEquipment",
