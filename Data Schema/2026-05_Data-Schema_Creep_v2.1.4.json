@@ -881,6 +881,23 @@
                           "if": {
                             "properties": {
                               "testMachineTypeOptions": {
+                                "const": "Lever arm"
+                              }
+                            }
+                          },
+                          "then": {
+                            "properties": {
+                              "leverageRatio": {
+                                "type": "string",
+                                "description": "Leverage ratio of the lever arm test machine (e.g. 1:20.4)"
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "if": {
+                            "properties": {
+                              "testMachineTypeOptions": {
                                 "const": "Other (Please specify in the comment)"
                               }
                             }

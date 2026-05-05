@@ -2,9 +2,9 @@
   "MeasurementData": {
     "AdditionalMetadata": {
       "DataProcessingProcedures": {
-        "dataAnalysisProcedures": "To convert the primary data series into the processed data series a validated excel template (lab own's development) was used. The data were neither averaged nor smoothed. See also file \"Vh5205_Complementary_Data-processing.LIS\"",
-        "primaryDataSeries": "See file \"Vh5205_Complementary_Primary-and-processed-data-series.LIS\"",
-        "processedDataSeries": "See file \"Vh5205_Complementary_Primary-and-processed-data-series.LIS\"",
+        "dataAnalysisProcedures": "To convert the primary data series into the processed data series a validated excel template (lab own's development) was used. The data were neither averaged nor smoothed. See also file \"2026-03_Creep-RD-CMSX-6_Data-processing.LIS\"",
+        "primaryDataSeries": "See file \"2026-03_Creep-RD-CMSX-6_Primary-and-processed-data-series.LIS\"",
+        "processedDataSeries": "See file \"2026-03_Creep-RD-CMSX-6_Primary-and-processed-data-series.LIS\"",
         "software": {
           "softwareOptions": "Not applicable"
         },
@@ -357,7 +357,7 @@
                 "equipment": "Perkin Elmer 5000"
               }
             ],
-            "measurementMethod": "See file \"Vh5205_Complementary_Ch.-Comp.-measured.LIS\"",
+            "measurementMethod": "See file \"2026-03_Creep-RD-CMSX-6_Ch.-Comp.-measured.LIS\"",
             "chemicalCompositionNominal": [
               {
                 "element": "C",
@@ -592,8 +592,8 @@
           }
         ],
         "heatTreatment": {
-          "heatTreatmentAgeingDescription": "See file \"Vh5205_Complementary_Heat-treatment.LIS\"",
-          "heatTreatmentAnnealingDescription": "See file \"Vh5205_Complementary_Heat-treatment.LIS\"",
+          "heatTreatmentAgeingDescription": "See file \"2026_Creep-RD-CMSX-6_Heat-treatment.LIS\"",
+          "heatTreatmentAnnealingDescription": "See file \"2026_Creep-RD-CMSX-6_Heat-treatment.LIS\"",
           "heatTreatmentState": {
             "heatTreatmentStateOptions": "Aged"
           },
@@ -603,7 +603,7 @@
         "materialIdentifier": "CMSX-6",
         "mechanicalTestResults": {
           "proofStrengthCreepTestTemperature": {
-            "value": "See file \"Vh5205_Complementary_Rp0.2.LIS\" and related reference dataset https://doi.org/10.5281/zenodo.17846616",
+            "value": "See file \"2026-03_Creep-RD-CMSX-6_Rp0.2.LIS\" and related reference dataset https://doi.org/10.5281/zenodo.17846616",
             "unit": "MPa"
           }
         },
@@ -632,7 +632,7 @@
           "grainSizeMeausuringRegion": "Not applicable",
           "grainSizeDistribution": "Not applicable",
           "proofOfSingleCrystallinity": "The absence of grain boundaries was verified by visual inspection of the investment casts surface after electrolytical etching.",
-          "singleCrystalOrientation": "3.9",
+          "singleCrystalOrientation": "6.9",
           "singleCrystalOrientationDeterminationMethod": "Laue Crystal Verification. A Scorpio system (DOI: 10.1088/0957-0233/6/1/021) was used. The angle alpha indicates the deviation of the [001]-direction from the symmetry axis of the respective cast (as-tested material).",
           "singleCrystalOrientationMeasuringPoint": "The orientation was determined at the lower end (right side in file \"Test-piece-location_v2.0.jpg\") of each cast."
         }
@@ -642,7 +642,7 @@
           "contactingExtensometer": {
             "calibrationCertificate": "Documentation available in the laboratory",
             "calibrationClass": "1",
-            "calibrationDate": "2023-06-27 00:00:00",
+            "calibrationDate": "2022-06-23 00:00:00",
             "calibrationRange": {
               "value": "30 % (7.5 mm); +5/-2,5 mm",
               "unit": "% (mm)"
@@ -708,7 +708,7 @@
         "temperatureMeasuringSystem": {
           "dataAcquisition": {
             "calibrationCertificate": "Documentation available in the laboratory",
-            "calibrationDate": "2023-08-17 00:00:00",
+            "calibrationDate": "2022-07-12 00:00:00",
             "calibrationMethod": "Electrical simulation",
             "calibrationRange": {
               "value": "100 - 1300 °C",
@@ -719,14 +719,14 @@
             "calibrationValidityTimePeriod": "12 Months",
             "referenceJunction": "Internal",
             "temperatureDeviation": {
-              "value": "- 0.2 K (Channel #1) + 0.1 K (Channel #2) + 0.1 K (Channel #3)",
+              "value": "0 K (Channel #1) + 0.1 K (Channel #2) - 0.2 K (Channel #3)",
               "unit": "°C"
             }
           },
           "metrologicalTraceability": "Yes",
           "temperatureSensor": {
             "calibrationCertificate": "Documentation available in the laboratory",
-            "calibrationDate": "09.05.2023 (52-PM102-0413, 52-PM102-0414) 12.05.2023 (52-PM102-0412)",
+            "calibrationDate": "2022-08-08 00:00:00",
             "calibrationMethod": "Comparison method",
             "calibrationRange": {
               "value": "300 - 1200 °C",
@@ -742,10 +742,10 @@
             },
             "layout": "Wire with 2-hole ceramic beads",
             "numberOfThermocouples": "3",
-            "sensorID": "52-PM102-0412 52-PM102-0413 52-PM102-0414",
+            "sensorID": "52-PM102-0400 52-PM102-0401 52-PM102-0402",
             "sensorType": "Thermocouple",
             "temperatureDeviation": {
-              "value": "- 0.6 K (52-PM102-0412) - 0.4 K (52-PM102-0413) - 0.2 K (52-PM102-0414) T-values were corrected accordingly",
+              "value": "- 0.1 K (52-PM102-0400) - 0.1 K (52-PM102-0401) - 0.1 K (52-PM102-0402) T-values were corrected accordingly",
               "unit": "°C"
             },
             "thermocoupleLocation": "Inside",
@@ -764,7 +764,7 @@
         "testMachine": {
           "calibrationClass": "Verification: the machine fulfills the requirements for test forces >2 kN Protocol of alignment is available in the laboratory.",
           "dataAcquisition": {
-            "dataAcquisitionDescription": "See files \"Vh5205_Complementary_Data-acquisition.LIS\" and \"Vh5205_Complementary_Data-acquisition-creep.LIS\"",
+            "dataAcquisitionDescription": "See files \"2026-03_Creep-RD-CMSX-6_Data-acquisition.LIS\" and \"2026-03_Creep-RD-CMSX-6_Data-acquisition-creep.LIS\"",
             "dataAcquisitionSoftwareAndVersion": "Lab's own development (v22.08.22)",
             "dataAcquisitionTimeCheck": "Yes",
             "dataAcquisitionUnitID": "19.08",
@@ -812,13 +812,13 @@
           }
         },
         "crossSectionalDimensions": {
-          "calibrationDate": "2023-07-25 00:00:00",
+          "calibrationDate": "2022-05-02 00:00:00",
           "calibrationRange": {
             "value": "0 - 30",
             "unit": "mm"
           },
           "calibrationResult": "Meets calibration requirements",
-          "calibrationStandard": "VDI/VDE/DGQ 2618 Blatt 10.1:2001-11",
+          "calibrationStandard": "DKD-R4-3 Blatt 10.1:2018",
           "calibrationStatus": "Yes",
           "calibrationValidityTimePeriod": "12 months",
           "equipmentID": "47.02",
@@ -833,7 +833,7 @@
           }
         },
         "elongationValues": {
-          "calibrationDate": "2023-07-06 00:00:00",
+          "calibrationDate": "2022-07-07 00:00:00",
           "calibrationRange": {
             "value": "0 - 50",
             "unit": "mm"
@@ -867,19 +867,18 @@
           ]
         },
         "testJobDetails": {
-          "dateOfTestEnd": "2024-01-16 07:08:51",
-          "dateOfTestStart": "2023-12-04 09:08:51",
+          "dateOfTestStart": "2023-02-08 09:06:15",
           "project": "Vh 5205",
-          "testID": "Vh5205_C-85"
+          "testID": "Vh5205_C-78"
         },
         "testParameters": {
           "endOfTest": "Not applicable",
           "endOfTestCriterium": {
-            "endOfTestCriteriumOptions": "Time limit"
+            "endOfTestCriteriumOptions": "Test piece break"
           },
           "extensionLimit": "Not applicable",
           "initialStress": {
-            "value": "140",
+            "value": "230",
             "unit": "MPa"
           },
           "interruptionCourse": "Unloading after cooling",
@@ -897,14 +896,14 @@
           },
           "testStandardApplied": "Yes",
           "testType": "Uninterrupted creep tests with continuous monitoring of extension",
-          "timeLimit": ">  1000 h",
+          "timeLimit": "Not applicable",
           "typeOfLoading": "Tension"
         }
       },
       "TestPiece": {
-        "additionalInformationTestPiece": "Surface roughness values, Rz [µm], available for each test piece. Measurement protocols are available in the laboratory. Finishing was carried out using cylindrical grinding. Values in file \"Vh5205_Complementary_Roughness.LIS\"",
+        "additionalInformationTestPiece": "Surface roughness values, Rz [µm], available for each test piece. Measurement protocols are available in the laboratory. Finishing was carried out using cylindrical grinding. Values in file \"2026-03_Creep-RD-CMSX-6_Roughness.LIS\"",
         "testPieceHistory": "No previous experiments",
-        "testpieceID": "Vh5205_C-85",
+        "testpieceID": "Vh5205_C-78",
         "testPieceOrientationInTestMachine": "E.g., is the longitudinal axis of the test piece exactly parallel to the loading axis of the test machine?. Add a link to a file providing evidence, preferably with machine-readable (meta)data. This can be, e.g., a technical drawing.",
         "testPieceOriginAndOrientation": "See file \"Test-piece-location_v2.0.jpg\"",
         "testPieceTechnicalDrawing": "See file \"TestPieceCreepTests-TechnicalDrawing-FormA.pdf\" Specimen's dimensions correspond to \"Form A\", see table in file.",
@@ -919,33 +918,33 @@
       "TestResult": {
         "valuesRecordedAfterTestEnd": {
           "creepRuptureTime": {
-            "value": "Not applicable",
+            "value": "78.7",
             "unit": "h"
           },
           "finalGaugeLengthAfterFracture": {
-            "value": "Not applicable",
+            "value": "30.4",
             "unit": "mm"
           },
-          "fracturePosition": "Not applicable"
+          "fracturePosition": "Centered"
         },
         "valuesRecordedAtTestStart": {
           "determinationOfReferenceLength": "Case 2: Reference length for calculation of percentage extensions/elongations if the original gauge length Lo and/or extensometer Le are outside the parallel length, Lc. In this case, Lr, for calculation of percentage is corrected to consider the strain contributions of the shoulders/ridges.",
           "extensometerGaugeLength": {
-            "value": "23.8",
+            "value": "22.7",
             "unit": "mm"
           },
           "kValue_LrLo": {
-            "value": "4.51"
+            "value": "4"
           },
           "kValue_LrLe": {
-            "value": "4.48"
+            "value": "3.8"
           },
           "minimumTestPieceDiameterAtRoomTemperature": {
             "value": "6",
             "unit": "mm"
           },
           "originalGaugeLength": {
-            "value": "24",
+            "value": "23.8",
             "unit": "mm"
           },
           "parallelLength": {
@@ -953,39 +952,39 @@
             "unit": "mm"
           },
           "ratioReferenceLengthToDiameter_LrLo": {
-            "value": "4"
+            "value": "4.47"
           },
           "ratioReferenceLengthToDiameter_LrLe": {
-            "value": "3.966666666666667"
+            "value": "4.27"
           },
           "referenceLengthToCalculatePercentageElongations": {
-            "value": "24",
+            "value": "23.8",
             "unit": "mm"
           },
           "referenceLengthToCalculatePercentageExtensions": {
-            "value": "23.8",
+            "value": "22.7",
             "unit": "mm"
           }
         },
         "valuesRecordedDuringTestRun": {
           "elapsedTimeFromEndOfLoading": {
-            "value": "Data series for each test piece in the corresponding file \"Vh5205_C-85-Creep.LIS\"",
+            "value": "Data series for each test piece in the corresponding file \"Vh5205_C-##-Creep.LIS\"",
             "unit": "s / h"
           },
           "force": {
-            "value": "Data series for each test piece in the corresponding file \"Vh5205_C-85-Loading.LIS\". No overloads",
+            "value": "Data series for each test piece in the corresponding file \"Vh5205_C-##-Loading.LIS\". No overloads",
             "unit": "kN"
           },
           "heatingTime": {
-            "value": "2.04",
+            "value": "3.45",
             "unit": "h"
           },
           "soakTime": {
-            "value": "2.03",
+            "value": "1.41",
             "unit": "h"
           },
           "testDuration": {
-            "value": "1030",
+            "value": "78.7",
             "unit": "h"
           }
         }
@@ -995,51 +994,51 @@
       "TestResult": {
         "elongationValues": {
           "percentageElongationAfterCreepFracture": {
-            "value": "Not applicable",
+            "value": "28",
             "unit": "%"
           },
           "percentagePermanentElongation": {
-            "value": "0.83",
+            "value": "Not applicable",
             "unit": "%"
           },
           "percentageReductionOfAreaAfterCreepFracture": {
-            "value": "Not applicable",
+            "value": "55",
             "unit": "%"
           }
         },
         "extensionValues": {
           "percentageCreepExtension": {
-            "value": "0.828",
+            "value": "27.8",
             "unit": "%"
           },
           "percentageElasticExtension": {
-            "value": "0.177",
+            "value": "0.274",
             "unit": "%"
           },
           "percentageInitialPlasticExtension": {
-            "value": "0",
+            "value": "0.016",
             "unit": "%"
           },
           "percentageInitialTotalExtension": {
-            "value": "0.177",
+            "value": "0.29",
             "unit": "%"
           },
           "percentagePlasticExtension": {
-            "value": "0.828",
+            "value": "27.8",
             "unit": "%"
           },
           "percentageTotalExtension": {
-            "value": "1",
+            "value": "28.1",
             "unit": "%"
           }
         },
         "valuesDuringTestRun": {
           "correctedMeasuredTemperature": {
-            "value": "Data series from each sensor for each test piece in the corresponding LIS file \"Vh5205_C-85-Creep.LIS\"",
+            "value": "Data series from each sensor for each test piece in the corresponsing LIS file",
             "unit": "°C"
           },
           "percentageExtension": {
-            "value": "The data series for each test piece are available in the corresponding LIS file \"Vh5205_C-85-Creep.LIS\"",
+            "value": "The data series for each test piece are available in the corresponding LIS files",
             "unit": "%"
           }
         }

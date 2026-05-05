@@ -19,7 +19,7 @@
           "solidification": "Single crystal"
         },
         "asTestedMaterial": {
-          "geometrySizeAsTestedMaterial": "Single Crystal Investment Cast\nSee image file \"Test-piece-location_v2.0.jpg\"\nFor details see DOI: 10.7449/1980/Superalloys_1980_205_214, and DOI: 10.7449/1984/Superalloys_1984_167_176",
+          "geometrySizeAsTestedMaterial": "Single Crystal Investment Cast See image file \"Test-piece-location_v2.0.jpg\" For details see DOI: 10.7449/1980/Superalloys_1980_205_214, and DOI: 10.7449/1984/Superalloys_1984_167_176",
           "manufacturingProcessDescriptionAsTestedMaterial": "Single Crystal Investment Casting from a Vacuum Induction Refined Ingot and subsequent Heat Treatment (annealed and aged).",
           "supplier": "PCC Airfoils, Inc. Minerva, Ohio.",
           "supplyDate": "1997-01-28 00:00:00"
@@ -616,7 +616,7 @@
               "microstructureFeatureOptions": "Microstructure before testing"
             },
             "microstructureFeatureInformation": "See related article https://doi.org/10.1016/j.dib.2025.112436",
-            "microstructureImage": "See files:\nOverview-interdentritic-region-Optical.jpg\nOverview-interdentritic-region-SEM.tig\nDendrite-Optical.jpg\nDendrite-SEM.tif",
+            "microstructureImage": "See files: Overview-interdentritic-region-Optical.jpg Overview-interdentritic-region-SEM.tig Dendrite-Optical.jpg Dendrite-SEM.tif",
             "microstructureReport": "See related article https://doi.org/10.1016/j.dib.2025.112436"
           }
         ],
@@ -638,28 +638,6 @@
         }
       },
       "MeasuringAndTestEquipment": {
-        "elongationValuesAndCrossSectionalDimensions": {
-          "calibrationDate": "2023-07-06 00:00:00",
-          "calibrationRange": {
-            "value": "0 - 50",
-            "unit": "mm"
-          },
-          "calibrationResult": "Meets calibration requirements",
-          "calibrationStandard": "DIN 863-1:2017-02",
-          "calibrationValidityTimePeriod": "12 months",
-          "equipmentModelInformation": "Mitutoyo TM 321 Zeiss – Axiotech 100 HD",
-          "measuringEquipment": {
-            "measuringEquipmentOptions": "Micrometer screw gauge"
-          },
-          "measuringEquipmentsUsage": "Determination of Original gauge length, Lo, Final gauge length after fracture, Lu, Percentage permanent elongation, Aper, Percentage elongation after creep fracture, Au, and Percentage reduction of area after creep fracture, Zu",
-          "resolution": {
-            "value": "0.001",
-            "unit": "mm"
-          },
-          "type": {
-            "typeOptions": "Analog"
-          }
-        },
         "extensionValues": {
           "contactingExtensometer": {
             "calibrationCertificate": "Documentation available in the laboratory",
@@ -741,14 +719,14 @@
             "calibrationValidityTimePeriod": "12 Months",
             "referenceJunction": "Internal",
             "temperatureDeviation": {
-              "value": "- 0.2 K (Channel #1)\n+ 0.1 K (Channel #2)\n*",
+              "value": "- 0.2 K (Channel #1) + 0.1 K (Channel #2) + 0.1 K (Channel #3)",
               "unit": "°C"
             }
           },
           "metrologicalTraceability": "Yes",
           "temperatureSensor": {
             "calibrationCertificate": "Documentation available in the laboratory",
-            "calibrationDate": "09.05.2023 (52-PM102-0413, 52-PM102-0414)\n*",
+            "calibrationDate": "09.05.2023 (52-PM102-0413, 52-PM102-0414) 12.05.2023 (52-PM102-0412)",
             "calibrationMethod": "Comparison method",
             "calibrationRange": {
               "value": "300 - 1200 °C",
@@ -764,10 +742,10 @@
             },
             "layout": "Wire with 2-hole ceramic beads",
             "numberOfThermocouples": "3",
-            "sensorID": "52-PM102-0412\n52-PM102-0413\n*",
+            "sensorID": "52-PM102-0412 52-PM102-0413 52-PM102-0414",
             "sensorType": "Thermocouple",
             "temperatureDeviation": {
-              "value": "- 0.6 K (52-PM102-0412)\n- 0.4 K (52-PM102-0413)\n- 0.2 K (52-PM102-0414)\n*",
+              "value": "- 0.6 K (52-PM102-0412) - 0.4 K (52-PM102-0413) - 0.2 K (52-PM102-0414) T-values were corrected accordingly",
               "unit": "°C"
             },
             "thermocoupleLocation": "Inside",
@@ -784,7 +762,7 @@
           }
         },
         "testMachine": {
-          "calibrationClass": "Verification: the machine fulfills the requirements for test forces >2 kN\nProtocol of alignment is available in the laboratory.",
+          "calibrationClass": "Verification: the machine fulfills the requirements for test forces >2 kN Protocol of alignment is available in the laboratory.",
           "dataAcquisition": {
             "dataAcquisitionDescription": "See files \"Vh5205_Complementary_Data-acquisition.LIS\" and \"Vh5205_Complementary_Data-acquisition-creep.LIS\"",
             "dataAcquisitionSoftwareAndVersion": "Lab's own development (v22.08.22)",
@@ -824,12 +802,58 @@
           "descriptionTestFrameAndSpecimenAlignment": "Not applicable since verification was performed according to ASTM E1012",
           "testMachineID": "Zug 07",
           "testMachineType": {
-            "testMachineTypeOptions": "Lever arm"
+            "testMachineTypeOptions": "Lever arm",
+            "leverageRatio": "1:20.4"
           },
           "testPieceHolderSystem": {
             "fixingTechnique": {
               "fixingTechniqueOptions": "Threaded"
             }
+          }
+        },
+        "crossSectionalDimensions": {
+          "calibrationDate": "2023-07-25 00:00:00",
+          "calibrationRange": {
+            "value": "0 - 30",
+            "unit": "mm"
+          },
+          "calibrationResult": "Meets calibration requirements",
+          "calibrationStandard": "VDI/VDE/DGQ 2618 Blatt 10.1:2001-11",
+          "calibrationStatus": "Yes",
+          "calibrationValidityTimePeriod": "12 months",
+          "equipmentID": "47.02",
+          "equipmentModelInformation": "Mitutoyo 293-661-10 N",
+          "measuringEquipment": {
+            "measuringEquipmentOptions": "Micrometer"
+          },
+          "measuringEquipmentsUsage": "Determination of minimum test piece diameter at room temperature, D",
+          "resolution": {
+            "value": "0.001",
+            "unit": "mm"
+          }
+        },
+        "elongationValues": {
+          "calibrationDate": "2023-07-06 00:00:00",
+          "calibrationRange": {
+            "value": "0 - 50",
+            "unit": "mm"
+          },
+          "calibrationResult": "Meets calibration requirements",
+          "calibrationStandard": "DIN 863-1:2017-02",
+          "calibrationStatus": "Yes",
+          "calibrationValidityTimePeriod": "12 months",
+          "equipmentID": "72.01",
+          "equipmentModelInformation": "Mitutoyo TM 321 Zeiss – Axiotech 100 HD",
+          "measuringEquipment": {
+            "measuringEquipmentOptions": "Measuring microscope"
+          },
+          "measuringEquipmentsUsage": "Determination of Original gauge length, Lo, Final gauge length after fracture, Lu, Percentage permanent elongation, Aper, Percentage elongation after creep fracture, Au, and Percentage reduction of area after creep fracture, Zu",
+          "resolution": {
+            "value": "0.001",
+            "unit": "mm"
+          },
+          "type": {
+            "typeOptions": "Optical"
           }
         }
       },
@@ -878,12 +902,12 @@
         }
       },
       "TestPiece": {
-        "additionalInformationTestPiece": "Surface roughness values, Rz [µm], available for each test piece.\nMeasurement protocols are available in the laboratory.\nFinishing was carried out using cylindrical grinding. Values in file \"Vh5205_Complementary_Roughness.LIS\"",
+        "additionalInformationTestPiece": "Surface roughness values, Rz [µm], available for each test piece. Measurement protocols are available in the laboratory. Finishing was carried out using cylindrical grinding. Values in file \"Vh5205_Complementary_Roughness.LIS\"",
         "testPieceHistory": "No previous experiments",
         "testpieceID": "Vh5205_C-95",
-        "testPieceOrientationInTestMachine": "The axis of the cast (as-tested material), the creep test piece, and the load axis match.",
+        "testPieceOrientationInTestMachine": "E.g., is the longitudinal axis of the test piece exactly parallel to the loading axis of the test machine?. Add a link to a file providing evidence, preferably with machine-readable (meta)data. This can be, e.g., a technical drawing.",
         "testPieceOriginAndOrientation": "See file \"Test-piece-location_v2.0.jpg\"",
-        "testPieceTechnicalDrawing": "See file \"TestPieceCreepTests-TechnicalDrawing-FormA.pdf\"\nSpecimen's dimensions correspond to \"Form A\", see table in file.",
+        "testPieceTechnicalDrawing": "See file \"TestPieceCreepTests-TechnicalDrawing-FormA.pdf\" Specimen's dimensions correspond to \"Form A\", see table in file.",
         "testPieceTypeI": "Specimen according to DIN EN ISO 204:2019-4",
         "testPieceTypeII": "Round cross section",
         "testPieceTypeIII": {
@@ -905,7 +929,7 @@
           "fracturePosition": "Not applicable"
         },
         "valuesRecordedAtTestStart": {
-          "determinationOfReferenceLength": "Case 2: Reference length for calculation of percentage extensions/elongations if the original gauge length Lo and/or extensometer Le are outside the parallel length, Lc. In this case, Lr, for calculation of percentage is corrected to consider the strain contributions of the shoulders/ridges.\nCase 1",
+          "determinationOfReferenceLength": "Case 2: Reference length for calculation of percentage extensions/elongations if the original gauge length Lo and/or extensometer Le are outside the parallel length, Lc. In this case, Lr, for calculation of percentage is corrected to consider the strain contributions of the shoulders/ridges.",
           "extensometerGaugeLength": {
             "value": "22.9",
             "unit": "mm"

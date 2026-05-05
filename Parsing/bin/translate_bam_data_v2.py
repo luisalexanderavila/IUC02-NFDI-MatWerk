@@ -377,6 +377,16 @@ def translate_v2(parsed: dict, mapping_doc: dict, source_lis_file: str = "") -> 
         if not raw_value:
             continue
 
+        # Extract inline sub-properties before normalizing the enum value.
+        # Pattern: "<EnumOption>, <PropertyName> <PropertyValue>"
+        # Currently handled: testMachineTypeOptions with "Leverage ratio X:Y"
+        _extra_sibling = None
+        if schema_path.endswith("testMachineType.testMachineTypeOptions"):
+            _leverage_match = re.search(r",\s*Leverage ratio\s+(.+)$", raw_value, re.IGNORECASE)
+            if _leverage_match:
+                _extra_sibling = ("leverageRatio", _leverage_match.group(1).strip())
+                raw_value = raw_value[: _leverage_match.start()].strip()
+
         raw_value = _normalize_value_for_schema_path(schema_path, raw_value)
 
         schema_keys = schema_path.split(".")
@@ -424,6 +434,12 @@ def translate_v2(parsed: dict, mapping_doc: dict, source_lis_file: str = "") -> 
                     break
         else:
             _set_nested_safe(result, schema_keys, raw_value)
+
+            # Write any inline sub-property extracted before normalization
+            # (e.g. leverageRatio from "Lever arm, Leverage ratio 1:20.4")
+            if _extra_sibling is not None:
+                _sibling_name, _sibling_value = _extra_sibling
+                _set_nested_safe(result, schema_keys[:-1] + [_sibling_name], _sibling_value)
 
             # When the mapping target is a ComplexValue leaf (path ends in
             # ".value"), also write the sibling ".unit" from the LIS record.
