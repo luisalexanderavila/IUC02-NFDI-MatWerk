@@ -1072,11 +1072,7 @@
                         },
                         "descriptionOfTheLoadingSystem": {
                           "type": "string",
-                          "description": "Please describe the loading system and related verification in the case that calibrated weights were not used.",
-                          "enum": [
-                            "Yes",
-                            "No"
-                          ]
+                          "description": "Please describe the loading system and related verification in the case that calibrated weights were not used."
                         }
                       }
                     },
@@ -1762,7 +1758,6 @@
                         "measuringEquipmentOptions": {
                           "type": "string",
                           "enum": [
-                            "Caliper gauge",
                             "Measuring microscope",
                             "Micrometer screw gauge",
                             "Other (Please specify in the comment)"
@@ -1893,7 +1888,6 @@
                           "enum": [
                             "Caliper gauge",
                             "Measuring microscope",
-                            "Micrometer screw gauge",
                             "Other (Please specify in the comment)"
                           ]
                         }
@@ -2236,7 +2230,7 @@
             "TestResult": {
               "type": "object",
               "properties": {
-                "valuesDuringTestRun": {
+                "valuesRecordedDuringTestRun": {
                   "type": "object",
                   "required": [
                     "correctedMeasuredTemperature",
