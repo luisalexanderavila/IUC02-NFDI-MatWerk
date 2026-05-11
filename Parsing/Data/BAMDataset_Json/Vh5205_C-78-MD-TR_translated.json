@@ -649,7 +649,7 @@
             },
             "calibrationStandard": "DIN EN ISO 9513:2013",
             "calibrationValidityTimePeriod": "12 Months",
-            "extensionAveraging": "No",
+            "extensionAveraging": "Not applicable",
             "extensionRangeLowerLimit": {
               "value": "-10 % / -2,5 mm",
               "unit": "%  / mm"
@@ -677,10 +677,10 @@
         "extensometerSystem": {
           "displacementMeasuringMethod": "Contacting method",
           "sensorTypeContactingMethod": {
-            "sensorTypeContactingMethodOptions": "Clip-on extensometer"
+            "sensorTypeContactingMethodOptions": "High-Temperature Axial Extensometer"
           },
           "sensorTypeNonContactingMethod": {
-            "sensorTypeNonContactingMethodOptions": "Laserextensometer"
+            "sensorTypeNonContactingMethodOptions": "Not applicable"
           }
         },
         "laboratoryConditions": {
@@ -701,7 +701,7 @@
             },
             "calibrationStandard": "Not applicable",
             "calibrationValidityTimePeriod": "12 months",
-            "loadSensorCalibration": "Yes",
+            "loadSensorCalibration": "Yes The load cell was checked with calibrated weights. Error limit: ± 1 %",
             "loadSensorDuringLoading": "Yes"
           }
         },
@@ -711,15 +711,15 @@
             "calibrationDate": "2022-07-12 00:00:00",
             "calibrationMethod": "Electrical simulation",
             "calibrationRange": {
-              "value": "100 - 1300 °C",
+              "value": "100 - 1300",
               "unit": "°C"
             },
-            "calibrationStandard": "EURAMET/cg-11/v0.1",
+            "calibrationStandard": "EURAMET/cg-11/v.01",
             "calibrationStatus": "Yes",
             "calibrationValidityTimePeriod": "12 Months",
             "referenceJunction": "Internal",
             "temperatureDeviation": {
-              "value": "0 K (Channel #1) + 0.1 K (Channel #2) - 0.2 K (Channel #3)",
+              "value": "0 K (Channel #1); + 0.1 K (Channel #2); - 0.2 K (Channel #3)",
               "unit": "°C"
             }
           },
@@ -729,11 +729,11 @@
             "calibrationDate": "2022-08-08 00:00:00",
             "calibrationMethod": "Comparison method",
             "calibrationRange": {
-              "value": "300 - 1200 °C",
+              "value": "300 - 1200",
               "unit": "°C"
             },
             "calibrationStandard": {
-              "calibrationStandardOptions": "ASTM E220"
+              "calibrationStandardOptions": "ASTM E220-19"
             },
             "calibrationStatus": "Yes",
             "calibrationValidityTimePeriod": "12 months",
@@ -742,10 +742,10 @@
             },
             "layout": "Wire with 2-hole ceramic beads",
             "numberOfThermocouples": "3",
-            "sensorID": "52-PM102-0400 52-PM102-0401 52-PM102-0402",
+            "sensorID": "52-PM102-0400; 52-PM102-0401; 52-PM102-0402",
             "sensorType": "Thermocouple",
             "temperatureDeviation": {
-              "value": "- 0.1 K (52-PM102-0400) - 0.1 K (52-PM102-0401) - 0.1 K (52-PM102-0402) T-values were corrected accordingly",
+              "value": "- 0.1 K (52-PM102-0400); - 0.1 K (52-PM102-0401); - 0.1 K (52-PM102-0402); T-values were corrected accordingly",
               "unit": "°C"
             },
             "thermocoupleLocation": "Inside",
@@ -753,7 +753,7 @@
               "thermocoupleTypeOptions": "S"
             },
             "wireGauge": {
-              "value": "0.51 mm",
+              "value": "0.51",
               "unit": "mm"
             }
           },
@@ -783,10 +783,10 @@
               "unit": "kN"
             },
             "calibrationStandard": {
-              "calibrationStandardOptions": "DIN EN ISO 7500-2"
+              "calibrationStandardOptions": "DIN EN ISO 7500-2: 2007"
             },
             "calibrationValidityTimePeriod": "24 Months",
-            "descriptionOfTheLoadingSystem": "No",
+            "descriptionOfTheLoadingSystem": "Not applicable since calibrated weights were used",
             "useOfCalibratedWeights": "Yes",
             "verificationOfLoadingSystem": "Yes"
           },
@@ -798,8 +798,8 @@
             "value": "1",
             "unit": "kN"
           },
-          "testFrameAndSpecimenAlignment": "Yes",
-          "descriptionTestFrameAndSpecimenAlignment": "Not applicable since verification was performed according to ASTM E1012",
+          "testFrameAndSpecimenAlignment": "Yes. Verification was performed according to ASTM E1012 on 18.07.2011.",
+          "testFrameAndSpecimenAlignmentDescription": "Not applicable since verification was performed according to ASTM E1012",
           "testMachineID": "Zug 07",
           "testMachineType": {
             "testMachineTypeOptions": "Lever arm",
@@ -882,7 +882,7 @@
             "value": "230",
             "unit": "MPa"
           },
-          "interruptionCourse": "Unloading after cooling",
+          "interruptionCourse": "Not applicable",
           "loadControlType": "Constant Force",
           "preload": {
             "value": "0.2 kN (20.4 kg)",
@@ -893,7 +893,7 @@
             "unit": "°C"
           },
           "testStandard": {
-            "testStandardOptions": "ISO 204"
+            "testStandardOptions": "DIN EN ISO 204:2019-4"
           },
           "testStandardApplied": "Yes",
           "testType": "Uninterrupted creep tests with continuous monitoring of extension",
@@ -929,7 +929,7 @@
           "fracturePosition": "Centered"
         },
         "valuesRecordedAtTestStart": {
-          "determinationOfReferenceLength": "Case 2: Reference length for calculation of percentage extensions/elongations if the original gauge length Lo and/or extensometer Le are outside the parallel length, Lc. In this case, Lr, for calculation of percentage is corrected to consider the strain contributions of the shoulders/ridges.",
+          "determinationOfReferenceLength": "Case 1",
           "extensometerGaugeLength": {
             "value": "22.7",
             "unit": "mm"
@@ -1033,7 +1033,7 @@
             "unit": "%"
           }
         },
-        "valuesDuringTestRun": {
+        "valuesRecordedDuringTestRun": {
           "correctedMeasuredTemperature": {
             "value": "Data series from each sensor for each test piece in the corresponding LIS file \"Vh5205_C-78-Creep.LIS\"",
             "unit": "°C"
