@@ -46,7 +46,7 @@ logging.basicConfig(level=logging.INFO)
 Logger = logging.getLogger(__name__)
 
 DEFAULT_MAPPING_FILE = os.path.join(_parsing_root, "Metadata", "Mappings", "BAM2schema_v2.json")
-DEFAULT_SCHEMA_FILE = os.path.join(_parsing_root, "..", "Data Schema", "2026-05_Data-Schema_Creep_v2.1.4.json")
+DEFAULT_SCHEMA_FILE = os.path.join(_parsing_root, "..", "Data Schema", "2026-06_Data-Schema_Creep_v2.1.5.json")
 
 
 # ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -145,9 +145,6 @@ def _normalize_value_for_schema_path(schema_path: str, raw_value: str):
         "testMachine.testMachineType.testMachineTypeOptions": {
             "lever arm": "Lever arm",
             "electromechanical drive": "Electromechanical drive",
-        },
-        "testMachine.loadingSystem.calibrationStandard.calibrationStandardOptions": {
-            "din en iso 7500-2": "DIN EN ISO 7500-2",
         },
         "temperatureSensor.calibrationStandard.calibrationStandardOptions": {
             "astm e220": "ASTM E220",

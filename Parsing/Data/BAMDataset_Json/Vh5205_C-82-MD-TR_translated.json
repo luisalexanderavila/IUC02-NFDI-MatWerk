@@ -785,7 +785,8 @@
                             "unit": "kN"
                         },
                         "calibrationStandard": {
-                            "calibrationStandardOptions": "DIN EN ISO 7500-2"
+                            "calibrationStandardOptions": "Other (Please specify in the comment)",
+                            "otherCalibrationStandard": "DIN EN ISO 7500-2: 2007"
                         },
                         "calibrationValidityTimePeriod": "24 Months",
                         "descriptionOfTheLoadingSystem": "Not applicable since calibrated weights were used",
