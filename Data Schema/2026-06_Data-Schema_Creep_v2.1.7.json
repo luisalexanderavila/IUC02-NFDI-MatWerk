@@ -945,13 +945,13 @@
                                             "type": "string",
                                             "description": "Verification of Test Frame and Specimen Alignment according to ASTM E1012? Include description of the procedure if available."
                                         },
-                                        "testFrameAndSpecimenAlignmentDate": {
-                                            "type": "string",
-                                            "description": "Date of verification of Test Frame and Specimen Alignment"
-                                        },
                                         "testFrameAndSpecimenAlignmentDescription": {
                                             "type": "string",
                                             "description": "Please provide a description on the procedure followed for the Verification of Test Frame and Specimen Alignment if different from ASTM E1012."
+                                        },
+                                        "testFrameAndSpecimenAlignmentDate": {
+                                            "type": "string",
+                                            "description": "Date of verification of Test Frame and Specimen Alignment"
                                         },
                                         "calibrationClass": {
                                             "type": "string",
