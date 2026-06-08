@@ -139,7 +139,6 @@ def _normalize_value_for_schema_path(schema_path: str, raw_value: str):
         },
         "testParameters.testStandard.testStandardOptions": {
             "iso 204": "ISO 204",
-            "din en iso 204": "ISO 204",
             "astm e139": "ASTM E139",
         },
         "testMachine.testMachineType.testMachineTypeOptions": {

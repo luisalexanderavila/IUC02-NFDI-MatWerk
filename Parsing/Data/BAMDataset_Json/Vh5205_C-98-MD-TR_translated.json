@@ -898,7 +898,8 @@
                         "unit": "°C"
                     },
                     "testStandard": {
-                        "testStandardOptions": "ISO 204"
+                        "testStandardOptions": "Other (Please specify in the comment)",
+                        "otherTestStandard": "DIN EN ISO 204:2019-4"
                     },
                     "testStandardApplied": "Yes",
                     "testType": "Uninterrupted creep tests with continuous monitoring of extension",
