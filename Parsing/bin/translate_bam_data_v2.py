@@ -145,9 +145,9 @@ def _normalize_value_for_schema_path(schema_path: str, raw_value: str):
             "lever arm": "Lever arm",
             "electromechanical drive": "Electromechanical drive",
         },
-        "temperatureSensor.calibrationStandard.calibrationStandardOptions": {
-            "astm e220": "ASTM E220",
-        },
+        # "astm e220" removed: "ASTM E220-19" (versioned) was caught via startswith,
+        # silently mapping to "ASTM E220". Versioned references route to Other via B6.
+        "temperatureSensor.calibrationStandard.calibrationStandardOptions": {},
         "testPiece.testPieceTypeI": {
             "specimen according to standard": "Specimen according to standard",
             "specimen according to din en iso": "Specimen according to standard",
@@ -157,21 +157,30 @@ def _normalize_value_for_schema_path(schema_path: str, raw_value: str):
             "split tube furnace with two-zones": "Split Tube Furnace with Two-zones",
             "split tube furnace with three-zones": "Split Tube Furnace with Three-zones",
         },
-        "elongationValuesAndCrossSectionalDimensions.measuringEquipment.measuringEquipmentOptions": {
-            "micrometer": "Micrometer screw gauge",
+        # elongationValues and crossSectionalDimensions were previously a combined section;
+        # now split into separate schema paths.
+        "elongationValues.measuringEquipment.measuringEquipmentOptions": {
             "measuring microscope": "Measuring microscope",
             "caliper gauge": "Caliper gauge",
+        },
+        "crossSectionalDimensions.measuringEquipment.measuringEquipmentOptions": {
+            "micrometer": "Micrometer screw gauge",
+            "measuring microscope": "Measuring microscope",
+        },
+        "elongationValues.type.typeOptions": {
+            "optical": "Analog",
+            "digital": "Digital",
+            "analog": "Analog",
+        },
+        "crossSectionalDimensions.type.typeOptions": {
+            "optical": "Analog",
+            "digital": "Digital",
+            "analog": "Analog",
         },
         "temperatureSensor.thermocoupleLocation": {
             "inside the gauge length": "Inside",
             "inside": "Inside",
             "outside": "Outside",
-        },
-        "materialHistoryAndCondition.heatTreatment.heatTreatmentState.heatTreatmentStateOptions": {
-            "none": "None",
-            "annealed": "Annealed",
-            "hardened": "Hardened",
-            "aged": "Hardened",
         },
         "materialHistoryAndCondition.microstructure.0.microstructureFeature.microstructureFeatureOptions": {
             "matrix": "Matrix",
@@ -187,16 +196,16 @@ def _normalize_value_for_schema_path(schema_path: str, raw_value: str):
         "microstructureNi-BasedSX.grainSizeDeterminationMethod.grainSizeDeterminationMethodOptions": {
             "line intercept": "Line Intercept",
             "circular intercept": "Circular Intercept",
-            "not applicable": "Line Intercept",
+            # "not applicable" intentionally omitted: routes to Other via B6
         },
-        "extensometerSystem.sensorTypeContactingMethod.sensorTypeContactingMethodOptions": {
-            "high-temperature axial extensometer": "Clip-on extensometer",
-        },
-        "elongationValuesAndCrossSectionalDimensions.type.typeOptions": {
-            "optical": "Analog",
-            "digital": "Digital",
-            "analog": "Analog",
-        },
+        # "extensometerSystem.sensorTypeContactingMethod.sensorTypeContactingMethodOptions" removed:
+        # "High-Temperature Axial Extensometer" is not semantically equivalent to any enum option
+        # and is handled correctly by B6 Other-detection.
+        # "elongationValuesAndCrossSectionalDimensions.type.typeOptions" removed — outdated
+        # combined path. Replaced above by separate elongationValues / crossSectionalDimensions entries.
+        # "materialHistoryAndCondition.heatTreatment.heatTreatmentState.heatTreatmentStateOptions"
+        # removed — dead code: PascalCase path never matched camelCase suffix key.
+        # "Aged" is not an exact match for any enum option and is handled by B6 Other-detection.
         "extensionValues.contactingExtensometer.extensionAveraging": {
             "yes": "Yes",
             "no": "No",

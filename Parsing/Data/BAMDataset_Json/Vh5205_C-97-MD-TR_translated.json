@@ -628,7 +628,8 @@
                         "unit": "µm"
                     },
                     "grainSizeDeterminationMethod": {
-                        "grainSizeDeterminationMethodOptions": "Line Intercept"
+                        "grainSizeDeterminationMethodOptions": "Other (Please specify in the comment)",
+                        "otherGrainSizeDeterminationMethod": "Not applicable"
                     },
                     "grainSizeMeausuringRegion": "Not applicable",
                     "grainSizeDistribution": "Not applicable",
@@ -678,7 +679,8 @@
                 "extensometerSystem": {
                     "displacementMeasuringMethod": "Contacting method",
                     "sensorTypeContactingMethod": {
-                        "sensorTypeContactingMethodOptions": "Clip-on extensometer"
+                        "sensorTypeContactingMethodOptions": "Other (Please specify in the comment)",
+                        "otherSensorTypeContactingMethod": "High-Temperature Axial Extensometer"
                     },
                     "sensorTypeNonContactingMethod": {
                         "sensorTypeNonContactingMethodOptions": "Other (Please specify in the comment)",
@@ -735,7 +737,8 @@
                             "unit": "°C"
                         },
                         "calibrationStandard": {
-                            "calibrationStandardOptions": "ASTM E220"
+                            "calibrationStandardOptions": "Other (Please specify in the comment)",
+                            "otherCalibrationStandard": "ASTM E220-19"
                         },
                         "calibrationStatus": "Yes",
                         "calibrationValidityTimePeriod": "12 months",
@@ -827,8 +830,7 @@
                     "equipmentID": "47.02",
                     "equipmentModelInformation": "Mitutoyo 293-661-10 N",
                     "measuringEquipment": {
-                        "measuringEquipmentOptions": "Other (Please specify in the comment)",
-                        "otherMeasuringEquipment": "Micrometer"
+                        "measuringEquipmentOptions": "Micrometer screw gauge"
                     },
                     "measuringEquipmentsUsage": "Determination of minimum test piece diameter at room temperature, D",
                     "resolution": {
@@ -857,8 +859,7 @@
                         "unit": "mm"
                     },
                     "type": {
-                        "typeOptions": "Other (Please specify in the comment)",
-                        "otherType": "Optical"
+                        "typeOptions": "Analog"
                     }
                 }
             },
