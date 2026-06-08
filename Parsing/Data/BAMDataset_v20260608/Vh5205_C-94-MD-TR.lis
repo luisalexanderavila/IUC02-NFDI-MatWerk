@@ -1,0 +1,259 @@
+CATEGORIZATION	ENTRY	ENTRY - ADDITIONAL INFORMATION	SYMBOL	UNIT	REQUIREMENT	INFORMATION	INFORMATION COMMON TO ALL (*)
+Metadata --> Test info --> Test job details	Date of test start				Mandatory	2023-10-18 09:14:57	*
+Metadata --> Test info --> Test job details	Date of test end				Mandatory	2023-11-29 12:14:57	*
+Metadata --> Test info --> Test job details	Test ID				Mandatory	Vh5205_C-94	*
+Metadata --> Test info --> Test job details	Project				Optional	Vh 5205	
+Metadata --> Test info --> Test parameters	Test standard applied	Was the test performed according to a test standard? 			Mandatory	Yes	
+Metadata --> Test info --> Test parameters	Test standard				Mandatory	DIN EN ISO 204:2019-4	
+Metadata --> Test info --> Test parameters	Specified temperature		T	°C	Mandatory	980	
+Metadata --> Test info --> Test parameters	Type of loading				Mandatory	Tension	
+Metadata --> Test info --> Test parameters	Load control type				Mandatory	Constant force	
+Metadata --> Test info --> Test parameters	Initial stress		Ro	MPa	Mandatory	140	*
+Metadata --> Test info --> Test parameters	Test type				Mandatory	Uninterrupted creep tests with continuous monitoring of extension	
+Metadata --> Test info --> Test parameters	End of test criterium				Mandatory	Time limit	*
+Metadata --> Test info --> Test parameters	Time Limit				Mandatory	>  1000 h	*
+Metadata --> Test info --> Test parameters	Extension Limit				Mandatory	Not applicable	
+Metadata --> Test info --> Test parameters	End of test	Describe the end of test if none of the preset criteria (time or extension limit) could be met			Optional	Not applicable	
+Metadata --> Test info --> Test parameters	Interruption course				Mandatory	Unloading after cooling	*
+Metadata --> Test info --> Test parameters	Test force			kN	Optional		*
+Metadata --> Test info --> Test parameters	Preload	Part of the test force		kN	Mandatory	0.2 kN (20.4 kg)	
+Metadata --> Test info --> Test parameters	Additional information				Optional		*
+Metadata --> Test info --> Related research outcome	Any related articles				Optional	Yes	
+Metadata --> Test info --> Related research outcome	Related article	Multiple input entries for instance for MSE research article DOI, Zenodo DOI, FDO			Optional	https://doi.org/10.1016/j.dib.2025.112436	
+Metadata --> Material history and condition	Material Identifier	E.g., NIMONIC 75, 2.4630, CMSX-6, CMSX-4, ERBO1, …			Mandatory	CMSX-6	
+Metadata --> Material history and condition --> As-manufactured material	Phase transformation during test				Optional		*
+Metadata --> Material history and condition --> As-manufactured material	Possible phase transformation	Is any phase transformation expected due to temperature during the creep test?. Please provide any supporting material if possible. Answers could be, e.g., a link to a TTT-curve or a DOI of an article			Optional		*
+Metadata --> Material history and condition --> As-manufactured material	Form of as-manufactured material	E.g., Cast, Ingot, Extrusion rod, …			Mandatory	Ingot	
+Metadata --> Material history and condition --> As-manufactured material	Geometry/size as-manufactured material	Please provide a description or/and any supporting material, e.g.,  link to image or technical drawing, if possible.			Mandatory	Ingot with 4" Diameter	
+Metadata --> Material history and condition --> As-manufactured material	Manufacturing process description as-manufactured material	E.g., Cast / Melting, Casting, and Remelting  / Induction melting in air, casting into a circular ingot and then electroslag remelting			Optional	Vacuum Induction Refined	
+Metadata --> Material history and condition --> As-manufactured material	Casting temperature			°C	Optional		
+Metadata --> Material history and condition --> As-manufactured material	Casting speed				Optional		
+Metadata --> Material history and condition --> As-manufactured material	Solidification	Single/Polycrystal solidified?			Mandatory	Single Crystal	
+Metadata --> Material history and condition --> As-manufactured material	Condition				Mandatory	Heat Treated	
+Metadata --> Material history and condition --> As-tested material	Supplier				Mandatory	PCC Airfoils, Inc. Minerva, Ohio.	
+Metadata --> Material history and condition --> As-tested material	Geometry/size as-tested material	The test piece is manufactured from the as-tested material. Please add a description or a link to Image or technical drawing. The as-tested material is the material to be tested. The as-tested material can be a component.			Mandatory	Single Crystal Investment Cast
+See image file "Test-piece-location_v2.0.jpg"
+For details see DOI: 10.7449/1980/Superalloys_1980_205_214, and DOI: 10.7449/1984/Superalloys_1984_167_176	
+Metadata --> Material history and condition --> As-tested material	Manufacturing process description as-tested material				Mandatory	Single Crystal Investment Casting from a Vacuum Induction Refined Ingot and subsequent Heat Treatment (annealed and aged).	
+Metadata --> Material history and condition --> As-tested material	Supply Date				Mandatory	1997-01-28 00:00:00	
+Metadata --> Material history and condition --> As-tested material	Order number				Optional		
+Metadata --> Material history and condition --> Heat treatment	Heat treatment - State				Mandatory	Aged	
+Metadata --> Material history and condition --> Heat treatment	Multistage annealing?				Optional	Yes	
+Metadata --> Material history and condition --> Heat treatment	Multistage ageing?				Optional	Yes	
+Metadata --> Material history and condition --> Heat treatment	Heat treatment - Annealing - Description				Mandatory	See file "Vh5205_Complementary_Heat-treatment.LIS"
+Metadata --> Material history and condition --> Heat treatment	Heat treatment - Ageing - Description				Mandatory	See file "Vh5205_Complementary_Heat-treatment.LIS"
+Metadata --> Material history and condition --> Heat treatment	Heat treatment - Protocol	Link to file, preferably with machine-readable (meta)dataeta)data			Optional		
+Metadata --> Material history and condition --> Microstructure	Microstructure feature 1				Mandatory	Microstructure before testing	
+Metadata --> Material history and condition --> Microstructure	Characterization method 1	E.g., STEM, HRTEM, TEM-EDX, AFM, SEM, SEM-EBSD, ….			Mandatory	Light and electron microscopy	
+Metadata --> Material history and condition --> Microstructure	Measured condition 1	E.g., as-manufactured, heat-treated, before testing, after testing			Mandatory	As-tested	
+Metadata --> Material history and condition --> Microstructure	Measuring position 1	Specify position(s) for bulk (middle/top/bottom/surface) and/or microstructure feature (matrix, interdendtitic region, phase,...) 			Mandatory	Bulk	
+Metadata --> Material history and condition --> Microstructure	Microstructure feature 1 - Information	Include all relevant characterization results			Optional	See related article https://doi.org/10.1016/j.dib.2025.112436	
+Metadata --> Material history and condition --> Microstructure	Microstructure Image 1	Link to File, e.g., an optical micrograph, preferably with machine-readable (meta)data			Optional	See files:
+Overview-interdentritic-region-Optical.jpg
+Overview-interdentritic-region-SEM.tig
+Dendrite-Optical.jpg
+Dendrite-SEM.tif	
+Metadata --> Material history and condition --> Microstructure	Microstructure report 1	Link to file, preferably with machine-readable (meta)data			Optional	See related article https://doi.org/10.1016/j.dib.2025.112436	
+Metadata --> Material history and condition --> Microstructure	Grain size	If polycrystal		µm	Mandatory	Not applicable	
+Metadata --> Material history and condition --> Microstructure	Grain size - Determination method				Mandatory	Not applicable	
+Metadata --> Material history and condition --> Microstructure	Grain size - measuring region	E.g., in the bulk			Mandatory	Not applicable	
+Metadata --> Material history and condition --> Microstructure	Grain size distribution	Link to file, preferably with machine-readable (meta)data			Optional	Not applicable	
+Metadata --> Material history and condition --> Microstructure	Grain - Additional Information	Include all further relevant characterization results			Optional	Not applicable	
+Metadata --> Material history and condition --> Microstructure	Reprecipitated gamma-gamma prime regions 	Completely dissolved and re-precipitated gamma-gamma' regions		%	Optional		
+Metadata --> Material history and condition --> Microstructure	Gamma prime particles - average size			µm	Optional		
+Metadata --> Material history and condition --> Microstructure	Gamma prime particles - maximum size			µm	Optional		
+Metadata --> Material history and condition --> Microstructure	Dendrite spacings	 Please describe the procedure and add  a link to file, preferably with machine-readable (meta)data or add a reference to paper and section			Optional		
+Metadata --> Material history and condition --> Microstructure	Proof of single crystallinity	Link to file, preferably with machine-readable (meta)data			Optional	The absence of grain boundaries was verified by visual inspection of the investment casts surface after electrolytical etching.	
+Metadata --> Material history and condition --> Microstructure	Single crystal orientation 	Link to file, preferably with machine-readable (meta)data. Laue Crystal Verification. Must be documented for each test piece.			Mandatory	2.7	*
+Metadata --> Material history and condition --> Microstructure	Single crystal orientation - Determination method				Mandatory	Laue Crystal Verification. A Scorpio system (DOI: 10.1088/0957-0233/6/1/021) was used. The angle alpha indicates the deviation of the [001]-direction from the symmetry axis of the respective cast (as-tested material). 	
+Metadata --> Material history and condition --> Microstructure	Single crystal orientation - Measuring point				Mandatory	The orientation was determined at the lower end (right side in file "Test-piece-location_v2.0.jpg") of each cast.	
+Metadata --> Material history and condition --> Microstructure	Orientation - Determination accuracy				Optional		
+Metadata --> Material history and condition --> Chemical composition	Measured condition				Mandatory	As-tested	
+Metadata --> Material history and condition --> Chemical composition	Measuring position	Specify position(s) for bulk (middle/top/bottom/surface) and/or microstructure feature (matrix, interdendtitic region, phase,...) 			Mandatory	Master melt	
+Metadata --> Material history and condition --> Chemical composition	Chemical composition - nominal	Link to file, preferably with machine-readable (meta)data  or add the wt.-% value of for each element		wt.-% / at.-%	Mandatory	See file "Vh5205_Complementary_Ch.-Comp.-nominal.LIS"	
+Metadata --> Material history and condition --> Chemical composition	Chemical composition - measured	Include precision, if available. Link to file, preferably with machine-readable (meta)data  or add the wt.-% value of for each element		wt.-% / at.-%	Mandatory	See file "Vh5205_Complementary_Ch.-Comp.-measured.LIS"	
+Metadata --> Material history and condition --> Chemical composition	Measurement method	Provide a description of the used method(s) and details about measurement volume/points			Mandatory	See file "Vh5205_Complementary_Ch.-Comp.-measured.LIS"
+Metadata --> Material history and condition --> NDT Results	Crack or defect inspection - Method	E.g., Penetrant certification/Radiographic certification/XCT/X-Ray film. Link to file, preferably with machine-readable (meta)data			Optional		*
+Metadata --> Material history and condition --> NDT Results	Crack or defect inspection - Result				Optional		*
+Metadata --> Material history and condition --> Mechanical tests results	Proof strength - room temperature	0.2 % Proof strength at room temperature		MPa	Optional		
+Metadata --> Material history and condition --> Mechanical tests results	Proof strength - creep test temperature	0.2 % Proof strength at creep test temperature		MPa	Optional	See file "Vh5205_Complementary_Rp0.2.LIS" and related reference dataset https://doi.org/10.5281/zenodo.17846616
+Metadata --> Material history and condition --> Mechanical tests results	Hardness				Optional		
+Metadata --> Test piece	Test piece ID				Optional	Vh5205_C-94	*
+Metadata --> Test piece	Workshop order ID				Optional		*
+Metadata --> Test piece	Test piece history	Link to file, preferably with machine-readable (meta)data. The file(s) can include, e.g., data or documentation from previous experiments.			Optional	No previous experiments	
+Metadata --> Test piece	Test piece type I				Mandatory	Specimen according to standard	
+Metadata --> Test piece	Test piece type I standard				Optional	DIN EN ISO 204:2019-4	
+Metadata --> Test piece	Test piece type II				Mandatory	Round cross section	
+Metadata --> Test piece	Test piece type III				Mandatory	Smooth test piece	
+Metadata --> Test piece	Test piece technical drawing	Link to file, preferably with machine-readable (meta)data			Mandatory	See file "TestPieceCreepTests-TechnicalDrawing-FormA.pdf"
+Specimen's dimensions correspond to "Form A", see table in file.	
+Metadata --> Test piece	Test piece origin and orientation	Describe the exact location / positioning of the test piece within the as-tested material. E.g.: Do rolling direction and the longitudinal axis coincide?. Is the test piece located on top or bottom. Do coordinate systems of as-tested material and test piece coincide?. Add a link to a file, e.g., a technical drawing showing this, preferably with machine-readable (meta)data.			Mandatory	See file "Test-piece-location_v2.0.jpg"	
+Metadata --> Test piece	Test piece orientation in test machine	Describe the exact orientation of the test piece within the test machine. 
+E.g., is the longitudinal axis of the test piece exactly parallel to the loading axis of the test machine?. Add a link to a file providing evidence, preferably with machine-readable (meta)data. This can be, e.g., a technical drawing.			Mandatory	The axis of the cast (as-tested material), the creep test piece, and the load axis match.	
+Metadata --> Test piece	Additional information test piece	Add the information or a link to file, preferably with machine-readable (meta)data, e.g., Roughness			Optional	Surface roughness values, Rz [µm], available for each test piece.
+Measurement protocols are available in the laboratory.
+Finishing was carried out using cylindrical grinding. Values in file "Vh5205_Complementary_Roughness.LIS"
+Metadata --> Measuring and test equipment --> Test machine	Test machine ID				Optional	Zug 07	
+Metadata --> Measuring and test equipment --> Test machine	Test machine type				Optional	Lever arm, Leverage ratio 1:20.4	
+Metadata --> Measuring and test equipment --> Test machine	Minimum applicable force			kN	Optional	1	
+Metadata --> Measuring and test equipment --> Test machine	Maximum applicable force			kN	Optional	20	
+Metadata --> Measuring and test equipment --> Test machine	Test frame and specimen alignment	Verification of Test Frame and Specimen Alignment according to ASTM E1012?			Mandatory	Yes	
+Metadata --> Measuring and test equipment --> Test machine	Test frame and specimen alignment - description	Please provide a description on the procedure followed for the Verification of Test Frame and Specimen Alignment if different from ASTM E1012			Mandatory	Not applicable since verification was performed according to ASTM E1012	
+Metadata --> Measuring and test equipment --> Test machine	Test frame and specimen alignment - Date				Optional	18.07.2011	
+Metadata --> Measuring and test equipment --> Test machine	Calibration class	Calibration class of test frame and specimen alignment, e.g., 5 / 5 starting from 3 kN (according to ASTM E1012)			Mandatory	Verification: the machine fulfills the requirements for test forces >2 kN
+Protocol of alignment is available in the laboratory.	
+Metadata --> Measuring and test equipment --> Test machine --> Heating system	Furnace type				Mandatory	Split Tube Furnace with two-zones	
+Metadata --> Measuring and test equipment --> Test machine --> Test piece holder system	Fixing technique				Mandatory	Threaded	
+Metadata --> Measuring and test equipment --> Test machine --> Loading system	Verification of loading system	Was the loading system calibrated/verified?			Mandatory	Yes	
+Metadata --> Measuring and test equipment --> Test machine --> Loading system	Calibration certificate	Link to file, preferably with machine-readable (meta)data. Please specify which device/feature/part of the test machine was calibrated.			Optional		
+Metadata --> Measuring and test equipment --> Test machine --> Loading system	Calibration date 				Mandatory	2022-08-05 00:00:00	
+Metadata --> Measuring and test equipment --> Test machine --> Loading system	Calibration validity time period				Mandatory	24 Months	
+Metadata --> Measuring and test equipment --> Test machine --> Loading system	Calibration standard				Mandatory	DIN EN ISO 7500-2: 2007	
+Metadata --> Measuring and test equipment --> Test machine --> Loading system	Calibration class				Mandatory	1	
+Metadata --> Measuring and test equipment --> Test machine --> Loading system	Calibration range			kN	Mandatory	2 - 20 kN and 1 - 10 kN (class 1 for both)	
+Metadata --> Measuring and test equipment --> Test machine --> Loading system	Use of calibrated weights	Were calibrated weights used to apply the test force?			Mandatory	Yes	
+Metadata --> Measuring and test equipment --> Test machine --> Loading system	Description of the loading system	Please describe the loading system and related verification in the case that calibrated weights were not used.			Mandatory	Not applicable since calibrated weights were used	
+Metadata --> Measuring and test equipment --> Test machine --> Data acquisition	Data acquisition unit - Model information				Optional	National Instruments NI SXCI-1600	
+Metadata --> Measuring and test equipment --> Test machine --> Data acquisition	Data acquisition unit - ID				Optional	19.08	
+Metadata --> Measuring and test equipment --> Test machine --> Data acquisition	Data acquisition software and version				Mandatory	Lab's own development (v22.08.22)	
+Metadata --> Measuring and test equipment --> Test machine --> Data acquisition	Data acquisition - description				Mandatory	See files "Vh5205_Complementary_Data-acquisition.LIS" and "Vh5205_Complementary_Data-acquisition-creep.LIS"
+Metadata --> Measuring and test equipment --> Test machine --> Data acquisition	Data acquisition time check	Was the time checked during data acquisition?			Optional	Yes	
+Metadata --> Measuring and test equipment --> Load-measuring system --> Load sensor	Load sensor during loading	Was a load sensor used during loading?			Mandatory	Yes	
+Metadata --> Measuring and test equipment --> Load-measuring system --> Load sensor	Load sensor calibration	Was the load sensor calibrated?			Mandatory	Yes
+The load cell was checked with calibrated weights. Error limit: ± 1 %	
+Metadata --> Measuring and test equipment --> Load-measuring system --> Load sensor	Calibration certificate	Link to file, preferably with machine-readable (meta)data.			Optional	Documentation available in the laboratory	
+Metadata --> Measuring and test equipment --> Load-measuring system --> Load sensor	Calibration date 				Mandatory	2023-06-21 00:00:00	
+Metadata --> Measuring and test equipment --> Load-measuring system --> Load sensor	Calibration validity time period				Mandatory	12 months	
+Metadata --> Measuring and test equipment --> Load-measuring system --> Load sensor	Calibration standard				Mandatory	Not applicable	
+Metadata --> Measuring and test equipment --> Load-measuring system --> Load sensor	Calibration class				Mandatory	Not applicable	
+Metadata --> Measuring and test equipment --> Load-measuring system --> Load sensor	Calibration Range			kN	Mandatory	0 kN to 20 kN	
+Metadata --> Measuring and test equipment --> Load-measuring system --> Data acquisition	Force recording	Was the force recorded continuously or periodically (e.g. during loading)?			Mandatory	Phase-wise (during loading)	
+Metadata --> Measuring and test equipment --> Laboratory conditions	Room temperature	Was the room temperature recorded and checked?			Mandatory	Yes	
+Metadata --> Measuring and test equipment --> Laboratory conditions	Room humidity	Was the room humidity recorded and checked?			Optional	Yes	
+Metadata --> Measuring and test equipment --> Temperature-measuring system	Temperature signal	Which temperature signal was used for temperature control?			Mandatory	Via furnace	
+Metadata --> Measuring and test equipment --> Temperature-measuring system	Metrological traceability	Yes, if temperature sensor and data acquisition are calibrated.			Mandatory	Yes	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Sensor type				Mandatory	Thermocouple	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Sensor ID				Optional	52-PM102-0412
+52-PM102-0413
+52-PM102-0414	*
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Thermocouple type				Mandatory	S	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Wire gauge			mm	Optional	0.51 mm	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Layout	E.g., wire with 2-hole ceramic beads			Optional	Wire with 2-hole ceramic beads	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Calibration status	Is/are the thermocouples calibrated?			Mandatory	Yes	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Calibration method				Mandatory	Comparison method	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Calibration standard				Mandatory	ASTM E220-19	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Calibration certificate	Link to file, preferably with machine-readable (meta)data.			Optional	Documentation available in the laboratory	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Calibration date				Mandatory	09.05.2023 (52-PM102-0413, 52-PM102-0414)
+12.05.2023 (52-PM102-0412)	*
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Calibration validity time period				Mandatory	12 months	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Temperature deviation	Measurement deviation detected during calibration		°C	Optional	- 0.6 K (52-PM102-0412)
+- 0.4 K (52-PM102-0413)
+- 0.2 K (52-PM102-0414)
+T-values were corrected accordingly	*
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Calibration Range			°C	Mandatory	300 - 1200 °C	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Contact method				Mandatory	Attached	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Number of thermocouples				Mandatory	3	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Thermocouple location	Location with respect to gauge section			Mandatory	Inside the gauge length	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration status	Is/are the data acquisition unit calibrated?			Mandatory	Yes	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Reference junction				Optional	Internal	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration certificate	Link to file, preferably with machine-readable (meta)data.			Optional	Documentation available in the laboratory	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration date				Mandatory	2023-08-17 00:00:00	*
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration validity time period				Mandatory	12 Months	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration method				Mandatory	Electrical simulation	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration standard				Mandatory	EURAMET/cg-11/v0.1	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Temperature deviation	Measurement deviation detected during calibration		°C	Optional	- 0.2 K (Channel #1)
++ 0.1 K (Channel #2)
++ 0.1 K (Channel #3)	*
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration Range			°C	Mandatory	100 - 1300 °C	
+Metadata --> Measuring and test equipment --> Extensometer system	Displacement measuring method	Type of strain measuring device			Mandatory	Contacting method	
+Metadata --> Measuring and test equipment --> Extensometer system	Sensor type - Contacting method				Mandatory	High-Temperature Axial Extensometer	
+Metadata --> Measuring and test equipment --> Extensometer system	Sensor type - Non-contacting method				Mandatory	Not applicable	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Measurement set-up	Measurement one-sided or two-sided?			Mandatory	One-sided	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Extension averaging	Was there an averaging of the extension values? (two-sided extensometer)			Mandatory	Not applicable	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Measurement direction				Mandatory	Axial action	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Mounting type				Mandatory	At test piece in parallel length	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Extensometer model information 				Optional	MTS 632.53F-31	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Extensometer ID	The ID used for identification in the laboratory			Optional	19.03	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Extensometer leg material	Material of upper/lower legs, e.g., in LVDT systems			Optional	Ceramic legs	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Measuring amplifier - Model information				Optional	National Instruments NI SXCI-1600	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Extension range - Upper limit			% / mm	Mandatory	20 %  / 5 mm	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Extension range - Lower limit			%  / mm	Mandatory	-10 % / -2,5 mm	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Nominal gauge length	If applicable		mm	Mandatory	25	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Is the extensometer incl. the data acquisition calibrated?	Is the extensometer incl. the data acquisition calibrated?			Mandatory	Yes	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Calibration certificate	Link to file, preferably with machine-readable (meta)data.			Optional	Documentation available in the laboratory	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Calibration date				Mandatory	2023-06-27 00:00:00	*
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Calibration validity time period				Mandatory	12 Months	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Calibration class				Mandatory	1	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Calibration Range			% (mm)	Mandatory	30 % (7.5 mm); +5/-2,5 mm	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Calibration standard				Mandatory	DIN EN ISO 9513:2013	
+Metadata --> Measuring and test equipment --> Extension values --> Non-contacting extensometer						Not applicable	
+Metadata --> Measuring and test equipment --> Cross-sectional dimensions	Measuring equipment				Mandatory	Micrometer	
+Metadata --> Measuring and test equipment --> Cross-sectional dimensions	Measuring equipment's usage				Mandatory	Determination of minimum test piece diameter at room temperature, D	
+Metadata --> Measuring and test equipment --> Cross-sectional dimensions	Resolution			mm	Mandatory	0.001	
+Metadata --> Measuring and test equipment --> Cross-sectional dimensions	Type				Optional		
+Metadata --> Measuring and test equipment --> Cross-sectional dimensions	Equipment model information 				Optional	Mitutoyo 293-661-10 N	
+Metadata --> Measuring and test equipment --> Cross-sectional dimensions	Equipment ID	The ID used for identification in the laboratory			Optional	47.02	
+Metadata --> Measuring and test equipment --> Cross-sectional dimensions	Calibration status	Is the measuring equipment calibrated?			Mandatory	Yes	
+Metadata --> Measuring and test equipment --> Cross-sectional dimensions	Calibration certificate	Link to file, preferably with machine-readable (meta)data.			Optional		
+Metadata --> Measuring and test equipment --> Cross-sectional dimensions	Calibration date				Mandatory	2023-07-25 00:00:00	*
+Metadata --> Measuring and test equipment --> Cross-sectional dimensions	Calibration validity time period				Mandatory	12 months	
+Metadata --> Measuring and test equipment --> Cross-sectional dimensions	Calibration result				Mandatory	Meets calibration requirements	
+Metadata --> Measuring and test equipment --> Cross-sectional dimensions	Calibration range			mm	Mandatory	0 - 30	
+Metadata --> Measuring and test equipment --> Cross-sectional dimensions	Calibration standard				Mandatory	VDI/VDE/DGQ 2618 Blatt 10.1:2001-11	*
+Metadata --> Measuring and test equipment --> Elongation values	Measuring equipment				Mandatory	Measuring microscope	
+Metadata --> Measuring and test equipment --> Elongation values	Measuring equipment's usage				Mandatory	Determination of Original gauge length, Lo, Final gauge length after fracture, Lu, Percentage permanent elongation, Aper, Percentage elongation after creep fracture, Au, and Percentage reduction of area after creep fracture, Zu	
+Metadata --> Measuring and test equipment --> Elongation values	Resolution			mm	Mandatory	0.001	
+Metadata --> Measuring and test equipment --> Elongation values	Type				Optional	Optical	
+Metadata --> Measuring and test equipment --> Elongation values	Equipment model information 				Optional	Mitutoyo TM 321 Zeiss – Axiotech 100 HD	
+Metadata --> Measuring and test equipment --> Elongation values	Equipment ID	The ID used for identification in the laboratory			Optional	72.01	
+Metadata --> Measuring and test equipment --> Elongation values	Calibration status	Is the measuring equipment calibrated?			Mandatory	Yes	
+Metadata --> Measuring and test equipment --> Elongation values	Calibration certificate	Link to file, preferably with machine-readable (meta)data.			Optional		
+Metadata --> Measuring and test equipment --> Elongation values	Calibration date				Mandatory	2023-07-06 00:00:00	*
+Metadata --> Measuring and test equipment --> Elongation values	Calibration validity time period				Mandatory	12 months	
+Metadata --> Measuring and test equipment --> Elongation values	Calibration result				Mandatory	Meets calibration requirements	
+Metadata --> Measuring and test equipment --> Elongation values	Calibration range			mm	Mandatory	0 - 50	
+Metadata --> Measuring and test equipment --> Elongation values	Calibration standard				Mandatory	DIN 863-1:2017-02	
+Metadata --> Data processing procedures	Primary data series	Primary data is data that is directly acquired by sensors or measuring instruments during or after a test. Please add a list of the measured quantities and their corresponsing units. 			Mandatory	See file "Vh5205_Complementary_Primary-and-processed-data-series.LIS"
+Metadata --> Data processing procedures	Processed data series	Processed data is obtained as a result of using procedures (equations, algorithms, methods, unit conversions, averaging, smoothing) to transform primary data. Please describe the transformed quantities, their corresponsing units, and the applied procedures.			Mandatory	See file "Vh5205_Complementary_Primary-and-processed-data-series.LIS"
+Metadata --> Data processing procedures	Data analysis procedures	Description of the data processing and analysis procedures used to obtain specific test results, e.g. percentage elastic extension, ee			Mandatory	To convert the primary data series into the processed data series a validated excel template (lab own's development) was used. The data were neither averaged nor smoothed. See also file "Vh5205_Complementary_Data-processing.LIS"
+Metadata --> Data processing procedures	Workflow usage	Were automated (user-independent) analysis workflows used?			Mandatory	No	
+Metadata --> Data processing procedures	Software	If applicable, please list the used software/workflow, including product and version			Mandatory	Not applicable	
+Metadata --> Data processing procedures	Related publications	If applicable, please list  publications related to the data analysis procedure/software used			Optional		
+Primary data --> Test result --> Values recorded at test start	Minimum test piece diameter at room temperature		D	mm	Mandatory	5.99	*
+Primary data --> Test result --> Values recorded at test start	Original gauge length		Lo	mm	Mandatory	24	*
+Primary data --> Test result --> Values recorded at test start	Parallel length		Lc	mm	Mandatory	36	
+Primary data --> Test result --> Values recorded at test start	Extensometer gauge length		Le	mm	Mandatory	22.5	*
+Primary data --> Test result --> Values recorded at test start	Determination of reference length	Case 1: Reference length for calculation of percentage extensions/elongations if the original gauge length Lo and/or extensometer Le are inside the parallel length, Lc. In this case Lr = Le (percentage extensions) or Lr = Lo (percentage elongations).
+Case 2: Reference length for calculation of percentage extensions/elongations if the original gauge length Lo and/or extensometer Le are outside the parallel length, Lc. In this case, Lr, for calculation of percentage is corrected to consider the strain contributions of the shoulders/ridges.
+			Mandatory	Case 1	
+Primary data --> Test result --> Values recorded at test start	Reference length to calculate percentage elongations		Lr	mm	Mandatory	24	*
+Primary data --> Test result --> Values recorded at test start	Reference length to calculate percentage extensions		Lr	mm	Mandatory	22.5	*
+Primary data --> Test result --> Values recorded at test start	k-Value	Lr / √So; Lr = Lo			Mandatory	4	*
+Primary data --> Test result --> Values recorded at test start	k-Value	Lr / √So; Lr = Le			Mandatory	3.8	*
+Primary data --> Test result --> Values recorded at test start	Ratio reference length to diameter	Lr / D; Lr = Lo			Mandatory	4.52	*
+Primary data --> Test result --> Values recorded at test start	Ratio reference length to diameter	Lr / D; Lr = Le			Mandatory	4.24	*
+Primary data --> Test result --> Values recorded during test run	Elapsed time from end of loading	Link to file, preferably with machine-readable (meta)data.	t	s / h	Mandatory	Data series for each test piece in the corresponding file "Vh5205_C-94-Creep.LIS"	
+Primary data --> Test result --> Values recorded during test run	Force			kN	Mandatory	Data series for each test piece in the corresponding file "Vh5205_C-94-Loading.LIS". No overloads	
+Primary data --> Test result --> Values recorded during test run	Extension	Link to file, preferably with machine-readable (meta)data.	ΔLet	mm	Optional		*
+Primary data --> Test result --> Values recorded during test run	Elongation	Link to file, preferably with machine-readable (meta)data.	ΔLot	mm	Optional		*
+Primary data --> Test result --> Values recorded during test run	Heating time			h	Mandatory	1.74	*
+Primary data --> Test result --> Values recorded during test run	Soak time	Soak time before the test		h	Mandatory	1.82	*
+Primary data --> Test result --> Values recorded during test run	Test duration		t	h	Mandatory	1011	*
+Primary data --> Test result --> Values recorded after end of test 	Creep rupture time		tu	h	Mandatory	Not applicable	*
+Primary data --> Test result --> Values recorded after end of test 	Fracture position				Mandatory	Not applicable	*
+Primary data --> Test result --> Values recorded after end of test 	Final gauge length after fracture		Lu	mm	Optional	Not applicable	*
+Secondary data --> Test result --> Values recorded during test run	Corrected measured temperature	Link to file, preferably with machine-readable (meta)data.	Tc	°C	Mandatory	Data series from each sensor for each test piece in the corresponding LIS file "Vh5205_C-94-Creep.LIS"	
+Secondary data --> Test result --> Values recorded during test run	Loading rate			MPa/s	Optional		*
+Secondary data --> Test result --> Values recorded during test run	Unloading rate			MPa/s	Optional		*
+Secondary data --> Test result --> Values recorded during test run	Heating speed			°C/min	Optional		*
+Secondary data --> Test result --> Values recorded during test run	Cooling speed			°C/min	Optional		*
+Secondary data --> Test result --> Values recorded during test run	Percentage extension	Link to file, preferably with machine-readable (meta)data. Data series corresponds to the percentage plastic extension from end of loading. If the  percentage initial plastic extension is not zero, these data series coresponds to the percentage creep extension from end of loading.	e	%	Mandatory	The data series for each test piece are available in the corresponding LIS file "Vh5205_C-94-Creep.LIS"	
+Secondary data --> Test result --> Elongation values	Percentage permanent elongation		Aper	%	Mandatory	0.81	*
+Secondary data --> Test result --> Elongation values	Percentage elongation after creep fracture		Au	%	Mandatory	Not applicable	*
+Secondary data --> Test result --> Elongation values	Percentage reduction of area after creep fracture		Zu	%	Mandatory	Not applicable	*
+Secondary data --> Test result --> Extension values	Percentage total extension		et	%	Mandatory	0.944	*
+Secondary data --> Test result --> Extension values	Percentage initial total extension		eti	%	Mandatory	0.156	*
+Secondary data --> Test result --> Extension values	Percentage elastic extension		ee	%	Mandatory	0.156	*
+Secondary data --> Test result --> Extension values	Percentage initial plastic extension		ei	%	Mandatory	0	*
+Secondary data --> Test result --> Extension values	Percentage plastic extension		ep	%	Mandatory	0.788	*
+Secondary data --> Test result --> Extension values	Percentage creep extension		ef	%	Mandatory	0.788	*

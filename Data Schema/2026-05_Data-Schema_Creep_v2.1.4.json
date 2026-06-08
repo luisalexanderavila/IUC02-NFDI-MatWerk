@@ -923,11 +923,7 @@
                     },
                     "testFrameAndSpecimenAlignment": {
                       "type": "string",
-                      "description": "Verification of Test Frame and Specimen Alignment according to ASTM E1012?",
-                      "enum": [
-                        "Yes",
-                        "No"
-                      ]
+                      "description": "Verification of Test Frame and Specimen Alignment according to ASTM E1012? Include description of the procedure if available."
                     },
                     "testFrameAndSpecimenAlignmentDescription": {
                       "type": "string",
@@ -1132,11 +1128,7 @@
                         },
                         "loadSensorCalibration": {
                           "type": "string",
-                          "description": "Was the load sensor calibrated?",
-                          "enum": [
-                            "Yes",
-                            "No"
-                          ]
+                          "description": "Was the load sensor calibrated? Include description of the calibration procedure if available."
                         },
                         "calibrationCertificate": {
                           "type": "string",
@@ -1634,7 +1626,8 @@
                           "description": "Was there an averaging of the extension values? (two-sided extensometer)",
                           "enum": [
                             "Yes",
-                            "No"
+                            "No",
+                            "Not applicable"
                           ]
                         },
                         "measurementDirection": {

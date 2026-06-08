@@ -303,18 +303,37 @@ class ParserV2:
                        or next_cat_normalized.startswith(_normalize_key(_PRIMARY_PREFIX)) \
                        or next_cat_normalized.startswith(_normalize_key(_SECONDARY_PREFIX)):
                         break  # a new record starts
-                # continuation line — join with a space so multi-line values
-                # become space-separated strings instead of newline-separated.
+                # continuation line — join with "; " so multi-line values
+                # become semicolon-separated strings instead of newline-separated.
                 if "\t" in next_line:
-                    # Col[0] is the value fragment; a trailing "\t*" means
-                    # the parent record is common-to-all.
-                    candidate = next_cols[0].strip()
-                    if next_cols[-1].strip() == "*":
-                        common = "*"
-                    if candidate:
-                        value = value + " " + candidate
+                    # Special case: a short tab-row with empty col[0] but a
+                    # requirement keyword in col[3] and the actual value in col[4].
+                    # Example: "\t\t\tMandatory\tCase 1\t"
+                    # This pattern occurs when an LIS field has no value column
+                    # (< 7 cols) and the value is supplied on a subsequent row
+                    # that was misaligned by one column.
+                    _req_candidate = next_cols[3].strip().casefold() if len(next_cols) > 3 else ""
+                    if (
+                        not next_cols[0].strip()                           # col[0] empty
+                        and _req_candidate in ("mandatory", "optional")    # col[3] = requirement
+                        and len(next_cols) > 4 and next_cols[4].strip()    # col[4] = value
+                        and len(next_cols) <= V2_COL_VALUE + 1             # no proper col[6]
+                    ):
+                        # Override the record value; discard prior description continuations.
+                        value = next_cols[4].strip()
+                        requirement = next_cols[3].strip()
+                        if next_cols[-1].strip() == "*":
+                            common = "*"
+                    else:
+                        # Col[0] is the value fragment; a trailing "\t*" means
+                        # the parent record is common-to-all.
+                        candidate = next_cols[0].strip()
+                        if next_cols[-1].strip() == "*":
+                            common = "*"
+                        if candidate:
+                            value = value + "; " + candidate
                 else:
-                    value = value + " " + next_stripped
+                    value = value + "; " + next_stripped
                 j += 1
             i = j   # advance outer loop past all continuation lines
 

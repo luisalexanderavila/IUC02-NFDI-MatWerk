@@ -1,0 +1,48 @@
+Symbol	Unit	Measured Value	Method	Equipment		
+C	ppm	20	Fluxed Oxygen Fusion Analysis	Lego CS 444 LS		
+Si	Wt. %	< 0.02	Atomic Absorption	Perkin Elmer 5000		
+Mn	Wt. %	< 0.001	Perkin Elmer 5000 Atomic Absorption	Perkin Elmer 5000		
+S	ppm	< 2	Fluxed Oxygen Fusion Analysis	Lego CS 444 LS		
+Ag	ppm	< 1	Atomic Absorption	Perkin Elmer 5000		
+Al	Wt. %	4.82	Atomic Absorption	Perkin Elmer 5000		
+B	ppm	< 20	Atomic Absorption	Perkin Elmer 5000		
+Bi	ppm	< 0.2	Atomic Absorption	Perkin Elmer 5000		
+Cb	Wt. %	< 0.05	Atomic Absorption	Perkin Elmer 5000		
+Co	Wt. %	5	Atomic Absorption	Perkin Elmer 5000		
+Cr	Wt. %	9.8	Atomic Absorption	Perkin Elmer 5000		
+Cu	Wt. %	< 0.001	Atomic Absorption	Perkin Elmer 5000		
+Fe	Wt. %	0.045	Atomic Absorption	Perkin Elmer 5000		
+Ga	ppm	< 10	Atomic Absorption	Perkin Elmer 5000		
+Hf	Wt. %	0.05	Atomic Absorption	Perkin Elmer 5000		
+Mg	ppm	< 100	Atomic Absorption	Perkin Elmer 5000		
+Mo	Wt. %	3	Atomic Absorption	Perkin Elmer 5000		
+N	ppm	3	Inert Gas Fusion Analysis	Lego TC 436		
+Ni	Wt. %	Balance	Perkin Elmer 5000 Atomic Absorption	Perkin Elmer 5000		
+O	ppm	2	Inert Gas Fusion Analysis	Lego TC 436		
+P	ppm	< 2	Atomic Absorption	Perkin Elmer 5000		
+Pb	ppm	< 0.5	Atomic Absorption	Perkin Elmer 5000		
+Se	ppm	< 0.5	Atomic Absorption	Perkin Elmer 5000		
+Re	Wt. %	< 0.1	Atomic Absorption	Perkin Elmer 5000		
+Ta	Wt. %	2	Atomic Absorption	Perkin Elmer 5000		
+Te	ppm	< 0.2	Atomic Absorption	Perkin Elmer 5000		
+Ti	Wt. %	4.69	Atomic Absorption	Perkin Elmer 5000		
+Tl	ppm	< 0.2	Atomic Absorption	Perkin Elmer 5000		
+W	Wt. %	< 0.1	Atomic Absorption	Perkin Elmer 5000		
+Zr	ppm	< 10	ICP (AES) Analysis	Perkin Elmer Optima 3000™		
+Al+Ti	Wt. %	9.51	Atomic Absorption	Perkin Elmer 5000		
+Sn	ppm	< 5	Atomic Absorption	Perkin Elmer 5000		
+Sb	ppm	< 1	Atomic Absorption	Perkin Elmer 5000		
+As	ppm	< 1	Atomic Absorption	Perkin Elmer 5000		
+Zn	ppm	< 3	Atomic Absorption	Perkin Elmer 5000		
+Hg	ppm	< 2	Atomic Absorption	Perkin Elmer 5000		
+U	ppm	< 0.5	Atomic Absorption	Perkin Elmer 5000		
+Th	ppm	< 0.5	Atomic Absorption	Perkin Elmer 5000		
+Cd	ppm	< 0.2	Atomic Absorption	Perkin Elmer 5000		
+Ge	ppm	< 1	Atomic Absorption	Perkin Elmer 5000		
+V	Wt. %	< 0.005	Atomic Absorption	Perkin Elmer 5000		
+Y	Wt. %	< 0.001	ICP (AES) Analysis	Perkin Elmer Optima 3000™		
+Pt	Wt. %	< 0.001	Atomic Absorption	Perkin Elmer 5000		
+Au	ppm	< 0.5	Atomic Absorption	Perkin Elmer 5000		
+In	ppm	< 0.2	Atomic Absorption	Perkin Elmer 5000		
+Na	ppm	< 10	Atomic Absorption	Perkin Elmer 5000		
+K	ppm	< 5	Atomic Absorption	Perkin Elmer 5000		

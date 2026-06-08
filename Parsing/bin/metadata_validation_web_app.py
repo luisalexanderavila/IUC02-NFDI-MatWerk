@@ -507,8 +507,14 @@ def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node, base_
             if isinstance(members, list) and members:
                 # Merge allOf members for rendering so composite objects expose
                 # all fields (e.g., element + value + unit).
-                merged = {"properties": {}, "required": []}
-                merged_type = None
+                # Seed with the parent node's own properties/required/type so
+                # they are not lost when allOf members are purely if/then conditionals
+                # (e.g. TestPiece which has properties + an allOf conditional).
+                merged = {
+                    "properties": dict(node_local.get("properties", {})),
+                    "required": list(node_local.get("required", [])),
+                }
+                merged_type = node_local.get("type")
 
                 for member in members:
                     if not isinstance(member, dict):
@@ -530,6 +536,17 @@ def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node, base_
                         for req_key in member_required:
                             if isinstance(req_key, str) and req_key not in merged["required"]:
                                 merged["required"].append(req_key)
+
+                    # Also collect properties from the "then" branch of if/then
+                    # conditionals so that conditional fields (e.g. testPieceTypeIStandard,
+                    # otherFurnaceType) are visible in the rendered tree.
+                    then_branch = resolved_member.get("then", {})
+                    if isinstance(then_branch, dict):
+                        then_props = then_branch.get("properties", {})
+                        if isinstance(then_props, dict):
+                            for k, v in then_props.items():
+                                if k not in merged["properties"]:
+                                    merged["properties"][k] = v
 
                 if merged_type is not None:
                     merged["type"] = merged_type
@@ -636,12 +653,22 @@ def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node, base_
 
         # Dropdown shortcut: if the value is a dict produced by a dropdown schema
         # (single "*Options" key), render only the selected string — not the raw object.
+        # When "Other" is selected, render the companion other* field value instead.
         if isinstance(value, dict) and value:
             _opt_keys = [_k for _k in value if _k.endswith("Options")]
             if len(_opt_keys) == 1:
                 _selected = value[_opt_keys[0]]
                 if isinstance(_selected, str):
-                    _rval = escape(_selected) if _selected.strip() else "<span style='color:#a00;font-weight:600;'>(empty)</span>"
+                    # When "Other (Please specify...)" is chosen, show the actual
+                    # value stored in the companion other* sibling field.
+                    if _selected.startswith("Other"):
+                        _base = _opt_keys[0][:-len("Options")]  # e.g. "calibrationStandard"
+                        _other_key = "other" + _base[0].upper() + _base[1:]  # e.g. "otherCalibrationStandard"
+                        _other_val = value.get(_other_key, "")
+                        _display = _other_val if _other_val else _selected
+                    else:
+                        _display = _selected
+                    _rval = escape(_display) if _display.strip() else "<span style='color:#a00;font-weight:600;'>(empty)</span>"
                     html_parts.append(
                         "<li>"
                         f"<span id='{escape(anchor_id)}' style='{key_style}'>{escape(key)}</span>{req_tag}: "
@@ -686,7 +713,7 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
     data_root = (root_dir / data_root_value).resolve()
     default_schema_path = (root_dir / default_schema).resolve()
     default_json_folder = (data_root / "BAMDataset_Json").resolve()
-    default_lis_folder = (data_root / "BAMDataset").resolve()
+    default_lis_folder = (data_root / "BAMDataset_v20260608").resolve()
     schema_root = (root_dir / ".." / "Data Schema").resolve()
     default_mapping = (root_dir / "Metadata" / "Mappings" / "BAM2schema.json").resolve()
 
@@ -750,7 +777,7 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
     <h2>Inputs</h2>
         <div class="row">
             <label>Schema file selection</label>
-            <select id="schema_select" onchange="setSchemaPathAndSubmit(this.value)">
+            <select id="schema_select" name="schema_path" onchange="this.form.submit()">
                 {% for label, value in schema_options %}
                 <option value="{{ value }}" {% if value == schema_path %}selected{% endif %}>{{ label }}</option>
                 {% endfor %}
@@ -758,7 +785,7 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         </div>
     <div class="row">
       <label>Schema file path</label>
-            <input id="schema_path" type="text" name="schema_path" value="{{ schema_path }}" />
+            <input id="schema_path_display" type="text" readonly value="{{ schema_path }}" style="background:#f5f5f5;color:#555;" />
     </div>
 
     <div class="split">
@@ -897,15 +924,6 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         {% endif %}
 
 <script>
-    function setSchemaPathAndSubmit(schemaPath) {
-        const input = document.getElementById("schema_path");
-        if (!input) return;
-        input.value = schemaPath || "";
-        if (input.form) {
-            input.form.submit();
-        }
-    }
-
     function setOutputNameFromLis(lisPath) {
         const outputInput = document.getElementById("output_name");
         if (!outputInput) return;
@@ -917,8 +935,15 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
 
     document.addEventListener("DOMContentLoaded", function () {
         const lisSelect = document.getElementById("lis_file");
-        if (!lisSelect) return;
-        setOutputNameFromLis(lisSelect.value);
+        if (lisSelect) setOutputNameFromLis(lisSelect.value);
+
+        const schemaSelect = document.getElementById("schema_select");
+        const schemaDisplay = document.getElementById("schema_path_display");
+        if (schemaSelect && schemaDisplay) {
+            schemaSelect.addEventListener("change", function () {
+                schemaDisplay.value = this.value;
+            });
+        }
     });
 </script>
 </body>

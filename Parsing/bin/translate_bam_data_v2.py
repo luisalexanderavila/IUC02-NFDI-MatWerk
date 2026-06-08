@@ -46,7 +46,7 @@ logging.basicConfig(level=logging.INFO)
 Logger = logging.getLogger(__name__)
 
 DEFAULT_MAPPING_FILE = os.path.join(_parsing_root, "Metadata", "Mappings", "BAM2schema_v2.json")
-DEFAULT_SCHEMA_FILE = os.path.join(_parsing_root, "..", "Data Schema", "2026-03_Data-Schema_Creep_v2.1.json")
+DEFAULT_SCHEMA_FILE = os.path.join(_parsing_root, "..", "Data Schema", "2026-06_Data-Schema_Creep_v2.1.7.json")
 
 
 # ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -139,43 +139,47 @@ def _normalize_value_for_schema_path(schema_path: str, raw_value: str):
         },
         "testParameters.testStandard.testStandardOptions": {
             "iso 204": "ISO 204",
-            "din en iso 204": "ISO 204",
             "astm e139": "ASTM E139",
         },
         "testMachine.testMachineType.testMachineTypeOptions": {
             "lever arm": "Lever arm",
             "electromechanical drive": "Electromechanical drive",
         },
-        "testMachine.loadingSystem.calibrationStandard.calibrationStandardOptions": {
-            "din en iso 7500-2": "DIN EN ISO 7500-2",
-        },
-        "temperatureSensor.calibrationStandard.calibrationStandardOptions": {
-            "astm e220": "ASTM E220",
-        },
-        "testPiece.testPieceTypeI": {
+        # "astm e220" removed: "ASTM E220-19" (versioned) was caught via startswith,
+        # silently mapping to "ASTM E220". Versioned references route to Other via B6.
+        "temperatureSensor.calibrationStandard.calibrationStandardOptions": {},
+        "TestPiece.testPieceTypeI": {
             "specimen according to standard": "Specimen according to standard",
-            "specimen according to din en iso": "Specimen according to standard",
             "miniaturized specimen": "Miniaturized specimen",
         },
-        "testMachine.heatingSystem.furnaceType.furnaceTypeOptions": {
-            "split tube furnace with two-zones": "Split Tube Furnace with Two-zones",
-            "split tube furnace with three-zones": "Split Tube Furnace with Three-zones",
-        },
-        "elongationValuesAndCrossSectionalDimensions.measuringEquipment.measuringEquipmentOptions": {
-            "micrometer": "Micrometer screw gauge",
+        # furnaceType suffix_map removed: LIS value "Split Tube Furnace with two-zones" differs in
+        # case from enum "Split Tube Furnace with Two-zones" and must route to Other via B6.
+        # elongationValues and crossSectionalDimensions were previously a combined section;
+        # now split into separate schema paths.
+        "elongationValues.measuringEquipment.measuringEquipmentOptions": {
             "measuring microscope": "Measuring microscope",
             "caliper gauge": "Caliper gauge",
+        },
+        "crossSectionalDimensions.measuringEquipment.measuringEquipmentOptions": {
+            # "micrometer" removed: "Micrometer" is not identical to "Micrometer screw gauge"
+            # and routes to Other via B6.
+            "measuring microscope": "Measuring microscope",
+        },
+        "elongationValues.type.typeOptions": {
+            # "optical" removed: "Optical" is not in the enum (Digital/Analog/Other)
+            # and routes to Other via B6.
+            "digital": "Digital",
+            "analog": "Analog",
+        },
+        "crossSectionalDimensions.type.typeOptions": {
+            # same as above
+            "digital": "Digital",
+            "analog": "Analog",
         },
         "temperatureSensor.thermocoupleLocation": {
             "inside the gauge length": "Inside",
             "inside": "Inside",
             "outside": "Outside",
-        },
-        "materialHistoryAndCondition.heatTreatment.heatTreatmentState.heatTreatmentStateOptions": {
-            "none": "None",
-            "annealed": "Annealed",
-            "hardened": "Hardened",
-            "aged": "Hardened",
         },
         "materialHistoryAndCondition.microstructure.0.microstructureFeature.microstructureFeatureOptions": {
             "matrix": "Matrix",
@@ -186,31 +190,26 @@ def _normalize_value_for_schema_path(schema_path: str, raw_value: str):
             "inclusion": "Inclusion",
             "grain": "Grain",
             "segregation": "Segregation",
-            "microstructure before testing": "Matrix",
+            # "microstructure before testing" removed: not equivalent to "Matrix";
+            # routes to Other via B6.
         },
         "microstructureNi-BasedSX.grainSizeDeterminationMethod.grainSizeDeterminationMethodOptions": {
             "line intercept": "Line Intercept",
             "circular intercept": "Circular Intercept",
-            "not applicable": "Line Intercept",
+            # "not applicable" intentionally omitted: routes to Other via B6
         },
-        "extensometerSystem.sensorTypeContactingMethod.sensorTypeContactingMethodOptions": {
-            "high-temperature axial extensometer": "Clip-on extensometer",
-        },
-        "extensometerSystem.sensorTypeNonContactingMethod.sensorTypeNonContactingMethodOptions": {
-            "not applicable": "Laserextensometer",
-        },
-        "testParameters.interruptionCourse": {
-            "not applicable": "Unloading after cooling",
-        },
-        "elongationValuesAndCrossSectionalDimensions.type.typeOptions": {
-            "optical": "Analog",
-            "digital": "Digital",
-            "analog": "Analog",
-        },
+        # "extensometerSystem.sensorTypeContactingMethod.sensorTypeContactingMethodOptions" removed:
+        # "High-Temperature Axial Extensometer" is not semantically equivalent to any enum option
+        # and is handled correctly by B6 Other-detection.
+        # "elongationValuesAndCrossSectionalDimensions.type.typeOptions" removed — outdated
+        # combined path. Replaced above by separate elongationValues / crossSectionalDimensions entries.
+        # "materialHistoryAndCondition.heatTreatment.heatTreatmentState.heatTreatmentStateOptions"
+        # removed — dead code: PascalCase path never matched camelCase suffix key.
+        # "Aged" is not an exact match for any enum option and is handled by B6 Other-detection.
         "extensionValues.contactingExtensometer.extensionAveraging": {
-            "not applicable": "No",
             "yes": "Yes",
             "no": "No",
+            "not applicable": "Not applicable",
         },
     }
 
@@ -219,21 +218,6 @@ def _normalize_value_for_schema_path(schema_path: str, raw_value: str):
             for source, target in candidates.items():
                 if low == source:
                     return target
-                if low.startswith(source):
-                    return target
-
-    yes_no_suffixes = {
-        "testMachine.testFrameAndSpecimenAlignment",
-        "loadSensor.loadSensorCalibration",
-        "testMachine.loadingSystem.descriptionOfTheLoadingSystem",
-    }
-    for suffix in yes_no_suffixes:
-        if path.endswith(suffix):
-            normalized = _normalize_yes_no(value)
-            if normalized:
-                return normalized
-            if low.startswith("not applicable"):
-                return "No"
 
     return value
 
@@ -328,7 +312,107 @@ def _parse_chemical_composition_file(file_path: str, measured: bool):
     return rows, unique_methods
 
 
-def translate_v2(parsed: dict, mapping_doc: dict, source_lis_file: str = "") -> dict:
+def _build_enum_lookup(schema: dict) -> dict:
+    """Walk the schema and build a map of dot-path suffix -> allowed enum values.
+
+    Only collects paths that end in '*Options' (dropdown fields), since those
+    are the candidates for "Other" auto-detection.
+
+    Returns:
+        dict mapping lowercase dot-path suffix (e.g. 'testStandard.testStandardOptions')
+        to list of allowed string values.
+    """
+    result = {}
+
+    def _walk(node, path_parts):
+        if not isinstance(node, dict):
+            return
+        if "enum" in node and isinstance(node["enum"], list):
+            key = ".".join(path_parts)
+            # Collect all string enum values
+            result[key] = [v for v in node["enum"] if isinstance(v, str)]
+        for prop_name, prop_val in node.get("properties", {}).items():
+            _walk(prop_val, path_parts + [prop_name])
+        for item in node.get("allOf", []):
+            _walk(item, path_parts)
+        for item in node.get("anyOf", []):
+            _walk(item, path_parts)
+        if "then" in node:
+            _walk(node["then"], path_parts)
+        if "items" in node:
+            _walk(node["items"], path_parts)
+
+    _walk(schema, [])
+    return result
+
+
+_OTHER_OPTION_PREFIX = "Other (Please specify in the comment)"
+_OTHER_FIELD_PREFIX = "other"
+
+
+def _try_other_detection(schema_path: str, value: str, enum_lookup: dict) -> tuple:
+    """Validate and optionally remap a value against the schema enum for this path.
+
+    For *Options fields:
+      - Exact match → return unchanged.
+      - No match + "Other" in enum → route to Other + store actual value in other* sibling.
+      - No match + no "Other" in enum → log ERROR, return value unchanged.
+
+    For all other enum-constrained fields:
+      - Exact match → return unchanged.
+      - No match → log ERROR, return value unchanged.
+
+    Returns (value, other_value, other_field_name); other_value/other_field_name are None
+    unless routing to Other.
+    """
+    # Strip numeric array-index segments (e.g. ".0.") before suffix matching,
+    # since the enum_lookup is built from the schema which has no numeric keys.
+    schema_path_no_idx = re.sub(r'\.(\d+)\.', '.', schema_path)
+
+    # Find the matching suffix in enum_lookup
+    allowed = None
+    for suffix, options in enum_lookup.items():
+        if schema_path_no_idx.endswith(suffix):
+            allowed = options
+            break
+    if allowed is None:
+        return value, None, None  # no enum constraint for this path
+
+    # Check if value already matches (exact/case-sensitive)
+    stripped = value.strip()
+    for opt in allowed:
+        if stripped == opt:
+            return value, None, None  # exact match — OK
+
+    is_options_field = schema_path.endswith("Options")
+
+    if is_options_field:
+        # Does the enum have an "Other" option?
+        other_opt = next((o for o in allowed if o.startswith(_OTHER_OPTION_PREFIX[:5])), None)
+        if other_opt is not None:
+            # Route to Other and store actual value in other* sibling field.
+            base = schema_path.rsplit(".", 1)[-1]  # e.g. "testStandardOptions"
+            base_without_options = base[: -len("Options")]  # e.g. "testStandard"
+            other_field = _OTHER_FIELD_PREFIX + base_without_options[0].upper() + base_without_options[1:]
+            return other_opt, value, other_field
+        else:
+            Logger.error(
+                "LIS value %r for dropdown field '%s' does not match any enum option %s "
+                "and no 'Other' option is available in the schema.",
+                stripped, schema_path, allowed,
+            )
+            return value, None, None
+    else:
+        # Non-*Options enum field: value must match exactly.
+        Logger.error(
+            "LIS value %r for field '%s' does not match any allowed enum value %s.",
+            stripped, schema_path, allowed,
+        )
+        return value, None, None
+
+
+def translate_v2(parsed: dict, mapping_doc: dict, source_lis_file: str = "",
+                 schema_file: str = "") -> dict:
     """
     Apply the v2 mapping document to the v2 parsed LIS output and produce a
     schema-conforming nested dict.
@@ -340,9 +424,22 @@ def translate_v2(parsed: dict, mapping_doc: dict, source_lis_file: str = "") -> 
     The mapping_doc["mappedMeasurementData"] maps flat dot-separated keys
     (e.g. "metadata.Test info.Test job details.Date of test start") to schema
     paths (e.g. "MeasurementData.additionalMetadata.testInfo.testJobDetails.dateOfTestStart").
+
+    schema_file: optional path to the JSON schema. When provided, enables
+        automatic "Other" detection for *Options dropdown fields.
     """
     mapping = mapping_doc.get("mappedMeasurementData", {})
     result = {}
+
+    # Build enum lookup for "Other" auto-detection
+    enum_lookup: dict = {}
+    if schema_file and os.path.isfile(schema_file):
+        try:
+            with open(schema_file, "r", encoding="utf-8") as _sf:
+                _schema_doc = json.load(_sf)
+            enum_lookup = _build_enum_lookup(_schema_doc)
+        except Exception:
+            pass
 
     flat_records = {}
 
@@ -433,7 +530,21 @@ def translate_v2(parsed: dict, mapping_doc: dict, source_lis_file: str = "") -> 
                         _set_nested_safe(result, _parent_keys, {"externalFileLink": _external_link})
                     break
         else:
+            # B6 — "Other" auto-detection for *Options dropdown fields.
+            # If value doesn't match any known enum option and the enum has an
+            # "Other (Please specify in the comment)" option, use that and write
+            # the actual LIS value into the corresponding other* sibling field.
+            _other_value = None
+            _other_field = None
+            if enum_lookup:
+                raw_value, _other_value, _other_field = _try_other_detection(
+                    schema_path, raw_value, enum_lookup
+                )
+
             _set_nested_safe(result, schema_keys, raw_value)
+
+            if _other_value is not None and _other_field is not None:
+                _set_nested_safe(result, schema_keys[:-1] + [_other_field], _other_value)
 
             # Write any inline sub-property extracted before normalization
             # (e.g. leverageRatio from "Lever arm, Leverage ratio 1:20.4")
@@ -446,6 +557,11 @@ def translate_v2(parsed: dict, mapping_doc: dict, source_lis_file: str = "") -> 
             if schema_keys[-1] == "value" and isinstance(record, dict):
                 unit = record.get("unit", "").strip()
                 if unit:
+                    # B7 — strip trailing unit from value to avoid duplication
+                    # (e.g. wireGauge value "0.51 mm" with unit "mm" → value "0.51")
+                    if raw_value.endswith(" " + unit):
+                        raw_value = raw_value[: -(len(unit) + 1)].strip()
+                        _set_nested_safe(result, schema_keys, raw_value)
                     _set_nested_safe(result, schema_keys[:-1] + ["unit"], unit)
 
             # Chemical composition items in schema require an `element` field.
@@ -526,7 +642,7 @@ def main(argv=None):
     Logger.info(f"Mapping: {mapping_file}")
 
     # Load mapping
-    with open(mapping_file, "r", encoding="utf-8") as fh:
+    with open(mapping_file, "r", encoding="utf-8-sig") as fh:
         mapping_doc = json.load(fh)
 
     # Parse LIS
@@ -545,7 +661,8 @@ def main(argv=None):
         )
 
     # Translate
-    output_dict = translate_v2(parsed, mapping_doc, source_lis_file=args.filename)
+    output_dict = translate_v2(parsed, mapping_doc, source_lis_file=args.filename,
+                               schema_file=schema_file)
 
     # Inject version metadata
     output_dict["_lis_version"] = lis_version
