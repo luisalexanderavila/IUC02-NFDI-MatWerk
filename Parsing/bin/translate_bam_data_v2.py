@@ -46,7 +46,7 @@ logging.basicConfig(level=logging.INFO)
 Logger = logging.getLogger(__name__)
 
 DEFAULT_MAPPING_FILE = os.path.join(_parsing_root, "Metadata", "Mappings", "BAM2schema_v2.json")
-DEFAULT_SCHEMA_FILE = os.path.join(_parsing_root, "..", "Data Schema", "2026-06_Data-Schema_Creep_v2.1.6.json")
+DEFAULT_SCHEMA_FILE = os.path.join(_parsing_root, "..", "Data Schema", "2026-06_Data-Schema_Creep_v2.1.7.json")
 
 
 # ─── Helpers ──────────────────────────────────────────────────────────────────

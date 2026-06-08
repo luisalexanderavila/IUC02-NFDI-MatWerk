@@ -806,7 +806,8 @@
                         "value": "1",
                         "unit": "kN"
                     },
-                    "testFrameAndSpecimenAlignment": "Yes. Verification was performed according to ASTM E1012 on 18.07.2011.",
+                    "testFrameAndSpecimenAlignment": "Yes",
+                    "testFrameAndSpecimenAlignmentDate": "18.07.2011",
                     "testFrameAndSpecimenAlignmentDescription": "Not applicable since verification was performed according to ASTM E1012",
                     "testMachineID": "Zug 07",
                     "testMachineType": {

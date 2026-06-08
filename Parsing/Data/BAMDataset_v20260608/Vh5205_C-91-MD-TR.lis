@@ -97,7 +97,8 @@ Metadata --> Measuring and test equipment --> Test machine	Test machine ID				Op
 Metadata --> Measuring and test equipment --> Test machine	Test machine type				Optional	Lever arm, Leverage ratio 1:20.4	
 Metadata --> Measuring and test equipment --> Test machine	Minimum applicable force			kN	Optional	1	
 Metadata --> Measuring and test equipment --> Test machine	Maximum applicable force			kN	Optional	20	
-Metadata --> Measuring and test equipment --> Test machine	Test frame and specimen alignment	Verification of Test Frame and Specimen Alignment according to ASTM E1012?			Mandatory	Yes. Verification was performed according to ASTM E1012 on 18.07.2011.	
+Metadata --> Measuring and test equipment --> Test machine	Test frame and specimen alignment	Verification of Test Frame and Specimen Alignment according to ASTM E1012?			Mandatory	Yes	
+Metadata --> Measuring and test equipment --> Test machine	Test frame and specimen alignment - Date				Optional	18.07.2011	
 Metadata --> Measuring and test equipment --> Test machine	Test frame and specimen alignment - description	Please provide a description on the procedure followed for the Verification of Test Frame and Specimen Alignment if different from ASTM E1012			Mandatory	Not applicable since verification was performed according to ASTM E1012	
 Metadata --> Measuring and test equipment --> Test machine	Calibration class	Calibration class of test frame and specimen alignment, e.g., 5 / 5 starting from 3 kN (according to ASTM E1012)			Mandatory	Verification: the machine fulfills the requirements for test forces >2 kN
 Protocol of alignment is available in the laboratory.	
