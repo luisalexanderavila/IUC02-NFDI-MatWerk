@@ -920,6 +920,7 @@
                 "testPieceOriginAndOrientation": "See file \"Test-piece-location_v2.0.jpg\"",
                 "testPieceTechnicalDrawing": "See file \"TestPieceCreepTests-TechnicalDrawing-FormA.pdf\"; Specimen's dimensions correspond to \"Form A\", see table in file.",
                 "testPieceTypeI": "Specimen according to standard",
+                "testPieceTypeIStandard": "Specimen according to DIN EN ISO 204:2019-4",
                 "testPieceTypeII": "Round cross section",
                 "testPieceTypeIII": {
                     "testPieceTypeIIIOptions": "Smooth test piece"

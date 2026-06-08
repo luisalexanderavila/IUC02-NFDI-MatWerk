@@ -485,6 +485,13 @@ def translate_v2(parsed: dict, mapping_doc: dict, source_lis_file: str = "",
                 _extra_sibling = ("leverageRatio", _leverage_match.group(1).strip())
                 raw_value = raw_value[: _leverage_match.start()].strip()
 
+        # When "Specimen according to <specific standard>" is in the LIS, normalize to the
+        # general enum option and store the original reference in testPieceTypeIStandard.
+        if schema_path.endswith("TestPiece.testPieceTypeI"):
+            low_raw = raw_value.strip().casefold()
+            if low_raw.startswith("specimen according to ") and low_raw != "specimen according to standard":
+                _extra_sibling = ("testPieceTypeIStandard", raw_value.strip())
+
         raw_value = _normalize_value_for_schema_path(schema_path, raw_value)
 
         schema_keys = schema_path.split(".")

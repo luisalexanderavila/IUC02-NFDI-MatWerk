@@ -849,7 +849,26 @@
                   "type": "string",
                   "description": "Add the information or a link to file, preferably with machine-readable (meta)data, e.g., Roughness."
                 }
-              }
+              },
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "testPieceTypeI": {
+                        "const": "Specimen according to standard"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "testPieceTypeIStandard": {
+                        "type": "string",
+                        "description": "The specific standard the specimen is manufactured according to (e.g. DIN EN ISO 204:2019-4)."
+                      }
+                    }
+                  }
+                }
+              ]
             },
             "MeasuringAndTestEquipment": {
               "type": "object",
