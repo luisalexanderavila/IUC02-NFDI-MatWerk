@@ -777,7 +777,7 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
     <h2>Inputs</h2>
         <div class="row">
             <label>Schema file selection</label>
-            <select id="schema_select" name="schema_path" onchange="syncSchemaDisplay(this.value); this.form.submit()">
+            <select id="schema_select" name="schema_path" onchange="this.form.submit()">
                 {% for label, value in schema_options %}
                 <option value="{{ value }}" {% if value == schema_path %}selected{% endif %}>{{ label }}</option>
                 {% endfor %}
@@ -924,11 +924,6 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         {% endif %}
 
 <script>
-    function syncSchemaDisplay(schemaPath) {
-        const input = document.getElementById("schema_path_display");
-        if (input) input.value = schemaPath || "";
-    }
-
     function setOutputNameFromLis(lisPath) {
         const outputInput = document.getElementById("output_name");
         if (!outputInput) return;
@@ -940,8 +935,15 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
 
     document.addEventListener("DOMContentLoaded", function () {
         const lisSelect = document.getElementById("lis_file");
-        if (!lisSelect) return;
-        setOutputNameFromLis(lisSelect.value);
+        if (lisSelect) setOutputNameFromLis(lisSelect.value);
+
+        const schemaSelect = document.getElementById("schema_select");
+        const schemaDisplay = document.getElementById("schema_path_display");
+        if (schemaSelect && schemaDisplay) {
+            schemaSelect.addEventListener("change", function () {
+                schemaDisplay.value = this.value;
+            });
+        }
     });
 </script>
 </body>
