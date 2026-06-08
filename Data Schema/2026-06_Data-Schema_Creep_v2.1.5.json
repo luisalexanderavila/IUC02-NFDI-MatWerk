@@ -267,7 +267,8 @@
                       "type": "string",
                       "enum": [
                         "Unloading before cooling",
-                        "Unloading after cooling"
+                        "Unloading after cooling",
+                        "Not applicable"
                       ]
                     },
                     "testForce": {
@@ -2230,7 +2231,8 @@
                         "At the edge of the upper parallel length",
                         "At the edge of the lower parallel length",
                         "Outside the extensometer gauge length",
-                        "Outside the extensometer the extensometer gauge length and the parallel length"
+                        "Outside the extensometer the extensometer gauge length and the parallel length",
+                        "Not applicable"
                       ]
                     },
                     "finalGaugeLengthAfterFracture": {
