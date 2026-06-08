@@ -507,8 +507,14 @@ def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node, base_
             if isinstance(members, list) and members:
                 # Merge allOf members for rendering so composite objects expose
                 # all fields (e.g., element + value + unit).
-                merged = {"properties": {}, "required": []}
-                merged_type = None
+                # Seed with the parent node's own properties/required/type so
+                # they are not lost when allOf members are purely if/then conditionals
+                # (e.g. TestPiece which has properties + an allOf conditional).
+                merged = {
+                    "properties": dict(node_local.get("properties", {})),
+                    "required": list(node_local.get("required", [])),
+                }
+                merged_type = node_local.get("type")
 
                 for member in members:
                     if not isinstance(member, dict):
