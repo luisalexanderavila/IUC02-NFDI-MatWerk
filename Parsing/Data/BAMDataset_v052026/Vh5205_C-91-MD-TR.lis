@@ -81,7 +81,8 @@ Metadata --> Material history and condition --> Mechanical tests results	Hardnes
 Metadata --> Test piece	Test piece ID				Optional	Vh5205_C-91	*
 Metadata --> Test piece	Workshop order ID				Optional		*
 Metadata --> Test piece	Test piece history	Link to file, preferably with machine-readable (meta)data. The file(s) can include, e.g., data or documentation from previous experiments.			Optional	No previous experiments	
-Metadata --> Test piece	Test piece type I				Mandatory	Specimen according to DIN EN ISO 204:2019-4	
+Metadata --> Test piece	Test piece type I				Mandatory	Specimen according to standard	
+Metadata --> Test piece	Test piece type I standard				Optional	DIN EN ISO 204:2019-4	
 Metadata --> Test piece	Test piece type II				Mandatory	Round cross section	
 Metadata --> Test piece	Test piece type III				Mandatory	Smooth test piece	
 Metadata --> Test piece	Test piece technical drawing	Link to file, preferably with machine-readable (meta)data			Mandatory	See file "TestPieceCreepTests-TechnicalDrawing-FormA.pdf"

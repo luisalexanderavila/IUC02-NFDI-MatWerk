@@ -171,6 +171,7 @@
     "metadata.test piece.test piece origin and orientation": "MeasurementData.AdditionalMetadata.TestPiece.testPieceOriginAndOrientation",
     "metadata.test piece.test piece technical drawing": "MeasurementData.AdditionalMetadata.TestPiece.testPieceTechnicalDrawing",
     "metadata.test piece.test piece type i": "MeasurementData.AdditionalMetadata.TestPiece.testPieceTypeI",
+    "metadata.test piece.test piece type i standard": "MeasurementData.AdditionalMetadata.TestPiece.testPieceTypeIStandard",
     "metadata.test piece.test piece type ii": "MeasurementData.AdditionalMetadata.TestPiece.testPieceTypeII",
     "metadata.test piece.test piece type iii": "MeasurementData.AdditionalMetadata.TestPiece.testPieceTypeIII.testPieceTypeIIIOptions",
     "metadata.test piece.workshop order id": "MeasurementData.AdditionalMetadata.TestPiece.workshopOrderID",
