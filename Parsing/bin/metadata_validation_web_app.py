@@ -713,7 +713,7 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
     data_root = (root_dir / data_root_value).resolve()
     default_schema_path = (root_dir / default_schema).resolve()
     default_json_folder = (data_root / "BAMDataset_Json").resolve()
-    default_lis_folder = (data_root / "BAMDataset").resolve()
+    default_lis_folder = (data_root / "BAMDataset_v20260608").resolve()
     schema_root = (root_dir / ".." / "Data Schema").resolve()
     default_mapping = (root_dir / "Metadata" / "Mappings" / "BAM2schema.json").resolve()
 
@@ -777,7 +777,7 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
     <h2>Inputs</h2>
         <div class="row">
             <label>Schema file selection</label>
-            <select id="schema_select" onchange="setSchemaPathAndSubmit(this.value)">
+            <select id="schema_select" name="schema_path" onchange="syncSchemaDisplay(this.value); this.form.submit()">
                 {% for label, value in schema_options %}
                 <option value="{{ value }}" {% if value == schema_path %}selected{% endif %}>{{ label }}</option>
                 {% endfor %}
@@ -785,7 +785,7 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         </div>
     <div class="row">
       <label>Schema file path</label>
-            <input id="schema_path" type="text" name="schema_path" value="{{ schema_path }}" />
+            <input id="schema_path_display" type="text" readonly value="{{ schema_path }}" style="background:#f5f5f5;color:#555;" />
     </div>
 
     <div class="split">
@@ -924,13 +924,9 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
         {% endif %}
 
 <script>
-    function setSchemaPathAndSubmit(schemaPath) {
-        const input = document.getElementById("schema_path");
-        if (!input) return;
-        input.value = schemaPath || "";
-        if (input.form) {
-            input.form.submit();
-        }
+    function syncSchemaDisplay(schemaPath) {
+        const input = document.getElementById("schema_path_display");
+        if (input) input.value = schemaPath || "";
     }
 
     function setOutputNameFromLis(lisPath) {
