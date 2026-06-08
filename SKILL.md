@@ -2,7 +2,8 @@
 
 > NFDI-MatWerk Infrastructure Use Case 02 — Framework for Curation and Distribution of Reference Datasets  
 > **Domain:** Creep experiments on Ni-base single-crystal superalloys (CMSX-6), BAM dataset  
-> **Python environment:** conda env `python311` (Python 3.11)
+> **Python environment:** conda env `python311` (Python 3.11)  
+> **Last updated:** 2026-06-08 — schema v2.1.7, dataset BAMDataset_v20260608
 
 ---
 
@@ -48,8 +49,9 @@ A Flask-based local web app (`metadata_validation_web_app.py`) drives the middle
 ```
 iuc02/
 ├── Data Schema/                      # JSON Schema files (all versions)
-│   ├── 2026-04_Data-Schema_Creep_v2.1.2.json   ← CURRENT schema
-│   ├── 2026-04_Schema-Changes_v2.1-to-v2.1.2.md
+│   ├── 2026-06_Data-Schema_Creep_v2.1.7.json   ← CURRENT schema
+│   ├── 2026-06_Data-Schema_Creep_v2.1.6.json
+│   ├── 2026-06_Schema-Changes_v2.1.5-to-v2.1.6.md
 │   └── IntendedSchemaStructure.md
 ├── Demonstrator_App/                 # Streamlit app
 │   ├── IUC02_Demonstrator.py         # entry point
@@ -61,7 +63,7 @@ iuc02/
 │   ├── bin/                          # CLI scripts and web apps
 │   │   ├── metadata_validation_web_app.py   ← main validation web app
 │   │   ├── metadata_validation_web_app.bat  ← launcher (Windows)
-│   │   ├── translate_bam_data_v2.py         ← LIS → JSON converter
+│   │   ├── translate_bam_data_v2.py         ← LIS → JSON converter (DEFAULT: v2.1.7)
 │   │   ├── validation_core.py               ← shared validation logic
 │   │   ├── shacl_validation_core.py
 │   │   ├── visualization_core.py
@@ -76,14 +78,15 @@ iuc02/
 │   │   ├── json_to_shacl.py
 │   │   └── run_all_checks.py / run_all_checks.bat
 │   ├── Data/
-│   │   ├── BAMDataset_v032026/       ← v2 LIS dataset (current)
-│   │   │   ├── Vh5205_C-<T>-MD-TR.lis   ← main metadata files
+│   │   ├── BAMDataset_v20260608/     ← CURRENT versioned LIS dataset (12 MD-TR files)
+│   │   │   ├── Vh5205_C-<T>-MD-TR.lis   ← main metadata files (UTF-8 no BOM, CRLF)
 │   │   │   ├── Vh5205_C-<T>-Creep.LIS
 │   │   │   ├── Vh5205_C-<T>-Loading.LIS
 │   │   │   ├── Vh5205_Complementary_*.LIS
 │   │   │   └── _batch_translated/    ← pre-generated JSON outputs
-│   │   ├── BAMDataset/               ← downloaded from Zenodo (v1 legacy)
-│   │   └── BAMDataset_Json/          ← JSON outputs for v1
+│   │   ├── BAMDataset_Json/          ← active JSON output folder (regenerated from v20260608)
+│   │   ├── BAMDataset_v052026/       ← previous dataset version (keep for reference)
+│   │   └── BAMDataset_v20260608.zip  ← zip archive for distribution
 │   ├── dependencies/
 │   │   ├── LISParser/LISParser/
 │   │   │   ├── LisParseV2.py         ← v2 parser (current)
@@ -91,7 +94,7 @@ iuc02/
 │   │   └── Mappingsreader/mappingsreader/
 │   │       └── mapreader.py
 │   ├── Metadata/Mappings/
-│   │   ├── BAM2schema_v2.json        ← mapping doc for v2 LIS → schema
+│   │   ├── BAM2schema_v2.json        ← mapping doc for v2 LIS → schema (UTF-8 BOM)
 │   │   └── BAM2schema.json           ← mapping doc for v1 LIS
 │   ├── test/                         # pytest tests
 │   ├── shacl_validation/             # example TTL files
@@ -158,7 +161,7 @@ Some field values span multiple continuation lines (lines that lack both the `--
 
 ## 4. Data Schema
 
-### Current version: `2026-04_Data-Schema_Creep_v2.1.2.json`
+### Current version: `2026-06_Data-Schema_Creep_v2.1.7.json`
 
 **JSON Schema Draft 2019-09.** Located at `Data Schema/`.
 
@@ -183,8 +186,15 @@ MeasurementData (required)
  │     │     ├── ndtResults
  │     │     └── mechanicalTestResults
  │     ├── TestPiece
+ │     │     ├── testPieceTypeI          (enum + allOf conditional)
+ │     │     ├── testPieceTypeIStandard  (conditional: when typeI = "Specimen according to standard")
+ │     │     └── ...
  │     ├── MeasuringAndTestEquipment
  │     │     ├── testMachine
+ │     │     │     ├── testFrameAndSpecimenAlignment
+ │     │     │     ├── testFrameAndSpecimenAlignmentDescription
+ │     │     │     ├── testFrameAndSpecimenAlignmentDate  (optional string, v2.1.7)
+ │     │     │     └── ...
  │     │     ├── loadSensor
  │     │     ├── temperatureSensor
  │     │     ├── extensometerSystem
@@ -196,7 +206,7 @@ MeasurementData (required)
        └── TestResult
 ```
 
-#### Key naming conventions (v2.1.2)
+#### Key naming conventions
 
 Top-level section keys are **PascalCase**: `AdditionalMetadata`, `TestInfo`, `MaterialHistoryAndCondition`, `TestPiece`, `MeasuringAndTestEquipment`, `DataProcessingProcedures`, `PrimaryData`, `SecondaryData`, `TestResult`.
 
@@ -211,13 +221,32 @@ Leaf-level field keys are **camelCase** (e.g., `dateOfTestStart`, `specifiedTemp
 | `ChemicalCompositionNominalElementsList` | Array of `{element, value, unit}`                     |
 | `ChemicalCompositionExternalFile`        | `{externalFileLink: string}`                          |
 
-#### Schema changelog (v2.1 → v2.1.2)
+#### Dropdown fields — "Other" pattern
 
-- `primaryData`/`secondaryData` moved **inside** `MeasurementData`
-- `testPiece`, `measuringAndTestEquipment`, `dataProcessingProcedures` moved **inside** `AdditionalMetadata`
-- `microstructureNi-BasedSX`, `chemicalComposition`, `ndtResults`, `mechanicalTestResults` moved **inside** `MaterialHistoryAndCondition`
-- All top-level section keys renamed from camelCase to **PascalCase**
-- `MeasurementData.required` updated to use PascalCase keys
+When a field has enum options AND an "Other (Please specify in the comment)" option, it uses the `*Options` / `other*` sibling pattern:
+
+```json
+"testStandard": {
+  "properties": {
+    "testStandardOptions": { "type": "string", "enum": ["ISO 204", "ASTM E139", "Other (Please specify in the comment)"] },
+    "otherTestStandard": { "type": "string" }
+  }
+}
+```
+
+When the LIS value doesn't match any option, B6 sets `testStandardOptions = "Other (Please specify...)"` and writes the raw LIS value to `otherTestStandard`.
+
+Fields **without** "Other" option require an exact match — mismatch is logged as ERROR.
+
+#### Schema changelog
+
+**v2.1.6** (from v2.1.5):
+- `interruptionCourse`: added `"Not applicable"` to enum
+- `fracturePosition`: added `"Not applicable"` to enum
+- `TestPiece.allOf`: conditional — when `testPieceTypeI = "Specimen according to standard"`, `testPieceTypeIStandard` becomes available
+
+**v2.1.7** (from v2.1.6):
+- `testMachine`: added optional `testFrameAndSpecimenAlignmentDate` string property after `testFrameAndSpecimenAlignmentDescription`
 
 ---
 
@@ -279,18 +308,22 @@ Used automatically when the file does not have the `CATEGORIZATION` header. Retu
 ## 6. LIS → JSON Conversion (Mapping)
 
 **Script:** `Parsing/bin/translate_bam_data_v2.py`  
-**Mapping document:** `Parsing/Metadata/Mappings/BAM2schema_v2.json`
+**Mapping document:** `Parsing/Metadata/Mappings/BAM2schema_v2.json` (UTF-8 **with BOM** — open with `encoding="utf-8-sig"`)  
+**Default schema:** `2026-06_Data-Schema_Creep_v2.1.7.json`
 
 ### Running
 
 ```bash
-# From Parsing/ directory, with python311 conda env active:
-python bin/translate_bam_data_v2.py Data/BAMDataset_v032026/Vh5205_C-78-MD-TR.lis
+# Single file (from Parsing/ directory, python311 env active):
+python bin/translate_bam_data_v2.py Data/BAMDataset_v20260608/Vh5205_C-78-MD-TR.lis \
+  -o Data/BAMDataset_Json/Vh5205_C-78-MD-TR_translated.json
 
-# With explicit output path and schema validation:
-python bin/translate_bam_data_v2.py Data/BAMDataset_v032026/Vh5205_C-78-MD-TR.lis \
-  --output Data/BAMDataset_v032026/_batch_translated/Vh5205_C-78-MD-TR_schema_v2.json \
-  --validate-schema "../Data Schema/2026-04_Data-Schema_Creep_v2.1.2.json"
+# Batch all 12 MD-TR files (PowerShell):
+$py = "C:\Users\maria\anaconda3\envs\python311\python.exe"
+foreach ($f in Get-ChildItem "Data\BAMDataset_v20260608\*-MD-TR.lis") {
+    $out = "Data\BAMDataset_Json\$($f.BaseName)_translated.json"
+    & $py bin\translate_bam_data_v2.py $f.FullName -o $out
+}
 ```
 
 ### Mapping document format (`BAM2schema_v2.json`)
@@ -307,20 +340,34 @@ python bin/translate_bam_data_v2.py Data/BAMDataset_v032026/Vh5205_C-78-MD-TR.li
 
 - **Keys** — flat, dot-separated, all-lowercase LIS path (`section.path.field`)
 - **Values** — dot-separated target schema path (`MeasurementData.AdditionalMetadata.…`)
+- Note: `suffix_map` keys in the translator use the PascalCase schema path suffix exactly as it appears in the schema (e.g., `TestPiece.testPieceTypeI`, not `testPiece.testPieceTypeI`)
 
 ### Key logic in `translate_v2()`
 
 1. Flatten parsed LIS dict to `flat_records` (case-insensitive key lookup)
 2. For each mapping entry, look up the record and extract `.value`
-3. Normalize value via `_normalize_value_for_schema_path()` for known enum fields  
-   (e.g. `"constant force"` → `"Constant Force"`, `"single crystal"` → `"Single crystal"`)
-4. Handle **chemical composition external references**: if the value starts with `"See file"`, parse the referenced complementary LIS file and inline the element-by-element data
-5. Set value in the nested output dict using `_set_nested_safe()`
-6. Post-process: `_fix_int_keys()` converts integer-keyed dicts to Python lists
+3. Normalize value via `_normalize_value_for_schema_path()` using `suffix_map` (exact lowercase match only — no `startswith` fallback)
+4. Apply **B6 Other-detection** (`_try_other_detection`) on every enum-constrained path:
+   - Exact case-sensitive comparison (`stripped == opt`)
+   - `*Options` fields with "Other (Please specify...)" in enum → write `other*` sibling on mismatch
+   - All enum fields without "Other" option → log `ERROR` on mismatch
+   - Array indices stripped before enum lookup: `re.sub(r'\.(\d+)\.', '.', schema_path)`
+5. Handle chemical composition external references (`See file …`)
+6. Handle leverageRatio extraction from test machine type values
+7. Post-process: `_fix_int_keys()` converts integer-keyed dicts to Python lists
+
+### Enum handling rules (important)
+
+| Situation | Behaviour |
+|-----------|-----------|
+| LIS value exactly matches enum option (case-sensitive) | Written as-is |
+| LIS value doesn't match; field has "Other (Please specify...)" option | `*Options = "Other..."`, `other* = raw LIS value` |
+| LIS value doesn't match; field has NO "Other" option | `ERROR` logged; value written as-is |
+| `suffix_map` has a lowercase alias for the path | Normalized before B6 check |
 
 ### Output: JSON experiment document
 
-Conforms to schema structure starting from `MeasurementData`. Pre-generated examples are in `Parsing/Data/BAMDataset_v032026/_batch_translated/`.
+Conforms to schema structure starting from `MeasurementData`. Saved to `Parsing/Data/BAMDataset_Json/`.
 
 ---
 
@@ -363,7 +410,8 @@ python bin/complete_json.py \
 **Script:** `Parsing/bin/metadata_validation_web_app.py`  
 **Launcher:** `Parsing/bin/metadata_validation_web_app.bat`  
 **Default port:** `8503`  
-**Default schema:** `Data Schema/2026-04_Data-Schema_Creep_v2.1.2.json`
+**Default schema:** `Data Schema/2026-06_Data-Schema_Creep_v2.1.7.json`  
+**Default LIS folder:** `Data/BAMDataset_v20260608`
 
 ### Starting
 
@@ -373,31 +421,35 @@ python bin/metadata_validation_web_app.py
 
 # Custom port/schema:
 python bin/metadata_validation_web_app.py --port 9000 \
-  --schema "../Data Schema/2026-04_Data-Schema_Creep_v2.1.2.json"
+  --schema "../Data Schema/2026-06_Data-Schema_Creep_v2.1.7.json"
 ```
 
 ### Features
 
 | Feature | Description |
 |---|---|
-| **Schema selector** | Dropdown lists all JSON Schema files found in the `Data Schema/` folder |
+| **Schema selector** | Dropdown with `name="schema_path"`, posts value directly on change (same pattern as other dropdowns) |
 | **JSON file picker** | Lists `.json` files under `Data/BAMDataset_Json/` |
-| **LIS file picker** | Lists `*-MD-TR.lis` files under `Data/BAMDataset_v032026/` and other discoverable folders |
-| **Convert LIS → JSON** | Invokes `translate_bam_data_v2.py` as subprocess; saves output JSON |
-| **Load & validate** | Loads JSON, runs required-path check + full JSON Schema validation, shows counts |
-| **Tree view** | Renders JSON against schema as an expandable HTML tree (`tree_html_from_schema()`) |
+| **LIS file picker** | Lists `*-MD-TR.lis` files under `Data/BAMDataset_v20260608/` and discoverable folders |
+| **Convert LIS → JSON** | Invokes `translate_bam_data_v2.py`; saves to `BAMDataset_Json/` |
+| **Load & validate** | Loads JSON, runs required-path check + full JSON Schema validation |
+| **Tree view** | Renders JSON against schema as an expandable HTML tree |
 | **Validation highlighting** | Missing required fields in **red**, present required fields in **green** |
-| **Auto-fix** | Button triggers `autofix_schema_errors()` and saves a fixed JSON |
-| **SHACL validation** | Upload or select TTL data graph and shapes graph; runs `shacl_validation_core` |
-| **Jump-to-field anchors** | Each tree node has an HTML `id` derived from its JSON path |
+| **Auto-fix** | Triggers `autofix_schema_errors()` and saves fixed JSON |
+| **SHACL validation** | Runs `shacl_validation_core` on TTL graphs |
 
-### `tree_html_from_schema()` rendering rules
+### Dropdown rendering rule for `*Options` / Other fields
 
-- Resolves `$ref`, `oneOf`/`anyOf` (picks the branch matching the data type), `allOf` (merges properties)
-- Branch nodes (objects with properties) rendered as `<details open>` expandable sections
-- Leaf nodes rendered as `key: value` with color-coded validation markers
-- Arrays: single-item arrays skip the `[0]` wrapper layer; multi-item arrays show collapsible `[n]` items
-- Empty/null values shown as `(empty)` in red; absent optional fields as `(not provided)` in grey
+When rendering a `*Options` field that starts with `"Other"`, the display value is taken from the `other*` sibling (the actual LIS value), not from the raw `"Other (Please specify...)"` string. This is applied in `_build_leaf_html` (~line 640).
+
+### `_resolve_for_render()` — allOf merge (important)
+
+When a schema node has both local `properties` and an `allOf` array:
+- Merged properties are **seeded from the node's own `properties`** first
+- Each allOf member's `properties` are added (without overwriting)
+- `then.properties` from `if/then` conditionals are also included (for conditional fields like `testPieceTypeIStandard`)
+
+This prevents the entire object from being serialized as a raw JSON string instead of a tree.
 
 ---
 
@@ -578,33 +630,57 @@ Step 2 — Parse a LIS file
   → hierarchical dict (metadata / primary_data / secondary_data / data)
 
 Step 3 — Translate to JSON experiment document
-  python Parsing/bin/translate_bam_data_v2.py Vh5205_C-78-MD-TR.lis
-  → Vh5205_C-78-MD-TR_schema_v2.json
-    (conforms to Data Schema/2026-04_Data-Schema_Creep_v2.1.2.json)
+  python Parsing/bin/translate_bam_data_v2.py \
+    Data/BAMDataset_v20260608/Vh5205_C-78-MD-TR.lis \
+    -o Data/BAMDataset_Json/Vh5205_C-78-MD-TR_translated.json
+  → conforms to Data Schema/2026-06_Data-Schema_Creep_v2.1.7.json
 
-Step 4 — Validate JSON
+Step 4 — Batch translate all 12 MD-TR files (PowerShell)
+  $py = "C:\Users\maria\anaconda3\envs\python311\python.exe"
+  foreach ($f in Get-ChildItem "Data\BAMDataset_v20260608\*-MD-TR.lis") {
+      $out = "Data\BAMDataset_Json\$($f.BaseName)_translated.json"
+      & $py bin\translate_bam_data_v2.py $f.FullName -o $out
+  }
+
+Step 5 — Validate JSON
   validation_core.validate_required_keywords(schema, doc)
   → missing-field warnings list
   validation_core.run_jsonschema_validation(schema, data)
   → full schema errors list
 
-Step 5 — Interactive validation in web app
+Step 6 — Interactive validation in web app
   python Parsing/bin/metadata_validation_web_app.py
   → open http://127.0.0.1:8503
   - Pick LIS file → Convert → inspect tree → highlight missing fields → auto-fix
 
-Step 6 — Convert to RDF and validate with SHACL
+Step 7 — Convert to RDF and validate with SHACL
   python Parsing/bin/bam2shacl.py ...
   python Parsing/bin/validate_rdf_shacl.py ...
 
-Step 7 — Visualize RDF graph
+Step 8 — Visualize RDF graph
   python Parsing/bin/visualization_web_app.py
   → open http://127.0.0.1:8502
 ```
 
-### Current dataset specimens (v032026)
+### Current dataset specimens (BAMDataset_v20260608)
 
 Tests: **C-78, C-80, C-81, C-82, C-85, C-89, C-91, C-94, C-95, C-97, C-98, C-99**  
 Material: CMSX-6 single-crystal Ni-base superalloy  
 Temperatures: ~980 °C, stress levels: ~200–300 MPa  
 DOI: https://doi.org/10.1016/j.dib.2025.112436
+
+### LIS file encoding and format notes
+
+- **Encoding:** UTF-8 without BOM
+- **Line endings:** CRLF (`\r\n`)
+- **Parser opens with:** `encoding="utf-8"` — do NOT write with `utf-8-sig` (BOM breaks header detection)
+- When modifying LIS files programmatically, read as binary (`rb`), split on `b'\r\n'`, write back as binary (`wb`)
+
+### Known field corrections applied in BAMDataset_v20260608
+
+| Field | Change | Reason |
+|-------|--------|--------|
+| `Test piece type I` | Value changed from `"Specimen according to DIN EN ISO 204:2019-4"` to `"Specimen according to standard"` | Versioned reference extracted to separate field |
+| `Test piece type I standard` | New field added with `"DIN EN ISO 204:2019-4"` | Separates type from standard reference |
+| `Test frame and specimen alignment` | Truncated at `Yes`/`No` | Date extracted to separate field |
+| `Test frame and specimen alignment - Date` | New field with `"18.07.2011"`, placed after `-description` line | Date now in dedicated field |
