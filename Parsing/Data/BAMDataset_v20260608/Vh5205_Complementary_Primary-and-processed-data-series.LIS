@@ -1,0 +1,36 @@
+"1. Primary data series (acquired data):
+Time (s), displacement (mm), temperature (° C) values for each sensor (including heating-up and cooling-down phases), and  force (kN, only during test load application)."
+"2. Processed data series:
+- Processed data regarding the loading phase (see worksheet ""Loading"") and  the creep deformation (see the corresponding LIS file for each test piece).
+- The data series from the heating-up and cooling down phases are not provided. Instead, relevant metadata values (rows 34 and 35 for each test piece in the corresponding worksheet) are provided.
+- For both loading and creep data the displacement (extension) values (mm) are converted to percentage extension values (%) using the appropiate reference length (determined at room temperature after applying the extensometer according to pre-force)."
+"2.1 Loading data
+- The time series values (s) start from t = 0 for better representation of the data.
+- The force data values do not include the preload."
+"2.2 Creep data
+- This is the data after the end of the loading, which corresponds to the creep deformation. 
+- The time series values (s) are converted to h. The time t = 0 (point b in Figure NA.1 of DIN EN ISO 204:2019-4) corresponds to the time at which the full force of the initial stress is applied to the test piece (start of creep deformation), as specified in ISO 204.
+- The percentage extension values consider an estimation of the extension caused by the preload.
+- The temperature values (° C) correspond to the corrected temperature values, which take into account the deviations determined during calibration."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
