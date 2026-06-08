@@ -537,6 +537,17 @@ def tree_html_from_schema(schema_root: dict, schema_node: dict, data_node, base_
                             if isinstance(req_key, str) and req_key not in merged["required"]:
                                 merged["required"].append(req_key)
 
+                    # Also collect properties from the "then" branch of if/then
+                    # conditionals so that conditional fields (e.g. testPieceTypeIStandard,
+                    # otherFurnaceType) are visible in the rendered tree.
+                    then_branch = resolved_member.get("then", {})
+                    if isinstance(then_branch, dict):
+                        then_props = then_branch.get("properties", {})
+                        if isinstance(then_props, dict):
+                            for k, v in then_props.items():
+                                if k not in merged["properties"]:
+                                    merged["properties"][k] = v
+
                 if merged_type is not None:
                     merged["type"] = merged_type
 
