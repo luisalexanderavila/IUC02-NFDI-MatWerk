@@ -614,7 +614,8 @@
                         "measuredCondition": "As-tested",
                         "measuringPosition": "Bulk",
                         "microstructureFeature": {
-                            "microstructureFeatureOptions": "Microstructure before testing"
+                            "microstructureFeatureOptions": "Other (Please specify in the comment)",
+                            "otherMicrostructureFeature": "Microstructure before testing"
                         },
                         "microstructureFeatureInformation": "See related article https://doi.org/10.1016/j.dib.2025.112436",
                         "microstructureImage": "See files:; Overview-interdentritic-region-Optical.jpg; Overview-interdentritic-region-SEM.tig; Dendrite-Optical.jpg; Dendrite-SEM.tif",
@@ -651,7 +652,7 @@
                         },
                         "calibrationStandard": "DIN EN ISO 9513:2013",
                         "calibrationValidityTimePeriod": "12 Months",
-                        "extensionAveraging": "No",
+                        "extensionAveraging": "Not applicable",
                         "extensionRangeLowerLimit": {
                             "value": "-10 % / -2,5 mm",
                             "unit": "%  / mm"

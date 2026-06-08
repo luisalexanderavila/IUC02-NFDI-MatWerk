@@ -193,7 +193,8 @@ def _normalize_value_for_schema_path(schema_path: str, raw_value: str):
             "inclusion": "Inclusion",
             "grain": "Grain",
             "segregation": "Segregation",
-            "microstructure before testing": "Matrix",
+            # "microstructure before testing" removed: not equivalent to "Matrix";
+            # routes to Other via B6.
         },
         "microstructureNi-BasedSX.grainSizeDeterminationMethod.grainSizeDeterminationMethodOptions": {
             "line intercept": "Line Intercept",
@@ -219,8 +220,6 @@ def _normalize_value_for_schema_path(schema_path: str, raw_value: str):
         if path.endswith(suffix):
             for source, target in candidates.items():
                 if low == source:
-                    return target
-                if low.startswith(source):
                     return target
 
     return value
@@ -364,10 +363,14 @@ def _try_other_detection(schema_path: str, value: str, enum_lookup: dict) -> tup
     if not schema_path.endswith("Options"):
         return value, None, None
 
+    # Strip numeric array-index segments (e.g. ".0.") before suffix matching,
+    # since the enum_lookup is built from the schema which has no numeric keys.
+    schema_path_no_idx = re.sub(r'\.(\d+)\.', '.', schema_path)
+
     # Find the matching suffix in enum_lookup
     allowed = None
     for suffix, options in enum_lookup.items():
-        if schema_path.endswith(suffix):
+        if schema_path_no_idx.endswith(suffix):
             allowed = options
             break
     if allowed is None:
