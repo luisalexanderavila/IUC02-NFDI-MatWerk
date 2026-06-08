@@ -778,7 +778,8 @@
                     },
                     "heatingSystem": {
                         "furnaceType": {
-                            "furnaceTypeOptions": "Split Tube Furnace with Two-zones"
+                            "furnaceTypeOptions": "Other (Please specify in the comment)",
+                            "otherFurnaceType": "Split Tube Furnace with two-zones"
                         }
                     },
                     "loadingSystem": {

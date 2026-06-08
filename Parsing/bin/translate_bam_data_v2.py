@@ -153,10 +153,8 @@ def _normalize_value_for_schema_path(schema_path: str, raw_value: str):
             "specimen according to din en iso": "Specimen according to standard",
             "miniaturized specimen": "Miniaturized specimen",
         },
-        "testMachine.heatingSystem.furnaceType.furnaceTypeOptions": {
-            "split tube furnace with two-zones": "Split Tube Furnace with Two-zones",
-            "split tube furnace with three-zones": "Split Tube Furnace with Three-zones",
-        },
+        # furnaceType suffix_map removed: LIS value "Split Tube Furnace with two-zones" differs in
+        # case from enum "Split Tube Furnace with Two-zones" and must route to Other via B6.
         # elongationValues and crossSectionalDimensions were previously a combined section;
         # now split into separate schema paths.
         "elongationValues.measuringEquipment.measuringEquipmentOptions": {
@@ -376,10 +374,10 @@ def _try_other_detection(schema_path: str, value: str, enum_lookup: dict) -> tup
     if allowed is None:
         return value, None, None
 
-    # Check if value already matches (case-insensitive)
-    low = value.strip().casefold()
+    # Check if value already matches (exact/case-sensitive)
+    stripped = value.strip()
     for opt in allowed:
-        if low == opt.casefold():
+        if stripped == opt:
             return value, None, None  # already matches
 
     # Does the enum have an "Other" option?
