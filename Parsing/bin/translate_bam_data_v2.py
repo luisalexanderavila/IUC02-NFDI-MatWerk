@@ -164,16 +164,18 @@ def _normalize_value_for_schema_path(schema_path: str, raw_value: str):
             "caliper gauge": "Caliper gauge",
         },
         "crossSectionalDimensions.measuringEquipment.measuringEquipmentOptions": {
-            "micrometer": "Micrometer screw gauge",
+            # "micrometer" removed: "Micrometer" is not identical to "Micrometer screw gauge"
+            # and routes to Other via B6.
             "measuring microscope": "Measuring microscope",
         },
         "elongationValues.type.typeOptions": {
-            "optical": "Analog",
+            # "optical" removed: "Optical" is not in the enum (Digital/Analog/Other)
+            # and routes to Other via B6.
             "digital": "Digital",
             "analog": "Analog",
         },
         "crossSectionalDimensions.type.typeOptions": {
-            "optical": "Analog",
+            # same as above
             "digital": "Digital",
             "analog": "Analog",
         },

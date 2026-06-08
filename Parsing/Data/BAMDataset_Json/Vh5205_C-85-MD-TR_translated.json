@@ -830,7 +830,8 @@
                     "equipmentID": "47.02",
                     "equipmentModelInformation": "Mitutoyo 293-661-10 N",
                     "measuringEquipment": {
-                        "measuringEquipmentOptions": "Micrometer screw gauge"
+                        "measuringEquipmentOptions": "Other (Please specify in the comment)",
+                        "otherMeasuringEquipment": "Micrometer"
                     },
                     "measuringEquipmentsUsage": "Determination of minimum test piece diameter at room temperature, D",
                     "resolution": {
@@ -859,7 +860,8 @@
                         "unit": "mm"
                     },
                     "type": {
-                        "typeOptions": "Analog"
+                        "typeOptions": "Other (Please specify in the comment)",
+                        "otherType": "Optical"
                     }
                 }
             },
