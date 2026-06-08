@@ -919,7 +919,7 @@
                 "testPieceOrientationInTestMachine": "; E.g., is the longitudinal axis of the test piece exactly parallel to the loading axis of the test machine?. Add a link to a file providing evidence, preferably with machine-readable (meta)data. This can be, e.g., a technical drawing.",
                 "testPieceOriginAndOrientation": "See file \"Test-piece-location_v2.0.jpg\"",
                 "testPieceTechnicalDrawing": "See file \"TestPieceCreepTests-TechnicalDrawing-FormA.pdf\"; Specimen's dimensions correspond to \"Form A\", see table in file.",
-                "testPieceTypeI": "Specimen according to DIN EN ISO 204:2019-4",
+                "testPieceTypeI": "Specimen according to standard",
                 "testPieceTypeII": "Round cross section",
                 "testPieceTypeIII": {
                     "testPieceTypeIIIOptions": "Smooth test piece"

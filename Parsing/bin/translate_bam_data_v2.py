@@ -46,7 +46,7 @@ logging.basicConfig(level=logging.INFO)
 Logger = logging.getLogger(__name__)
 
 DEFAULT_MAPPING_FILE = os.path.join(_parsing_root, "Metadata", "Mappings", "BAM2schema_v2.json")
-DEFAULT_SCHEMA_FILE = os.path.join(_parsing_root, "..", "Data Schema", "2026-06_Data-Schema_Creep_v2.1.5.json")
+DEFAULT_SCHEMA_FILE = os.path.join(_parsing_root, "..", "Data Schema", "2026-06_Data-Schema_Creep_v2.1.6.json")
 
 
 # ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -148,9 +148,9 @@ def _normalize_value_for_schema_path(schema_path: str, raw_value: str):
         # "astm e220" removed: "ASTM E220-19" (versioned) was caught via startswith,
         # silently mapping to "ASTM E220". Versioned references route to Other via B6.
         "temperatureSensor.calibrationStandard.calibrationStandardOptions": {},
-        "testPiece.testPieceTypeI": {
+        "TestPiece.testPieceTypeI": {
             "specimen according to standard": "Specimen according to standard",
-            "specimen according to din en iso": "Specimen according to standard",
+            "specimen according to din en iso 204:2019-4": "Specimen according to standard",
             "miniaturized specimen": "Miniaturized specimen",
         },
         # furnaceType suffix_map removed: LIS value "Split Tube Furnace with two-zones" differs in
@@ -352,15 +352,20 @@ _OTHER_FIELD_PREFIX = "other"
 
 
 def _try_other_detection(schema_path: str, value: str, enum_lookup: dict) -> tuple:
-    """Check if value matches any enum option for this *Options path.
+    """Validate and optionally remap a value against the schema enum for this path.
 
-    If NOT matched and "Other" is in the enum, return:
-        ("Other (Please specify in the comment)", actual_value_for_other_field, other_field_name)
-    Otherwise return (value, None, None).
+    For *Options fields:
+      - Exact match → return unchanged.
+      - No match + "Other" in enum → route to Other + store actual value in other* sibling.
+      - No match + no "Other" in enum → log ERROR, return value unchanged.
+
+    For all other enum-constrained fields:
+      - Exact match → return unchanged.
+      - No match → log ERROR, return value unchanged.
+
+    Returns (value, other_value, other_field_name); other_value/other_field_name are None
+    unless routing to Other.
     """
-    if not schema_path.endswith("Options"):
-        return value, None, None
-
     # Strip numeric array-index segments (e.g. ".0.") before suffix matching,
     # since the enum_lookup is built from the schema which has no numeric keys.
     schema_path_no_idx = re.sub(r'\.(\d+)\.', '.', schema_path)
@@ -372,26 +377,39 @@ def _try_other_detection(schema_path: str, value: str, enum_lookup: dict) -> tup
             allowed = options
             break
     if allowed is None:
-        return value, None, None
+        return value, None, None  # no enum constraint for this path
 
     # Check if value already matches (exact/case-sensitive)
     stripped = value.strip()
     for opt in allowed:
         if stripped == opt:
-            return value, None, None  # already matches
+            return value, None, None  # exact match — OK
 
-    # Does the enum have an "Other" option?
-    other_opt = next((o for o in allowed if o.startswith(_OTHER_OPTION_PREFIX[:5])), None)
-    if other_opt is None:
+    is_options_field = schema_path.endswith("Options")
+
+    if is_options_field:
+        # Does the enum have an "Other" option?
+        other_opt = next((o for o in allowed if o.startswith(_OTHER_OPTION_PREFIX[:5])), None)
+        if other_opt is not None:
+            # Route to Other and store actual value in other* sibling field.
+            base = schema_path.rsplit(".", 1)[-1]  # e.g. "testStandardOptions"
+            base_without_options = base[: -len("Options")]  # e.g. "testStandard"
+            other_field = _OTHER_FIELD_PREFIX + base_without_options[0].upper() + base_without_options[1:]
+            return other_opt, value, other_field
+        else:
+            Logger.error(
+                "LIS value %r for dropdown field '%s' does not match any enum option %s "
+                "and no 'Other' option is available in the schema.",
+                stripped, schema_path, allowed,
+            )
+            return value, None, None
+    else:
+        # Non-*Options enum field: value must match exactly.
+        Logger.error(
+            "LIS value %r for field '%s' does not match any allowed enum value %s.",
+            stripped, schema_path, allowed,
+        )
         return value, None, None
-
-    # Derive the other field name: strip trailing "Options" → prepend "other"
-    base = schema_path.rsplit(".", 1)[-1]  # e.g. "testStandardOptions"
-    base_without_options = base[: -len("Options")]  # e.g. "testStandard"
-    other_field = _OTHER_FIELD_PREFIX + base_without_options[0].upper() + base_without_options[1:]
-    # e.g. "otherTestStandard"
-
-    return other_opt, value, other_field
 
 
 def translate_v2(parsed: dict, mapping_doc: dict, source_lis_file: str = "",
