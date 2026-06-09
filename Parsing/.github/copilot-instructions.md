@@ -2,15 +2,15 @@
 
 This file guides AI agents working on the IUC02 codebase. Read this before making any changes.
 
-## Current state (2026-06-08)
+## Current state (2026-06-09)
 
 | Artefact | Current value |
 |---|---|
-| Active schema | `Data Schema/2026-06_Data-Schema_Creep_v2.1.7.json` |
+| Active schema | `Data Schema/2026-06_Data-Schema_Creep_v2.1.8.json` |
 | Active LIS dataset | `Parsing/Data/BAMDataset_v20260608/` (12 MD-TR files) |
 | JSON output folder | `Parsing/Data/BAMDataset_Json/` |
 | Translator default | `Parsing/bin/translate_bam_data_v2.py` line ~49 `DEFAULT_SCHEMA_FILE` |
-| Active branch | `pdf-corrections-implementation` |
+| Active branch | `Parsing_Scripts` |
 | Python env | `C:\Users\maria\anaconda3\envs\python311\python.exe` |
 
 ## Running the translator (batch)
