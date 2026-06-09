@@ -1,9 +1,9 @@
 ﻿# IUC02 Project — Copilot SKILL Reference
 
 > NFDI-MatWerk Infrastructure Use Case 02 — Framework for Curation and Distribution of Reference Datasets  
-> **Domain:** Creep experiments on Ni-base single-crystal superalloys (CMSX-6), BAM dataset  
+> **Domain:** Creep experiments on Ni-base single-crystal superalloys (CMSX-6), BAM + RUB datasets  
 > **Python environment:** conda env `python311` (Python 3.11)  
-> **Last updated:** 2026-06-08 — schema v2.1.7, dataset BAMDataset_v20260608
+> **Last updated:** 2026-06-09 — schema v2.1.8, datasets BAMDataset_v20260608 + RUBDataset (41 tests)
 
 ---
 
@@ -11,33 +11,40 @@
 
 1. [Project Overview](#1-project-overview)
 2. [Repository Layout](#2-repository-layout)
-3. [Data: LIS Files](#3-data-lis-files)
+3. [Data: LIS Files (BAM)](#3-data-lis-files)
 4. [Data Schema](#4-data-schema)
 5. [Parsing: LISParser Module](#5-parsing-lisparser-module)
 6. [LIS → JSON Conversion (Mapping)](#6-lis--json-conversion-mapping)
-7. [Validation](#7-validation)
-8. [Metadata Validation Web App (Flask)](#8-metadata-validation-web-app-flask)
-9. [RDF / SHACL Pipeline](#9-rdf--shacl-pipeline)
-10. [RDF Visualization Web App (Flask)](#10-rdf-visualization-web-app-flask)
-11. [Demonstrator App (Streamlit)](#11-demonstrator-app-streamlit)
-12. [Data Download from Zenodo](#12-data-download-from-zenodo)
-13. [Batch Processing](#13-batch-processing)
-14. [Tests](#14-tests)
-15. [Environment & Dependencies](#15-environment--dependencies)
-16. [End-to-End Workflow Summary](#16-end-to-end-workflow-summary)
+7. [RUB Excel → JSON Conversion](#7-rub-excel--json-conversion)
+8. [Validation](#8-validation)
+9. [Metadata Validation Web App (Flask)](#9-metadata-validation-web-app-flask)
+10. [RDF / SHACL Pipeline](#10-rdf--shacl-pipeline)
+11. [RDF Visualization Web App (Flask)](#11-rdf-visualization-web-app-flask)
+12. [Demonstrator App (Streamlit)](#12-demonstrator-app-streamlit)
+13. [Data Download from Zenodo](#13-data-download-from-zenodo)
+14. [Batch Processing](#14-batch-processing)
+15. [Tests](#15-tests)
+16. [Environment & Dependencies](#16-environment--dependencies)
+17. [End-to-End Workflow Summary](#17-end-to-end-workflow-summary)
 
 ---
 
 ## 1. Project Overview
 
-IUC02 captures, structures, and validates metadata of creep experiments performed at BAM. The core workflow is:
+IUC02 captures, structures, and validates metadata of creep experiments on CMSX-6 single-crystal Ni-base superalloys. Two datasets are supported:
+
+- **BAM dataset** (Berlin) — LIS text files, compressive or tensile creep, 12 specimens
+- **RUB dataset** (Ruhr-Universität Bochum) — Excel file, tensile creep, 41 tests across [001]/[110]/[111] orientations
+
+Core workflow:
 
 ```
-LIS file  →  parse  →  flat dict  →  map  →  JSON experiment document
-                                                     ↓
-                              validate against JSON Schema (v2.1.2)
-                                                     ↓
-                              convert to RDF Turtle → SHACL validation
+BAM:  LIS file  →  LisParseV2  →  flat dict  →  BAM2schema_v2.json  →  JSON experiment document
+RUB:  Excel     →  pandas       →  test dict  →  hardcoded mapping   →  JSON experiment document
+                                                                               ↓
+                                                    validate against JSON Schema v2.1.8
+                                                                               ↓
+                                                    convert to RDF Turtle → SHACL validation
 ```
 
 A Flask-based local web app (`metadata_validation_web_app.py`) drives the middle of this pipeline interactively. A Streamlit demonstrator app shows the end-to-end workflow for stakeholders.
@@ -49,7 +56,8 @@ A Flask-based local web app (`metadata_validation_web_app.py`) drives the middle
 ```
 iuc02/
 ├── Data Schema/                      # JSON Schema files (all versions)
-│   ├── 2026-06_Data-Schema_Creep_v2.1.7.json   ← CURRENT schema
+│   ├── 2026-06_Data-Schema_Creep_v2.1.8.json   ← CURRENT schema
+│   ├── 2026-06_Data-Schema_Creep_v2.1.7.json
 │   ├── 2026-06_Data-Schema_Creep_v2.1.6.json
 │   ├── 2026-06_Schema-Changes_v2.1.5-to-v2.1.6.md
 │   └── IntendedSchemaStructure.md
@@ -63,7 +71,8 @@ iuc02/
 │   ├── bin/                          # CLI scripts and web apps
 │   │   ├── metadata_validation_web_app.py   ← main validation web app
 │   │   ├── metadata_validation_web_app.bat  ← launcher (Windows)
-│   │   ├── translate_bam_data_v2.py         ← LIS → JSON converter (DEFAULT: v2.1.7)
+│   │   ├── translate_bam_data_v2.py         ← BAM LIS → JSON converter (schema v2.1.8)
+│   │   ├── translate_rub_data.py            ← RUB Excel → JSON converter (schema v2.1.8)
 │   │   ├── validation_core.py               ← shared validation logic
 │   │   ├── shacl_validation_core.py
 │   │   ├── visualization_core.py
@@ -84,9 +93,13 @@ iuc02/
 │   │   │   ├── Vh5205_C-<T>-Loading.LIS
 │   │   │   ├── Vh5205_Complementary_*.LIS
 │   │   │   └── _batch_translated/    ← pre-generated JSON outputs
-│   │   ├── BAMDataset_Json/          ← active JSON output folder (regenerated from v20260608)
-│   │   ├── BAMDataset_v052026/       ← previous dataset version (keep for reference)
-│   │   └── BAMDataset_v20260608.zip  ← zip archive for distribution
+│   │   ├── BAMDataset_Json/          ← BAM active JSON output (regenerated from v20260608)
+│   │   ├── BAMDataset_v052026/       ← previous BAM dataset version (keep for reference)
+│   │   ├── BAMDataset_v20260608.zip  ← zip archive for distribution
+│   │   ├── RUBDataset/               ← RUB source data directory
+│   │   │   ├── SX-CREEP-DATA_LWW-RUB_JAN2023.xlsx  ← source Excel (Zenodo 7663974)
+│   │   │   └── CLAUDE.md             ← Claude Code reference for RUB pipeline
+│   │   └── RUBDataset_Json/          ← RUB JSON output (41 tests: 19+11+11)
 │   ├── dependencies/
 │   │   ├── LISParser/LISParser/
 │   │   │   ├── LisParseV2.py         ← v2 parser (current)
@@ -161,7 +174,7 @@ Some field values span multiple continuation lines (lines that lack both the `--
 
 ## 4. Data Schema
 
-### Current version: `2026-06_Data-Schema_Creep_v2.1.7.json`
+### Current version: `2026-06_Data-Schema_Creep_v2.1.8.json`
 
 **JSON Schema Draft 2019-09.** Located at `Data Schema/`.
 
@@ -248,6 +261,12 @@ Fields **without** "Other" option require an exact match — mismatch is logged 
 **v2.1.7** (from v2.1.6):
 - `testMachine`: added optional `testFrameAndSpecimenAlignmentDate` string property after `testFrameAndSpecimenAlignmentDescription`
 
+**v2.1.8** (from v2.1.7):
+- `loadSensorCalibration`: changed from plain string to enum (`Yes`/`No`); added sibling `loadSensorCalibrationDescription` string
+- `temperatureMeasuringSystem.dataAcquisition.calibrationStandard`: added description hint `E.g., EURAMET/cg-11/v.01`
+- `SecondaryData.TestResult.dataSeries.creepCurve`: new mandatory string field (link to Zenodo creep file); `dataSeries` object now has `"required": ["creepCurve"]`
+- `castingTemperature` / `castingAtmosphere`: changed from array-of-ComplexValue to single ComplexValue
+
 ---
 
 ## 5. Parsing: LISParser Module
@@ -309,7 +328,7 @@ Used automatically when the file does not have the `CATEGORIZATION` header. Retu
 
 **Script:** `Parsing/bin/translate_bam_data_v2.py`  
 **Mapping document:** `Parsing/Metadata/Mappings/BAM2schema_v2.json` (UTF-8 **with BOM** — open with `encoding="utf-8-sig"`)  
-**Default schema:** `2026-06_Data-Schema_Creep_v2.1.7.json`
+**Default schema:** `2026-06_Data-Schema_Creep_v2.1.8.json`
 
 ### Running
 
@@ -371,7 +390,73 @@ Conforms to schema structure starting from `MeasurementData`. Saved to `Parsing/
 
 ---
 
-## 7. Validation
+## 7. RUB Excel → JSON Conversion
+
+**Script:** `Parsing/bin/translate_rub_data.py`  
+**Source:** `SX-CREEP-DATA_LWW-RUB_JAN2023.xlsx` (Zenodo record `7663974`)  
+**Output:** `Parsing/Data/RUBDataset_Json/RUB_{orientation}_{temp}C_{stress}MPa_translated.json`  
+**Reference:** `Parsing/Data/RUBDataset/CLAUDE.md`
+
+### Running
+
+```powershell
+$py = "C:\Users\maria\anaconda3\envs\python311\python.exe"
+cd "C:\Users\maria\Desktop\IUC02\iuc02\Parsing"
+
+# All 41 tests (autofill off by default — real values preserved):
+& $py bin\translate_rub_data.py
+
+# Download Excel from Zenodo first if missing:
+& $py bin\translate_rub_data.py --download
+
+# With schema validation output:
+& $py bin\translate_rub_data.py --validate
+
+# With auto-fill of missing required fields (adds TODO placeholders):
+& $py bin\translate_rub_data.py --autofill
+```
+
+### Excel structure
+
+| Sheet | Content |
+|-------|---------|
+| `Overview` | Global metadata: title, licence, heat treatment (row 18), publication (row 21), preparation (row 24), experiments (rows 27–28) |
+| ` 001-direction` | 19 test tables — tensile creep for [001] crystal orientation |
+| `110-direction` | 11 test tables — tensile creep for [110] crystal orientation |
+| `111-direction` | 11 test tables — tensile creep for [111] crystal orientation |
+
+Each orientation sheet: 3 columns per test (`time_s | strain | separator`).  
+- **Row 6:** `"temp/stress"` header — e.g. `"720/800"` → 720 °C / 800 MPa  
+- **Row 7:** metadata string with rupture time — e.g. `"Rupture time: 971 h"`  
+- **Rows 8+:** numeric time (seconds) and strain (dimensionless, absolute)
+
+### Schema mapping
+
+| RUB Excel field | Schema path |
+|----------------|-------------|
+| Temperature (row 6 of each table) | `AdditionalMetadata.TestInfo.testParameters.specifiedTemperature` (ComplexValue, unit °C) |
+| Stress (row 6 of each table) | `AdditionalMetadata.TestInfo.testParameters.initialStress` (ComplexValue, unit MPa) |
+| Crystal orientation (sheet name) | `...MaterialHistoryAndCondition.asManufacturedMaterial.monocrystalOrientation` |
+| Heat treatment (Overview row 18) | `...MaterialHistoryAndCondition.heatTreatment.heatTreatmentDescription` |
+| Rupture time (row 7 of each table) | `PrimaryData.TestResult.valuesRecordedAfterTestEnd.creepRuptureTime` (ComplexValue, unit h) |
+| Zenodo Excel URL | `SecondaryData.TestResult.dataSeries.creepCurve` (points to source .xlsx) |
+
+### Auto-fill behavior
+
+`--autofill` (opt-in) calls `autofix_required_fields()` from `validation_core.py` to fill missing schema-required fields with "TODO".  
+**Important:** by default this is disabled because the function has a bug — it replaces existing non-dict leaf values with `{}` when the schema node has `properties: {}`. Do not enable until that bug is fixed in `validation_core.py`.
+
+### Known limitations
+
+- No specimen geometry (parallel/gauge length, diameter)
+- No equipment details (test machine, load sensor, extensometer)
+- No chemical composition data
+- Strain is absolute (dimensionless), not percentage
+- `typeOfLoading` is hardcoded to `"Constant Stress"` — verify against source
+
+---
+
+## 8. Validation
 
 **Module:** `Parsing/bin/validation_core.py`
 
@@ -405,12 +490,12 @@ python bin/complete_json.py \
 
 ---
 
-## 8. Metadata Validation Web App (Flask)
+## 9. Metadata Validation Web App (Flask)
 
 **Script:** `Parsing/bin/metadata_validation_web_app.py`  
 **Launcher:** `Parsing/bin/metadata_validation_web_app.bat`  
 **Default port:** `8503`  
-**Default schema:** `Data Schema/2026-06_Data-Schema_Creep_v2.1.7.json`  
+**Default schema:** `Data Schema/2026-06_Data-Schema_Creep_v2.1.8.json`  
 **Default LIS folder:** `Data/BAMDataset_v20260608`
 
 ### Starting
@@ -453,7 +538,7 @@ This prevents the entire object from being serialized as a raw JSON string inste
 
 ---
 
-## 9. RDF / SHACL Pipeline
+## 10. RDF / SHACL Pipeline
 
 **Scripts:** `Parsing/bin/bam2shacl.py`, `json_to_shacl.py`, `json_to_shacl_2.py`, `shacl_validation_core.py`, `validate_rdf_shacl.py`  
 **Example files:** `Parsing/shacl_validation/rdfGraph_smallExample.ttl`, `shaclShape_smallExample.ttl`
@@ -470,7 +555,7 @@ This prevents the entire object from being serialized as a raw JSON string inste
 
 ---
 
-## 10. RDF Visualization Web App (Flask)
+## 11. RDF Visualization Web App (Flask)
 
 **Script:** `Parsing/bin/visualization_web_app.py`  
 **Launcher:** `Parsing/bin/visualization_web_app_python311.bat`  
@@ -491,7 +576,7 @@ python bin/create_visualization.py
 
 ---
 
-## 11. Demonstrator App (Streamlit)
+## 12. Demonstrator App (Streamlit)
 
 **Location:** `Demonstrator_App/`  
 **Entry point:** `Demonstrator_App/IUC02_Demonstrator.py`  
@@ -516,7 +601,7 @@ streamlit run IUC02_Demonstrator.py
 
 ---
 
-## 12. Data Download from Zenodo
+## 13. Data Download from Zenodo
 
 **Script:** `Parsing/bin/get_data_from_zenodo.py`
 
@@ -541,7 +626,7 @@ Downloads the full `.zip` archive and extracts it in-place.
 
 ---
 
-## 13. Batch Processing
+## 14. Batch Processing
 
 **Script:** `Parsing/bin/run_batch_validation.py`
 
@@ -560,7 +645,7 @@ Pre-generated outputs already exist in `Data/BAMDataset_v032026/_batch_translate
 
 ---
 
-## 14. Tests
+## 15. Tests
 
 **Location:** `Parsing/test/`  
 **Framework:** `pytest`
@@ -586,7 +671,7 @@ python bin/run_all_checks.py
 
 ---
 
-## 15. Environment & Dependencies
+## 16. Environment & Dependencies
 
 **Conda environment:** `python311` (Python 3.11)
 
@@ -618,10 +703,12 @@ pip install -r requirements.txt
 
 ---
 
-## 16. End-to-End Workflow Summary
+## 17. End-to-End Workflow Summary
 
 ```
-Step 1 — Download data (optional)
+─── BAM pipeline ─────────────────────────────────────────────────────────────
+
+Step 1 — Download BAM data (optional)
   python Parsing/bin/get_data_from_zenodo.py
   → Parsing/Data/BAMDataset/
 
@@ -633,7 +720,7 @@ Step 3 — Translate to JSON experiment document
   python Parsing/bin/translate_bam_data_v2.py \
     Data/BAMDataset_v20260608/Vh5205_C-78-MD-TR.lis \
     -o Data/BAMDataset_Json/Vh5205_C-78-MD-TR_translated.json
-  → conforms to Data Schema/2026-06_Data-Schema_Creep_v2.1.7.json
+  → conforms to Data Schema/2026-06_Data-Schema_Creep_v2.1.8.json
 
 Step 4 — Batch translate all 12 MD-TR files (PowerShell)
   $py = "C:\Users\maria\anaconda3\envs\python311\python.exe"
@@ -641,6 +728,19 @@ Step 4 — Batch translate all 12 MD-TR files (PowerShell)
       $out = "Data\BAMDataset_Json\$($f.BaseName)_translated.json"
       & $py bin\translate_bam_data_v2.py $f.FullName -o $out
   }
+
+─── RUB pipeline ─────────────────────────────────────────────────────────────
+
+Step 1 — Translate RUB Excel to 41 JSON files
+  $py = "C:\Users\maria\anaconda3\envs\python311\python.exe"
+  cd "C:\Users\maria\Desktop\IUC02\iuc02\Parsing"
+  & $py bin\translate_rub_data.py
+  → Data/RUBDataset_Json/RUB_*_translated.json (41 files)
+
+  # First-time download from Zenodo:
+  & $py bin\translate_rub_data.py --download
+
+─── Shared steps ─────────────────────────────────────────────────────────────
 
 Step 5 — Validate JSON
   validation_core.validate_required_keywords(schema, doc)

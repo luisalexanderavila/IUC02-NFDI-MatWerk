@@ -13,3 +13,5 @@ ipykernel>=6.0
 jupyter>=1.0
 flask>=3.0
 jsonschema>=4.22
+pandas>=2.0
+openpyxl>=3.1

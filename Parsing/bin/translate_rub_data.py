@@ -165,9 +165,17 @@ def _parse_orientation_sheet(sheet, orientation: str) -> list[dict]:
         if "/" not in temp_stress_str:
             continue  # no test here (separator or empty column)
 
-        temperature_value, stress_value = [p.strip() for p in temp_stress_str.split("/", 1)]
+        try:
+            temp_str, stress_str = [p.strip() for p in temp_stress_str.split("/", 1)]
+            temperature_value = float(temp_str.replace(",", "."))
+            stress_value = float(stress_str.replace(",", "."))
+        except ValueError:
+            Logger.warning("Could not parse temperature/stress from %r — skipping", temp_stress_str)
+            continue
 
         rupture_time_value, rupture_time_unit = _parse_rupture_time(meta_str)
+        if rupture_time_value:
+            rupture_time_value = float(rupture_time_value)
 
         # Parse numeric rows from _DATA_START onwards
         times, strains = [], []
@@ -187,11 +195,11 @@ def _parse_orientation_sheet(sheet, orientation: str) -> list[dict]:
 
         tests.append({
             "orientation": orientation.strip(),
-            "temperature_value": temperature_value,
+            "temperature_value": temperature_value,   # float, °C
             "temperature_unit": "°C",
-            "stress_value": stress_value,
+            "stress_value": stress_value,             # float, MPa
             "stress_unit": "MPa",
-            "rupture_time_value": rupture_time_value,
+            "rupture_time_value": rupture_time_value, # float or "", h
             "rupture_time_unit": rupture_time_unit if rupture_time_unit else "h",
             "times": times,
             "times_unit": "s",
@@ -242,10 +250,24 @@ def read_rub_excel(file_path: str) -> tuple[dict, list[dict]]:
 
 # ─── Schema mapping ────────────────────────────────────────────────────────────
 
+def _orientation_label(sheet_name: str) -> str:
+    """Convert sheet name like '001-direction' to crystallographic notation '[001]'."""
+    m = re.match(r"(\d{3})", sheet_name.strip())
+    return f"[{m.group(1)}]" if m else sheet_name
+
+
+def _float_to_str(v) -> str:
+    """Convert float to string, omitting .0 for whole numbers."""
+    if v == "" or v is None:
+        return ""
+    f = float(v)
+    return str(int(f)) if f == int(f) else str(f)
+
+
 def _make_test_id(test: dict) -> str:
     orient = test["orientation"].replace(" ", "-")
-    temp = test["temperature_value"].replace(" ", "").replace(".", "p")
-    stress = test["stress_value"].replace(" ", "").replace(".", "p")
+    temp = _float_to_str(test["temperature_value"]).replace(".", "p")
+    stress = _float_to_str(test["stress_value"]).replace(".", "p")
     return f"RUB_{orient}_{temp}C_{stress}MPa"
 
 
@@ -259,6 +281,7 @@ _HEAT_TREATMENT_AGEING = "1140 °C for 4 h → 870 °C for 16 h → RT"
 def translate_rub_test(global_meta: dict, test: dict) -> dict:
     """Map a single RUB test dict to a schema v2.1.8-conforming nested dict."""
     test_id = _make_test_id(test)
+    orientation = _orientation_label(test["orientation"])
 
     doc = {
         "MeasurementData": {
@@ -266,8 +289,6 @@ def translate_rub_test(global_meta: dict, test: dict) -> dict:
                 "TestInfo": {
                     "testJobDetails": {
                         "testID": test_id,
-                        "dateOfTestStart": "TODO",
-                        "dateOfTestEnd": "TODO",
                     },
                     "testParameters": {
                         "testStandardApplied": "No",
@@ -276,13 +297,13 @@ def translate_rub_test(global_meta: dict, test: dict) -> dict:
                             "otherTestStandard": "Not applicable",
                         },
                         "specifiedTemperature": {
-                            "value": test["temperature_value"],
+                            "value": _float_to_str(test["temperature_value"]),
                             "unit": test["temperature_unit"],
                         },
                         "typeOfLoading": "Tension",
                         "loadControlType": "Constant Force",
                         "initialStress": {
-                            "value": test["stress_value"],
+                            "value": _float_to_str(test["stress_value"]),
                             "unit": test["stress_unit"],
                         },
                         "testType": "Stress rupture tests where normally only the time to fracture is measured",
@@ -292,20 +313,21 @@ def translate_rub_test(global_meta: dict, test: dict) -> dict:
                         "timeLimit": "Not applicable",
                         "extensionLimit": "Not applicable",
                         "interruptionCourse": "Not applicable",
-                        "preload": {
-                            "value": "Small preload applied during heating (exact value not documented)",
-                            "unit": "",
-                        },
                     },
                 },
                 "MaterialHistoryAndCondition": {
                     "materialIdentifier": "ERBO/1 (CMSX-4 type)",
                     "asManufacturedMaterial": {
                         "solidification": "Single crystal",
-                        "monocrystalOrientation": test["orientation"],
+                        "monocrystalOrientation": orientation,
                         "condition": "Heat treated",
                         "formOfAsManufacturedMaterial": "Cast plate",
                         "geometrySizeAsManufacturedMaterial": "140 mm × 100 mm × 20 mm",
+                    },
+                    "microstructureNi-BasedSX": {
+                        "singleCrystalOrientation": orientation,
+                        "singleCrystalOrientationDeterminationMethod": "Laue technique",
+                        "orientationDeterminationAccuracy": "< 1°",
                     },
                     "heatTreatment": {
                         "heatTreatmentDescription": (
@@ -325,7 +347,7 @@ def translate_rub_test(global_meta: dict, test: dict) -> dict:
                 "TestResult": {
                     "valuesRecordedAfterTestEnd": {
                         "creepRuptureTime": {
-                            "value": test["rupture_time_value"],
+                            "value": _float_to_str(test["rupture_time_value"]),
                             "unit": test["rupture_time_unit"],
                         },
                         "fracturePosition": "Not applicable",
