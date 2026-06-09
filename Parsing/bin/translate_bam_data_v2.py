@@ -46,7 +46,7 @@ logging.basicConfig(level=logging.INFO)
 Logger = logging.getLogger(__name__)
 
 DEFAULT_MAPPING_FILE = os.path.join(_parsing_root, "Metadata", "Mappings", "BAM2schema_v2.json")
-DEFAULT_SCHEMA_FILE = os.path.join(_parsing_root, "..", "Data Schema", "2026-06_Data-Schema_Creep_v2.1.7.json")
+DEFAULT_SCHEMA_FILE = os.path.join(_parsing_root, "..", "Data Schema", "2026-06_Data-Schema_Creep_v2.1.8.json")
 
 
 # ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -147,7 +147,8 @@ def _normalize_value_for_schema_path(schema_path: str, raw_value: str):
         },
         # "astm e220" removed: "ASTM E220-19" (versioned) was caught via startswith,
         # silently mapping to "ASTM E220". Versioned references route to Other via B6.
-        "temperatureSensor.calibrationStandard.calibrationStandardOptions": {},
+        # "temperatureSensor.calibrationStandard.calibrationStandardOptions" removed:
+        # calibrationStandard is now a plain string field (schema v2.1.8), no dropdown.
         "TestPiece.testPieceTypeI": {
             "specimen according to standard": "Specimen according to standard",
             "miniaturized specimen": "Miniaturized specimen",

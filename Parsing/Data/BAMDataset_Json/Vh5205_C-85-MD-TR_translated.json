@@ -737,10 +737,7 @@
                             "value": "300 - 1200",
                             "unit": "°C"
                         },
-                        "calibrationStandard": {
-                            "calibrationStandardOptions": "Other (Please specify in the comment)",
-                            "otherCalibrationStandard": "ASTM E220-19"
-                        },
+                        "calibrationStandard": "ASTM E220-19",
                         "calibrationStatus": "Yes",
                         "calibrationValidityTimePeriod": "12 months",
                         "contactMethod": {
@@ -789,10 +786,7 @@
                             "value": "2 - 20 kN and 1 - 10 kN (class 1 for both)",
                             "unit": "kN"
                         },
-                        "calibrationStandard": {
-                            "calibrationStandardOptions": "Other (Please specify in the comment)",
-                            "otherCalibrationStandard": "DIN EN ISO 7500-2: 2007"
-                        },
+                        "calibrationStandard": "DIN EN ISO 7500-2: 2007",
                         "calibrationValidityTimePeriod": "24 Months",
                         "descriptionOfTheLoadingSystem": "Not applicable since calibrated weights were used",
                         "useOfCalibratedWeights": "Yes",
