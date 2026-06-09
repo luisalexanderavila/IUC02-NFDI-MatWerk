@@ -30,5 +30,7 @@ it should be
 0 K (Channel #1); + 0.1 K (Channel #2); - 0.2 K (Channel #3)
 
 # Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer
-[ ] In lis files, entry name is currently "Is the extensometer incl. the data acquisition calibrated?". It must be "Calibration status". I json files it was correctly named "calibrationStatus"
+[ ] In lis files, entry name is currently "Is the extensometer incl. the data acquisition calibrated?". It must be "Calibration status". In json files it was correctly named "calibrationStatus"
 
+# MaterialHistoryAndCondition.asManufacturedMaterial.castingTemperature and MaterialHistoryAndCondition.asManufacturedMaterial.castingTemperature 
+[  ] this two fields have array of complex values, they should change to just complex values.
