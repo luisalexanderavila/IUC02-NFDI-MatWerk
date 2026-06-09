@@ -3,7 +3,7 @@ BAM 5.2 Vh5205_C-78-Loading.LIS
 Test ID	Vh5205_C-78					
 						
 * The time at beginning of the loading was set to zero for better representation of the data. It does not correspond with the absolute value of the time data record during the test.						
-** Error limit: ± 1 %. Preload of 0.2 kN (20.4 kg) is not included in the data						
+** Error limit: Â± 1 %. Preload of 0.2 kN (20.4 kg) is not included in the data						
 *** Extension caused by the Preload is not included the data						
 						
 						

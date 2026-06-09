@@ -4,12 +4,12 @@ ENTRY	SYMBOL	UNIT		* Information common to all tests
 Date of test start			22.3.23 8:46 AM			
 Test ID			Vh5205_C-97			
 Test standard			DIN EN ISO 204:2019-4	*		
-Specified temperature	T	캜	980	*		
+Specified temperature	T	째C	980	*		
 Type of loading			Tension	*		
 Initial stress	Ro	MPa	200			
 Material Identifier			CMSX-6	*		
 Manufacturing process description as-tested material			Single Crystal Investment Casting from a Vacuum Induction Refined Ingot and subsequent Heat Treatment (annealed and aged).	*		
-Single crystal orientation 		�	6.2			
+Single crystal orientation 		째	6.2			
 Test piece type I			Specimen according to DIN EN ISO 204:2019-4	*		
 Test piece type II			Round cross section	*		
 Test piece type III			Smooth test piece	*		
@@ -35,7 +35,7 @@ Percentage creep extension	ef	%	27.700
 [data]						
 Elapsed time from end of loading	Percentage creep extension	Corrected measured temperature - Top	Corrected measured temperature - Middle	Corrected measured temperature - Bottom		
 t	ef	Tc	Tc	Tc		
-h	%	캜	캜	캜		
+h	%	째C	째C	째C		
 0.0000	0.0000	981.3	981.1	981.0		
 0.0014	0.0000	981.5	981.1	981.0		
 0.0017	0.0013	981.5	981.1	981.0		
