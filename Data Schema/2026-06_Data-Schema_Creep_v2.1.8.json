@@ -871,7 +871,7 @@
                                     "type": "object",
                                     "required": [
                                         "testFrameAndSpecimenAlignment",
-                                        "descriptionTestFrameAndSpecimenAlignment",
+                                        "testFrameAndSpecimenAlignmentDescription",
                                         "calibrationClass"
                                     ],
                                     "properties": {
