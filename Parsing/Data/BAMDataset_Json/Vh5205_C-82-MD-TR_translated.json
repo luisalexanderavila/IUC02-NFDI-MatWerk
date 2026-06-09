@@ -1052,6 +1052,9 @@
                         "value": "The data series for each test piece are available in the corresponding LIS file \"Vh5205_C-82-Creep.LIS\"",
                         "unit": "%"
                     }
+                },
+                "dataSeries": {
+                    "creepCurve": "https://zenodo.org/records/20132712/files/Vh5205_C-82-Creep.LIS"
                 }
             }
         }

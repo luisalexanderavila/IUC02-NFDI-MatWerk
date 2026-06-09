@@ -238,6 +238,7 @@
         "metadata.measuring and test equipment.cross-sectional dimensions.type": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.crossSectionalDimensions.type.typeOptions",
         "metadata.measuring and test equipment.elongation values.type": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.elongationValues.type.typeOptions",
         "metadata.measuring and test equipment.load-measuring system.load sensor.load sensor calibration description": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.loadMeasuringSystem.loadSensor.loadSensorCalibrationDescription",
-        "metadata.measuring and test equipment.extension values.contacting extensometer.calibration status": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.extensionValues.contactingExtensometer.calibrationStatus"
+        "metadata.measuring and test equipment.extension values.contacting extensometer.calibration status": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.extensionValues.contactingExtensometer.calibrationStatus",
+        "secondary_data.test result.data series.creep curve": "MeasurementData.SecondaryData.TestResult.dataSeries.creepCurve"
     }
 }

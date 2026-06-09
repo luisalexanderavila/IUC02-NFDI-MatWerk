@@ -2309,6 +2309,15 @@
                                             "$ref": "#/$defs/ComplexValue"
                                         }
                                     }
+                                },
+                                "dataSeries": {
+                                    "type": "object",
+                                    "properties": {
+                                        "creepCurve": {
+                                            "type": "string",
+                                            "description": "Link to file or data series creep extension and corrected temperature vs. time"
+                                        }
+                                    }
                                 }
                             }
                         }
