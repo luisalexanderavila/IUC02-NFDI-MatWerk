@@ -2312,6 +2312,9 @@
                                 },
                                 "dataSeries": {
                                     "type": "object",
+                                    "required": [
+                                        "creepCurve"
+                                    ],
                                     "properties": {
                                         "creepCurve": {
                                             "type": "string",

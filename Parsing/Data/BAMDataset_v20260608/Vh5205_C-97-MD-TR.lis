@@ -251,4 +251,4 @@ Secondary data --> Test result --> Extension values	Percentage elastic extension
 Secondary data --> Test result --> Extension values	Percentage initial plastic extension		ei	%	Mandatory	0.013	
 Secondary data --> Test result --> Extension values	Percentage plastic extension		ep	%	Mandatory	27.8	
 Secondary data --> Test result --> Extension values	Percentage creep extension		ef	%	Mandatory	27.7	
-Secondary data --> Test result --> Data series	Creep curve	Link to file or data series creep extension and corrected temperature vs. time			Optional	https://zenodo.org/records/20132712/files/Vh5205_C-97-Creep.LIS	*
+Secondary data --> Test result --> Data series	Creep curve	Link to file or data series creep extension and corrected temperature vs. time			Mandatory	https://zenodo.org/records/20132712/files/Vh5205_C-97-Creep.LIS	
