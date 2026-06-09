@@ -118,7 +118,7 @@ Metadata --> Measuring and test equipment --> Test machine --> Data acquisition	
 Metadata --> Measuring and test equipment --> Test machine --> Data acquisition	Data acquisition time check	Was the time checked during data acquisition?			Optional	Yes	
 Metadata --> Measuring and test equipment --> Load-measuring system --> Load sensor	Load sensor during loading	Was a load sensor used during loading?			Mandatory	Yes	
 Metadata --> Measuring and test equipment --> Load-measuring system --> Load sensor	Load sensor calibration	Was the load sensor calibrated?			Mandatory	Yes
-The load cell was checked with calibrated weights. Error limit: ± 1 %	
+Metadata --> Measuring and test equipment --> Load-measuring system --> Load sensor	Load sensor calibration description	Add any available details concerning the calibration			Optional	The load cell was checked with calibrated weights. Error limit: ± 1 %	
 Metadata --> Measuring and test equipment --> Load-measuring system --> Load sensor	Calibration certificate	Link to file, preferably with machine-readable (meta)data.			Optional	Documentation available in the laboratory	
 Metadata --> Measuring and test equipment --> Load-measuring system --> Load sensor	Calibration date 				Mandatory	2023-06-21 00:00:00	
 Metadata --> Measuring and test equipment --> Load-measuring system --> Load sensor	Calibration validity time period				Mandatory	12 months	
@@ -143,14 +143,11 @@ Metadata --> Measuring and test equipment --> Temperature-measuring system --> T
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Calibration certificate	Link to file, preferably with machine-readable (meta)data.			Optional	Documentation available in the laboratory	
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Calibration date				Mandatory	2022-08-08 00:00:00	*
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Calibration validity time period				Mandatory	12 months	
-Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Temperature deviation	Measurement deviation detected during calibration		°C	Optional	- 0.1 K (52-PM102-0400)
-- 0.1 K (52-PM102-0401)
-- 0.1 K (52-PM102-0402)
-T-values were corrected accordingly	*
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Temperature deviation	Measurement deviation detected during calibration		°C	Optional	- 0.1 K (52-PM102-0400); - 0.1 K (52-PM102-0401); - 0.1 K (52-PM102-0402); T-values were corrected accordingly	*	
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Calibration Range			°C	Mandatory	300 - 1200 °C	
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Contact method				Mandatory	Attached	
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Number of thermocouples				Mandatory	3	
-Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Thermocouple location	Location with respect to gauge section			Mandatory	Inside the gauge length	
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Thermocouple location	Location with respect to gauge section			Mandatory	Inside	
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration status	Is/are the data acquisition unit calibrated?			Mandatory	Yes	
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Reference junction				Optional	Internal	
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration certificate	Link to file, preferably with machine-readable (meta)data.			Optional	Documentation available in the laboratory	
@@ -158,9 +155,7 @@ Metadata --> Measuring and test equipment --> Temperature-measuring system --> D
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration validity time period				Mandatory	12 Months	
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration method				Mandatory	Electrical simulation	
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration standard				Mandatory	EURAMET/cg-11/v0.1	
-Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Temperature deviation	Measurement deviation detected during calibration		°C	Optional	 0 K (Channel #1)
-+ 0.1 K (Channel #2)
-- 0.2 K (Channel #3)	*
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Temperature deviation	Measurement deviation detected during calibration		°C	Optional	0 K (Channel #1); + 0.1 K (Channel #2); - 0.2 K (Channel #3)	*	
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration Range			°C	Mandatory	100 - 1300 °C	
 Metadata --> Measuring and test equipment --> Extensometer system	Displacement measuring method	Type of strain measuring device			Mandatory	Contacting method	
 Metadata --> Measuring and test equipment --> Extensometer system	Sensor type - Contacting method				Mandatory	High-Temperature Axial Extensometer	
@@ -176,7 +171,7 @@ Metadata --> Measuring and test equipment --> Extension values --> Contacting ex
 Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Extension range - Upper limit			% / mm	Mandatory	20 %  / 5 mm	
 Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Extension range - Lower limit			%  / mm	Mandatory	-10 % / -2,5 mm	
 Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Nominal gauge length	If applicable		mm	Mandatory	25	
-Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Is the extensometer incl. the data acquisition calibrated?	Is the extensometer incl. the data acquisition calibrated?			Mandatory	Yes	
+Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Calibration status	Is the extensometer incl. the data acquisition calibrated?			Mandatory	Yes	
 Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Calibration certificate	Link to file, preferably with machine-readable (meta)data.			Optional	Documentation available in the laboratory	
 Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Calibration date				Mandatory	2022-06-23 00:00:00	*
 Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer	Calibration validity time period				Mandatory	12 Months	

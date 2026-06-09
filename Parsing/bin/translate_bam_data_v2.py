@@ -145,6 +145,10 @@ def _normalize_value_for_schema_path(schema_path: str, raw_value: str):
             "lever arm": "Lever arm",
             "electromechanical drive": "Electromechanical drive",
         },
+        "loadSensor.loadSensorCalibration.loadSensorCalibrationOptions": {
+            "yes": "Yes",
+            "no": "No",
+        },
         # "astm e220" removed: "ASTM E220-19" (versioned) was caught via startswith,
         # silently mapping to "ASTM E220". Versioned references route to Other via B6.
         # "temperatureSensor.calibrationStandard.calibrationStandardOptions" removed:

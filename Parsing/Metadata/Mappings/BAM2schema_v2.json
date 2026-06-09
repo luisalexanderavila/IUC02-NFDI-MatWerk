@@ -73,7 +73,6 @@
         "metadata.measuring and test equipment.extension values.contacting extensometer.extensometer id": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.extensionValues.contactingExtensometer.extensometerID",
         "metadata.measuring and test equipment.extension values.contacting extensometer.extensometer leg material": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.extensionValues.contactingExtensometer.extensometerLegMaterial",
         "metadata.measuring and test equipment.extension values.contacting extensometer.extensometer model information": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.extensionValues.contactingExtensometer.extensometerModelInformation",
-        "metadata.measuring and test equipment.extension values.contacting extensometer.is the extensometer incl.the data acquisition calibrated?": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.extensionValues.contactingExtensometer.calibrationStatus",
         "metadata.measuring and test equipment.extension values.contacting extensometer.measurement direction": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.extensionValues.contactingExtensometer.measurementDirection",
         "metadata.measuring and test equipment.extension values.contacting extensometer.measurement set-up": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.extensionValues.contactingExtensometer.measurementSetup",
         "metadata.measuring and test equipment.extension values.contacting extensometer.measuring amplifier - model information": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.extensionValues.contactingExtensometer.measuringAmplifierModelInformation",
@@ -91,7 +90,7 @@
         "metadata.measuring and test equipment.load-measuring system.load sensor.calibration range": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.loadMeasuringSystem.loadSensor.calibrationRange.value",
         "metadata.measuring and test equipment.load-measuring system.load sensor.calibration standard": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.loadMeasuringSystem.loadSensor.calibrationStandard",
         "metadata.measuring and test equipment.load-measuring system.load sensor.calibration validity time period": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.loadMeasuringSystem.loadSensor.calibrationValidityTimePeriod",
-        "metadata.measuring and test equipment.load-measuring system.load sensor.load sensor calibration": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.loadMeasuringSystem.loadSensor.loadSensorCalibration",
+        "metadata.measuring and test equipment.load-measuring system.load sensor.load sensor calibration": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.loadMeasuringSystem.loadSensor.loadSensorCalibration.loadSensorCalibrationOptions",
         "metadata.measuring and test equipment.load-measuring system.load sensor.load sensor during loading": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.loadMeasuringSystem.loadSensor.loadSensorDuringLoading",
         "metadata.measuring and test equipment.temperature-measuring system.data acquisition.calibration certificate": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.temperatureMeasuringSystem.dataAcquisition.calibrationCertificate",
         "metadata.measuring and test equipment.temperature-measuring system.data acquisition.calibration date": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.temperatureMeasuringSystem.dataAcquisition.calibrationDate",
@@ -237,6 +236,8 @@
         "metadata.measuring and test equipment.cross-sectional dimensions.resolution": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.crossSectionalDimensions.resolution.value",
         "metadata.measuring and test equipment.elongation values.resolution": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.elongationValues.resolution.value",
         "metadata.measuring and test equipment.cross-sectional dimensions.type": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.crossSectionalDimensions.type.typeOptions",
-        "metadata.measuring and test equipment.elongation values.type": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.elongationValues.type.typeOptions"
+        "metadata.measuring and test equipment.elongation values.type": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.elongationValues.type.typeOptions",
+        "metadata.measuring and test equipment.load-measuring system.load sensor.load sensor calibration description": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.loadMeasuringSystem.loadSensor.loadSensorCalibrationDescription",
+        "metadata.measuring and test equipment.extension values.contacting extensometer.calibration status": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.extensionValues.contactingExtensometer.calibrationStatus"
     }
 }

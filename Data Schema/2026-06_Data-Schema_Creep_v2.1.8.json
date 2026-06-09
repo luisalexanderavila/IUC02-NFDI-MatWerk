@@ -355,16 +355,10 @@
                                             "description": "E.g., Cast/Melting, Casting, and Remelting/Induction melting in air, Casting into a circular ingot and then electroslag remelting."
                                         },
                                         "castingTemperature": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/$defs/ComplexValue"
-                                            }
+                                            "$ref": "#/$defs/ComplexValue"
                                         },
                                         "castingSpeed": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/$defs/ComplexValue"
-                                            }
+                                            "$ref": "#/$defs/ComplexValue"
                                         },
                                         "solidification": {
                                             "type": "string",
@@ -1148,8 +1142,21 @@
                                                     ]
                                                 },
                                                 "loadSensorCalibration": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "loadSensorCalibrationOptions": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "Yes",
+                                                                "No"
+                                                            ],
+                                                            "description": "Was the load sensor calibrated?"
+                                                        }
+                                                    }
+                                                },
+                                                "loadSensorCalibrationDescription": {
                                                     "type": "string",
-                                                    "description": "Was the load sensor calibrated? Include description of the calibration procedure if available."
+                                                    "description": "Add any available details concerning the calibration"
                                                 },
                                                 "calibrationCertificate": {
                                                     "type": "string",
@@ -1481,7 +1488,8 @@
                                                     "type": "string"
                                                 },
                                                 "calibrationStandard": {
-                                                    "type": "string"
+                                                    "type": "string",
+                                                    "description": "E.g., EURAMET/cg-11/v.01"
                                                 },
                                                 "temperatureDeviation": {
                                                     "description": "Measurement deviation detected during calibration.",

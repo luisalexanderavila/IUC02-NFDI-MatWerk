@@ -664,7 +664,6 @@
                         "extensometerID": "19.03",
                         "extensometerLegMaterial": "Ceramic legs",
                         "extensometerModelInformation": "MTS 632.53F-31",
-                        "calibrationStatus": "Yes",
                         "measurementDirection": "Axial action",
                         "measurementSetup": "One-sided",
                         "measuringAmplifierModelInformation": "National Instruments NI SXCI-1600",
@@ -674,7 +673,8 @@
                         "nominalGaugeLength": {
                             "value": "25",
                             "unit": "mm"
-                        }
+                        },
+                        "calibrationStatus": "Yes"
                     }
                 },
                 "extensometerSystem": {
@@ -706,8 +706,11 @@
                         },
                         "calibrationStandard": "Not applicable",
                         "calibrationValidityTimePeriod": "12 months",
-                        "loadSensorCalibration": "Yes; The load cell was checked with calibrated weights. Error limit: ± 1 %",
-                        "loadSensorDuringLoading": "Yes"
+                        "loadSensorCalibration": {
+                            "loadSensorCalibrationOptions": "Yes"
+                        },
+                        "loadSensorDuringLoading": "Yes",
+                        "loadSensorCalibrationDescription": "The load cell was checked with calibrated weights. Error limit: ± 1 %"
                     }
                 },
                 "temperatureMeasuringSystem": {
