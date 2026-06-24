@@ -47,3 +47,44 @@ for the file C-78.
 
 [X] Add the corresponding links in the LIS files adding a row at the end, consistent with the current formatting. 
 [X] this field should be mandatory, and is not common to all. 
+
+
+
+# New Session
+[X] In line 70 Metadata --> Material history and condition -->
+Microstructure          Grain size (line 57) to Metadata --> Material
+history and condition --> Microstructure   Orientation - Determination
+accuracy replace "Microstructure" with "Microstructure Ni-Based SX"
+(for consistency with json schema v2.1.8.
+
+[X] In line 159: Metadata --> Measuring and test equipment -->
+Temperature-measuring system --> Data acquisition     Calibration
+standard Mandatory     EURAMET/cg-11/v0.1         * add "E.g., EURAMET/
+cg-11/v.01" in column "ENTRY - ADDITIONAL INFORMATION"
+
+[X] In line 111: Metadata --> Measuring and test equipment --> Test
+machine --> Loading system  Calibration standard
+                     Mandatory DIN EN ISO 7500-2: 2007  * add "E.g.,
+DIN EN ISO 7500-2. Please specify the version (year)." in column
+"ENTRY - ADDITIONAL INFORMATION"
+
+[X] In line 102 Metadata --> Measuring and test equipment --> Test
+machine  Test frame and specimen alignment - Date
+                               Optional 18.07.2011   * add "Date of
+verification of Test Frame and Specimen Alignment" in column "ENTRY -
+ADDITIONAL INFORMATION"
+
+[X] In line 100 Metadata --> Measuring and test equipment --> Test
+machine  Test frame and specimen alignment          Verification of Test
+Frame and Specimen Alignment according to ASTM
+E1012?                      Mandatory     Yes     * replace
+"Verification of Test Frame and Specimen Alignment according to ASTM
+E1012?" by "Verification of Test Frame and Specimen Alignment
+according to ASTM E1012? Include description of the procedure if
+available." in column "ENTRY - ADDITIONAL INFORMATION"
+
+[X] In line 85 Metadata --> Test piece       Test piece type I
+standard                                      Optional        DIN EN ISO
+204:2019-4   * add "The specific standard the specimen is manufactured
+according to (e.g. DIN EN ISO 204:2019-4)." in column "ENTRY -
+ADDITIONAL INFORMATION"
