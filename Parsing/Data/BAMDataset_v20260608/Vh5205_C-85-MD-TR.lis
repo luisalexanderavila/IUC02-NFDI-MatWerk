@@ -54,20 +54,20 @@ Overview-interdentritic-region-SEM.tig
 Dendrite-Optical.jpg
 Dendrite-SEM.tif	
 Metadata --> Material history and condition --> Microstructure	Microstructure report 1	Link to file, preferably with machine-readable (meta)data			Optional	See related article https://doi.org/10.1016/j.dib.2025.112436	*
-Metadata --> Material history and condition --> Microstructure	Grain size	If polycrystal		µm	Mandatory	Not applicable	*
-Metadata --> Material history and condition --> Microstructure	Grain size - Determination method				Mandatory	Not applicable	*
-Metadata --> Material history and condition --> Microstructure	Grain size - measuring region	E.g., in the bulk			Mandatory	Not applicable	*
-Metadata --> Material history and condition --> Microstructure	Grain size distribution	Link to file, preferably with machine-readable (meta)data			Optional	Not applicable	*
-Metadata --> Material history and condition --> Microstructure	Grain - Additional Information	Include all further relevant characterization results			Optional	Not applicable	*
-Metadata --> Material history and condition --> Microstructure	Reprecipitated gamma-gamma prime regions 	Completely dissolved and re-precipitated gamma-gamma' regions		%	Optional		*
-Metadata --> Material history and condition --> Microstructure	Gamma prime particles - average size			µm	Optional		*
-Metadata --> Material history and condition --> Microstructure	Gamma prime particles - maximum size			µm	Optional		*
-Metadata --> Material history and condition --> Microstructure	Dendrite spacings	 Please describe the procedure and add  a link to file, preferably with machine-readable (meta)data or add a reference to paper and section			Optional		*
-Metadata --> Material history and condition --> Microstructure	Proof of single crystallinity	Link to file, preferably with machine-readable (meta)data			Optional	The absence of grain boundaries was verified by visual inspection of the investment casts surface after electrolytical etching.	*
-Metadata --> Material history and condition --> Microstructure	Single crystal orientation 	Link to file, preferably with machine-readable (meta)data. Laue Crystal Verification. Must be documented for each test piece.			Mandatory	3.9	
-Metadata --> Material history and condition --> Microstructure	Single crystal orientation - Determination method				Mandatory	Laue Crystal Verification. A Scorpio system (DOI: 10.1088/0957-0233/6/1/021) was used. The angle alpha indicates the deviation of the [001]-direction from the symmetry axis of the respective cast (as-tested material). 	*
-Metadata --> Material history and condition --> Microstructure	Single crystal orientation - Measuring point				Mandatory	The orientation was determined at the lower end (right side in file "Test-piece-location_v2.0.jpg") of each cast.	*
-Metadata --> Material history and condition --> Microstructure	Orientation - Determination accuracy				Optional		*
+Metadata --> Material history and condition --> Microstructure Ni-Based SX	Grain size	If polycrystal		µm	Mandatory	Not applicable	*
+Metadata --> Material history and condition --> Microstructure Ni-Based SX	Grain size - Determination method				Mandatory	Not applicable	*
+Metadata --> Material history and condition --> Microstructure Ni-Based SX	Grain size - measuring region	E.g., in the bulk			Mandatory	Not applicable	*
+Metadata --> Material history and condition --> Microstructure Ni-Based SX	Grain size distribution	Link to file, preferably with machine-readable (meta)data			Optional	Not applicable	*
+Metadata --> Material history and condition --> Microstructure Ni-Based SX	Grain - Additional Information	Include all further relevant characterization results			Optional	Not applicable	*
+Metadata --> Material history and condition --> Microstructure Ni-Based SX	Reprecipitated gamma-gamma prime regions 	Completely dissolved and re-precipitated gamma-gamma' regions		%	Optional		*
+Metadata --> Material history and condition --> Microstructure Ni-Based SX	Gamma prime particles - average size			µm	Optional		*
+Metadata --> Material history and condition --> Microstructure Ni-Based SX	Gamma prime particles - maximum size			µm	Optional		*
+Metadata --> Material history and condition --> Microstructure Ni-Based SX	Dendrite spacings	 Please describe the procedure and add  a link to file, preferably with machine-readable (meta)data or add a reference to paper and section			Optional		*
+Metadata --> Material history and condition --> Microstructure Ni-Based SX	Proof of single crystallinity	Link to file, preferably with machine-readable (meta)data			Optional	The absence of grain boundaries was verified by visual inspection of the investment casts surface after electrolytical etching.	*
+Metadata --> Material history and condition --> Microstructure Ni-Based SX	Single crystal orientation 	Link to file, preferably with machine-readable (meta)data. Laue Crystal Verification. Must be documented for each test piece.			Mandatory	3.9	
+Metadata --> Material history and condition --> Microstructure Ni-Based SX	Single crystal orientation - Determination method				Mandatory	Laue Crystal Verification. A Scorpio system (DOI: 10.1088/0957-0233/6/1/021) was used. The angle alpha indicates the deviation of the [001]-direction from the symmetry axis of the respective cast (as-tested material). 	*
+Metadata --> Material history and condition --> Microstructure Ni-Based SX	Single crystal orientation - Measuring point				Mandatory	The orientation was determined at the lower end (right side in file "Test-piece-location_v2.0.jpg") of each cast.	*
+Metadata --> Material history and condition --> Microstructure Ni-Based SX	Orientation - Determination accuracy				Optional		*
 Metadata --> Material history and condition --> Chemical composition	Measured condition				Mandatory	As-tested	*
 Metadata --> Material history and condition --> Chemical composition	Measuring position	Specify position(s) for bulk (middle/top/bottom/surface) and/or microstructure feature (matrix, interdendtitic region, phase,...) 			Mandatory	Master melt	*
 Metadata --> Material history and condition --> Chemical composition	Chemical composition - nominal	Link to file, preferably with machine-readable (meta)data  or add the wt.-% value of for each element		wt.-% / at.-%	Mandatory	See file "Vh5205_Complementary_Ch.-Comp.-nominal.LIS"	*
@@ -82,7 +82,7 @@ Metadata --> Test piece	Test piece ID				Optional	Vh5205_C-85
 Metadata --> Test piece	Workshop order ID				Optional		
 Metadata --> Test piece	Test piece history	Link to file, preferably with machine-readable (meta)data. The file(s) can include, e.g., data or documentation from previous experiments.			Optional	No previous experiments	*
 Metadata --> Test piece	Test piece type I				Mandatory	Specimen according to standard	*
-Metadata --> Test piece	Test piece type I standard				Optional	DIN EN ISO 204:2019-4	*
+Metadata --> Test piece	Test piece type I standard	The specific standard the specimen is manufactured according to (e.g. DIN EN ISO 204:2019-4).			Optional	DIN EN ISO 204:2019-4	*
 Metadata --> Test piece	Test piece type II				Mandatory	Round cross section	*
 Metadata --> Test piece	Test piece type III				Mandatory	Smooth test piece	*
 Metadata --> Test piece	Test piece technical drawing	Link to file, preferably with machine-readable (meta)data			Mandatory	See file "TestPieceCreepTests-TechnicalDrawing-FormA.pdf"
@@ -97,9 +97,9 @@ Metadata --> Measuring and test equipment --> Test machine	Test machine ID				Op
 Metadata --> Measuring and test equipment --> Test machine	Test machine type				Optional	Lever arm, Leverage ratio 1:20.4	*
 Metadata --> Measuring and test equipment --> Test machine	Minimum applicable force			kN	Optional	1	*
 Metadata --> Measuring and test equipment --> Test machine	Maximum applicable force			kN	Optional	20	*
-Metadata --> Measuring and test equipment --> Test machine	Test frame and specimen alignment	Verification of Test Frame and Specimen Alignment according to ASTM E1012?			Mandatory	Yes	*
+Metadata --> Measuring and test equipment --> Test machine	Test frame and specimen alignment	Verification of Test Frame and Specimen Alignment according to ASTM E1012? Include description of the procedure if available.			Mandatory	Yes	*
 Metadata --> Measuring and test equipment --> Test machine	Test frame and specimen alignment - description	Please provide a description on the procedure followed for the Verification of Test Frame and Specimen Alignment if different from ASTM E1012			Mandatory	Not applicable since verification was performed according to ASTM E1012	*
-Metadata --> Measuring and test equipment --> Test machine	Test frame and specimen alignment - Date				Optional	18.07.2011	*
+Metadata --> Measuring and test equipment --> Test machine	Test frame and specimen alignment - Date	Date of verification of Test Frame and Specimen Alignment			Optional	18.07.2011	*
 Metadata --> Measuring and test equipment --> Test machine	Calibration class	Calibration class of test frame and specimen alignment, e.g., 5 / 5 starting from 3 kN (according to ASTM E1012)			Mandatory	Verification: the machine fulfills the requirements for test forces >2 kN
 Protocol of alignment is available in the laboratory.	
 Metadata --> Measuring and test equipment --> Test machine --> Heating system	Furnace type				Mandatory	Split Tube Furnace with two-zones	*
@@ -108,7 +108,7 @@ Metadata --> Measuring and test equipment --> Test machine --> Loading system	Ve
 Metadata --> Measuring and test equipment --> Test machine --> Loading system	Calibration certificate	Link to file, preferably with machine-readable (meta)data. Please specify which device/feature/part of the test machine was calibrated.			Optional		*
 Metadata --> Measuring and test equipment --> Test machine --> Loading system	Calibration date 				Mandatory	2022-08-05 00:00:00	*
 Metadata --> Measuring and test equipment --> Test machine --> Loading system	Calibration validity time period				Mandatory	24 Months	*
-Metadata --> Measuring and test equipment --> Test machine --> Loading system	Calibration standard				Mandatory	DIN EN ISO 7500-2: 2007	*
+Metadata --> Measuring and test equipment --> Test machine --> Loading system	Calibration standard	E.g., DIN EN ISO 7500-2. Please specify the version (year).			Mandatory	DIN EN ISO 7500-2: 2007	*
 Metadata --> Measuring and test equipment --> Test machine --> Loading system	Calibration class				Mandatory	1	*
 Metadata --> Measuring and test equipment --> Test machine --> Loading system	Calibration range			kN	Mandatory	2 - 20 kN and 1 - 10 kN (class 1 for both)	*
 Metadata --> Measuring and test equipment --> Test machine --> Loading system	Use of calibrated weights	Were calibrated weights used to apply the test force?			Mandatory	Yes	*
@@ -157,7 +157,7 @@ Metadata --> Measuring and test equipment --> Temperature-measuring system --> D
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration date				Mandatory	2023-08-17 00:00:00	
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration validity time period				Mandatory	12 Months	*
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration method				Mandatory	Electrical simulation	*
-Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration standard				Mandatory	EURAMET/cg-11/v0.1	*
+Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration standard	E.g., EURAMET/cg-11/v.01			Mandatory	EURAMET/cg-11/v0.1	*
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Temperature deviation	Measurement deviation detected during calibration		°C	Optional	- 0.2 K (Channel #1); + 0.1 K (Channel #2); + 0.1 K (Channel #3)	*	
 Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Calibration Range			°C	Mandatory	100 - 1300 °C	*
 Metadata --> Measuring and test equipment --> Extensometer system	Displacement measuring method	Type of strain measuring device			Mandatory	Contacting method	*

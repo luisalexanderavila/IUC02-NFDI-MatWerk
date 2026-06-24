@@ -623,7 +623,6 @@
                     }
                 ],
                 "microstructureNi-BasedSX": {
-                    "grainAdditionalInformation": "Not applicable",
                     "grainSize": {
                         "value": "Not applicable",
                         "unit": "µm"
@@ -634,6 +633,7 @@
                     },
                     "grainSizeMeausuringRegion": "Not applicable",
                     "grainSizeDistribution": "Not applicable",
+                    "grainAdditionalInformation": "Not applicable",
                     "proofOfSingleCrystallinity": "The absence of grain boundaries was verified by visual inspection of the investment casts surface after electrolytical etching.",
                     "singleCrystalOrientation": "2.5",
                     "singleCrystalOrientationDeterminationMethod": "Laue Crystal Verification. A Scorpio system (DOI: 10.1088/0957-0233/6/1/021) was used. The angle alpha indicates the deviation of the [001]-direction from the symmetry axis of the respective cast (as-tested material).",

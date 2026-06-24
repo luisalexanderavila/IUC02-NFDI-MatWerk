@@ -239,6 +239,20 @@
         "metadata.measuring and test equipment.elongation values.type": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.elongationValues.type.typeOptions",
         "metadata.measuring and test equipment.load-measuring system.load sensor.load sensor calibration description": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.loadMeasuringSystem.loadSensor.loadSensorCalibrationDescription",
         "metadata.measuring and test equipment.extension values.contacting extensometer.calibration status": "MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.extensionValues.contactingExtensometer.calibrationStatus",
-        "secondary_data.test result.data series.creep curve": "MeasurementData.SecondaryData.TestResult.dataSeries.creepCurve"
+        "secondary_data.test result.data series.creep curve": "MeasurementData.SecondaryData.TestResult.dataSeries.creepCurve",
+        "metadata.material history and condition.microstructure ni-based sx.grain size": "MeasurementData.AdditionalMetadata.MaterialHistoryAndCondition.microstructureNi-BasedSX.grainSize.value",
+        "metadata.material history and condition.microstructure ni-based sx.grain size - determination method": "MeasurementData.AdditionalMetadata.MaterialHistoryAndCondition.microstructureNi-BasedSX.grainSizeDeterminationMethod.grainSizeDeterminationMethodOptions",
+        "metadata.material history and condition.microstructure ni-based sx.grain size - measuring region": "MeasurementData.AdditionalMetadata.MaterialHistoryAndCondition.microstructureNi-BasedSX.grainSizeMeausuringRegion",
+        "metadata.material history and condition.microstructure ni-based sx.grain size distribution": "MeasurementData.AdditionalMetadata.MaterialHistoryAndCondition.microstructureNi-BasedSX.grainSizeDistribution",
+        "metadata.material history and condition.microstructure ni-based sx.grain - additional information": "MeasurementData.AdditionalMetadata.MaterialHistoryAndCondition.microstructureNi-BasedSX.grainAdditionalInformation",
+        "metadata.material history and condition.microstructure ni-based sx.reprecipitated gamma-gamma prime regions": "MeasurementData.AdditionalMetadata.MaterialHistoryAndCondition.microstructureNi-BasedSX.reprecipitatedGammaGammaPrimeRegions.value",
+        "metadata.material history and condition.microstructure ni-based sx.gamma prime particles - average size": "MeasurementData.AdditionalMetadata.MaterialHistoryAndCondition.microstructureNi-BasedSX.gammaPrimeParticlesAverageSize.value",
+        "metadata.material history and condition.microstructure ni-based sx.gamma prime particles - maximum size": "MeasurementData.AdditionalMetadata.MaterialHistoryAndCondition.microstructureNi-BasedSX.gammaPrimeParticlesMaximumSize.value",
+        "metadata.material history and condition.microstructure ni-based sx.dendrite spacings": "MeasurementData.AdditionalMetadata.MaterialHistoryAndCondition.microstructureNi-BasedSX.dendriteSpacings",
+        "metadata.material history and condition.microstructure ni-based sx.proof of single crystallinity": "MeasurementData.AdditionalMetadata.MaterialHistoryAndCondition.microstructureNi-BasedSX.proofOfSingleCrystallinity",
+        "metadata.material history and condition.microstructure ni-based sx.single crystal orientation": "MeasurementData.AdditionalMetadata.MaterialHistoryAndCondition.microstructureNi-BasedSX.singleCrystalOrientation",
+        "metadata.material history and condition.microstructure ni-based sx.single crystal orientation - determination method": "MeasurementData.AdditionalMetadata.MaterialHistoryAndCondition.microstructureNi-BasedSX.singleCrystalOrientationDeterminationMethod",
+        "metadata.material history and condition.microstructure ni-based sx.orientation - determination accuracy": "MeasurementData.AdditionalMetadata.MaterialHistoryAndCondition.microstructureNi-BasedSX.orientationDeterminationAccuracy",
+        "metadata.material history and condition.microstructure ni-based sx.single crystal orientation - measuring point": "MeasurementData.AdditionalMetadata.MaterialHistoryAndCondition.microstructureNi-BasedSX.singleCrystalOrientationMeasuringPoint"
     }
 }
