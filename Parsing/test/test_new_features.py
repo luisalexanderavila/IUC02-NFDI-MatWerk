@@ -9,12 +9,12 @@ from pathlib import Path
 class TestNewFeatures(unittest.TestCase):
     def setUp(self):
         self.parsing_dir = Path(__file__).resolve().parents[1]
-        self.translate_script = self.parsing_dir / "bin" / "translate_bam_data_v2.py"
+        self.translate_script = self.parsing_dir / "bin" / "translate_bam_data.py"
         self.validate_script = self.parsing_dir / "bin" / "validate_json.py"
         self.batch_script = self.parsing_dir / "bin" / "run_batch_validation.py"
-        self.schema_file = self.parsing_dir.parent / "Data Schema" / "2025-12_Data-Schema_Creep_v2.0.json"
+        self.schema_file = self.parsing_dir.parent / "Data Schema" / "2026-06_Data-Schema_Creep_v2.1.8.json"
         # This file uses additionalMetadata --> ... for several rows.
-        self.alias_lis_file = self.parsing_dir / "Data" / "BAMDataset_v032026" / "Vh5205_C-82-MD-TR.lis"
+        self.alias_lis_file = self.parsing_dir / "Data" / "BAMDataset_v20260608" / "Vh5205_C-82-MD-TR.lis"
 
     def test_additional_metadata_alias_parses_and_validates(self):
         with tempfile.TemporaryDirectory() as tmp:

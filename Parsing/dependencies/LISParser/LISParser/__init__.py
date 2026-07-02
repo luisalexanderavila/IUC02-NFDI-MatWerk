@@ -1,1 +1,1 @@
-from LISParser.LisParse import Parser
+from LISParser.LisParse import ParserV2

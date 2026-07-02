@@ -1,19 +1,9 @@
 import os
 import sys
-import shutil
-import subprocess
-import yaml
-import logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
 import subprocess
 import yaml
 import logging
 
-import pdb
-
-# Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
@@ -90,7 +80,7 @@ def setup_repository(dep_name, dep_data):
     logger.info(f"remotes: {present_remotes}")
 
     for remote_name, remote_data in remotes.items():
-        if remote_name not in remotes:
+        if remote_name not in present_remotes:
             logger.info(f"Adding {remote_name} remote: {remote_data['url']}")
             run_command(["git","-C", repo_path,  "remote", "add", remote_name, remote_data['url']])
         logger.info(f"fetching remote: {remote_name}")

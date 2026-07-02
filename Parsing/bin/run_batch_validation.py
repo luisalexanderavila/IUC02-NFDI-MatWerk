@@ -7,11 +7,11 @@ from pathlib import Path
 
 def main() -> int:
     parsing = Path(__file__).resolve().parents[1]
-    script_translate = parsing / "bin" / "translate_bam_data_v2.py"
+    script_translate = parsing / "bin" / "translate_bam_data.py"
     script_validate = parsing / "bin" / "validate_json.py"
-    schema = parsing.parent / "Data Schema" / "2026-04_Data-Schema_Creep_v2.1.2.json"
+    schema = parsing.parent / "Data Schema" / "2026-06_Data-Schema_Creep_v2.1.8.json"
 
-    lis_dir = parsing / "Data" / "BAMDataset_v032026"
+    lis_dir = parsing / "Data" / "BAMDataset_v20260608"
     out_dir = lis_dir / "_batch_translated"
     out_dir.mkdir(parents=True, exist_ok=True)
 

@@ -20,7 +20,6 @@ def create_html(graph: Graph, output_path: Path, title: str) -> None:
         notebook=False,
         cdn_resources="local",
     )
-    network.cdn_resources = "local"
     network.barnes_hut()
     network.set_options(
         """

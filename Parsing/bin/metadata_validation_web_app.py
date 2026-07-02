@@ -1,5 +1,4 @@
 ﻿import argparse
-import copy
 import json
 import os
 import re
@@ -11,6 +10,7 @@ from flask import Flask, redirect, render_template_string, request, url_for
 from markupsafe import Markup
 import validation_core
 import shacl_validation_core
+from validation_core import is_defined, resolve_ref, infer_default_value
 
 
 def extract_missing_required_key(error_obj) -> str | None:
@@ -79,219 +79,6 @@ def candidate_folders_with_pattern(data_root: Path, pattern: str) -> list[Path]:
             out.append(folder)
 
     return sorted(dict.fromkeys(out))
-
-
-def load_json(path: Path) -> dict:
-    with path.open("r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def is_defined(value) -> bool:
-    if value is None:
-        return False
-    if isinstance(value, str):
-        return value.strip() != ""
-    if isinstance(value, (list, tuple, set, dict)):
-        return len(value) > 0
-    return True
-
-
-def resolve_ref(schema_root: dict, schema_node: dict) -> dict:
-    ref = schema_node.get("$ref") if isinstance(schema_node, dict) else None
-    if not ref or not ref.startswith("#/"):
-        return schema_node
-
-    target = schema_root
-    for part in ref[2:].split("/"):
-        target = target.get(part, {}) if isinstance(target, dict) else {}
-
-    return target if isinstance(target, dict) else schema_node
-
-
-def collect_required_paths(schema_root: dict, schema_node: dict, base_path=()) -> list[tuple[str, ...]]:
-    node = resolve_ref(schema_root, schema_node)
-    paths = []
-
-    required = node.get("required", []) if isinstance(node, dict) else []
-    if isinstance(required, list):
-        for key in required:
-            if isinstance(key, str):
-                paths.append(base_path + (key,))
-
-    properties = node.get("properties", {}) if isinstance(node, dict) else {}
-    if isinstance(properties, dict):
-        for key, child in properties.items():
-            if isinstance(child, dict):
-                paths.extend(collect_required_paths(schema_root, child, base_path + (key,)))
-
-    items = node.get("items") if isinstance(node, dict) else None
-    if isinstance(items, dict):
-        paths.extend(collect_required_paths(schema_root, items, base_path + ("*",)))
-
-    # Only traverse allOf (all sub-schemas must apply).
-    # oneOf/anyOf represent mutually exclusive alternatives — collecting required
-    # paths from every branch would flag missing fields that belong to the
-    # unchosen alternative (e.g., externalFileLink vs element-by-element list).
-    for member in node.get("allOf", []) if isinstance(node, dict) else []:
-        if isinstance(member, dict):
-            paths.extend(collect_required_paths(schema_root, member, base_path))
-
-    return paths
-
-
-def check_path_defined(data_node, path_tuple):
-    if not path_tuple:
-        return True, data_node, None
-
-    head, *tail = path_tuple
-    if head == "*":
-        if not isinstance(data_node, list):
-            return False, None, "expected array for wildcard segment"
-        if not data_node:
-            return False, None, "array is empty"
-
-        for idx, item in enumerate(data_node):
-            ok, _, reason = check_path_defined(item, tuple(tail))
-            if not ok:
-                return False, None, f"array item {idx}: {reason}"
-        return True, data_node, None
-
-    if not isinstance(data_node, dict):
-        return False, None, "parent is not an object"
-    if head not in data_node:
-        return False, None, "missing key"
-
-    value = data_node[head]
-    if not tail:
-        return is_defined(value), value, "not defined" if not is_defined(value) else None
-
-    return check_path_defined(value, tuple(tail))
-
-
-def normalize_experiment_data(schema_doc: dict, data_doc: dict):
-    schema_properties = schema_doc.get("properties", {}) if isinstance(schema_doc, dict) else {}
-    schema_target = schema_doc
-    data_target = data_doc
-
-    if isinstance(data_doc, dict) and "mappedMeasurementData" in data_doc:
-        mapped = data_doc.get("mappedMeasurementData", {})
-        if isinstance(mapped, dict) and "MeasurementData" in mapped:
-            data_target = {"MeasurementData": mapped["MeasurementData"]}
-
-    if isinstance(data_target, dict) and "MeasurementData" not in data_target and "MeasurementData" in schema_properties:
-        if "additionalMetadata" in data_target or "primaryData" in data_target or "secondaryData" in data_target:
-            data_target = {"MeasurementData": data_target}
-
-    return schema_target, data_target
-
-
-def validate_required_keywords(schema_doc: dict, experiment_doc: dict):
-    schema_target, data_target = normalize_experiment_data(schema_doc, experiment_doc)
-    req_paths = list(dict.fromkeys(collect_required_paths(schema_target, schema_target)))
-
-    warnings = []
-    for req in req_paths:
-        ok, _, reason = check_path_defined(data_target, req)
-        if not ok:
-            warnings.append({"path": ".".join(req), "reason": reason})
-
-    return req_paths, warnings, schema_target, data_target
-
-
-def infer_default_value(schema_root: dict, schema_node: dict):
-    node = resolve_ref(schema_root, schema_node) if isinstance(schema_node, dict) else {}
-
-    enum_values = node.get("enum", []) if isinstance(node, dict) else []
-    if isinstance(enum_values, list) and enum_values:
-        return enum_values[0]
-
-    node_type = node.get("type") if isinstance(node, dict) else None
-    if isinstance(node_type, list):
-        ordered = ["object", "array", "string", "integer", "number", "boolean"]
-        for t in ordered:
-            if t in node_type:
-                node_type = t
-                break
-
-    if node_type == "object" or isinstance(node.get("properties", {}), dict):
-        props = node.get("properties", {}) if isinstance(node, dict) else {}
-        if not isinstance(props, dict) or not props:
-            return {}
-
-        result = {}
-        req = node.get("required", []) if isinstance(node, dict) else []
-        keys_to_fill = []
-        if isinstance(req, list) and req:
-            keys_to_fill = [k for k in req if isinstance(k, str) and k in props]
-        elif "value" in props and "unit" in props:
-            keys_to_fill = ["value", "unit"]
-        else:
-            keys_to_fill = [next(iter(props.keys()))]
-
-        for key in keys_to_fill:
-            result[key] = infer_default_value(schema_root, props[key])
-        return result
-
-    if node_type == "array":
-        return []
-    if node_type == "integer":
-        return 0
-    if node_type == "number":
-        return 0.0
-    if node_type == "boolean":
-        return False
-    return "TODO"
-
-
-def autofix_required_fields(schema_root: dict, schema_node: dict, data_node):
-    node = resolve_ref(schema_root, schema_node) if isinstance(schema_node, dict) else {}
-    props = node.get("properties", {}) if isinstance(node, dict) else {}
-    required = node.get("required", []) if isinstance(node, dict) else []
-    changes = 0
-
-    if isinstance(props, dict):
-        if not isinstance(data_node, dict):
-            data_node = {}
-            changes += 1
-
-        if isinstance(required, list):
-            for key in required:
-                if not isinstance(key, str):
-                    continue
-                child_schema = props.get(key, {})
-                if key not in data_node or not is_defined(data_node.get(key)):
-                    data_node[key] = infer_default_value(schema_root, child_schema)
-                    changes += 1
-
-        for key, child_schema in props.items():
-            if key in data_node:
-                fixed_child, child_changes = autofix_required_fields(schema_root, child_schema, data_node[key])
-                data_node[key] = fixed_child
-                changes += child_changes
-
-    items_schema = node.get("items") if isinstance(node, dict) else None
-    if isinstance(items_schema, dict) and isinstance(data_node, list):
-        for idx, item in enumerate(data_node):
-            fixed_child, child_changes = autofix_required_fields(schema_root, items_schema, item)
-            data_node[idx] = fixed_child
-            changes += child_changes
-
-    return data_node, changes
-
-
-def autofix_experiment_json(schema_doc: dict, experiment_doc: dict):
-    fixed_doc = copy.deepcopy(experiment_doc)
-    schema_target, data_target = normalize_experiment_data(schema_doc, fixed_doc)
-    fixed_data_target, changes = autofix_required_fields(schema_target, schema_target, data_target)
-
-    # Keep normalized wrapper in sync in case root replacement happened.
-    if isinstance(fixed_data_target, dict) and "MeasurementData" in fixed_data_target:
-        if isinstance(fixed_doc, dict) and "mappedMeasurementData" in fixed_doc:
-            mapped = fixed_doc.get("mappedMeasurementData", {})
-            if isinstance(mapped, dict):
-                mapped["MeasurementData"] = fixed_data_target["MeasurementData"]
-
-    return fixed_doc, changes
 
 
 def path_to_dom_id(path: str) -> str:
@@ -407,8 +194,7 @@ def autofix_schema_errors(schema_target: dict, data_target):
     return data_target, total_changes
 
 
-def convert_lis_to_json(project_root: Path, lis_path: Path, output_json_path: Path, mapping_path: Path):
-    import importlib
+def convert_lis_to_json(project_root: Path, lis_path: Path, output_json_path: Path):
     import subprocess
 
     if not lis_path.exists():
@@ -416,70 +202,25 @@ def convert_lis_to_json(project_root: Path, lis_path: Path, output_json_path: Pa
 
     output_json_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # Newest dataset files use the hierarchical v2 LIS format and must go
-    # through the v2 translator stack (ParserV2 + BAM2schema_v2 mapping).
-    is_v2_lis = False
-    for enc in ("latin1", "utf-8"):
-        try:
-            with lis_path.open("r", encoding=enc) as handle:
-                for _ in range(15):
-                    line = handle.readline()
-                    if not line:
-                        break
-                    if line.strip().startswith("CATEGORIZATION"):
-                        is_v2_lis = True
-                        break
-            if is_v2_lis:
-                break
-        except UnicodeDecodeError:
-            continue
+    script = project_root / "bin" / "translate_bam_data.py"
+    if not script.exists():
+        raise FileNotFoundError(f"Translator script not found: {script}")
 
-    if is_v2_lis:
-        v2_script = project_root / "bin" / "translate_bam_data_v2.py"
-        if not v2_script.exists():
-            raise FileNotFoundError(f"v2 translator script not found: {v2_script}")
+    mapping = project_root / "Metadata" / "Mappings" / "BAM2schema.json"
+    cmd = [
+        sys.executable,
+        str(script),
+        str(lis_path),
+        "--output",
+        str(output_json_path),
+    ]
+    if mapping.exists():
+        cmd.extend(["--mapping", str(mapping)])
 
-        v2_mapping = project_root / "Metadata" / "Mappings" / "BAM2schema_v2.json"
-        cmd = [
-            sys.executable,
-            str(v2_script),
-            str(lis_path),
-            "--output",
-            str(output_json_path),
-        ]
-        if v2_mapping.exists():
-            cmd.extend(["--mapping", str(v2_mapping)])
-
-        proc = subprocess.run(cmd, cwd=str(project_root), capture_output=True, text=True)
-        if proc.returncode != 0:
-            detail = (proc.stderr or "").strip() or (proc.stdout or "").strip()
-            raise RuntimeError(detail or f"v2 translation failed (exit code {proc.returncode})")
-
-        return output_json_path
-
-    if not mapping_path.exists():
-        raise FileNotFoundError(f"Mapping file not found: {mapping_path}")
-
-    lis_pkg_root = project_root / "dependencies" / "LISParser"
-    mappings_pkg_root = project_root / "dependencies" / "Mappingsreader"
-    for p in [lis_pkg_root, mappings_pkg_root]:
-        p_txt = str(p)
-        if p.exists() and p_txt not in sys.path:
-            sys.path.insert(0, p_txt)
-
-    parser_mod = importlib.import_module("LISParser.LisParse")
-    map_mod = importlib.import_module("mappingsreader.mapreader")
-
-    Parser = getattr(parser_mod, "Parser")
-    translate_bam = getattr(map_mod, "translate_bam")
-
-    mapping_document = load_json(mapping_path)
-    lis_dict = Parser(str(lis_path)).parse_lis()
-    metadata = lis_dict.get("metadata", {}) if isinstance(lis_dict, dict) else {}
-    translated = translate_bam(metadata, mapping_document)
-
-    with output_json_path.open("w", encoding="utf-8") as f:
-        json.dump(translated, f, indent=4, ensure_ascii=False)
+    proc = subprocess.run(cmd, cwd=str(project_root), capture_output=True, text=True)
+    if proc.returncode != 0:
+        detail = (proc.stderr or "").strip() or (proc.stdout or "").strip()
+        raise RuntimeError(detail or f"Translation failed (exit code {proc.returncode})")
 
     return output_json_path
 
@@ -715,8 +456,6 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
     default_json_folder = (data_root / "BAMDataset_Json").resolve()
     default_lis_folder = (data_root / "BAMDataset_v20260608").resolve()
     schema_root = (root_dir / ".." / "Data Schema").resolve()
-    default_mapping = (root_dir / "Metadata" / "Mappings" / "BAM2schema.json").resolve()
-
     state = {
         "schema_path": str(default_schema_path),
         "json_folder": str(default_json_folder),
@@ -1138,7 +877,6 @@ def create_app(default_schema: str, data_root_value: str) -> Flask:
                     root_dir,
                     Path(state["lis_file"]),
                     output_json_path,
-                    default_mapping,
                 )
                 state["json_file"] = str(converted)
                 render_json_file(converted, show_validation=False)

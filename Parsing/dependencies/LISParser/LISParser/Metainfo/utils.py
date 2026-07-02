@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.insert (0, os.path.dirname(os.path.dirname(__file__)))
-from Tools.Metainfo.metainfo import MissingQuantity
+from Metainfo.metainfo import MissingQuantity
 
 import pandas as pd
 

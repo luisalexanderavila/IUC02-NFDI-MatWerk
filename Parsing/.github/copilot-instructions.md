@@ -9,8 +9,8 @@ This file guides AI agents working on the IUC02 codebase. Read this before makin
 | Active schema | `Data Schema/2026-06_Data-Schema_Creep_v2.1.8.json` |
 | Active LIS dataset | `Parsing/Data/BAMDataset_v20260608/` (12 MD-TR files) |
 | JSON output folder | `Parsing/Data/BAMDataset_Json/` |
-| Translator default | `Parsing/bin/translate_bam_data_v2.py` line ~49 `DEFAULT_SCHEMA_FILE` |
-| Active branch | `Parsing_Scripts` |
+| Translator default | `Parsing/bin/translate_bam_data.py` line ~49 `DEFAULT_SCHEMA_FILE` |
+| Active branch | `refactoring/clean-code` |
 | Python env | `C:\Users\maria\anaconda3\envs\python311\python.exe` |
 
 ## Running the translator (batch)
@@ -20,7 +20,7 @@ This file guides AI agents working on the IUC02 codebase. Read this before makin
 $py = "C:\Users\maria\anaconda3\envs\python311\python.exe"
 foreach ($f in Get-ChildItem "Data\BAMDataset_v20260608\*-MD-TR.lis") {
     $out = "Data\BAMDataset_Json\$($f.BaseName)_translated.json"
-    & $py bin\translate_bam_data_v2.py $f.FullName -o $out
+    & $py bin\translate_bam_data.py $f.FullName -o $out
 }
 ```
 
@@ -44,7 +44,7 @@ cd C:\Users\maria\Desktop\IUC02\iuc02\Parsing
 
 ## Enum handling rules — do not break these
 
-All enum comparisons in `translate_bam_data_v2.py` are **exact and case-sensitive**. Do not add `casefold()` or `lower()` to enum comparisons.
+All enum comparisons in `translate_bam_data.py` are **exact and case-sensitive**. Do not add `casefold()` or `lower()` to enum comparisons.
 
 1. If a LIS value exactly matches an enum option -> write it as-is.
 2. If it does not match and the field has "Other (Please specify in the comment)" in its enum -> set `*Options = "Other..."` and write the raw value to the `other*` sibling.
@@ -59,7 +59,7 @@ All enum comparisons in `translate_bam_data_v2.py` are **exact and case-sensitiv
 - Column order (0-indexed): `CATEGORIZATION | ENTRY | ADDITIONAL_INFO | SYMBOL | UNIT | REQUIREMENT | VALUE | COMMON`
 - When inserting new fields, match the tab structure of adjacent lines exactly.
 
-## Mapping file (BAM2schema_v2.json)
+## Mapping file (BAM2schema.json)
 
 - Encoding: **UTF-8 with BOM** — always open with `encoding='utf-8-sig'`.
 - Structure: `{"mappedMeasurementData": {"lis.path.key": "Schema.Path.key", ...}}`
@@ -71,7 +71,7 @@ All enum comparisons in `translate_bam_data_v2.py` are **exact and case-sensitiv
 
 When adding or changing schema fields:
 1. Copy the current schema to a new version file (e.g., v2.1.7 -> v2.1.8).
-2. Update `DEFAULT_SCHEMA_FILE` in `translate_bam_data_v2.py`.
+2. Update `DEFAULT_SCHEMA_FILE` in `translate_bam_data.py`.
 3. Regenerate all JSONs.
 4. If the web app has a hardcoded schema reference, update it too.
 

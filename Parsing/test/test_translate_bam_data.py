@@ -7,12 +7,12 @@ import unittest
 from pathlib import Path
 
 
-class TestTranslateBamDataV2(unittest.TestCase):
+class TestTranslateBamData(unittest.TestCase):
     def setUp(self):
         self.parsing_dir = Path(__file__).resolve().parents[1]
-        self.script = self.parsing_dir / "bin" / "translate_bam_data_v2.py"
+        self.script = self.parsing_dir / "bin" / "translate_bam_data.py"
         self.lis_file = self.parsing_dir / "Data" / "BAMDataset_v032026" / "Vh5205_C-78-MD-TR.lis"
-        self.mapping_file = self.parsing_dir / "Metadata" / "Mappings" / "BAM2schema_v2.json"
+        self.mapping_file = self.parsing_dir / "Metadata" / "Mappings" / "BAM2schema.json"
         self.schema_file = self.parsing_dir.parent / "Data Schema" / "2025-12_Data-Schema_Creep_v2.0.json"
 
     def test_v2_conversion_creates_output(self):
@@ -73,7 +73,7 @@ class TestTranslateBamDataV2(unittest.TestCase):
             output_file = Path(tmp) / "converted.json"
             mapping_override = Path(tmp) / "mapping_without_measurement_method.json"
 
-            mapping_doc = json.loads(self.mapping_file.read_text(encoding="utf-8"))
+            mapping_doc = json.loads(self.mapping_file.read_text(encoding="utf-8-sig"))
             mapped = copy.deepcopy(mapping_doc.get("mappedMeasurementData", {}))
             mapped.pop(
                 "metadata.material history and condition.chemical composition.measurement method",
@@ -98,7 +98,8 @@ class TestTranslateBamDataV2(unittest.TestCase):
             measurement_method = (
                 converted
                 .get("MeasurementData", {})
-                .get("additionalMetadata", {})
+                .get("AdditionalMetadata", {})
+                .get("MaterialHistoryAndCondition", {})
                 .get("chemicalComposition", [{}])[0]
                 .get("measurementMethod")
             )
@@ -109,7 +110,8 @@ class TestTranslateBamDataV2(unittest.TestCase):
             measured_elements = (
                 converted
                 .get("MeasurementData", {})
-                .get("additionalMetadata", {})
+                .get("AdditionalMetadata", {})
+                .get("MaterialHistoryAndCondition", {})
                 .get("chemicalComposition", [{}])[0]
                 .get("chemicalCompositionMeasured", [])
             )

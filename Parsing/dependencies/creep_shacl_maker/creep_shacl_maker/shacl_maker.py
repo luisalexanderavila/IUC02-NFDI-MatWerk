@@ -2,7 +2,6 @@ import json
 import os
 import sys
 import logging
-import pdb
 import re
 from datetime import datetime
 logging.basicConfig(level=logging.INFO)
@@ -178,76 +177,45 @@ def get_DateOfStart_paragraph(theDateOfStart):
     return paragraph_DateOfStart
 
 def write_shacl_metadata(json_metadata):
-    parent = json_metadata['testInfo']['testParameters']#['materialHistoryAndConditions']
-    if 'testStandard' in parent:
-        teststandard = str(parent['testStandard'])
-        test_standard_paragraph = get_tesStandardParagraph(teststandard)
+    test_standard_paragraph = []
+    initialStress_paragraph = []
+    specifiedTemperature_paragraph = []
+    typeOfLoading_paragraph = []
+    digitalMaterialIdParagraph = []
+    dateOfStart_paragraph = []
+    testJob_paragraph = []
 
     parent = json_metadata['testInfo']['testParameters']
+    if 'testStandard' in parent:
+        test_standard_paragraph = get_tesStandardParagraph(str(parent['testStandard']))
     if 'initialStress' in parent:
-        initialStress = parent['initialStress']
-        initialStress_paragraph = get_initalStressParagraph(initialStress)
+        initialStress_paragraph = get_initalStressParagraph(parent['initialStress'])
     if 'specifiedTemperature' in parent:
-        specifiedTemperature = parent['specifiedTemperature']
-        specifiedTemperature_paragraph = get_specifiedTempParagraph(specifiedTemperature)
+        specifiedTemperature_paragraph = get_specifiedTempParagraph(parent['specifiedTemperature'])
     if 'typeOfLoading' in parent:
-        typeOfLoading = parent['typeOfLoading']
-        typeOfLoading_paragraph = get_typeOfLoading_paragraph(typeOfLoading)
+        typeOfLoading_paragraph = get_typeOfLoading_paragraph(parent['typeOfLoading'])
 
     parent = json_metadata['testInfo']['materialRelated']['materialHistoryAndCondition']
     if 'digitalMaterialID' in parent:
-        digitalMaterialID = parent['digitalMaterialID']
-        digitalMaterialIdParagraph = get_digitalMaterialIdParagraph(digitalMaterialID)
+        digitalMaterialIdParagraph = get_digitalMaterialIdParagraph(parent['digitalMaterialID'])
 
-    parent = json_metadata['testInfo']['testJobDetails']        
+    parent = json_metadata['testInfo']['testJobDetails']
     if 'dateOfTestStart' in parent:
-        dateOfStart = parent['dateOfTestStart']
-        dateOfStart_paragraph = get_DateOfStart_paragraph(dateOfStart)
+        dateOfStart_paragraph = get_DateOfStart_paragraph(parent['dateOfTestStart'])
     if 'testID' in parent:
-        testID = parent['testID']
-        testJob_paragraph = get_testJob_paragraph(testID)
+        testJob_paragraph = get_testJob_paragraph(parent['testID'])
 
-
-
-        
-    data_block = \
-        test_standard_paragraph+['\n']+\
-        initialStress_paragraph+['\n']+\
-        digitalMaterialIdParagraph+['\n']+\
-        specifiedTemperature_paragraph+['\n']+\
-        typeOfLoading_paragraph+['\n']+\
-        dateOfStart_paragraph+['\n']+\
-        testJob_paragraph+['\n']
-
+    data_block = (
+        test_standard_paragraph + ['\n'] +
+        initialStress_paragraph + ['\n'] +
+        digitalMaterialIdParagraph + ['\n'] +
+        specifiedTemperature_paragraph + ['\n'] +
+        typeOfLoading_paragraph + ['\n'] +
+        dateOfStart_paragraph + ['\n'] +
+        testJob_paragraph + ['\n']
+    )
     return data_block
 
 
 
-if __name__ == '__main__':
-    import argparse
-    parser = argparse.ArgumentParser()
-    parser.add_argument('input_json', type=str, help='input json file with  creep test metadata')
-    parser.add_argument('-o', '--output', type=str, dest='output_ttl',  help='output shacl file', default=None)
-    args = parser.parse_args()
-    if args.output_ttl is None:
-        args.output_ttl = os.path.splitext(args.input_json)[0] + '.ttl'
-    
-    logger.info(f'input json file: {args.input_json}')
-    logger.info(f'output json file: {args.output_ttl}')
-
-    with open(args.input_json, 'r') as f:
-        json_metadata = json.load(f)
-    logger.info(f'keys : {json_metadata.keys()}')
-    json_metadata = json_metadata['mappedMeasurementData']["MeasurementData"]["additionalMetadata"]
-
-    shacl_metadata = write_shacl_metadata(json_metadata)
-
-    with open(args.output_ttl, 'w') as f:
-        f.writelines(header)
-        f.writelines(shacl_metadata)
-
-		
-
-
-    #
 
