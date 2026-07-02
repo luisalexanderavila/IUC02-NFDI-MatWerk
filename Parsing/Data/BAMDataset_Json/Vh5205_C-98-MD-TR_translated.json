@@ -604,7 +604,7 @@
                 "materialIdentifier": "CMSX-6",
                 "mechanicalTestResults": {
                     "proofStrengthCreepTestTemperature": {
-                        "value": "See file \"Vh5205_Complementary_Rp0.2.LIS\" and related reference dataset https://doi.org/10.5281/zenodo.17846616",
+                        "value": "See file \"2026-03_Creep-RD-CMSX-6_Rp0.2.LIS\" and related reference dataset https://doi.org/10.5281/zenodo.17846616",
                         "unit": "MPa"
                     }
                 },
@@ -623,6 +623,7 @@
                     }
                 ],
                 "microstructureNi-BasedSX": {
+                    "grainAdditionalInformation": "Not applicable",
                     "grainSize": {
                         "value": "Not applicable",
                         "unit": "µm"
@@ -633,7 +634,6 @@
                     },
                     "grainSizeMeausuringRegion": "Not applicable",
                     "grainSizeDistribution": "Not applicable",
-                    "grainAdditionalInformation": "Not applicable",
                     "proofOfSingleCrystallinity": "The absence of grain boundaries was verified by visual inspection of the investment casts surface after electrolytical etching.",
                     "singleCrystalOrientation": "7",
                     "singleCrystalOrientationDeterminationMethod": "Laue Crystal Verification. A Scorpio system (DOI: 10.1088/0957-0233/6/1/021) was used. The angle alpha indicates the deviation of the [001]-direction from the symmetry axis of the respective cast (as-tested material).",
@@ -701,16 +701,16 @@
                         "calibrationClass": "Not applicable",
                         "calibrationDate": "2023-06-21 00:00:00",
                         "calibrationRange": {
-                            "value": "0 kN to 20",
+                            "value": "0 kN to 20 kN",
                             "unit": "kN"
                         },
                         "calibrationStandard": "Not applicable",
                         "calibrationValidityTimePeriod": "12 months",
+                        "loadSensorCalibrationDescription": "The load cell was checked with calibrated weights. Error limit: ± 1 %",
                         "loadSensorCalibration": {
                             "loadSensorCalibrationOptions": "Yes"
                         },
-                        "loadSensorDuringLoading": "Yes",
-                        "loadSensorCalibrationDescription": "The load cell was checked with calibrated weights. Error limit: ± 1 %"
+                        "loadSensorDuringLoading": "Yes"
                     }
                 },
                 "temperatureMeasuringSystem": {
@@ -722,7 +722,7 @@
                             "value": "100 - 1300",
                             "unit": "°C"
                         },
-                        "calibrationStandard": "EURAMET/cg-11/v0.1",
+                        "calibrationStandard": "EURAMET/cg-11/v.01",
                         "calibrationStatus": "Yes",
                         "calibrationValidityTimePeriod": "12 Months",
                         "referenceJunction": "Internal",
@@ -803,13 +803,11 @@
                         "value": "1",
                         "unit": "kN"
                     },
-                    "testFrameAndSpecimenAlignment": "Yes",
-                    "testFrameAndSpecimenAlignmentDate": "18.07.2011",
+                    "testFrameAndSpecimenAlignment": "Yes. Verification was performed according to ASTM E1012 on 18.07.2011.",
                     "testFrameAndSpecimenAlignmentDescription": "Not applicable since verification was performed according to ASTM E1012",
                     "testMachineID": "Zug 07",
                     "testMachineType": {
-                        "testMachineTypeOptions": "Lever arm",
-                        "leverageRatio": "1:20.4"
+                        "testMachineTypeOptions": "Lever arm"
                     },
                     "testPieceHolderSystem": {
                         "fixingTechnique": {
@@ -1045,16 +1043,13 @@
                 },
                 "valuesRecordedDuringTestRun": {
                     "correctedMeasuredTemperature": {
-                        "value": "Data series from each sensor for each test piece in the corresponding LIS file \"Vh5205_C-98-Creep.LIS\"",
+                        "value": "Data series from each sensor for each test piece in the corresponsing LIS file",
                         "unit": "°C"
                     },
                     "percentageExtension": {
-                        "value": "The data series for each test piece are available in the corresponding LIS file \"Vh5205_C-98-Creep.LIS\"",
+                        "value": "The data series for each test piece are available in the corresponding LIS files",
                         "unit": "%"
                     }
-                },
-                "dataSeries": {
-                    "creepCurve": "https://zenodo.org/records/20132712/files/Vh5205_C-98-Creep.LIS"
                 }
             }
         }

@@ -489,6 +489,29 @@ def translate_v2(parsed: dict, mapping_doc: dict, source_lis_file: str = "",
                 _extra_sibling = ("leverageRatio", _leverage_match.group(1).strip())
                 raw_value = raw_value[: _leverage_match.start()].strip()
 
+        # New-format LIS files (BAMDataset) embed the calibration description in a
+        # continuation line of "Load sensor calibration", joined by "; ".
+        # Split "Yes; description..." → options="Yes", description written separately.
+        if schema_path.endswith("loadSensorCalibration.loadSensorCalibrationOptions"):
+            _yn = _normalize_yes_no(raw_value)
+            if _yn is not None and raw_value.strip().casefold() != _yn.casefold():
+                _sep_idx = raw_value.find("; ")
+                _desc = raw_value[_sep_idx + 2:].strip() if _sep_idx >= 0 else ""
+                raw_value = _yn
+                if _desc:
+                    # description lives at schema_keys[:-2] + ["loadSensorCalibrationDescription"]
+                    _set_nested_safe(result, schema_path.split(".")[:-2] + ["loadSensorCalibrationDescription"], _desc)
+
+        # New-format LIS files combine testPieceTypeI and the standard in one value:
+        # "Specimen according to DIN EN ISO 204:2019-4" → split into type + standard.
+        if schema_path.endswith("TestPiece.testPieceTypeI"):
+            _low = raw_value.strip().casefold()
+            _prefix = "specimen according to "
+            if _low.startswith(_prefix) and _low != "specimen according to standard":
+                _std = raw_value.strip()[len(_prefix):].strip()
+                raw_value = "Specimen according to standard"
+                _extra_sibling = ("testPieceTypeIStandard", _std)
+
         raw_value = _normalize_value_for_schema_path(schema_path, raw_value)
 
         schema_keys = schema_path.split(".")
@@ -564,7 +587,9 @@ def translate_v2(parsed: dict, mapping_doc: dict, source_lis_file: str = "",
                 if unit:
                     # B7 — strip trailing unit from value to avoid duplication
                     # (e.g. wireGauge value "0.51 mm" with unit "mm" → value "0.51")
-                    if raw_value.endswith(" " + unit):
+                    # Do not strip when unit appears more than once (range strings like
+                    # "0 kN to 20 kN" must not become "0 kN to 20").
+                    if raw_value.endswith(" " + unit) and raw_value.count(unit) == 1:
                         raw_value = raw_value[: -(len(unit) + 1)].strip()
                         _set_nested_safe(result, schema_keys, raw_value)
                     _set_nested_safe(result, schema_keys[:-1] + ["unit"], unit)
