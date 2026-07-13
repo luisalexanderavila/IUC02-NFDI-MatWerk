@@ -89,6 +89,32 @@ All dropdowns that should trigger a page refresh use `onchange="this.form.submit
 - Add `then.properties` from `if/then` conditionals.
 - This prevents nodes with only `if/then` allOf members from rendering as a raw JSON string.
 
+## Dependencies
+
+External dependencies live in `Parsing/dependencies/` and are declared in
+`Parsing/bin/config/dependencies_config.yaml`. Run from `Parsing/bin/`:
+
+```powershell
+& "C:\Users\maria\anaconda3\envs\python311\python.exe" setup_dependencies.py
+```
+
+| Directory | Repo | Role |
+|---|---|---|
+| `LISParser/` | same repo (main) | BAM LIS v2 parser — `LisParse.ParserV2` |
+| `creep_shacl_maker/` | same repo (main) | SHACL Turtle generator from JSON metadata |
+| `RDFConvertors-for-MatWerk-KG/` | github.com/HosseinBeygiNasrabadi/RDFConvertors-for-MatWerk-KG | YARRRML mappings + `map.sh` to convert translated JSONs to RDF/TTL (requires Docker) |
+| `creep-testing-ontology/` | github.com/HosseinBeygiNasrabadi/creep-testing-ontology | CTO OWL/Turtle ontology — target vocabulary for RDF conversion |
+
+### RDF conversion (JSON → TTL)
+
+```bash
+cd "dependencies/RDFConvertors-for-MatWerk-KG/Creep reference dataset (IUC02)"
+./map.sh                        # converts every *.json in the folder
+./map.sh Vh5205_C-78-MD-TR_translated.json   # single file
+```
+
+Requires Docker. Outputs a `.ttl` file per JSON, aligned with CTO and PMDco.
+
 ## Commit conventions
 
 Include the co-authored-by trailer:

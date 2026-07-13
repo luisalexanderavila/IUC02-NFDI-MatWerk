@@ -1,0 +1,19 @@
+# External dependencies cloned into Parsing/dependencies/ by setup_dependencies.py.
+# Run from the Parsing/bin/ directory: python setup_dependencies.py
+#
+# LISParser and creep_shacl_maker are part of the main repository and are
+# already present — they do not need entries here.
+
+dependencies:
+
+  RDFConvertors-for-MatWerk-KG:
+    target_dir: ../dependencies/RDFConvertors-for-MatWerk-KG
+    remotes:
+      origin:
+        url: https://github.com/HosseinBeygiNasrabadi/RDFConvertors-for-MatWerk-KG.git
+
+  creep-testing-ontology:
+    target_dir: ../dependencies/creep-testing-ontology
+    remotes:
+      origin:
+        url: https://github.com/HosseinBeygiNasrabadi/creep-testing-ontology.git
