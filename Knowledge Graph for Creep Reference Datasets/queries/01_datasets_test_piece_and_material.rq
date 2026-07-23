@@ -1,0 +1,23 @@
+# CQ: List all creep datasets together with their test piece IDs and material identifiers.
+PREFIX cto:   <https://w3id.org/pmd/cto/>
+PREFIX pmdco: <https://w3id.org/pmd/co/>
+PREFIX obo:   <http://purl.obolibrary.org/obo/>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?dataset ?testPieceID ?materialID
+WHERE {
+  ?dataset a cto:CTO_0000009 ;                 # creep_reference_dataset
+           obo:OBI_0000312 ?process .           # is_specified_output_of
+
+  ?testPiece a cto:CTO_0000008 ;                # creep_test_piece
+             obo:RO_0000056 ?process ;           # participates_in
+             rdfs:label ?testPieceID .
+
+  ?material a pmdco:PMD_0000000 ;               # Material
+            obo:RO_0000056 ?process .           # participates_in
+
+  ?matId a cto:CTO_0000021 ;                    # creep_material_identifier
+         obo:IAO_0000219 ?material ;             # denotes
+         pmdco:PMD_0000006 ?materialID .        # has_value
+}
+ORDER BY ?dataset

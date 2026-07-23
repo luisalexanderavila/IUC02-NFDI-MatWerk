@@ -1,0 +1,17 @@
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix cto:   <https://w3id.org/pmd/cto/> .
+@prefix co:    <https://w3id.org/pmd/co/> .
+@prefix obo:   <http://purl.obolibrary.org/obo/> .
+
+# Shape 2: Every creep_testing_process must have exactly one creep_test_piece that participates_in it.
+
+co:Shape02_ProcessHasTestPiece
+    a sh:NodeShape ;
+    sh:targetClass co:PMD_0000589 ;                         # creep_testing_process
+    sh:property [
+        sh:path                [ sh:inversePath obo:RO_0000056 ] ; # <- participates_in
+        sh:qualifiedValueShape [ sh:class cto:CTO_0000008 ] ; # creep_test_piece
+        sh:qualifiedMinCount   1 ;
+        sh:qualifiedMaxCount   1 ;
+        sh:message     "Every creep_testing_process must have exactly one creep_test_piece that participates_in it." ;
+    ] .

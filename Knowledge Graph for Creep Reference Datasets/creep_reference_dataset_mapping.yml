@@ -1,0 +1,1081 @@
+prefixes:
+  rml: http://semweb.mmlab.be/ns/rml#
+  ql: http://semweb.mmlab.be/ns/ql#
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  dcterms: http://purl.org/dc/terms/
+  msekg: https://nfdi.fiz-karlsruhe.de/matwerk/msekg/
+  cto: https://w3id.org/pmd/cto/
+  tto: https://w3id.org/pmd/tto/
+  co: https://w3id.org/pmd/co/
+  obo: http://purl.obolibrary.org/obo/
+  nfdi: https://nfdi.fiz-karlsruhe.de/ontology/
+  mwo: http://purls.helmholtz-metadaten.de/mwo/
+  log: https://w3id.org/pmd/log/1.0.2/
+  unit: http://qudt.org/vocab/unit/
+
+  # ---- Classes ----
+  creep_reference_dataset: https://w3id.org/pmd/cto/CTO_0000009
+  creep_testing_process: https://w3id.org/pmd/co/PMD_0000589
+  creep_test_piece: https://w3id.org/pmd/cto/CTO_0000008
+  creep_test_piece_identifier: https://w3id.org/pmd/cto/CTO_1000004
+  device_identifier: http://purls.helmholtz-metadaten.de/mwo/MWO_0001016
+  creep_material_identifier: https://w3id.org/pmd/cto/CTO_0000021
+  chemical_composition_data_item: https://w3id.org/pmd/co/PMD_0025002
+  chemical_composition: https://w3id.org/pmd/co/PMD_0000551
+  creep_test_standard: https://w3id.org/pmd/cto/CTO_0000024
+  plan: http://purl.obolibrary.org/obo/OBI_0000260
+  input_specification: https://w3id.org/pmd/co/PMD_0000014
+  scalar_value_specification: http://purl.obolibrary.org/obo/OBI_0001931
+  categorical_value_specification: http://purl.obolibrary.org/obo/OBI_0001930
+  date_value_specification: https://w3id.org/pmd/co/PMD_0001044
+  textual_description: https://nfdi.fiz-karlsruhe.de/ontology/NFDI_0001018
+  identifier: http://purl.obolibrary.org/obo/IAO_0020000
+  digital_object_identifier: https://nfdi.fiz-karlsruhe.de/ontology/NFDI_0001037
+  process_identifier: http://purls.helmholtz-metadaten.de/mwo/MWO_0001204
+  assay_identifier: http://purls.helmholtz-metadaten.de/mwo/MWO_0001013
+  date_process_ended: http://purls.helmholtz-metadaten.de/mwo/MWO_0001012
+  date_process_started: http://purl.obolibrary.org/obo/OBI_0002471
+  temporal_instant: http://purl.obolibrary.org/obo/BFO_0000203
+  temporal_interval: http://purl.obolibrary.org/obo/BFO_0000202
+  publication: http://purl.obolibrary.org/obo/IAO_0000311
+  project: https://nfdi.fiz-karlsruhe.de/ontology/NFDI_0000002
+  data_processing_process: https://nfdi.fiz-karlsruhe.de/ontology/NFDI_0010030
+  material_state: http://purls.helmholtz-metadaten.de/mwo/MWO_0001036
+  heat_treated_material_state: http://purls.helmholtz-metadaten.de/mwo/MWO_0001040
+  manufacturing_process: https://w3id.org/pmd/co/PMD_0000833
+  phase_transformation: https://w3id.org/pmd/co/PMD_0020136
+  heat_treatment: https://w3id.org/pmd/co/PMD_0000779
+  material_entity: http://purl.obolibrary.org/obo/BFO_0000040
+  supply_chain_process: log:LOG_10001247
+  Material: https://w3id.org/pmd/co/PMD_0000000
+  crystal_structure: https://w3id.org/pmd/co/PMD_0000591
+  crystallographic_texture: https://w3id.org/pmd/co/PMD_0000853
+  microscopy_process: https://w3id.org/pmd/co/PMD_0000856
+  site: http://purl.obolibrary.org/obo/BFO_0000029
+  creep_testing_machine: https://w3id.org/pmd/co/PMD_0000588
+  extensometer: https://w3id.org/pmd/co/PMD_0000636
+  creep_test_machine_heating_system: https://w3id.org/pmd/cto/CTO_1000001
+  force: https://w3id.org/pmd/co/PMD_0020200
+  maximum_force: https://w3id.org/pmd/tto/TTO_0000023
+  mechanical_stress: https://w3id.org/pmd/cto/CTO_1000304
+  temperature: https://w3id.org/pmd/co/PMD_0000967
+  stress_rupture_time: https://w3id.org/pmd/cto/CTO_0000013
+  final_gauge_length_after_fracture: https://w3id.org/pmd/tto/TTO_0000018
+  extensometer_gauge_length: https://w3id.org/pmd/tto/TTO_0000017
+  diameter: https://w3id.org/pmd/co/PMD_0050051
+  original_gauge_length: https://w3id.org/pmd/tto/TTO_0000028
+  parallel_length: https://w3id.org/pmd/tto/TTO_0000031
+  soaking_time: https://w3id.org/pmd/cto/CTO_1000064
+  test_duration: https://w3id.org/pmd/cto/CTO_1000062
+  percentage_elongation_after_creep_fracture: https://w3id.org/pmd/cto/CTO_0000005
+  percentage_permanent_elongation: https://w3id.org/pmd/tto/TTO_0000035
+  percentage_reduction_of_area_after_creep_fracture: https://w3id.org/pmd/cto/CTO_3000118
+  percentage_creep_extension: https://w3id.org/pmd/cto/CTO_0000010
+  percentage_elastic_extension: https://w3id.org/pmd/cto/CTO_3000013
+  percentage_initial_plastic_extension: https://w3id.org/pmd/cto/CTO_3000113
+  percentage_initial_total_extension: https://w3id.org/pmd/cto/CTO_3000114
+  percentage_plastic_extension: https://w3id.org/pmd/cto/CTO_3000115
+  percentage_total_extension: https://w3id.org/pmd/cto/CTO_3000011
+
+  # ---- Object properties ----
+  has_part: http://purl.obolibrary.org/obo/BFO_0000051
+  part_of: http://purl.obolibrary.org/obo/BFO_0000050
+  participates_in: http://purl.obolibrary.org/obo/RO_0000056
+  denotes: http://purl.obolibrary.org/obo/IAO_0000219
+  is_about: http://purl.obolibrary.org/obo/IAO_0000136
+  quality_of: http://purl.obolibrary.org/obo/RO_0000080
+  characteristic_of: http://purl.obolibrary.org/obo/RO_0000052
+  is_quality_specification_of: http://purl.obolibrary.org/obo/IAO_0000418
+  is_concretized_as: http://purl.obolibrary.org/obo/RO_0000058
+  intended_to_realize: http://purl.obolibrary.org/obo/COB_0000081
+  realized_in: http://purl.obolibrary.org/obo/BFO_0000054
+  occupies_temporal_region: http://purl.obolibrary.org/obo/BFO_0000199
+  last_instant_of: http://purl.obolibrary.org/obo/BFO_0000223
+  first_instant_of: http://purl.obolibrary.org/obo/BFO_0000221
+  preceded_by: http://purl.obolibrary.org/obo/BFO_0000062
+  specifies_value_of: http://purl.obolibrary.org/obo/OBI_0001927
+  is_specified_output_of: http://purl.obolibrary.org/obo/OBI_0000312
+
+  # ---- Data properties ----
+  has_value: https://w3id.org/pmd/co/PMD_0000006
+  has_measurement_unit_label: http://purl.obolibrary.org/obo/IAO_0000039
+
+
+
+sources:
+  dataset_root:
+    access: .rml_work/current.json
+    referenceFormulation: jsonpath
+    iterator: "$.MeasurementData"
+
+  test_job_details:
+    access: .rml_work/current.json
+    referenceFormulation: jsonpath
+    iterator: "$.MeasurementData.AdditionalMetadata.TestInfo.testJobDetails"
+
+  related_article:
+    access: .rml_work/current.json
+    referenceFormulation: jsonpath
+    iterator: "$.MeasurementData.AdditionalMetadata.TestInfo.relatedResearchOutcome.relatedArticle[*]"
+
+  data_processing:
+    access: .rml_work/current.json
+    referenceFormulation: jsonpath
+    iterator: "$.MeasurementData.AdditionalMetadata.DataProcessingProcedures"
+
+  test_piece:
+    access: .rml_work/current.json
+    referenceFormulation: jsonpath
+    iterator: "$.MeasurementData.AdditionalMetadata.TestPiece"
+
+  material_history:
+    access: .rml_work/current.json
+    referenceFormulation: jsonpath
+    iterator: "$.MeasurementData.AdditionalMetadata.MaterialHistoryAndCondition"
+
+  chemcomp_measured_wtpct:
+    access: .rml_work/current.json
+    referenceFormulation: jsonpath
+    iterator: "$.MeasurementData.AdditionalMetadata.MaterialHistoryAndCondition.chemicalComposition[*].chemicalCompositionMeasured[?(@.unit==\"Wt. %\")]"
+
+  chemcomp_measured_ppm:
+    access: .rml_work/current.json
+    referenceFormulation: jsonpath
+    iterator: "$.MeasurementData.AdditionalMetadata.MaterialHistoryAndCondition.chemicalComposition[*].chemicalCompositionMeasured[?(@.unit==\"ppm\")]"
+
+  test_machine:
+    access: .rml_work/current.json
+    referenceFormulation: jsonpath
+    iterator: "$.MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.testMachine"
+
+  extensometer_equipment:
+    access: .rml_work/current.json
+    referenceFormulation: jsonpath
+    iterator: "$.MeasurementData.AdditionalMetadata.MeasuringAndTestEquipment.extensionValues.contactingExtensometer"
+
+  test_parameters:
+    access: .rml_work/current.json
+    referenceFormulation: jsonpath
+    iterator: "$.MeasurementData.AdditionalMetadata.TestInfo.testParameters"
+
+  values_after_test_end:
+    access: .rml_work/current.json
+    referenceFormulation: jsonpath
+    iterator: "$.MeasurementData.PrimaryData.TestResult.valuesRecordedAfterTestEnd"
+
+  values_at_test_start:
+    access: .rml_work/current.json
+    referenceFormulation: jsonpath
+    iterator: "$.MeasurementData.PrimaryData.TestResult.valuesRecordedAtTestStart"
+
+  values_during_test_run:
+    access: .rml_work/current.json
+    referenceFormulation: jsonpath
+    iterator: "$.MeasurementData.PrimaryData.TestResult.valuesRecordedDuringTestRun"
+
+  secondary_elongation_values:
+    access: .rml_work/current.json
+    referenceFormulation: jsonpath
+    iterator: "$.MeasurementData.SecondaryData.TestResult.elongationValues"
+
+  secondary_extension_values:
+    access: .rml_work/current.json
+    referenceFormulation: jsonpath
+    iterator: "$.MeasurementData.SecondaryData.TestResult.extensionValues"
+
+
+
+
+
+mappings:
+  # SHARED ENTITIES
+
+  creep_reference_dataset:
+    sources: dataset_root
+    s: msekg:$(_fileID)
+    po:
+      - [a, creep_reference_dataset:]
+      - [rdfs:label, $(_fileID)]
+      - [is_specified_output_of:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  creep_testing_process:
+    sources: dataset_root
+    s: msekg:creep_testing_process_$(_fileID)
+    po:
+      - [a, creep_testing_process:]
+
+  creep_test_piece:
+    sources: test_piece
+    s: msekg:creep_test_piece_$(_fileID)
+    po:
+      - [a, creep_test_piece:]
+      - [rdfs:label, $(testpieceID)]
+      - [participates_in:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  creep_testing_machine:
+    sources: test_machine
+    s: msekg:creep_testing_machine_$(_fileID)
+    po:
+      - [a, creep_testing_machine:]
+      - [rdfs:label, $(testMachineID)]
+      - [participates_in:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  extensometer:
+    sources: extensometer_equipment
+    s: msekg:extensometer_$(_fileID)
+    po:
+      - [a, extensometer:]
+      - [rdfs:label, $(extensometerModelInformation)]
+      - [participates_in:, msekg:creep_testing_process_$(_fileID)~iri]
+
+
+  # PARAMETERS 
+
+  # --- relatedArticle.DOI ---
+  # 'digital object identifier' and (denotes some (publication and ('is about' some 'creep testing process')))
+  digital_object_identifier:
+    sources: related_article
+    s: msekg:digital_object_identifier_$(_fileID)_$(_idx)
+    po:
+      - [a, digital_object_identifier:]
+      - [denotes:, msekg:publication_$(_fileID)_$(_idx)~iri]
+      - [has_value:, $(DOI)]
+
+  publication:
+    sources: related_article
+    s: msekg:publication_$(_fileID)_$(_idx)
+    po:
+      - [a, publication:]
+      - [is_about:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- dateOfTestEnd ---
+  # 'date process ended' and (denotes some (temporal instant and ('last instant of' some 'test duration')))
+  date_process_ended:
+    sources: test_job_details
+    s: msekg:date_process_ended_$(_fileID)
+    po:
+      - [a, date_process_ended:]
+      - [denotes:, msekg:temporal_instant_end_$(_fileID)~iri]
+      - [has_value:, $(dateOfTestEnd)]
+
+  temporal_instant_end:
+    sources: test_job_details
+    s: msekg:temporal_instant_end_$(_fileID)
+    po:
+      - [a, temporal_instant:]
+      - [last_instant_of:, msekg:test_duration_$(_fileID)~iri]
+
+  # --- dateOfTestStart ---
+  # 'date process started' and (denotes some (temporal instant and ('first instant of' some 'test duration')))
+  date_process_started:
+    sources: test_job_details
+    s: msekg:date_process_started_$(_fileID)
+    po:
+      - [a, date_process_started:]
+      - [denotes:, msekg:temporal_instant_start_$(_fileID)~iri]
+      - [has_value:, $(dateOfTestStart)]
+
+  temporal_instant_start:
+    sources: test_job_details
+    s: msekg:temporal_instant_start_$(_fileID)
+    po:
+      - [a, temporal_instant:]
+      - [first_instant_of:, msekg:test_duration_$(_fileID)~iri]
+
+  # --- project ---
+  # 'process identifier' and (denotes some (project and ('has part' some 'creep testing process')))
+  process_identifier:
+    sources: test_job_details
+    s: msekg:process_identifier_$(_fileID)
+    po:
+      - [a, process_identifier:]
+      - [denotes:, msekg:project_$(_fileID)~iri]
+      - [has_value:, $(project)]
+
+  project:
+    sources: test_job_details
+    s: msekg:project_$(_fileID)
+    po:
+      - [a, project:]
+      - [has_part:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- testID ---
+  # 'assay identifier' and (denotes some 'creep testing process')
+  assay_identifier:
+    sources: test_job_details
+    s: msekg:assay_identifier_$(_fileID)
+    po:
+      - [a, assay_identifier:]
+      - [denotes:, msekg:creep_testing_process_$(_fileID)~iri]
+      - [has_value:, $(testID)]
+
+  # --- initialStress ---
+  # 'input specification' and (is_concretized_as some (mechanical stress and (realized_in some 'creep testing process')))
+  input_specification_stress:
+    sources: test_parameters
+    s: msekg:input_specification_stress_$(_fileID)
+    po:
+      - [a, input_specification:]
+      - [is_concretized_as:, msekg:quality_mechanical_stress_$(_fileID)~iri]
+      - [has_value:, $(initialStress.value)]
+      - [has_measurement_unit_label:, unit:MegaPA~iri]
+
+  quality_mechanical_stress:
+    sources: test_parameters
+    s: msekg:quality_mechanical_stress_$(_fileID)
+    po:
+      - [a, mechanical_stress:]
+      - [realized_in:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- preload ---
+  # 'input specification' and (is_concretized_as some (force and (realized_in some 'creep testing process')))
+  input_specification_preload:
+    sources: test_parameters
+    s: msekg:input_specification_preload_$(_fileID)
+    po:
+      - [a, input_specification:]
+      - [is_concretized_as:, msekg:quality_force_preload_$(_fileID)~iri]
+      - [has_value:, $(preload.value)]
+      - [has_measurement_unit_label:, unit:KiloN~iri]
+
+  quality_force_preload:
+    sources: test_parameters
+    s: msekg:quality_force_preload_$(_fileID)
+    po:
+      - [a, force:]
+      - [realized_in:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- specifiedTemperature ---
+  # 'input specification' and (is_concretized_as some (temperature and (quality_of some 'creep testing machine')))
+  input_specification_temperature:
+    sources: test_parameters
+    s: msekg:input_specification_temperature_$(_fileID)
+    po:
+      - [a, input_specification:]
+      - [is_concretized_as:, msekg:quality_temperature_$(_fileID)~iri]
+      - [has_value:, $(specifiedTemperature.value)]
+      - [has_measurement_unit_label:, unit:DEG_C~iri]
+
+  quality_temperature:
+    sources: test_parameters
+    s: msekg:quality_temperature_$(_fileID)
+    po:
+      - [a, temperature:]
+      - [quality_of:, msekg:creep_testing_machine_$(_fileID)~iri]
+
+  # --- testStandard ---
+  # 'creep test standard' and (is_concretized_as some (plan and ('intended to realize' some 'creep testing process')))
+  creep_test_standard:
+    sources: test_parameters
+    s: msekg:creep_test_standard_$(_fileID)
+    po:
+      - [a, creep_test_standard:]
+      - [is_concretized_as:, msekg:plan_$(_fileID)~iri]
+      - [has_value:, $(testStandard.testStandardOptions)]
+
+  plan:
+    sources: test_parameters
+    s: msekg:plan_$(_fileID)
+    po:
+      - [a, plan:]
+
+  process_intended_to_realize:
+    sources: test_parameters
+    s: msekg:creep_testing_process_$(_fileID)
+    po:
+      - [intended_to_realize:, msekg:plan_$(_fileID)~iri]
+
+  # --- testpieceID ---
+  # 'creep test piece identifier' and (denotes some 'creep test piece')
+  creep_test_piece_identifier:
+    sources: test_piece
+    s: msekg:creep_test_piece_identifier_$(_fileID)
+    po:
+      - [a, creep_test_piece_identifier:]
+      - [denotes:, msekg:creep_test_piece_$(_fileID)~iri]
+      - [has_value:, $(testpieceID)]
+
+  # --- testPieceTypeI ---
+  # 'categorical value specification' and (specifies_value_of some 'creep test piece')
+  value_specification_test_piece_type:
+    sources: test_piece
+    s: msekg:value_specification_test_piece_type_$(_fileID)
+    po:
+      - [a, categorical_value_specification:]
+      - [specifies_value_of:, msekg:creep_test_piece_$(_fileID)~iri]
+      - [has_value:, $(testPieceTypeI)]
+
+  # --- dataAnalysisProcedures ---
+  # 'textual description' and (denotes some ('data processing process' and (preceded_by some 'creep testing process')))
+  textual_description_data_analysis_procedures:
+    sources: data_processing
+    s: msekg:textual_description_data_analysis_procedures_$(_fileID)
+    po:
+      - [a, textual_description:]
+      - [denotes:, msekg:data_processing_process_$(_fileID)~iri]
+      - [has_value:, $(dataAnalysisProcedures)]
+
+  data_processing_process:
+    sources: data_processing
+    s: msekg:data_processing_process_$(_fileID)
+    po:
+      - [a, data_processing_process:]
+      - [preceded_by:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- condition (asManufacturedMaterial) ---
+  # 'material state' and (specifies_value_of some 'creep test piece')
+  value_specification_material_condition:
+    sources: material_history
+    s: msekg:value_specification_material_condition_$(_fileID)
+    po:
+      - [a, material_state:]
+      - [specifies_value_of:, msekg:creep_test_piece_$(_fileID)~iri]
+      - [has_value:, $(asManufacturedMaterial.condition)]
+
+  # --- formOfAsManufacturedMaterial ---
+  # 'categorical value specification' and (specifies_value_of some 'creep test piece')
+  value_specification_material_form:
+    sources: material_history
+    s: msekg:value_specification_material_form_$(_fileID)
+    po:
+      - [a, categorical_value_specification:]
+      - [specifies_value_of:, msekg:creep_test_piece_$(_fileID)~iri]
+      - [has_value:, $(asManufacturedMaterial.formOfAsManufacturedMaterial)]
+
+  # --- geometrySizeAsManufacturedMaterial ---
+  # 'textual description' and (denotes some 'creep test piece')
+  textual_description_geometry_size:
+    sources: material_history
+    s: msekg:textual_description_geometry_size_$(_fileID)
+    po:
+      - [a, textual_description:]
+      - [denotes:, msekg:creep_test_piece_$(_fileID)~iri]
+      - [has_value:, $(asManufacturedMaterial.geometrySizeAsManufacturedMaterial)]
+
+  # --- manufacturingProcessDescriptionAsManufacturedMaterial ---
+  # 'textual description' and (denotes some ('manufacturing process' and (preceded_by some 'creep testing process')))
+  textual_description_manufacturing_process:
+    sources: material_history
+    s: msekg:textual_description_manufacturing_process_$(_fileID)
+    po:
+      - [a, textual_description:]
+      - [denotes:, msekg:manufacturing_process_$(_fileID)~iri]
+      - [has_value:, $(asManufacturedMaterial.manufacturingProcessDescriptionAsManufacturedMaterial)]
+
+  manufacturing_process:
+    sources: material_history
+    s: msekg:manufacturing_process_$(_fileID)
+    po:
+      - [a, manufacturing_process:]
+      - [preceded_by:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- solidification ---
+  # 'textual description' and (denotes some ('phase transformation' and (preceded_by some 'creep testing process')))
+  textual_description_solidification:
+    sources: material_history
+    s: msekg:textual_description_solidification_$(_fileID)
+    po:
+      - [a, textual_description:]
+      - [denotes:, msekg:phase_transformation_$(_fileID)~iri]
+      - [has_value:, $(asManufacturedMaterial.solidification)]
+
+  phase_transformation:
+    sources: material_history
+    s: msekg:phase_transformation_$(_fileID)
+    po:
+      - [a, phase_transformation:]
+      - [preceded_by:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- manufacturingProcessDescriptionAsTestedMaterial ---
+  # 'textual description' and (denotes some ('heat treatment' and (preceded_by some 'creep testing process')))
+  textual_description_manufacturing_process_tested:
+    sources: material_history
+    s: msekg:textual_description_manufacturing_process_tested_$(_fileID)
+    po:
+      - [a, textual_description:]
+      - [denotes:, msekg:heat_treatment_$(_fileID)~iri]
+      - [has_value:, $(asTestedMaterial.manufacturingProcessDescriptionAsTestedMaterial)]
+
+  heat_treatment:
+    sources: material_history
+    s: msekg:heat_treatment_$(_fileID)
+    po:
+      - [a, heat_treatment:]
+      - [preceded_by:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- supplier ---
+  # 'identifier' and (denotes some ('material entity' and (participates_in some 'supply chain process')))
+  identifier_supplier:
+    sources: material_history
+    s: msekg:identifier_supplier_$(_fileID)
+    po:
+      - [a, identifier:]
+      - [denotes:, msekg:supplier_$(_fileID)~iri]
+      - [has_value:, $(asTestedMaterial.supplier)]
+
+  supplier:
+    sources: material_history
+    s: msekg:supplier_$(_fileID)
+    po:
+      - [a, material_entity:]
+      - [participates_in:, msekg:supply_chain_process_$(_fileID)~iri]
+
+  # --- supplyDate ---
+  # 'date value specification' and (specifies_value_of some ('supply chain process' and (preceded_by some 'creep testing process')))
+  value_specification_supply_date:
+    sources: material_history
+    s: msekg:value_specification_supply_date_$(_fileID)
+    po:
+      - [a, date_value_specification:]
+      - [specifies_value_of:, msekg:supply_chain_process_$(_fileID)~iri]
+      - [has_value:, $(asTestedMaterial.supplyDate)]
+
+  supply_chain_process:
+    sources: material_history
+    s: msekg:supply_chain_process_$(_fileID)
+    po:
+      - [a, supply_chain_process:]
+      - [preceded_by:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- heatTreatmentState ---
+  # 'heat treated material state' and (specifies_value_of some 'creep test piece')
+  value_specification_heat_treatment_state:
+    sources: material_history
+    s: msekg:value_specification_heat_treatment_state_$(_fileID)
+    po:
+      - [a, heat_treated_material_state:]
+      - [specifies_value_of:, msekg:creep_test_piece_$(_fileID)~iri]
+      - [has_value:, $(heatTreatment.heatTreatmentState.heatTreatmentStateOptions)]
+
+  # --- materialIdentifier ---
+  # 'creep material identifier' and (denotes some (Material and (participates_in some 'creep testing process')))
+  creep_material_identifier:
+    sources: material_history
+    s: msekg:creep_material_identifier_$(_fileID)
+    po:
+      - [a, creep_material_identifier:]
+      - [denotes:, msekg:material_$(_fileID)~iri]
+      - [has_value:, $(materialIdentifier)]
+
+  material:
+    sources: material_history
+    s: msekg:material_$(_fileID)
+    po:
+      - [a, Material:]
+      - [participates_in:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- proofOfSingleCrystallinity ---
+  # 'textual description' and (denotes some ('crystal structure' and ('characteristic of' some 'creep test piece')))
+  textual_description_proof_single_crystallinity:
+    sources: material_history
+    s: msekg:textual_description_proof_single_crystallinity_$(_fileID)
+    po:
+      - [a, textual_description:]
+      - [denotes:, msekg:crystal_structure_$(_fileID)~iri]
+      - [has_value:, $(microstructureNi-BasedSX.proofOfSingleCrystallinity)]
+
+  crystal_structure:
+    sources: material_history
+    s: msekg:crystal_structure_$(_fileID)
+    po:
+      - [a, crystal_structure:]
+      - [characteristic_of:, msekg:creep_test_piece_$(_fileID)~iri]
+
+  # --- singleCrystalOrientation ---
+  # 'scalar value specification' and (specifies_value_of some ('crystallographic texture' and ('characteristic of' some 'creep test piece')))
+  value_specification_single_crystal_orientation:
+    sources: material_history
+    s: msekg:value_specification_single_crystal_orientation_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:crystallographic_texture_$(_fileID)~iri]
+      - [has_value:, $(microstructureNi-BasedSX.singleCrystalOrientation)]
+      - [has_measurement_unit_label:, unit:DEG~iri]
+
+  crystallographic_texture:
+    sources: material_history
+    s: msekg:crystallographic_texture_$(_fileID)
+    po:
+      - [a, crystallographic_texture:]
+      - [characteristic_of:, msekg:creep_test_piece_$(_fileID)~iri]
+
+  # --- singleCrystalOrientationDeterminationMethod ---
+  # 'textual description' and (denotes some ('microscopy process' and (preceded_by some 'creep testing process')))
+  textual_description_orientation_determination_method:
+    sources: material_history
+    s: msekg:textual_description_orientation_determination_method_$(_fileID)
+    po:
+      - [a, textual_description:]
+      - [denotes:, msekg:microscopy_process_$(_fileID)~iri]
+      - [has_value:, $(microstructureNi-BasedSX.singleCrystalOrientationDeterminationMethod)]
+
+  microscopy_process:
+    sources: material_history
+    s: msekg:microscopy_process_$(_fileID)
+    po:
+      - [a, microscopy_process:]
+      - [preceded_by:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- singleCrystalOrientationMeasuringPoint ---
+  # 'textual description' and (denotes some (site and (participates_in some 'microscopy process')))
+  textual_description_orientation_measuring_point:
+    sources: material_history
+    s: msekg:textual_description_orientation_measuring_point_$(_fileID)
+    po:
+      - [a, textual_description:]
+      - [denotes:, msekg:site_$(_fileID)~iri]
+      - [has_value:, $(microstructureNi-BasedSX.singleCrystalOrientationMeasuringPoint)]
+
+  site:
+    sources: material_history
+    s: msekg:site_$(_fileID)
+    po:
+      - [a, site:]
+      - [participates_in:, msekg:microscopy_process_$(_fileID)~iri]
+
+  # --- chemicalCompositionMeasured (mass-fraction, "Wt. %") ---
+  # 'chemical composition data item' and ('is quality specification of' some (chemical composition and (quality_of some 'creep test piece')))
+  chemical_composition_data_item_wtpct:
+    sources: chemcomp_measured_wtpct
+    s: msekg:chemical_composition_data_item_$(_fileID)_$(_idx)
+    po:
+      - [a, chemical_composition_data_item:]
+      - [rdfs:label, $(element)]
+      - [is_quality_specification_of:, msekg:quality_chemical_composition_$(_fileID)_$(_idx)~iri]
+      - [has_value:, $(value)]
+      - [has_measurement_unit_label:, unit:PERCENT~iri]
+
+  quality_chemical_composition_wtpct:
+    sources: chemcomp_measured_wtpct
+    s: msekg:quality_chemical_composition_$(_fileID)_$(_idx)
+    po:
+      - [a, chemical_composition:]
+      - [quality_of:, msekg:creep_test_piece_$(_fileID)~iri]
+
+  # ---- chemicalCompositionMeasured (ppm) ----
+  chemical_composition_data_item_ppm:
+    sources: chemcomp_measured_ppm
+    s: msekg:chemical_composition_data_item_$(_fileID)_$(_idx)
+    po:
+      - [a, chemical_composition_data_item:]
+      - [rdfs:label, $(element)]
+      - [is_quality_specification_of:, msekg:quality_chemical_composition_$(_fileID)_$(_idx)~iri]
+      - [has_value:, $(value)]
+      - [has_measurement_unit_label:, unit:PPM~iri]
+
+  quality_chemical_composition_ppm:
+    sources: chemcomp_measured_ppm
+    s: msekg:quality_chemical_composition_$(_fileID)_$(_idx)
+    po:
+      - [a, chemical_composition:]
+      - [quality_of:, msekg:creep_test_piece_$(_fileID)~iri]
+
+  # --- extensometerID ---
+  # 'device identifier' and (denotes some 'extensometer')
+  device_identifier_extensometer:
+    sources: extensometer_equipment
+    s: msekg:device_identifier_extensometer_$(_fileID)
+    po:
+      - [a, device_identifier:]
+      - [denotes:, msekg:extensometer_$(_fileID)~iri]
+      - [has_value:, $(extensometerID)]
+
+  # --- furnaceType ---
+  # 'categorical value specification' and (specifies_value_of some ('creep test machine heating system' and (participates_in some 'creep testing process')))
+  value_specification_furnace_type:
+    sources: test_machine
+    s: msekg:value_specification_furnace_type_$(_fileID)
+    po:
+      - [a, categorical_value_specification:]
+      - [specifies_value_of:, msekg:creep_test_machine_heating_system_$(_fileID)~iri]
+      - [has_value:, $(heatingSystem.furnaceType.furnaceTypeOptions)]
+
+  creep_test_machine_heating_system:
+    sources: test_machine
+    s: msekg:creep_test_machine_heating_system_$(_fileID)
+    po:
+      - [a, creep_test_machine_heating_system:]
+      - [participates_in:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- maximumApplicableForce ---
+  # 'scalar value specification' and (specifies_value_of some ('maximum force' and (realized_in some 'creep testing process')))
+  value_specification_maximum_applicable_force:
+    sources: test_machine
+    s: msekg:value_specification_maximum_applicable_force_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:maximum_force_$(_fileID)~iri]
+      - [has_value:, $(maximumApplicableForce.value)]
+      - [has_measurement_unit_label:, unit:KiloN~iri]
+
+  maximum_force:
+    sources: test_machine
+    s: msekg:maximum_force_$(_fileID)
+    po:
+      - [a, maximum_force:]
+      - [realized_in:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- minimumApplicableForce ---
+  # 'scalar value specification' and (specifies_value_of some (force and (realized_in some 'creep testing process')))
+  value_specification_minimum_applicable_force:
+    sources: test_machine
+    s: msekg:value_specification_minimum_applicable_force_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:quality_force_minimum_applicable_$(_fileID)~iri]
+      - [has_value:, $(minimumApplicableForce.value)]
+      - [has_measurement_unit_label:, unit:KiloN~iri]
+
+  quality_force_minimum_applicable:
+    sources: test_machine
+    s: msekg:quality_force_minimum_applicable_$(_fileID)
+    po:
+      - [a, force:]
+      - [realized_in:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- testMachineID ---
+  # 'device identifier' and (denotes some 'creep testing machine')
+  device_identifier_test_machine:
+    sources: test_machine
+    s: msekg:device_identifier_test_machine_$(_fileID)
+    po:
+      - [a, device_identifier:]
+      - [denotes:, msekg:creep_testing_machine_$(_fileID)~iri]
+      - [has_value:, $(testMachineID)]
+
+  # --- creepRuptureTime ---
+  # 'scalar value specification' and (specifies_value_of some ('stress rupture time' and (inverse 'occupies temporal region' some 'creep testing process')))
+  value_specification_creep_rupture_time:
+    sources: values_after_test_end
+    s: msekg:value_specification_creep_rupture_time_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:stress_rupture_time_$(_fileID)~iri]
+      - [has_value:, $(creepRuptureTime.value)]
+      - [has_measurement_unit_label:, unit:HR~iri]
+
+  stress_rupture_time:
+    sources: values_after_test_end
+    s: msekg:stress_rupture_time_$(_fileID)
+    po:
+      - [a, stress_rupture_time:]
+
+  process_occupies_stress_rupture_time:
+    sources: values_after_test_end
+    s: msekg:creep_testing_process_$(_fileID)
+    po:
+      - [occupies_temporal_region:, msekg:stress_rupture_time_$(_fileID)~iri]
+
+  # --- finalGaugeLengthAfterFracture ---
+  # 'scalar value specification' and (specifies_value_of some ('final gauge length after fracture' and (quality_of some 'creep test piece')))
+  value_specification_final_gauge_length:
+    sources: values_after_test_end
+    s: msekg:value_specification_final_gauge_length_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:final_gauge_length_after_fracture_$(_fileID)~iri]
+      - [has_value:, $(finalGaugeLengthAfterFracture.value)]
+      - [has_measurement_unit_label:, unit:MilliM~iri]
+
+  final_gauge_length_after_fracture:
+    sources: values_after_test_end
+    s: msekg:final_gauge_length_after_fracture_$(_fileID)
+    po:
+      - [a, final_gauge_length_after_fracture:]
+      - [quality_of:, msekg:creep_test_piece_$(_fileID)~iri]
+
+  # --- extensometerGaugeLength ---
+  # 'scalar value specification' and (specifies_value_of some ('extensometer gauge length' and (quality_of some extensometer)))
+  value_specification_extensometer_gauge_length:
+    sources: values_at_test_start
+    s: msekg:value_specification_extensometer_gauge_length_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:quality_extensometer_gauge_length_$(_fileID)~iri]
+      - [has_value:, $(extensometerGaugeLength.value)]
+      - [has_measurement_unit_label:, unit:MilliM~iri]
+
+  quality_extensometer_gauge_length:
+    sources: values_at_test_start
+    s: msekg:quality_extensometer_gauge_length_$(_fileID)
+    po:
+      - [a, extensometer_gauge_length:]
+      - [quality_of:, msekg:extensometer_$(_fileID)~iri]
+
+  # --- minimumTestPieceDiameterAtRoomTemperature ---
+  # 'scalar value specification' and (specifies_value_of some (diameter and (quality_of some 'creep test piece')))
+  value_specification_minimum_diameter:
+    sources: values_at_test_start
+    s: msekg:value_specification_minimum_diameter_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:diameter_$(_fileID)~iri]
+      - [has_value:, $(minimumTestPieceDiameterAtRoomTemperature.value)]
+      - [has_measurement_unit_label:, unit:MilliM~iri]
+
+  diameter:
+    sources: values_at_test_start
+    s: msekg:diameter_$(_fileID)
+    po:
+      - [a, diameter:]
+      - [quality_of:, msekg:creep_test_piece_$(_fileID)~iri]
+
+  # --- originalGaugeLength ---
+  # 'scalar value specification' and (specifies_value_of some ('original gauge length' and (quality_of some 'creep test piece')))
+  value_specification_original_gauge_length:
+    sources: values_at_test_start
+    s: msekg:value_specification_original_gauge_length_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:original_gauge_length_$(_fileID)~iri]
+      - [has_value:, $(originalGaugeLength.value)]
+      - [has_measurement_unit_label:, unit:MilliM~iri]
+
+  original_gauge_length:
+    sources: values_at_test_start
+    s: msekg:original_gauge_length_$(_fileID)
+    po:
+      - [a, original_gauge_length:]
+      - [quality_of:, msekg:creep_test_piece_$(_fileID)~iri]
+
+  # --- parallelLength ---
+  # 'scalar value specification' and (specifies_value_of some ('parallel length' and (quality_of some 'creep test piece')))
+  value_specification_parallel_length:
+    sources: values_at_test_start
+    s: msekg:value_specification_parallel_length_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:parallel_length_$(_fileID)~iri]
+      - [has_value:, $(parallelLength.value)]
+      - [has_measurement_unit_label:, unit:MilliM~iri]
+
+  parallel_length:
+    sources: values_at_test_start
+    s: msekg:parallel_length_$(_fileID)
+    po:
+      - [a, parallel_length:]
+      - [quality_of:, msekg:creep_test_piece_$(_fileID)~iri]
+
+  # --- heatingTime ---
+  # 'scalar value specification' and (specifies_value_of some ('temporal interval' and (inverse 'occupies temporal region' some 'creep testing process')))
+  value_specification_heating_time:
+    sources: values_during_test_run
+    s: msekg:value_specification_heating_time_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:heating_time_$(_fileID)~iri]
+      - [has_value:, $(heatingTime.value)]
+      - [has_measurement_unit_label:, unit:HR~iri]
+
+  heating_time:
+    sources: values_during_test_run
+    s: msekg:heating_time_$(_fileID)
+    po:
+      - [a, temporal_interval:]
+
+  process_occupies_heating_time:
+    sources: values_during_test_run
+    s: msekg:creep_testing_process_$(_fileID)
+    po:
+      - [occupies_temporal_region:, msekg:heating_time_$(_fileID)~iri]
+
+  # --- soakTime ---
+  # 'scalar value specification' and (specifies_value_of some ('soaking time' and (inverse 'occupies temporal region' some 'creep testing process')))
+  value_specification_soaking_time:
+    sources: values_during_test_run
+    s: msekg:value_specification_soaking_time_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:soaking_time_$(_fileID)~iri]
+      - [has_value:, $(soakTime.value)]
+      - [has_measurement_unit_label:, unit:HR~iri]
+
+  soaking_time:
+    sources: values_during_test_run
+    s: msekg:soaking_time_$(_fileID)
+    po:
+      - [a, soaking_time:]
+
+  process_occupies_soaking_time:
+    sources: values_during_test_run
+    s: msekg:creep_testing_process_$(_fileID)
+    po:
+      - [occupies_temporal_region:, msekg:soaking_time_$(_fileID)~iri]
+
+  # --- testDuration ---
+  # 'scalar value specification' and (specifies_value_of some ('test duration' and (inverse 'occupies temporal region' some 'creep testing process')))
+  value_specification_test_duration:
+    sources: values_during_test_run
+    s: msekg:value_specification_test_duration_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:test_duration_$(_fileID)~iri]
+      - [has_value:, $(testDuration.value)]
+      - [has_measurement_unit_label:, unit:HR~iri]
+
+  test_duration:
+    sources: values_during_test_run
+    s: msekg:test_duration_$(_fileID)
+    po:
+      - [a, test_duration:]
+
+  process_occupies_test_duration:
+    sources: values_during_test_run
+    s: msekg:creep_testing_process_$(_fileID)
+    po:
+      - [occupies_temporal_region:, msekg:test_duration_$(_fileID)~iri]
+
+  # --- percentageElongationAfterCreepFracture ---
+  value_specification_percentage_elongation_after_creep_fracture:
+    sources: secondary_elongation_values
+    s: msekg:value_specification_percentage_elongation_after_creep_fracture_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:quality_percentage_elongation_after_creep_fracture_$(_fileID)~iri]
+      - [has_value:, $(percentageElongationAfterCreepFracture.value)]
+      - [has_measurement_unit_label:, unit:PERCENT~iri]
+
+  quality_percentage_elongation_after_creep_fracture:
+    sources: secondary_elongation_values
+    s: msekg:quality_percentage_elongation_after_creep_fracture_$(_fileID)
+    po:
+      - [a, percentage_elongation_after_creep_fracture:]
+      - [realized_in:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- percentagePermanentElongation ---
+  value_specification_percentage_permanent_elongation:
+    sources: secondary_elongation_values
+    s: msekg:value_specification_percentage_permanent_elongation_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:quality_percentage_permanent_elongation_$(_fileID)~iri]
+      - [has_value:, $(percentagePermanentElongation.value)]
+      - [has_measurement_unit_label:, unit:PERCENT~iri]
+
+  quality_percentage_permanent_elongation:
+    sources: secondary_elongation_values
+    s: msekg:quality_percentage_permanent_elongation_$(_fileID)
+    po:
+      - [a, percentage_permanent_elongation:]
+      - [realized_in:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- percentageReductionOfAreaAfterCreepFracture ---
+  value_specification_percentage_reduction_of_area:
+    sources: secondary_elongation_values
+    s: msekg:value_specification_percentage_reduction_of_area_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:quality_percentage_reduction_of_area_$(_fileID)~iri]
+      - [has_value:, $(percentageReductionOfAreaAfterCreepFracture.value)]
+      - [has_measurement_unit_label:, unit:PERCENT~iri]
+
+  quality_percentage_reduction_of_area:
+    sources: secondary_elongation_values
+    s: msekg:quality_percentage_reduction_of_area_$(_fileID)
+    po:
+      - [a, percentage_reduction_of_area_after_creep_fracture:]
+      - [realized_in:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- percentageCreepExtension ---
+  value_specification_percentage_creep_extension:
+    sources: secondary_extension_values
+    s: msekg:value_specification_percentage_creep_extension_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:quality_percentage_creep_extension_$(_fileID)~iri]
+      - [has_value:, $(percentageCreepExtension.value)]
+      - [has_measurement_unit_label:, unit:PERCENT~iri]
+
+  quality_percentage_creep_extension:
+    sources: secondary_extension_values
+    s: msekg:quality_percentage_creep_extension_$(_fileID)
+    po:
+      - [a, percentage_creep_extension:]
+      - [realized_in:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- percentageElasticExtension ---
+  value_specification_percentage_elastic_extension:
+    sources: secondary_extension_values
+    s: msekg:value_specification_percentage_elastic_extension_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:quality_percentage_elastic_extension_$(_fileID)~iri]
+      - [has_value:, $(percentageElasticExtension.value)]
+      - [has_measurement_unit_label:, unit:PERCENT~iri]
+
+  quality_percentage_elastic_extension:
+    sources: secondary_extension_values
+    s: msekg:quality_percentage_elastic_extension_$(_fileID)
+    po:
+      - [a, percentage_elastic_extension:]
+      - [realized_in:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- percentageInitialPlasticExtension ---
+  value_specification_percentage_initial_plastic_extension:
+    sources: secondary_extension_values
+    s: msekg:value_specification_percentage_initial_plastic_extension_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:quality_percentage_initial_plastic_extension_$(_fileID)~iri]
+      - [has_value:, $(percentageInitialPlasticExtension.value)]
+      - [has_measurement_unit_label:, unit:PERCENT~iri]
+
+  quality_percentage_initial_plastic_extension:
+    sources: secondary_extension_values
+    s: msekg:quality_percentage_initial_plastic_extension_$(_fileID)
+    po:
+      - [a, percentage_initial_plastic_extension:]
+      - [realized_in:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- percentageInitialTotalExtension ---
+  value_specification_percentage_initial_total_extension:
+    sources: secondary_extension_values
+    s: msekg:value_specification_percentage_initial_total_extension_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:quality_percentage_initial_total_extension_$(_fileID)~iri]
+      - [has_value:, $(percentageInitialTotalExtension.value)]
+      - [has_measurement_unit_label:, unit:PERCENT~iri]
+
+  quality_percentage_initial_total_extension:
+    sources: secondary_extension_values
+    s: msekg:quality_percentage_initial_total_extension_$(_fileID)
+    po:
+      - [a, percentage_initial_total_extension:]
+      - [realized_in:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- percentagePlasticExtension ---
+  value_specification_percentage_plastic_extension:
+    sources: secondary_extension_values
+    s: msekg:value_specification_percentage_plastic_extension_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:quality_percentage_plastic_extension_$(_fileID)~iri]
+      - [has_value:, $(percentagePlasticExtension.value)]
+      - [has_measurement_unit_label:, unit:PERCENT~iri]
+
+  quality_percentage_plastic_extension:
+    sources: secondary_extension_values
+    s: msekg:quality_percentage_plastic_extension_$(_fileID)
+    po:
+      - [a, percentage_plastic_extension:]
+      - [realized_in:, msekg:creep_testing_process_$(_fileID)~iri]
+
+  # --- percentageTotalExtension ---
+  value_specification_percentage_total_extension:
+    sources: secondary_extension_values
+    s: msekg:value_specification_percentage_total_extension_$(_fileID)
+    po:
+      - [a, scalar_value_specification:]
+      - [specifies_value_of:, msekg:quality_percentage_total_extension_$(_fileID)~iri]
+      - [has_value:, $(percentageTotalExtension.value)]
+      - [has_measurement_unit_label:, unit:PERCENT~iri]
+
+  quality_percentage_total_extension:
+    sources: secondary_extension_values
+    s: msekg:quality_percentage_total_extension_$(_fileID)
+    po:
+      - [a, percentage_total_extension:]
+      - [realized_in:, msekg:creep_testing_process_$(_fileID)~iri]

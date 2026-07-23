@@ -1,0 +1,17 @@
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix co:    <https://w3id.org/pmd/co/> .
+@prefix obo:   <http://purl.obolibrary.org/obo/> .
+
+# Shape 4: Every creep_testing_machine and extensometer must participate_in exactly one creep_testing_process.
+
+co:Shape04_EquipmentParticipation
+    a sh:NodeShape ;
+    sh:targetClass co:PMD_0000588 ;                         # creep_testing_machine
+    sh:targetClass co:PMD_0000636 ;                         # extensometer
+    sh:property [
+        sh:path        obo:RO_0000056 ;                     # participates_in
+        sh:class       co:PMD_0000589 ;                     # creep_testing_process
+        sh:minCount    1 ;
+        sh:maxCount    1 ;
+        sh:message     "Every creep_testing_machine or extensometer must participate_in exactly one creep_testing_process." ;
+    ] .

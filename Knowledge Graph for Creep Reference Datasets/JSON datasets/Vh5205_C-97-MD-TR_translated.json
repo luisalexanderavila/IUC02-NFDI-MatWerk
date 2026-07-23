@@ -1,0 +1,1049 @@
+{
+  "MeasurementData": {
+    "AdditionalMetadata": {
+      "DataProcessingProcedures": {
+        "dataAnalysisProcedures": "To convert the primary data series into the processed data series a validated excel template (lab own's development) was used. The data were neither averaged nor smoothed. See also file \"Vh5205_Complementary_Data-processing.LIS\"",
+        "primaryDataSeries": "See file \"Vh5205_Complementary_Primary-and-processed-data-series.LIS\"",
+        "processedDataSeries": "See file \"Vh5205_Complementary_Primary-and-processed-data-series.LIS\"",
+        "software": {
+          "softwareOptions": "Not applicable"
+        },
+        "workflowUsage": "No"
+      },
+      "MaterialHistoryAndCondition": {
+        "asManufacturedMaterial": {
+          "condition": "Heat treated",
+          "formOfAsManufacturedMaterial": "Ingot",
+          "geometrySizeAsManufacturedMaterial": "Ingot with 4\" Diameter",
+          "manufacturingProcessDescriptionAsManufacturedMaterial": "Vacuum Induction Refined",
+          "solidification": "Single crystal"
+        },
+        "asTestedMaterial": {
+          "geometrySizeAsTestedMaterial": "Single Crystal Investment Cast See image file \"Test-piece-location_v2.0.jpg\" For details see DOI: 10.7449/1980/Superalloys_1980_205_214, and DOI: 10.7449/1984/Superalloys_1984_167_176",
+          "manufacturingProcessDescriptionAsTestedMaterial": "Single Crystal Investment Casting from a Vacuum Induction Refined Ingot and subsequent Heat Treatment (annealed and aged).",
+          "supplier": "PCC Airfoils, Inc. Minerva, Ohio.",
+          "supplyDate": "1997-01-28 00:00:00"
+        },
+        "chemicalComposition": [
+          {
+            "chemicalCompositionMeasured": [
+              {
+                "element": "C",
+                "value": "20",
+                "unit": "ppm",
+                "measurementMethod": "Fluxed Oxygen Fusion Analysis",
+                "equipment": "Lego CS 444 LS"
+              },
+              {
+                "element": "Si",
+                "value": "< 0.02",
+                "unit": "Wt. %",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Mn",
+                "value": "< 0.001",
+                "unit": "Wt. %",
+                "measurementMethod": "Perkin Elmer 5000 Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "S",
+                "value": "< 2",
+                "unit": "ppm",
+                "measurementMethod": "Fluxed Oxygen Fusion Analysis",
+                "equipment": "Lego CS 444 LS"
+              },
+              {
+                "element": "Ag",
+                "value": "< 1",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Al",
+                "value": "4.82",
+                "unit": "Wt. %",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "B",
+                "value": "< 20",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Bi",
+                "value": "< 0.2",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Cb",
+                "value": "< 0.05",
+                "unit": "Wt. %",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Co",
+                "value": "5",
+                "unit": "Wt. %",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Cr",
+                "value": "9.8",
+                "unit": "Wt. %",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Cu",
+                "value": "< 0.001",
+                "unit": "Wt. %",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Fe",
+                "value": "0.045",
+                "unit": "Wt. %",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Ga",
+                "value": "< 10",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Hf",
+                "value": "0.05",
+                "unit": "Wt. %",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Mg",
+                "value": "< 100",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Mo",
+                "value": "3",
+                "unit": "Wt. %",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "N",
+                "value": "3",
+                "unit": "ppm",
+                "measurementMethod": "Inert Gas Fusion Analysis",
+                "equipment": "Lego TC 436"
+              },
+              {
+                "element": "Ni",
+                "value": "Balance",
+                "unit": "Wt. %",
+                "measurementMethod": "Perkin Elmer 5000 Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "O",
+                "value": "2",
+                "unit": "ppm",
+                "measurementMethod": "Inert Gas Fusion Analysis",
+                "equipment": "Lego TC 436"
+              },
+              {
+                "element": "P",
+                "value": "< 2",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Pb",
+                "value": "< 0.5",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Se",
+                "value": "< 0.5",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Re",
+                "value": "< 0.1",
+                "unit": "Wt. %",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Ta",
+                "value": "2",
+                "unit": "Wt. %",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Te",
+                "value": "< 0.2",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Ti",
+                "value": "4.69",
+                "unit": "Wt. %",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Tl",
+                "value": "< 0.2",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "W",
+                "value": "< 0.1",
+                "unit": "Wt. %",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Zr",
+                "value": "< 10",
+                "unit": "ppm",
+                "measurementMethod": "ICP (AES) Analysis",
+                "equipment": "Perkin Elmer Optima 3000"
+              },
+              {
+                "element": "Al+Ti",
+                "value": "9.51",
+                "unit": "Wt. %",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Sn",
+                "value": "< 5",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Sb",
+                "value": "< 1",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "As",
+                "value": "< 1",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Zn",
+                "value": "< 3",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Hg",
+                "value": "< 2",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "U",
+                "value": "< 0.5",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Th",
+                "value": "< 0.5",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Cd",
+                "value": "< 0.2",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Ge",
+                "value": "< 1",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "V",
+                "value": "< 0.005",
+                "unit": "Wt. %",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Y",
+                "value": "< 0.001",
+                "unit": "Wt. %",
+                "measurementMethod": "ICP (AES) Analysis",
+                "equipment": "Perkin Elmer Optima 3000"
+              },
+              {
+                "element": "Pt",
+                "value": "< 0.001",
+                "unit": "Wt. %",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Au",
+                "value": "< 0.5",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "In",
+                "value": "< 0.2",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "Na",
+                "value": "< 10",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              },
+              {
+                "element": "K",
+                "value": "< 5",
+                "unit": "ppm",
+                "measurementMethod": "Atomic Absorption",
+                "equipment": "Perkin Elmer 5000"
+              }
+            ],
+            "measurementMethod": "See file \"Vh5205_Complementary_Ch.-Comp.-measured.LIS\"",
+            "chemicalCompositionNominal": [
+              {
+                "element": "C",
+                "value": "60",
+                "unit": "ppm"
+              },
+              {
+                "element": "Si",
+                "value": "0.05",
+                "unit": "Wt. %"
+              },
+              {
+                "element": "Mn",
+                "value": "0.05",
+                "unit": "Wt. %"
+              },
+              {
+                "element": "S",
+                "value": "2",
+                "unit": "ppm"
+              },
+              {
+                "element": "Ag",
+                "value": "2",
+                "unit": "ppm"
+              },
+              {
+                "element": "Al",
+                "value": "4.9 - 4.7",
+                "unit": "Wt. %"
+              },
+              {
+                "element": "B",
+                "value": "30",
+                "unit": "ppm"
+              },
+              {
+                "element": "Bi",
+                "value": "0.3",
+                "unit": "ppm"
+              },
+              {
+                "element": "Cb",
+                "value": "0.1",
+                "unit": "Wt. %"
+              },
+              {
+                "element": "Co",
+                "value": "5.2 - 4.8",
+                "unit": "Wt. %"
+              },
+              {
+                "element": "Cr",
+                "value": "10 - 9.6",
+                "unit": "Wt. %"
+              },
+              {
+                "element": "Cu",
+                "value": "0.01",
+                "unit": "Wt. %"
+              },
+              {
+                "element": "Fe",
+                "value": "0.2",
+                "unit": "Wt. %"
+              },
+              {
+                "element": "Ga",
+                "value": "25",
+                "unit": "ppm"
+              },
+              {
+                "element": "Hf",
+                "value": "0.09 - 0.03",
+                "unit": "Wt. %"
+              },
+              {
+                "element": "Mg",
+                "value": "100",
+                "unit": "ppm"
+              },
+              {
+                "element": "Mo",
+                "value": "3.2 - 2.8",
+                "unit": "Wt. %"
+              },
+              {
+                "element": "N",
+                "value": "12",
+                "unit": "ppm"
+              },
+              {
+                "element": "Ni",
+                "value": "Balance",
+                "unit": "Wt. %"
+              },
+              {
+                "element": "O",
+                "value": "10",
+                "unit": "ppm"
+              },
+              {
+                "element": "P",
+                "value": "2",
+                "unit": "ppm"
+              },
+              {
+                "element": "Pb",
+                "value": "2",
+                "unit": "ppm"
+              },
+              {
+                "element": "Se",
+                "value": "0.5",
+                "unit": "ppm"
+              },
+              {
+                "element": "Ta",
+                "value": "2.2 - 1.8",
+                "unit": "Wt. %"
+              },
+              {
+                "element": "Te",
+                "value": "0.3",
+                "unit": "ppm"
+              },
+              {
+                "element": "Ti",
+                "value": "4.8 - 4.6",
+                "unit": "Wt. %"
+              },
+              {
+                "element": "Tl",
+                "value": "0.3",
+                "unit": "ppm"
+              },
+              {
+                "element": "W",
+                "value": "0.1",
+                "unit": "Wt. %"
+              },
+              {
+                "element": "Zr",
+                "value": "75",
+                "unit": "ppm"
+              },
+              {
+                "element": "Al+Ti",
+                "value": "9.7 - 9.3",
+                "unit": "Wt. %"
+              },
+              {
+                "element": "Sn",
+                "value": "25",
+                "unit": "ppm"
+              },
+              {
+                "element": "Sb",
+                "value": "3",
+                "unit": "ppm"
+              },
+              {
+                "element": "As",
+                "value": "5",
+                "unit": "ppm"
+              },
+              {
+                "element": "Zn",
+                "value": "5",
+                "unit": "ppm"
+              },
+              {
+                "element": "Hg",
+                "value": "3",
+                "unit": "ppm"
+              },
+              {
+                "element": "U",
+                "value": "5",
+                "unit": "ppm"
+              },
+              {
+                "element": "Th",
+                "value": "5",
+                "unit": "ppm"
+              },
+              {
+                "element": "Cd",
+                "value": "2",
+                "unit": "ppm"
+              },
+              {
+                "element": "Ge",
+                "value": "2",
+                "unit": "ppm"
+              },
+              {
+                "element": "V",
+                "value": "0.1",
+                "unit": "Wt. %"
+              },
+              {
+                "element": "Y",
+                "value": "0.002",
+                "unit": "Wt. %"
+              },
+              {
+                "element": "Au",
+                "value": "0.2",
+                "unit": "ppm"
+              },
+              {
+                "element": "In",
+                "value": "2",
+                "unit": "ppm"
+              },
+              {
+                "element": "Na",
+                "value": "25",
+                "unit": "ppm"
+              },
+              {
+                "element": "K",
+                "value": "25",
+                "unit": "ppm"
+              }
+            ],
+            "measuredCondition": {
+              "measuredConditionOptions": "As-tested"
+            },
+            "measuringPosition": "Master melt"
+          }
+        ],
+        "heatTreatment": {
+          "heatTreatmentAgeingDescription": "See file \"Vh5205_Complementary_Heat-treatment.LIS\"",
+          "heatTreatmentAnnealingDescription": "See file \"Vh5205_Complementary_Heat-treatment.LIS\"",
+          "heatTreatmentState": {
+            "heatTreatmentStateOptions": "Aged"
+          },
+          "multistageAgeing": "Yes",
+          "multistageAnnealing": "Yes"
+        },
+        "materialIdentifier": "CMSX-6",
+        "mechanicalTestResults": {
+          "proofStrengthCreepTestTemperature": {
+            "value": "See file \"Vh5205_Complementary_Rp0.2.LIS\" and related reference dataset https://doi.org/10.5281/zenodo.17846616",
+            "unit": "MPa"
+          }
+        },
+        "microstructure": [
+          {
+            "characterizationMethod": "Light and electron microscopy",
+            "measuredCondition": "As-tested",
+            "measuringPosition": "Bulk",
+            "microstructureFeature": {
+              "microstructureFeatureOptions": "Microstructure before testing"
+            },
+            "microstructureFeatureInformation": "See related article https://doi.org/10.1016/j.dib.2025.112436",
+            "microstructureImage": "See files: Overview-interdentritic-region-Optical.jpg Overview-interdentritic-region-SEM.tig Dendrite-Optical.jpg Dendrite-SEM.tif",
+            "microstructureReport": "See related article https://doi.org/10.1016/j.dib.2025.112436"
+          }
+        ],
+        "microstructureNi-BasedSX": {
+          "grainAdditionalInformation": "Not applicable",
+          "grainSize": {
+            "value": "Not applicable",
+            "unit": "µm"
+          },
+          "grainSizeDeterminationMethod": {
+            "grainSizeDeterminationMethodOptions": "Line Intercept"
+          },
+          "grainSizeMeausuringRegion": "Not applicable",
+          "grainSizeDistribution": "Not applicable",
+          "proofOfSingleCrystallinity": "The absence of grain boundaries was verified by visual inspection of the investment casts surface after electrolytical etching.",
+          "singleCrystalOrientation": "6.2",
+          "singleCrystalOrientationDeterminationMethod": "Laue Crystal Verification. A Scorpio system (DOI: 10.1088/0957-0233/6/1/021) was used. The angle alpha indicates the deviation of the [001]-direction from the symmetry axis of the respective cast (as-tested material).",
+          "singleCrystalOrientationMeasuringPoint": "The orientation was determined at the lower end (right side in file \"Test-piece-location_v2.0.jpg\") of each cast."
+        }
+      },
+      "MeasuringAndTestEquipment": {
+        "extensionValues": {
+          "contactingExtensometer": {
+            "calibrationCertificate": "Documentation available in the laboratory",
+            "calibrationClass": "1",
+            "calibrationDate": "2022-06-23 00:00:00",
+            "calibrationRange": {
+              "value": "30 % (7.5 mm); +5/-2,5 mm",
+              "unit": "% (mm)"
+            },
+            "calibrationStandard": "DIN EN ISO 9513:2013",
+            "calibrationValidityTimePeriod": "12 Months",
+            "extensionAveraging": "Not applicable",
+            "extensionRangeLowerLimit": {
+              "value": "-10 % / -2,5 mm",
+              "unit": "%  / mm"
+            },
+            "extensionRangeUpperLimit": {
+              "value": "20 %  / 5 mm",
+              "unit": "% / mm"
+            },
+            "extensometerID": "19.03",
+            "extensometerLegMaterial": "Ceramic legs",
+            "extensometerModelInformation": "MTS 632.53F-31",
+            "calibrationStatus": "Yes",
+            "measurementDirection": "Axial action",
+            "measurementSetup": "One-sided",
+            "measuringAmplifierModelInformation": "National Instruments NI SXCI-1600",
+            "mountingType": {
+              "mountingTypeOptions": "At test piece in parallel length"
+            },
+            "nominalGaugeLength": {
+              "value": "25",
+              "unit": "mm"
+            }
+          }
+        },
+        "extensometerSystem": {
+          "displacementMeasuringMethod": "Contacting method",
+          "sensorTypeContactingMethod": {
+            "sensorTypeContactingMethodOptions": "High-Temperature Axial Extensometer"
+          },
+          "sensorTypeNonContactingMethod": {
+            "sensorTypeNonContactingMethodOptions": "Not applicable"
+          }
+        },
+        "laboratoryConditions": {
+          "roomHumidity": "Yes",
+          "roomTemperature": "Yes"
+        },
+        "loadMeasuringSystem": {
+          "dataAcquisition": {
+            "forceRecording": "Phase-wise (during loading)"
+          },
+          "loadSensor": {
+            "calibrationCertificate": "Documentation available in the laboratory",
+            "calibrationClass": "Not applicable",
+            "calibrationDate": "2023-06-21 00:00:00",
+            "calibrationRange": {
+              "value": "0 kN to 20 kN",
+              "unit": "kN"
+            },
+            "calibrationStandard": "Not applicable",
+            "calibrationValidityTimePeriod": "12 months",
+            "loadSensorCalibration": "Yes The load cell was checked with calibrated weights. Error limit: ± 1 %",
+            "loadSensorDuringLoading": "Yes"
+          }
+        },
+        "temperatureMeasuringSystem": {
+          "dataAcquisition": {
+            "calibrationCertificate": "Documentation available in the laboratory",
+            "calibrationDate": "2022-07-12 00:00:00",
+            "calibrationMethod": "Electrical simulation",
+            "calibrationRange": {
+              "value": "100 - 1300",
+              "unit": "°C"
+            },
+            "calibrationStandard": "EURAMET/cg-11/v.01",
+            "calibrationStatus": "Yes",
+            "calibrationValidityTimePeriod": "12 Months",
+            "referenceJunction": "Internal",
+            "temperatureDeviation": {
+              "value": "0 K (Channel #1); + 0.1 K (Channel #2); - 0.2 K (Channel #3)",
+              "unit": "°C"
+            }
+          },
+          "metrologicalTraceability": "Yes",
+          "temperatureSensor": {
+            "calibrationCertificate": "Documentation available in the laboratory",
+            "calibrationDate": "2022-08-08 00:00:00",
+            "calibrationMethod": "Comparison method",
+            "calibrationRange": {
+              "value": "300 - 1200",
+              "unit": "°C"
+            },
+            "calibrationStandard": {
+              "calibrationStandardOptions": "ASTM E220-19"
+            },
+            "calibrationStatus": "Yes",
+            "calibrationValidityTimePeriod": "12 months",
+            "contactMethod": {
+              "contactMethodOptions": "Attached"
+            },
+            "layout": "Wire with 2-hole ceramic beads",
+            "numberOfThermocouples": "3",
+            "sensorID": "52-PM102-0400; 52-PM102-0401; 52-PM102-0402",
+            "sensorType": "Thermocouple",
+            "temperatureDeviation": {
+              "value": "- 0.1 K (52-PM102-0400); - 0.1 K (52-PM102-0401); - 0.1 K (52-PM102-0402); T-values were corrected accordingly",
+              "unit": "°C"
+            },
+            "thermocoupleLocation": "Inside",
+            "thermocoupleType": {
+              "thermocoupleTypeOptions": "S"
+            },
+            "wireGauge": {
+              "value": "0.51",
+              "unit": "mm"
+            }
+          },
+          "temperatureSignal": {
+            "temperatureSignalOptions": "Via furnace"
+          }
+        },
+        "testMachine": {
+          "calibrationClass": "Verification: the machine fulfills the requirements for test forces >2 kN Protocol of alignment is available in the laboratory.",
+          "dataAcquisition": {
+            "dataAcquisitionDescription": "See files \"Vh5205_Complementary_Data-acquisition.LIS\" and \"Vh5205_Complementary_Data-acquisition-creep.LIS\"",
+            "dataAcquisitionSoftwareAndVersion": "Lab's own development (v22.08.22)",
+            "dataAcquisitionTimeCheck": "Yes",
+            "dataAcquisitionUnitID": "19.08",
+            "dataAcquisitionUnitModelInformation": "National Instruments NI SXCI-1600"
+          },
+          "heatingSystem": {
+            "furnaceType": {
+              "furnaceTypeOptions": "Split Tube Furnace with Two-zones"
+            }
+          },
+          "loadingSystem": {
+            "calibrationClass": "1",
+            "calibrationDate": "2022-08-05 00:00:00",
+            "calibrationRange": {
+              "value": "2 - 20 kN and 1 - 10 kN (class 1 for both)",
+              "unit": "kN"
+            },
+            "calibrationStandard": {
+              "calibrationStandardOptions": "DIN EN ISO 7500-2: 2007"
+            },
+            "calibrationValidityTimePeriod": "24 Months",
+            "descriptionOfTheLoadingSystem": "Not applicable since calibrated weights were used",
+            "useOfCalibratedWeights": "Yes",
+            "verificationOfLoadingSystem": "Yes"
+          },
+          "maximumApplicableForce": {
+            "value": "20",
+            "unit": "kN"
+          },
+          "minimumApplicableForce": {
+            "value": "1",
+            "unit": "kN"
+          },
+          "testFrameAndSpecimenAlignment": "Yes. Verification was performed according to ASTM E1012 on 18.07.2011.",
+          "testFrameAndSpecimenAlignmentDescription": "Not applicable since verification was performed according to ASTM E1012",
+          "testMachineID": "Zug 07",
+          "testMachineType": {
+            "testMachineTypeOptions": "Lever arm",
+            "leverageRatio": "1:20.4"
+          },
+          "testPieceHolderSystem": {
+            "fixingTechnique": {
+              "fixingTechniqueOptions": "Threaded"
+            }
+          }
+        },
+        "crossSectionalDimensions": {
+          "calibrationDate": "2022-05-02 00:00:00",
+          "calibrationRange": {
+            "value": "0 - 30",
+            "unit": "mm"
+          },
+          "calibrationResult": "Meets calibration requirements",
+          "calibrationStandard": "DKD-R4-3 Blatt 10.1:2018",
+          "calibrationStatus": "Yes",
+          "calibrationValidityTimePeriod": "12 months",
+          "equipmentID": "47.02",
+          "equipmentModelInformation": "Mitutoyo 293-661-10 N",
+          "measuringEquipment": {
+            "measuringEquipmentOptions": "Micrometer"
+          },
+          "measuringEquipmentsUsage": "Determination of minimum test piece diameter at room temperature, D",
+          "resolution": {
+            "value": "0.001",
+            "unit": "mm"
+          }
+        },
+        "elongationValues": {
+          "calibrationDate": "2022-07-07 00:00:00",
+          "calibrationRange": {
+            "value": "0 - 50",
+            "unit": "mm"
+          },
+          "calibrationResult": "Meets calibration requirements",
+          "calibrationStandard": "DIN 863-1:2017-02",
+          "calibrationStatus": "Yes",
+          "calibrationValidityTimePeriod": "12 months",
+          "equipmentID": "72.01",
+          "equipmentModelInformation": "Mitutoyo TM 321 Zeiss – Axiotech 100 HD",
+          "measuringEquipment": {
+            "measuringEquipmentOptions": "Measuring microscope"
+          },
+          "measuringEquipmentsUsage": "Determination of Original gauge length, Lo, Final gauge length after fracture, Lu, Percentage permanent elongation, Aper, Percentage elongation after creep fracture, Au, and Percentage reduction of area after creep fracture, Zu",
+          "resolution": {
+            "value": "0.001",
+            "unit": "mm"
+          },
+          "type": {
+            "typeOptions": "Optical"
+          }
+        }
+      },
+      "TestInfo": {
+        "relatedResearchOutcome": {
+          "anyRelatedArticles": "Yes",
+          "relatedArticle": [
+            {
+              "DOI": "https://doi.org/10.1016/j.dib.2025.112436"
+            }
+          ]
+        },
+        "testJobDetails": {
+          "dateOfTestEnd": "2023-03-29 01:46:12",
+          "dateOfTestStart": "2023-03-22 08:46:12",
+          "project": "Vh 5205",
+          "testID": "Vh5205_C-97"
+        },
+        "testParameters": {
+          "endOfTest": "Not applicable",
+          "endOfTestCriterium": {
+            "endOfTestCriteriumOptions": "Test piece break"
+          },
+          "extensionLimit": "Not applicable",
+          "initialStress": {
+            "value": "200",
+            "unit": "MPa"
+          },
+          "interruptionCourse": "Not applicable",
+          "loadControlType": "Constant Force",
+          "preload": {
+            "value": "0.2 kN (20.4 kg)",
+            "unit": "kN"
+          },
+          "specifiedTemperature": {
+            "value": "980",
+            "unit": "°C"
+          },
+          "testStandard": {
+            "testStandardOptions": "DIN EN ISO 204:2019-4"
+          },
+          "testStandardApplied": "Yes",
+          "testType": "Uninterrupted creep tests with continuous monitoring of extension",
+          "timeLimit": "Not applicable",
+          "typeOfLoading": "Tension"
+        }
+      },
+      "TestPiece": {
+        "additionalInformationTestPiece": "Surface roughness values, Rz [µm], available for each test piece. Measurement protocols are available in the laboratory. Finishing was carried out using cylindrical grinding. Values in file \"Vh5205_Complementary_Roughness.LIS\"",
+        "testPieceHistory": "No previous experiments",
+        "testpieceID": "Vh5205_C-97",
+        "testPieceOrientationInTestMachine": "E.g., is the longitudinal axis of the test piece exactly parallel to the loading axis of the test machine?. Add a link to a file providing evidence, preferably with machine-readable (meta)data. This can be, e.g., a technical drawing.",
+        "testPieceOriginAndOrientation": "See file \"Test-piece-location_v2.0.jpg\"",
+        "testPieceTechnicalDrawing": "See file \"TestPieceCreepTests-TechnicalDrawing-FormA.pdf\" Specimen's dimensions correspond to \"Form A\", see table in file.",
+        "testPieceTypeI": "Specimen according to DIN EN ISO 204:2019-4",
+        "testPieceTypeII": "Round cross section",
+        "testPieceTypeIII": {
+          "testPieceTypeIIIOptions": "Smooth test piece"
+        }
+      }
+    },
+    "PrimaryData": {
+      "TestResult": {
+        "valuesRecordedAfterTestEnd": {
+          "creepRuptureTime": {
+            "value": "161",
+            "unit": "h"
+          },
+          "finalGaugeLengthAfterFracture": {
+            "value": "30.3",
+            "unit": "mm"
+          },
+          "fracturePosition": "Centered"
+        },
+        "valuesRecordedAtTestStart": {
+          "determinationOfReferenceLength": "Case 1",
+          "extensometerGaugeLength": {
+            "value": "22.6",
+            "unit": "mm"
+          },
+          "kValue_LrLo": {
+            "value": "4"
+          },
+          "kValue_LrLe": {
+            "value": "3.8"
+          },
+          "minimumTestPieceDiameterAtRoomTemperature": {
+            "value": "6",
+            "unit": "mm"
+          },
+          "originalGaugeLength": {
+            "value": "23.8",
+            "unit": "mm"
+          },
+          "parallelLength": {
+            "value": "36",
+            "unit": "mm"
+          },
+          "ratioReferenceLengthToDiameter_LrLo": {
+            "value": "4.48"
+          },
+          "ratioReferenceLengthToDiameter_LrLe": {
+            "value": "4.25"
+          },
+          "referenceLengthToCalculatePercentageElongations": {
+            "value": "23.8",
+            "unit": "mm"
+          },
+          "referenceLengthToCalculatePercentageExtensions": {
+            "value": "22.6",
+            "unit": "mm"
+          }
+        },
+        "valuesRecordedDuringTestRun": {
+          "elapsedTimeFromEndOfLoading": {
+            "value": "Data series for each test piece in the corresponding file \"Vh5205_C-97-Creep.LIS\"",
+            "unit": "s / h"
+          },
+          "force": {
+            "value": "Data series for each test piece in the corresponding file \"Vh5205_C-97-Loading.LIS\". No overloads",
+            "unit": "kN"
+          },
+          "heatingTime": {
+            "value": "2.02",
+            "unit": "h"
+          },
+          "soakTime": {
+            "value": "2.13",
+            "unit": "h"
+          },
+          "testDuration": {
+            "value": "161",
+            "unit": "h"
+          }
+        }
+      }
+    },
+    "SecondaryData": {
+      "TestResult": {
+        "elongationValues": {
+          "percentageElongationAfterCreepFracture": {
+            "value": "27",
+            "unit": "%"
+          },
+          "percentagePermanentElongation": {
+            "value": "Not applicable",
+            "unit": "%"
+          },
+          "percentageReductionOfAreaAfterCreepFracture": {
+            "value": "57",
+            "unit": "%"
+          }
+        },
+        "extensionValues": {
+          "percentageCreepExtension": {
+            "value": "27.7",
+            "unit": "%"
+          },
+          "percentageElasticExtension": {
+            "value": "0.242",
+            "unit": "%"
+          },
+          "percentageInitialPlasticExtension": {
+            "value": "0.013",
+            "unit": "%"
+          },
+          "percentageInitialTotalExtension": {
+            "value": "0.256",
+            "unit": "%"
+          },
+          "percentagePlasticExtension": {
+            "value": "27.8",
+            "unit": "%"
+          },
+          "percentageTotalExtension": {
+            "value": "28",
+            "unit": "%"
+          }
+        },
+        "valuesRecordedDuringTestRun": {
+          "correctedMeasuredTemperature": {
+            "value": "Data series from each sensor for each test piece in the corresponding LIS file \"Vh5205_C-97-Creep.LIS\"",
+            "unit": "°C"
+          },
+          "percentageExtension": {
+            "value": "The data series for each test piece are available in the corresponding LIS file \"Vh5205_C-97-Creep.LIS\"",
+            "unit": "%"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+# CQ: Find all datasets tested at the temperature range 900-1000 C.
+PREFIX cto:   <https://w3id.org/pmd/cto/>
+PREFIX pmdco: <https://w3id.org/pmd/co/>
+PREFIX obo:   <http://purl.obolibrary.org/obo/>
+PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?dataset ?tempValue
+WHERE {
+  ?dataset a cto:CTO_0000009 ;
+           obo:OBI_0000312 ?process .
+
+  ?machine a pmdco:PMD_0000588 ;
+           obo:RO_0000056 ?process .
+  ?qtemp a pmdco:PMD_0000967 ;
+         obo:RO_0000080 ?machine .
+  ?tempSpec obo:RO_0000058 ?qtemp ;
+            pmdco:PMD_0000006 ?tempStr .
+
+  BIND(xsd:double(?tempStr) AS ?tempValue)
+  FILTER(?tempValue >= 900 && ?tempValue <= 1000)
+}
+ORDER BY ?dataset
