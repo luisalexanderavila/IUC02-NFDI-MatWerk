@@ -1,0 +1,23 @@
+# CQ: Retrieve the full chemical composition (all elements, wt.% and ppm)
+# for the Vh5205_C-78 test piece.
+PREFIX cto:   <https://w3id.org/pmd/cto/>
+PREFIX pmdco: <https://w3id.org/pmd/co/>
+PREFIX obo:   <http://purl.obolibrary.org/obo/>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?element ?value ?unitLabel
+WHERE {
+  ?testPiece a cto:CTO_0000008 ;
+             rdfs:label "Vh5205_C-78" .
+
+  ?qcomp a pmdco:PMD_0000551 ;                  # chemical_composition
+         obo:RO_0000080 ?testPiece .            # quality_of
+
+  ?item obo:IAO_0000418 ?qcomp ;                 # is_quality_specification_of
+        rdfs:label ?element ;
+        pmdco:PMD_0000006 ?value ;              # has_value
+        obo:IAO_0000039 ?unitIRI .              # has_measurement_unit_label
+
+  BIND(STRAFTER(STR(?unitIRI), "vocab/unit/") AS ?unitLabel)
+}
+ORDER BY ?element

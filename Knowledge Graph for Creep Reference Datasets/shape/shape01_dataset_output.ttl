@@ -1,0 +1,18 @@
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix cto:   <https://w3id.org/pmd/cto/> .
+@prefix co:    <https://w3id.org/pmd/co/> .
+@prefix obo:   <http://purl.obolibrary.org/obo/> .
+
+# Shape 1: Every creep_reference_dataset must be the specified output of exactly one creep_testing_process.
+
+cto:Shape01_DatasetOutput
+    a sh:NodeShape ;
+    sh:targetClass cto:CTO_0000009 ;                       # creep_reference_dataset
+    sh:property [
+        sh:path        obo:OBI_0000312 ;                   # is_specified_output_of
+        sh:class       co:PMD_0000589 ;                     # creep_testing_process
+        sh:minCount    1 ;
+        sh:maxCount    1 ;
+        sh:message     "Every creep_reference_dataset must be the specified output of exactly one creep_testing_process." ;
+    ] .

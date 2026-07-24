@@ -1,0 +1,27 @@
+# CQ: Retrieve the initial stress and temperature used for each creep test.
+PREFIX cto:   <https://w3id.org/pmd/cto/>
+PREFIX pmdco: <https://w3id.org/pmd/co/>
+PREFIX obo:   <http://purl.obolibrary.org/obo/>
+
+SELECT ?dataset ?stressValue ?stressUnit ?tempValue ?tempUnit
+WHERE {
+  ?dataset a cto:CTO_0000009 ;
+           obo:OBI_0000312 ?process .
+
+  # initial stress: input_specification -is_concretized_as-> quality (mechanical_stress) -realized_in-> process
+  ?qstress a cto:CTO_1000304 ;
+           obo:BFO_0000054 ?process .
+  ?stressSpec obo:RO_0000058 ?qstress ;
+              pmdco:PMD_0000006 ?stressValue ;
+              obo:IAO_0000039 ?stressUnit .
+
+  # specified temperature: quality (temperature) is a quality_of the machine that participates_in the process
+  ?machine a pmdco:PMD_0000588 ;
+           obo:RO_0000056 ?process .
+  ?qtemp a pmdco:PMD_0000967 ;
+         obo:RO_0000080 ?machine .
+  ?tempSpec obo:RO_0000058 ?qtemp ;
+            pmdco:PMD_0000006 ?tempValue ;
+            obo:IAO_0000039 ?tempUnit .
+}
+ORDER BY ?dataset
