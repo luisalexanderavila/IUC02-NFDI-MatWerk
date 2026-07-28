@@ -1,0 +1,17 @@
+dependencies:
+  LISParser:
+    target_dir: dependencies/LISParser
+    remotes:
+      origin: 
+        url: git@github.com:NFDI-Matwerk-IUC02/LISParser.git
+  mappingsreader:
+    target_dir: dependencies/mappingsreader
+    remotes:
+      origin:
+        url: git@github.com:NFDI-Matwerk-IUC02/mappingsreader.git
+
+
+
+
+
+

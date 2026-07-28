@@ -1,0 +1,170 @@
+knowledge graph integration of BAM creep dataset 
+==================================================
+
+
+This is the sub-project repository for the task for KG integration of BAM creep dataset. 
+The project is a part of IUC02 of NFDI-Matwerk.
+
+# Instructions
+
+The project uses several tools developed in the past, 
+and all the dependencies have been cloned into the `./dependencies` directory as subtrees. 
+
+# 1. install the python environment.
+
+Recommended: use the `python311` conda environment.
+
+Linux/macOS:
+
+```
+conda activate python311
+python --version
+pip install -r requirements.txt
+```
+
+Windows (PowerShell):
+
+```
+conda activate python311
+python --version
+pip install -r requirements.txt
+```
+# 3. Use case data
+
+Application data is taken from the BAM creep dataset, which is available at https://doi.org/10.5281/zenodo.13937986 .
+This data can be downloaded automatically.
+
+```
+python bin/get_data_from_zenodo.py
+```
+
+Linux-only legacy wrapper (optional):
+
+```
+bash bin/get_data_from_zenodo.sh
+```
+
+This will download and unzip the datafiles to the Data/BAMDataset directory.
+
+
+# 4. Run the tests
+
+Now the results from the mapping can be reproduced by executing the tests. 
+pytest will discover all tests under `./test` and execute them.
+
+```
+pytest
+```
+
+# 5. Analyze the results
+
+The tests create some json files in ./Metadata/Mappings/ and in Data/BAMDataset.
+For the moment we need to check consistency.
+
+
+# 6. Project structure
+
+
+.
+├── bin                 #    script files to be executed directly
+├── config              # config files (mostly yaml)
+├── Data                # data files
+├── dependencies        # cloned dependencies
+├── Doc                 # documentation
+├── Metadata
+│     └── Mappings      # mapping files, ttl, rdf, json.
+├── Notebooks
+├── src                 # source codea(python files, any other application.
+└── test                # test files
+
+
+Any mapping, schema, in json, ttl or rdf formats should reside inside the Mappings directory, 
+at least until we can find a better solution. 
+
+TODO: this needs  to be adapted to the new project structue!
+
+
+# 7. Achievements so far:
+
+at the moment we are able to convert a LIS file into a schemka-complient json file. Please see (Vh5205_C-78.LIS)[Vh5205_C-78.LIS] and (Vh5205_C-78_tranlated.josn)[Vh5205_C-78_tranlated.josn] for an example.
+
+## 7.1 LIS to JSON
+```
+python bin/translate_bam_data.py Data/BAMDataset/Vh5205_C-95.LIS  --output Data/BAMDataset_Json/Vh5205_C-95_translated.json
+```
+
+
+## 7.2 JSON to SHACL
+
+```
+python bin/json_to_shacl.py Data/BAMDataset_Json/Vh5205_C-95_translated.json --output  Data/BAMDataset_Graph/Vh5205_C-78_translated.ttl
+```
+
+
+## 7.3 LIS to SHACL
+
+```
+python bin/bam2shacl.py -i Data/BAMDataset/Vh5205_C-78.LIS  -o Data/BAMDataset_Graph/Vh5205_C-78_translated.ttl
+```
+
+## 7.4 Web visualization (browser)
+
+Generate a standalone HTML graph visualization:
+
+```
+conda run -n python311 python bin/create_visualization.py
+```
+
+Optional input/output:
+
+```
+conda run -n python311 python bin/create_visualization.py --input shacl_validation/rdfGraph_smallExample.ttl --output Notebooks/rdf_graph_viewer.html
+```
+
+Windows wrapper:
+
+```bat
+bin\create_visualization_python311.bat
+```
+
+Notebook workflow (same visualization task, step-by-step):
+
+```
+conda run -n python311 jupyter notebook Notebooks/build_visualization.ipynb
+```
+
+Minimal local website for this visualization task:
+
+```
+conda run -n python311 python bin/visualization_web_app.py
+```
+
+Then open:
+
+```
+http://127.0.0.1:8502
+```
+
+Windows wrapper:
+
+```bat
+bin\visualization_web_app_python311.bat
+```
+
+## 7.5 One-command checks (tests + visualization)
+
+Run everything needed before handoff:
+
+```
+conda run -n python311 python bin/run_all_checks.py
+```
+
+Platform wrappers:
+
+```bash
+bash bin/run_all_checks.sh
+```
+
+```bat
+bin\run_all_checks.bat
+```

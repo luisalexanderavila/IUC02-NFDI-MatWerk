@@ -16,6 +16,7 @@ The current version can be found under https://doi.org/10.5281/zenodo.11667674.
 
 The basis for data structuring and reporting. It includes a community-agreed requirements profile for reference data of materials as proposed. Please see https://doi.org/10.5281/zenodo.11668375 and the folder "Data Schema". Current version: v2.0
 
+
 ## BAM Reference Data: Creep of Single-Crystal Ni-Based Superalloy CMSX-6
 
 The dataset can be found under https://doi.org/10.5281/zenodo.13937987. Current version: v2.0. The demonstrator works currently with v1.0.
@@ -32,15 +33,20 @@ Application that exemplary shows a data validation workflow considering RDF file
 
 Agent-based semantic data generator. Try out and read more about the App on its Webpage: https://agent-rdf-shacl-creator-0f2d13e6fb10.herokuapp.com/
 
+
 # Ongoing Work
 
 ## Ontology Development
 
-In the folder "Ontology Development" you will find the current status of the developments related to the semantical representation of the published dataset and the integration into the ["The Materials Science and Engineering (MSE) Knowledge Graph"](https://nfdi.fiz-karlsruhe.de/matwerk/).
+In the folder "Ontology Development" you will find the current status of the developments related to the semantical representation of the published dataset and the integration into the [The Materials Science and Engineering (MSE) Knowledge Graph](https://nfdi.fiz-karlsruhe.de/matwerk/).
 
 ## Parsing and Mapping Scripts
 
-In the branch "Parsing_Scripts" you will find several documentation and scripts regarding the data parsing, mapping, and (exemplary) usage workflows. A data validation against the community-agreed requirements profile at the level of JSON files is also covered.
+In the branch "ParSing_Scripts" you will find several documentation and scripts regarding the data parsing, mapping, and (exemplary) usage workflows. A data validation against the community-agreed requirements profile at the level of JSON files is also covered.
+
+## Demonstrator App
+
+As mentioned above, the app is updated upon new releases of the further work packages.
 
 ## Demonstrator App
 

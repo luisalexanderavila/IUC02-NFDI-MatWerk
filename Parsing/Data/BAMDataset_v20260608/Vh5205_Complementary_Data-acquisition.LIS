@@ -1,0 +1,7 @@
+Test segment	Step-width	Unit	Comment(s)
+During the whole test	0.01	mm	Related to the previous displacement-triggered record. If a displacement change of 0.01 mm occurs, the time is reset to zero. This optimizes data acquisition, e.g., during tertiary creep.
+During the application of the test load	5	s	
+During the application of the test load	0.1	s	Depending on force signal (e.g., with rapid changes in the force signal)
+After reaching the full applied test load (creep) and until and after test piece break	5 to 300	s	"Depending on the expected test duration. See worksheet ""Data-acquisition-creep"""
+			
+			
