@@ -1,0 +1,37 @@
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix cto:   <https://w3id.org/pmd/cto/> .
+@prefix co:    <https://w3id.org/pmd/co/> .
+@prefix obo:   <http://purl.obolibrary.org/obo/> .
+
+# Shape 5: Every mechanical_stress, force, or temperature quality individual must be linked to exactly one bearer or process via realized_in or quality_of (never both, never neither).
+
+co:Shape05_QualityLinkageXor
+    a sh:NodeShape ;
+    sh:targetClass cto:CTO_1000304 ;                        # mechanical_stress
+    sh:targetClass co:PMD_0020200 ;                         # force
+    sh:targetClass co:PMD_0000967 ;                         # temperature
+    sh:xone (
+        [
+            sh:property [
+                sh:path        obo:BFO_0000054 ;            # realized_in
+                sh:minCount    1 ;
+                sh:maxCount    1 ;
+            ] ;
+            sh:property [
+                sh:path        obo:RO_0000080 ;              # quality_of
+                sh:maxCount    0 ;
+            ] ;
+        ]
+        [
+            sh:property [
+                sh:path        obo:RO_0000080 ;              # quality_of
+                sh:minCount    1 ;
+                sh:maxCount    1 ;
+            ] ;
+            sh:property [
+                sh:path        obo:BFO_0000054 ;             # realized_in
+                sh:maxCount    0 ;
+            ] ;
+        ]
+    ) ;
+    sh:message "Every mechanical_stress, force, or temperature individual must be linked to exactly one bearer/process via realized_in XOR quality_of." .

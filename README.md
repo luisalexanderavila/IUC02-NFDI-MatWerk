@@ -1,6 +1,6 @@
 # NFDI-MatWerk Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets
 
-Welcome to the Git repository of the [Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets](https://nfdi-matwerk.de/about/nfdi-matwerk-structure/use-cases/iuc02) of the consortium [NFDI-MatWerk](https://nfdi-matwerk.de/). Our demonstrator concept is explained [here](https://nfdi-matwerk.de/solutions/demonstrators/development-and-application-framework-for-distribution-of-reference-datasets).
+Welcome to the Git repository of the ["Infrastructure Use Case IUC02 - Framework for Curation and Distribution of Reference Datasets"](https://nfdi-matwerk.de/about/nfdi-matwerk-structure/use-cases/iuc02) of the consortium [NFDI-MatWerk](https://nfdi-matwerk.de/). Our demonstrator concept is explained [here](https://nfdi-matwerk.de/solutions/demonstrators/development-and-application-framework-for-distribution-of-reference-datasets).
 
 In this repository you find all related information and files regarding our published and ongoing work.
 
@@ -11,7 +11,6 @@ In this repository you find all related information and files regarding our publ
 This definition was agreed within the IUC02. It is broadly formulated to cover experimental and simulation MSE data and will be developed further in agreement with the MSE community.
 
 The current version can be found under https://doi.org/10.5281/zenodo.11667674.
-
 
 ## NFDI-MatWerk/IUC02 Data schema for creep data of Ni-based superalloys including a comprehensive documentation of test results and metadata
 
@@ -49,7 +48,12 @@ In the branch "ParSing_Scripts" you will find several documentation and scripts 
 
 As mentioned above, the app is updated upon new releases of the further work packages.
 
+## Demonstrator App
+
+As mentioned above, the app is updated upon new releases of the further work packages.
 
 # Acknowledgment:
 
 This work is carried out in the framework of NFDI-MatWerk and funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under the National Research Data Infrastructure – NFDI 38/1 – project number 460247524. Mariano Forti and Thomas Hammerschmidt acknowledge financial support by the DFG through project C1 of the collaborative research centre SFB/TR 103 (project number 190389738). Rossella Aversa acknowledges financial support by the EU’s H2020 framework program for research and innovation under grant agreement n. 101007417, NFFA-Europe Pilot Project.
+
+
