@@ -1,0 +1,234 @@
+@prefix ex: <http://example.org/creep/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:Vh5205_C-78 a ex:CreepTest ;
+    rdfs:label "Vh5205_C-78" ;
+    ex:Data_processing_procedures ex:Vh5205_C-78Dataprocessingprocedures ;
+    ex:Material_history_and_condition ex:Vh5205_C-78Materialhistoryandcondition ;
+    ex:Measuring_and_test_equipment ex:Vh5205_C-78Measuringandtestequipment ;
+    ex:Test_info ex:Vh5205_C-78Testinfo ;
+    ex:Test_piece ex:Vh5205_C-78Testpiece .
+
+ex:Vh5205_C-78Dataprocessingprocedures ex:Data_analysis_procedures "To convert the primary data series into the processed data series a validated excel template (lab own's development) was used. The data were neither averaged nor smoothed. See also file \"2026-03_Creep-RD-CMSX-6_Data-processing.LIS\""^^xsd:string ;
+    ex:Primary_data_series "See file \"2026-03_Creep-RD-CMSX-6_Primary-and-processed-data-series.LIS\""^^xsd:string ;
+    ex:Processed_data_series "See file \"2026-03_Creep-RD-CMSX-6_Primary-and-processed-data-series.LIS\""^^xsd:string ;
+    ex:Software "Not applicable"^^xsd:string ;
+    ex:Workflow_usage "No"^^xsd:string .
+
+ex:Vh5205_C-78Materialhistoryandcondition ex:As_manufactured_material ex:Vh5205_C-78MaterialhistoryandconditionAs-manufacturedmaterial ;
+    ex:As_tested_material ex:Vh5205_C-78MaterialhistoryandconditionAs-testedmaterial ;
+    ex:Chemical_composition ex:Vh5205_C-78MaterialhistoryandconditionChemicalcomposition ;
+    ex:Heat_treatment ex:Vh5205_C-78MaterialhistoryandconditionHeattreatment ;
+    ex:Material_Identifier "CMSX-6"^^xsd:string ;
+    ex:Mechanical_tests_results ex:Vh5205_C-78MaterialhistoryandconditionMechanicaltestsresults ;
+    ex:Microstructure ex:Vh5205_C-78MaterialhistoryandconditionMicrostructure ;
+    ex:NDT_Results ex:Vh5205_C-78MaterialhistoryandconditionNDTResults .
+
+ex:Vh5205_C-78MaterialhistoryandconditionAs-manufacturedmaterial ex:Condition "Heat Treated"^^xsd:string ;
+    ex:Form_of_as_manufactured_material "Ingot"^^xsd:string ;
+    ex:Geometrysize_as_manufactured_material "Ingot with 4\" Diameter"^^xsd:string ;
+    ex:Manufacturing_process_description_as_manufactured_material "Vacuum Induction Refined"^^xsd:string ;
+    ex:Solidification "Single Crystal"^^xsd:string .
+
+ex:Vh5205_C-78MaterialhistoryandconditionAs-testedmaterial ex:Geometrysize_as_tested_material "Single Crystal Investment Cast"^^xsd:string ;
+    ex:Manufacturing_process_description_as_tested_material "Single Crystal Investment Casting from a Vacuum Induction Refined Ingot and subsequent Heat Treatment (annealed and aged)."^^xsd:string ;
+    ex:Supplier "PCC Airfoils, Inc. Minerva, Ohio."^^xsd:string ;
+    ex:Supply_Date "1997-01-28 00:00:00"^^xsd:string .
+
+ex:Vh5205_C-78MaterialhistoryandconditionChemicalcomposition ex:Chemical_composition___measured "See file \"2026-03_Creep-RD-CMSX-6_Ch.-Comp.-measured.LIS\""^^xsd:string ;
+    ex:Chemical_composition___nominal "See file \"2026-03_Creep-RD-CMSX-6_Ch.-Comp.-nominal.LIS\""^^xsd:string ;
+    ex:Measured_condition "As-tested"^^xsd:string ;
+    ex:Measurement_method "See file \"2026-03_Creep-RD-CMSX-6_Ch.-Comp.-measured.LIS\""^^xsd:string ;
+    ex:Measuring_position "Master melt"^^xsd:string .
+
+ex:Vh5205_C-78MaterialhistoryandconditionHeattreatment ex:Heat_treatment___Ageing___Description "See file \"2026_Creep-RD-CMSX-6_Heat-treatment.LIS\""^^xsd:string ;
+    ex:Heat_treatment___Annealing___Description "See file \"2026_Creep-RD-CMSX-6_Heat-treatment.LIS\""^^xsd:string ;
+    ex:Heat_treatment___State "Aged"^^xsd:string ;
+    ex:Multistage_ageing "Yes"^^xsd:string ;
+    ex:Multistage_annealing "Yes"^^xsd:string .
+
+ex:Vh5205_C-78MaterialhistoryandconditionMechanicaltestsresults ex:Proof_strength___creep_test_temperature "See file \"2026-03_Creep-RD-CMSX-6_Rp0.2.LIS\" and related reference dataset https://doi.org/10.5281/zenodo.17846616"^^xsd:string .
+
+ex:Vh5205_C-78MaterialhistoryandconditionMicrostructure ex:Characterization_method_1 "Light and electron microscopy"^^xsd:string ;
+    ex:Grain___Additional_Information "Not applicable"^^xsd:string ;
+    ex:Grain_size "Not applicable"^^xsd:string ;
+    ex:Grain_size___Determination_method "Not applicable"^^xsd:string ;
+    ex:Grain_size___measuring_region "Not applicable"^^xsd:string ;
+    ex:Grain_size_distribution "Not applicable"^^xsd:string ;
+    ex:Measured_condition_1 "As-tested"^^xsd:string ;
+    ex:Measuring_position_1 "Bulk"^^xsd:string ;
+    ex:Microstructure_Image_1 "See files:"^^xsd:string ;
+    ex:Microstructure_feature_1 "Microstructure before testing"^^xsd:string ;
+    ex:Microstructure_feature_1___Information "See related article https://doi.org/10.1016/j.dib.2025.112436"^^xsd:string ;
+    ex:Microstructure_report_1 "See related article https://doi.org/10.1016/j.dib.2025.112436"^^xsd:string ;
+    ex:Proof_of_single_crystallinity "The absence of grain boundaries was verified by visual inspection of the investment casts surface after electrolytical etching."^^xsd:string ;
+    ex:Single_crystal_orientation "6.9"^^xsd:string ;
+    ex:Single_crystal_orientation___Determination_method "Laue Crystal Verification. A Scorpio system (DOI: 10.1088/0957-0233/6/1/021) was used. The angle alpha indicates the deviation of the [001]-direction from the symmetry axis of the respective cast (as-tested material)."^^xsd:string ;
+    ex:Single_crystal_orientation___Measuring_point "The orientation was determined at the lower end (right side in file \"Test-piece-location_v2.0.jpg\") of each cast."^^xsd:string .
+
+ex:Vh5205_C-78Measuringandtestequipment ex:Elongation_values_and_cross_sectional_dimensions ex:Vh5205_C-78MeasuringandtestequipmentElongationvaluesandcross-sectionaldimensions ;
+    ex:Extension_values ex:Vh5205_C-78MeasuringandtestequipmentExtensionvalues ;
+    ex:Extensometer_system ex:Vh5205_C-78MeasuringandtestequipmentExtensometersystem ;
+    ex:Laboratory_conditions ex:Vh5205_C-78MeasuringandtestequipmentLaboratoryconditions ;
+    ex:Load_measuring_system ex:Vh5205_C-78MeasuringandtestequipmentLoad-measuringsystem ;
+    ex:Temperature_measuring_system ex:Vh5205_C-78MeasuringandtestequipmentTemperature-measuringsystem ;
+    ex:Test_machine ex:Vh5205_C-78MeasuringandtestequipmentTestmachine .
+
+ex:Vh5205_C-78MeasuringandtestequipmentElongationvaluesandcross-sectionaldimensions ex:Calibration_date "2022-07-07 00:00:00"^^xsd:string ;
+    ex:Calibration_range "0 - 50"^^xsd:string ;
+    ex:Calibration_result "Meets calibration requirements"^^xsd:string ;
+    ex:Calibration_standard "DIN 863-1:2017-02"^^xsd:string ;
+    ex:Calibration_status "Yes"^^xsd:string ;
+    ex:Calibration_validity_time_period "12 months"^^xsd:string ;
+    ex:Equipment_ID "72.01"^^xsd:string ;
+    ex:Equipment_model_information "Mitutoyo TM 321 Zeiss â Axiotech 100 HD"^^xsd:string ;
+    ex:Measuring_equipment_1 "Micrometer"^^xsd:string ;
+    ex:Measuring_equipment_2 "Measuring microscope"^^xsd:string ;
+    ex:Measuring_equipments_usage "Determination of Original gauge length, Lo, Final gauge length after fracture, Lu, Percentage permanent elongation, Aper, Percentage elongation after creep fracture, Au, and Percentage reduction of area after creep fracture, Zu"^^xsd:string ;
+    ex:Resolution "0.001"^^xsd:string ;
+    ex:Type "Optical"^^xsd:string .
+
+ex:Vh5205_C-78MeasuringandtestequipmentExtensionvalues ex:Contacting_extensometer ex:Vh5205_C-78MeasuringandtestequipmentExtensionvaluesContactingextensometer ;
+    ex:Non_contacting_extensometer ex:Vh5205_C-78MeasuringandtestequipmentExtensionvaluesNon-contactingextensometer .
+
+ex:Vh5205_C-78MeasuringandtestequipmentExtensionvaluesContactingextensometer ex:Calibration_Range "30 % (7.5 mm); +5/-2,5 mm"^^xsd:string ;
+    ex:Calibration_certificate "Documentation available in the laboratory"^^xsd:string ;
+    ex:Calibration_class "1"^^xsd:string ;
+    ex:Calibration_date "2022-06-23 00:00:00"^^xsd:string ;
+    ex:Calibration_standard "DIN EN ISO 9513:2013"^^xsd:string ;
+    ex:Calibration_validity_time_period "12 Months"^^xsd:string ;
+    ex:Extension_averaging "Not applicable"^^xsd:string ;
+    ex:Extension_range___Lower_limit "-10 % / -2,5 mm"^^xsd:string ;
+    ex:Extension_range___Upper_limit "20 %  / 5 mm"^^xsd:string ;
+    ex:Extensometer_ID "19.03"^^xsd:string ;
+    ex:Extensometer_leg_material "Ceramic legs"^^xsd:string ;
+    ex:Extensometer_model_information "MTS 632.53F-31"^^xsd:string ;
+    ex:Is_the_extensometer_incl_the_data_acquisition_calibrated "Yes"^^xsd:string ;
+    ex:Measurement_direction "Axial action"^^xsd:string ;
+    ex:Measurement_set_up "One-sided"^^xsd:string ;
+    ex:Measuring_amplifier___Model_information "National Instruments NI SXCI-1600"^^xsd:string ;
+    ex:Mounting_type "At test piece in parallel length"^^xsd:string ;
+    ex:Nominal_gauge_length "25"^^xsd:string .
+
+ex:Vh5205_C-78MeasuringandtestequipmentExtensionvaluesNon-contactingextensometer ex: "Not applicable"^^xsd:string .
+
+ex:Vh5205_C-78MeasuringandtestequipmentExtensometersystem ex:Displacement_measuring_method "Contacting method"^^xsd:string ;
+    ex:Sensor_type___Contacting_method "High-Temperature Axial Extensometer"^^xsd:string ;
+    ex:Sensor_type___Non_contacting_method "Not applicable"^^xsd:string .
+
+ex:Vh5205_C-78MeasuringandtestequipmentLaboratoryconditions ex:Room_humidity "Yes"^^xsd:string ;
+    ex:Room_temperature "Yes"^^xsd:string .
+
+ex:Vh5205_C-78MeasuringandtestequipmentLoad-measuringsystem ex:Data_acquisition ex:Vh5205_C-78MeasuringandtestequipmentLoad-measuringsystemDataacquisition ;
+    ex:Load_sensor ex:Vh5205_C-78MeasuringandtestequipmentLoad-measuringsystemLoadsensor .
+
+ex:Vh5205_C-78MeasuringandtestequipmentLoad-measuringsystemDataacquisition ex:Force_recording "Phase-wise (during loading)"^^xsd:string .
+
+ex:Vh5205_C-78MeasuringandtestequipmentLoad-measuringsystemLoadsensor ex:Calibration_Range "0 kN to 20 kN"^^xsd:string ;
+    ex:Calibration_certificate "Documentation available in the laboratory"^^xsd:string ;
+    ex:Calibration_class "Not applicable"^^xsd:string ;
+    ex:Calibration_date "2023-06-21 00:00:00"^^xsd:string ;
+    ex:Calibration_standard "Not applicable"^^xsd:string ;
+    ex:Calibration_validity_time_period "12 months"^^xsd:string ;
+    ex:Load_sensor_calibration "Yes"^^xsd:string ;
+    ex:Load_sensor_during_loading "Yes"^^xsd:string .
+
+ex:Vh5205_C-78MeasuringandtestequipmentTemperature-measuringsystem ex:Data_acquisition ex:Vh5205_C-78MeasuringandtestequipmentTemperature-measuringsystemDataacquisition ;
+    ex:Metrological_traceability "Yes"^^xsd:string ;
+    ex:Temperature_sensor ex:Vh5205_C-78MeasuringandtestequipmentTemperature-measuringsystemTemperaturesensor ;
+    ex:Temperature_signal "Via furnace"^^xsd:string .
+
+ex:Vh5205_C-78MeasuringandtestequipmentTemperature-measuringsystemDataacquisition ex:Calibration_Range "100 - 1300 Â°C"^^xsd:string ;
+    ex:Calibration_certificate "Documentation available in the laboratory"^^xsd:string ;
+    ex:Calibration_date "2022-07-12 00:00:00"^^xsd:string ;
+    ex:Calibration_method "Electrical simulation"^^xsd:string ;
+    ex:Calibration_standard "EURAMET/cg-11/v0.1"^^xsd:string ;
+    ex:Calibration_status "Yes"^^xsd:string ;
+    ex:Calibration_validity_time_period "12 Months"^^xsd:string ;
+    ex:Reference_junction "Internal"^^xsd:string ;
+    ex:Temperature_deviation "0 K (Channel #1)"^^xsd:string .
+
+ex:Vh5205_C-78MeasuringandtestequipmentTemperature-measuringsystemTemperaturesensor ex:Calibration_Range "300 - 1200 Â°C"^^xsd:string ;
+    ex:Calibration_certificate "Documentation available in the laboratory"^^xsd:string ;
+    ex:Calibration_date "2022-08-08 00:00:00"^^xsd:string ;
+    ex:Calibration_method "Comparison method"^^xsd:string ;
+    ex:Calibration_standard "ASTM E220-19"^^xsd:string ;
+    ex:Calibration_status "Yes"^^xsd:string ;
+    ex:Calibration_validity_time_period "12 months"^^xsd:string ;
+    ex:Contact_method "Attached"^^xsd:string ;
+    ex:Layout "Wire with 2-hole ceramic beads"^^xsd:string ;
+    ex:Number_of_thermocouples "3"^^xsd:string ;
+    ex:Sensor_ID "52-PM102-0400"^^xsd:string ;
+    ex:Sensor_type "Thermocouple"^^xsd:string ;
+    ex:Temperature_deviation "- 0.1 K (52-PM102-0400)"^^xsd:string ;
+    ex:Thermocouple_location "Inside the gauge length"^^xsd:string ;
+    ex:Thermocouple_type "S"^^xsd:string ;
+    ex:Wire_gauge "0.51 mm"^^xsd:string .
+
+ex:Vh5205_C-78MeasuringandtestequipmentTestmachine ex:Calibration_class "Verification: the machine fulfills the requirements for test forces >2 kN"^^xsd:string ;
+    ex:Data_acquisition ex:Vh5205_C-78MeasuringandtestequipmentTestmachineDataacquisition ;
+    ex:Heating_system ex:Vh5205_C-78MeasuringandtestequipmentTestmachineHeatingsystem ;
+    ex:Loading_system ex:Vh5205_C-78MeasuringandtestequipmentTestmachineLoadingsystem ;
+    ex:Maximum_applicable_force "20"^^xsd:string ;
+    ex:Minimum_applicable_force "1"^^xsd:string ;
+    ex:Test_frame_and_specimen_alignment "Yes. Verification was performed according to ASTM E1012 on 18.07.2011."^^xsd:string ;
+    ex:Test_frame_and_specimen_alignment___description "Not applicable since verification was performed according to ASTM E1012"^^xsd:string ;
+    ex:Test_machine_ID "Zug 07"^^xsd:string ;
+    ex:Test_machine_type "Lever arm, Leverage ratio 1:20.4"^^xsd:string ;
+    ex:Test_piece_holder_system ex:Vh5205_C-78MeasuringandtestequipmentTestmachineTestpieceholdersystem .
+
+ex:Vh5205_C-78MeasuringandtestequipmentTestmachineDataacquisition ex:Data_acquisition___description "See files \"2026-03_Creep-RD-CMSX-6_Data-acquisition.LIS\" and \"2026-03_Creep-RD-CMSX-6_Data-acquisition-creep.LIS\""^^xsd:string ;
+    ex:Data_acquisition_software_and_version "Lab's own development (v22.08.22)"^^xsd:string ;
+    ex:Data_acquisition_time_check "Yes"^^xsd:string ;
+    ex:Data_acquisition_unit___ID "19.08"^^xsd:string ;
+    ex:Data_acquisition_unit___Model_information "National Instruments NI SXCI-1600"^^xsd:string .
+
+ex:Vh5205_C-78MeasuringandtestequipmentTestmachineHeatingsystem ex:Furnace_type "Split Tube Furnace with two-zones"^^xsd:string .
+
+ex:Vh5205_C-78MeasuringandtestequipmentTestmachineLoadingsystem ex:Calibration_class "1"^^xsd:string ;
+    ex:Calibration_date "2022-08-05 00:00:00"^^xsd:string ;
+    ex:Calibration_range "2 - 20 kN and 1 - 10 kN (class 1 for both)"^^xsd:string ;
+    ex:Calibration_standard "DIN EN ISO 7500-2: 2007"^^xsd:string ;
+    ex:Calibration_validity_time_period "24 Months"^^xsd:string ;
+    ex:Description_of_the_loading_system "Not applicable since calibrated weights were used"^^xsd:string ;
+    ex:Use_of_calibrated_weights "Yes"^^xsd:string ;
+    ex:Verification_of_loading_system "Yes"^^xsd:string .
+
+ex:Vh5205_C-78MeasuringandtestequipmentTestmachineTestpieceholdersystem ex:Fixing_technique "Threaded"^^xsd:string .
+
+ex:Vh5205_C-78Testinfo ex:Related_research_outcome ex:Vh5205_C-78TestinfoRelatedresearchoutcome ;
+    ex:Test_job_details ex:Vh5205_C-78TestinfoTestjobdetails ;
+    ex:Test_parameters ex:Vh5205_C-78TestinfoTestparameters .
+
+ex:Vh5205_C-78TestinfoRelatedresearchoutcome ex:Any_related_articles "Yes"^^xsd:string ;
+    ex:Related_article "https://doi.org/10.1016/j.dib.2025.112436"^^xsd:string .
+
+ex:Vh5205_C-78TestinfoTestjobdetails ex:Date_of_test_end "2023-02-11 15:48:15"^^xsd:string ;
+    ex:Date_of_test_start "2023-02-08 09:06:15"^^xsd:string ;
+    ex:Project "Vh 5205"^^xsd:string ;
+    ex:Test_ID "Vh5205_C-78"^^xsd:string .
+
+ex:Vh5205_C-78TestinfoTestparameters ex:End_of_test "Not applicable"^^xsd:string ;
+    ex:End_of_test_criterium "Test piece break"^^xsd:string ;
+    ex:Extension_Limit "Not applicable"^^xsd:string ;
+    ex:Initial_stress "230"^^xsd:string ;
+    ex:Interruption_course "Not applicable"^^xsd:string ;
+    ex:Load_control_type "Constant force"^^xsd:string ;
+    ex:Preload "0.2 kN (20.4 kg)"^^xsd:string ;
+    ex:Specified_temperature "980"^^xsd:string ;
+    ex:Test_standard "DIN EN ISO 204:2019-4"^^xsd:string ;
+    ex:Test_standard_applied "Yes"^^xsd:string ;
+    ex:Test_type "Uninterrupted creep tests with continuous monitoring of extension"^^xsd:string ;
+    ex:Time_Limit "Not applicable"^^xsd:string ;
+    ex:Type_of_loading "Tension"^^xsd:string .
+
+ex:Vh5205_C-78Testpiece ex:Additional_information_test_piece "Surface roughness values, Rz [Âµm], available for each test piece."^^xsd:string ;
+    ex:Test_piece_ID "Vh5205_C-78"^^xsd:string ;
+    ex:Test_piece_history "No previous experiments"^^xsd:string ;
+    ex:Test_piece_origin_and_orientation "See file \"Test-piece-location_v2.0.jpg\""^^xsd:string ;
+    ex:Test_piece_technical_drawing "See file \"TestPieceCreepTests-TechnicalDrawing-FormA.pdf\""^^xsd:string ;
+    ex:Test_piece_type_I "Specimen according to DIN EN ISO 204:2019-4"^^xsd:string ;
+    ex:Test_piece_type_II "Round cross section"^^xsd:string ;
+    ex:Test_piece_type_III "Smooth test piece"^^xsd:string .
+

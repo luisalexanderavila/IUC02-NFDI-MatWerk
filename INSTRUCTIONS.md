@@ -1,0 +1,90 @@
+# Changes to the schema 
+Work on the 2.1.8 version
+## loadSensorCalibration 
+ the loadSensorCalibration field, is currently a string. it should be a dropdown with 'Yes' and 'No' options. Under loadSensorCalibration a new field called loadSensorCalibrationDescription whith a string value and a description 'Add any available details concerning the calibration'
+[X] in the lis file this corresponds to 'Metadata --> Measuring and test equipment --> Load-measuring system --> Load sensor	Load sensor calibration' field. this field has an extra new line after the value. 
+A new filed should be added right below, 'Metadata --> Measuring and test equipment --> Load-measuring system --> Load sensor	Load sensor calibration Description' containing the description in that new line.
+[X] the 'Metadata --> Measuring and test equipment --> Load-measuring system --> Load sensor	Load sensor calibration Description' from the lis file should map to loadSensorCalibrationDescription in the json. 
+
+# temperatureMeasuringSystem.dataAcquisition.calibrationStandard
+[X] in the schema this is now a string, we want to add a description: 'Add description: E.g., EURAMET/cg-11/v.01'
+
+# Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Thermocouple location	Location with respect to gauge section 
+[X] In the lis file, this line has value 'Inside the gauge length' which should be just 'Inside' 
+
+# Metadata --> Measuring and test equipment --> Temperature-measuring system --> Temperature sensor	Temperature deviation
+[X] in lis file, value should be one line. As an example for Vh5205_C-78-MD-TR.lis, instead of 
+- 0.1 K (52-PM102-0400)
+- 0.1 K (52-PM102-0401)
+- 0.1 K (52-PM102-0402)
+T-values were corrected accordingly	
+it should be
+- 0.1 K (52-PM102-0400); - 0.1 K (52-PM102-0401); - 0.1 K (52-PM102-0402); T-values were corrected accordingly	
+
+# Metadata --> Measuring and test equipment --> Temperature-measuring system --> Data acquisition	Temperature deviation
+[X] in lis file, value should be one line. As an example for Vh5205_C-78-MD-TR.lis, instead of 
+0 K (Channel #1)
++ 0.1 K (Channel #2)
+- 0.2 K (Channel #3)
+it should be
+0 K (Channel #1); + 0.1 K (Channel #2); - 0.2 K (Channel #3)
+
+# Metadata --> Measuring and test equipment --> Extension values --> Contacting extensometer
+[X] In lis files, entry name is currently "Is the extensometer incl. the data acquisition calibrated?". It must be "Calibration status". In json files it was correctly named "calibrationStatus"
+
+# MaterialHistoryAndCondition.asManufacturedMaterial.castingTemperature and MaterialHistoryAndCondition.asManufacturedMaterial.castingTemperature 
+[X] this two fields have array of complex values, they should change to just complex values.
+
+
+# new: secondaryData.testResult.dataSeries.creepCurve
+[X] this should be added to the data schema. 
+should have descroption: 'Description: Link to file or data series creep extension and corrected temperature vs. time'. Value should be string. 
+The parser should fill this value with direct link to a zenodo entry with the latest zenodo number for the dataset and the corresponding creep file, for instance 
+
+https://zenodo.org/records/20132712/files/Vh5205_C-78-Creep.LIS\Vh5205_C-81-Creep.LIS
+
+for the file C-78. 
+
+[X] Add the corresponding links in the LIS files adding a row at the end, consistent with the current formatting. 
+[X] this field should be mandatory, and is not common to all. 
+
+
+
+# New Session
+[X] In line 70 Metadata --> Material history and condition -->
+Microstructure          Grain size (line 57) to Metadata --> Material
+history and condition --> Microstructure   Orientation - Determination
+accuracy replace "Microstructure" with "Microstructure Ni-Based SX"
+(for consistency with json schema v2.1.8.
+
+[X] In line 159: Metadata --> Measuring and test equipment -->
+Temperature-measuring system --> Data acquisition     Calibration
+standard Mandatory     EURAMET/cg-11/v0.1         * add "E.g., EURAMET/
+cg-11/v.01" in column "ENTRY - ADDITIONAL INFORMATION"
+
+[X] In line 111: Metadata --> Measuring and test equipment --> Test
+machine --> Loading system  Calibration standard
+                     Mandatory DIN EN ISO 7500-2: 2007  * add "E.g.,
+DIN EN ISO 7500-2. Please specify the version (year)." in column
+"ENTRY - ADDITIONAL INFORMATION"
+
+[X] In line 102 Metadata --> Measuring and test equipment --> Test
+machine  Test frame and specimen alignment - Date
+                               Optional 18.07.2011   * add "Date of
+verification of Test Frame and Specimen Alignment" in column "ENTRY -
+ADDITIONAL INFORMATION"
+
+[X] In line 100 Metadata --> Measuring and test equipment --> Test
+machine  Test frame and specimen alignment          Verification of Test
+Frame and Specimen Alignment according to ASTM
+E1012?                      Mandatory     Yes     * replace
+"Verification of Test Frame and Specimen Alignment according to ASTM
+E1012?" by "Verification of Test Frame and Specimen Alignment
+according to ASTM E1012? Include description of the procedure if
+available." in column "ENTRY - ADDITIONAL INFORMATION"
+
+[X] In line 85 Metadata --> Test piece       Test piece type I
+standard                                      Optional        DIN EN ISO
+204:2019-4   * add "The specific standard the specimen is manufactured
+according to (e.g. DIN EN ISO 204:2019-4)." in column "ENTRY -
+ADDITIONAL INFORMATION"

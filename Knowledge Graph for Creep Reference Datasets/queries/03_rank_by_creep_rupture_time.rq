@@ -1,0 +1,20 @@
+# CQ: Rank datasets by creep rupture time, longest to shortest.
+PREFIX cto:   <https://w3id.org/pmd/cto/>
+PREFIX pmdco: <https://w3id.org/pmd/co/>
+PREFIX obo:   <http://purl.obolibrary.org/obo/>
+PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?dataset ?ruptureTime_h
+WHERE {
+  ?dataset a cto:CTO_0000009 ;
+           obo:OBI_0000312 ?process .
+
+  ?process obo:BFO_0000199 ?srt .              # occupies_temporal_region
+  ?srt a cto:CTO_0000013 .                      # stress_rupture_time
+
+  ?spec obo:OBI_0001927 ?srt ;                  # specifies_value_of
+        pmdco:PMD_0000006 ?ruptureStr .         # has_value
+
+  BIND(xsd:double(?ruptureStr) AS ?ruptureTime_h)
+}
+ORDER BY DESC(?ruptureTime_h)

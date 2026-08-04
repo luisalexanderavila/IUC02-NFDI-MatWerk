@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "LISParser"
+version = "0.0.1"
+authors = [
+  { name="Mariano Forti", email="mariano.forti@icams.rub.de" },
+]
+description = "a simple parser for lis files (creep data)"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = {file= "LICENCE" }
+dependencies = [
+"numpy",
+'importlib-metadata; python_version>"3.11"',
+]
