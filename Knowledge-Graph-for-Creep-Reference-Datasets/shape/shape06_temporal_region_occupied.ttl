@@ -1,0 +1,19 @@
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix cto:   <https://w3id.org/pmd/cto/> .
+@prefix co:    <https://w3id.org/pmd/co/> .
+@prefix obo:   <http://purl.obolibrary.org/obo/> .
+
+# Shape 6: Every temporal-region individual (test_duration, soaking_time, the heating-time interval) must be the target of exactly one occupies_temporal_region triple from a creep_testing_process.
+
+co:Shape06_TemporalRegionOccupied
+    a sh:NodeShape ;
+    sh:targetClass cto:CTO_1000062 ;                        # test_duration
+    sh:targetClass cto:CTO_1000064 ;                         # soaking_time
+    sh:targetClass obo:BFO_0000202 ;                         # temporal_interval (heating time)
+    sh:property [
+        sh:path        [ sh:inversePath obo:BFO_0000199 ] ;  # <- occupies_temporal_region
+        sh:class       co:PMD_0000589 ;                      # creep_testing_process
+        sh:minCount    1 ;
+        sh:maxCount    1 ;
+        sh:message     "Every temporal-region individual must be the target of exactly one occupies_temporal_region triple from a creep_testing_process." ;
+    ] .

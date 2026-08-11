@@ -1,0 +1,31 @@
+# CQ: Retrieve test duration, soak time, and heating time together for each
+# creep testing process.
+PREFIX cto:   <https://w3id.org/pmd/cto/>
+PREFIX pmdco: <https://w3id.org/pmd/co/>
+PREFIX obo:   <http://purl.obolibrary.org/obo/>
+
+SELECT ?dataset ?testDuration ?soakTime ?heatingTime
+WHERE {
+  ?dataset a cto:CTO_0000009 ;
+           obo:OBI_0000312 ?process .
+
+  OPTIONAL {
+    ?process obo:BFO_0000199 ?td .
+    ?td a cto:CTO_1000062 .                      # test_duration
+    ?tdSpec obo:OBI_0001927 ?td ;
+            pmdco:PMD_0000006 ?testDuration .
+  }
+  OPTIONAL {
+    ?process obo:BFO_0000199 ?st .
+    ?st a cto:CTO_1000064 .                      # soaking_time
+    ?stSpec obo:OBI_0001927 ?st ;
+            pmdco:PMD_0000006 ?soakTime .
+  }
+  OPTIONAL {
+    ?process obo:BFO_0000199 ?ht .
+    ?ht a obo:BFO_0000202 .                      # temporal_interval (heating time)
+    ?htSpec obo:OBI_0001927 ?ht ;
+            pmdco:PMD_0000006 ?heatingTime .
+  }
+}
+ORDER BY ?dataset

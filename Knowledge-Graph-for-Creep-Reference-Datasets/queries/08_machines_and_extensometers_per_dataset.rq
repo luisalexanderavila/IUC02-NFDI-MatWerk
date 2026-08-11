@@ -1,0 +1,20 @@
+# CQ: List all creep testing machines and extensometers together with the datasets that used them.
+PREFIX cto:   <https://w3id.org/pmd/cto/>
+PREFIX pmdco: <https://w3id.org/pmd/co/>
+PREFIX obo:   <http://purl.obolibrary.org/obo/>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?dataset ?machineLabel ?extensometerLabel
+WHERE {
+  ?dataset a cto:CTO_0000009 ;
+           obo:OBI_0000312 ?process .
+
+  ?machine a pmdco:PMD_0000588 ;                # creep_testing_machine
+           obo:RO_0000056 ?process ;             # participates_in
+           rdfs:label ?machineLabel .
+
+  ?extensometer a pmdco:PMD_0000636 ;            # extensometer
+                obo:RO_0000056 ?process ;         # participates_in
+                rdfs:label ?extensometerLabel .
+}
+ORDER BY ?dataset
