@@ -4,11 +4,17 @@
 version v1.0 (December 2024). 
 
 
-The Reference Datasets Ontology for Creep (RDOC) represents:
- i) concepts, which are relevant for the description of a reference dataset (in any domain), including standard, reference material and bibliographic reference, documentation, license, etc. on  a general level, and 
- ii) concepts related specific to creep testing, including the description of metadata (research project, material description, testing parameters, etc.), and primary and secondary data collected during the creep testing. The RDOC will establish a detailed and unified representation of the related terms and with this enable the interoperability and reusability of data, making it also searchable.  The ontology will be used by researchers in the fieled of Materials Science and Engineering (MSE). 
+A. The Reference Datasets Ontology for Creep (RDO) represents:  
+
+Concepts, which are relevant for the description of a reference dataset (in any domain), including standard, reference material and bibliographic reference, documentation, license, etc. on  a general level.
 
 The purpose of the Reference Dataset Ontology is to describe concepts, which are required to qualify a dataset as a reference dataset.
+
+B. The Reference Datasets Ontology for Creep (RDOC) represents:  
+
+Concepts related specific to creep testing, including the description of metadata (research project, material description, testing parameters, etc.), and primary and secondary data collected during the creep testing. The RDOC will establish a detailed and unified representation of the related terms and with this enable the interoperability and reusability of data, making it also searchable.  The ontology will be used by researchers in the fieled of Materials Science and Engineering (MSE). 
+
+UPDATE: The development of both RDO and RDOC was interrupted. The creep testing ontology (CTO; located in Knowledge-Graph-for-Creep-Reference-Datasets\cto.ttl) replaces the planned RDOC. The Creep Testing Ontology (CTO) has been developed for representing the creep testing process, testing equipment and setup requirements, test specimen characteristics, loading and environmental conditions (e.g. stress, temperature, atmosphere), time-dependent deformation behavior, and related testing parameters and measurement procedures according to DIN EN ISO 204 standard.
 
 
 Acknowledgment: 
