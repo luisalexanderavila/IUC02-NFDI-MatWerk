@@ -1,3 +1,42 @@
-*
-!Data Schema/
-!.gitignore
+# Python virtual environments
+venv/
+.venv/
+env/
+ENV/
+Parsing/python=3.11/
+Parsing/validation_demonstrator/
+
+# Python bytecode / cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Node / Next.js
+node_modules/
+.next/
+npm-debug.log*
+yarn-error.log*
+
+# Vendored New_app venv (Windows layout, not named venv/)
+New_app/IUC02_NextJS-main/IUC02_NextJS-main/Scripts/
+New_app/IUC02_NextJS-main/IUC02_NextJS-main/Lib/
+New_app/IUC02_NextJS-main/IUC02_NextJS-main/Include/
+New_app/IUC02_NextJS-main/IUC02_NextJS-main/pyvenv.cfg
+
+# Secrets / local env config
+.env
+.env.local
+.env.*.local
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Claude Code local guidance (not for the remote repo)
+CLAUDE.md

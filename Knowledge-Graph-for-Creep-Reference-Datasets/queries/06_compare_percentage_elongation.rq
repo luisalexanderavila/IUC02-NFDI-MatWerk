@@ -1,0 +1,20 @@
+# CQ: Compare percentage elongation after creep fracture across all datasets.
+PREFIX cto:   <https://w3id.org/pmd/cto/>
+PREFIX pmdco: <https://w3id.org/pmd/co/>
+PREFIX obo:   <http://purl.obolibrary.org/obo/>
+PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?dataset ?elongation_pct
+WHERE {
+  ?dataset a cto:CTO_0000009 ;
+           obo:OBI_0000312 ?process .
+
+  ?q a cto:CTO_0000005 ;                        # percentage_elongation_after_creep_fracture
+     obo:BFO_0000054 ?process .                  # realized_in
+
+  ?spec obo:OBI_0001927 ?q ;                     # specifies_value_of
+        pmdco:PMD_0000006 ?elongStr .            # has_value
+
+  BIND(xsd:double(?elongStr) AS ?elongation_pct)
+}
+ORDER BY DESC(?elongation_pct)

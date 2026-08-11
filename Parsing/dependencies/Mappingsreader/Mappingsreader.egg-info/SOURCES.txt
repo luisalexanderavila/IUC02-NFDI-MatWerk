@@ -1,0 +1,8 @@
+pyproject.toml
+setup.py
+Mappingsreader.egg-info/PKG-INFO
+Mappingsreader.egg-info/SOURCES.txt
+Mappingsreader.egg-info/dependency_links.txt
+Mappingsreader.egg-info/top_level.txt
+mappingsreader/__init__.py
+mappingsreader/mapreader.py

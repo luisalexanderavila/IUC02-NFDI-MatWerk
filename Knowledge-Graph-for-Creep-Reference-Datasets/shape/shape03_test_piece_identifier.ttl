@@ -1,0 +1,31 @@
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix cto:   <https://w3id.org/pmd/cto/> .
+@prefix co:    <https://w3id.org/pmd/co/> .
+@prefix obo:   <http://purl.obolibrary.org/obo/> .
+
+# Shape 3: Every creep_test_piece must have exactly one creep_test_piece_identifier denoting it, and that identifier must carry a non-empty has_value.
+
+cto:Shape03_TestPieceIdentifier
+    a sh:NodeShape ;
+    sh:targetClass cto:CTO_0000008 ;                        # creep_test_piece
+    sh:property [
+        sh:path                 [ sh:inversePath obo:IAO_0000219 ] ; # <- denotes
+        sh:qualifiedValueShape  cto:Shape03b_IdentifierHasValue ;
+        sh:qualifiedMinCount    1 ;
+        sh:qualifiedMaxCount    1 ;
+        sh:message      "Every creep_test_piece must have exactly one creep_test_piece_identifier denoting it, with a non-empty has_value." ;
+    ] .
+
+cto:Shape03b_IdentifierHasValue
+    a sh:NodeShape ;
+    sh:class       cto:CTO_1000004 ;                        # creep_test_piece_identifier
+    sh:property [
+        sh:path        co:PMD_0000006 ;                     # has_value
+        sh:minCount    1 ;
+        sh:maxCount    1 ;
+        sh:datatype    xsd:string ;
+        sh:minLength   1 ;
+        sh:pattern     "\\S" ;                               # not just whitespace
+        sh:message     "The creep_test_piece_identifier must carry a non-empty has_value." ;
+    ] .

@@ -1,0 +1,77 @@
+{
+    "MeasurementData": {
+        "AdditionalMetadata": {
+            "TestInfo": {
+                "testJobDetails": {
+                    "testID": "RUB_110-direction_1050C_140MPa"
+                },
+                "testParameters": {
+                    "testStandardApplied": "No",
+                    "testStandard": {
+                        "testStandardOptions": "Other (Please specify in the comment)",
+                        "otherTestStandard": "Not applicable"
+                    },
+                    "specifiedTemperature": {
+                        "value": "1050",
+                        "unit": "°C"
+                    },
+                    "typeOfLoading": "Tension",
+                    "loadControlType": "Constant Force",
+                    "initialStress": {
+                        "value": "140",
+                        "unit": "MPa"
+                    },
+                    "testType": "Stress rupture tests where normally only the time to fracture is measured",
+                    "endOfTestCriterium": {
+                        "endOfTestCriteriumOptions": "Test piece break"
+                    },
+                    "timeLimit": "Not applicable",
+                    "extensionLimit": "Not applicable",
+                    "interruptionCourse": "Not applicable"
+                }
+            },
+            "MaterialHistoryAndCondition": {
+                "materialIdentifier": "ERBO/1 (CMSX-4 type)",
+                "asManufacturedMaterial": {
+                    "solidification": "Single crystal",
+                    "monocrystalOrientation": "[110]",
+                    "condition": "Heat treated",
+                    "formOfAsManufacturedMaterial": "Cast plate",
+                    "geometrySizeAsManufacturedMaterial": "140 mm × 100 mm × 20 mm"
+                },
+                "microstructureNi-BasedSX": {
+                    "singleCrystalOrientation": "[110]",
+                    "singleCrystalOrientationDeterminationMethod": "Laue technique",
+                    "orientationDeterminationAccuracy": "< 1°"
+                },
+                "heatTreatment": {
+                    "heatTreatmentDescription": "Solution annealed and precipitation hardened ERBO/1 (CMSX-4 type). See Parsa et al., Adv. Eng. Mater. 17 (2015) 216-230.",
+                    "heatTreatmentState": {
+                        "heatTreatmentStateOptions": "Other (Please specify in the comment)",
+                        "otherHeatTreatmentState": "Solution annealed and precipitation hardened"
+                    },
+                    "heatTreatmentAnnealingDescription": "RT (20 °C/min) → 1290 °C for 1 h (1 °C/min) → 1300 °C for 6 h (150 °C/min) → 800 °C (air cooled) → RT",
+                    "heatTreatmentAgeingDescription": "1140 °C for 4 h → 870 °C for 16 h → RT"
+                }
+            }
+        },
+        "PrimaryData": {
+            "TestResult": {
+                "valuesRecordedAfterTestEnd": {
+                    "creepRuptureTime": {
+                        "value": "195",
+                        "unit": "h"
+                    },
+                    "fracturePosition": "Not applicable"
+                }
+            }
+        },
+        "SecondaryData": {
+            "TestResult": {
+                "dataSeries": {
+                    "creepCurve": "https://zenodo.org/records/7663974/files/SX-CREEP-DATA_LWW-RUB_JAN2023.xlsx"
+                }
+            }
+        }
+    }
+}

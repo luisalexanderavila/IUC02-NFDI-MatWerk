@@ -1,0 +1,106 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix obo:<http://purl.obolibrary.org/obo/>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix : <http://example.org/> .
+
+### Classes
+
+
+:TestJob a owl:Class.
+
+
+:TestedMaterial a owl:Class ;
+    rdfs:subClassOf :Material .
+
+:TestingParameter a owl:Class .
+
+:SpecifiedTemperature a owl:Class .
+
+:TypeOfLoading a owl:Class ;
+    rdfs:subClassOf :TestingParameter .
+
+:InitialStress a owl:Class ;
+    rdfs:subClassOf :TestingParameter .
+
+:TestStandard a owl:Class.
+
+:DescriptionOfManufacturingProcess  a owl:Class.
+
+:Quality a owl:Class .
+
+### DataType Properties
+
+:dateOfTestStart a owl:DatatypeProperty ;
+    rdfs:domain :TestJob ;
+    rdfs:range xsd:dateTime.
+
+   
+:dateOfTestEnd a owl:DatatypeProperty ;
+    rdfs:domain :TestJob ;
+    rdfs:range xsd:dateTime .
+
+:testID a owl:DatatypeProperty ;
+    rdfs:domain :TestJob ;
+    rdfs:range xsd:string.
+
+:testStandardApplied a owl:DatatypeProperty ;
+    rdfs:domain :TestStandard ;
+    rdfs:range xsd:boolean.
+
+:hasUnit a owl:DatatypeProperty ;
+    rdfs:domain :Quality;
+    rdfs:range xsd:string.
+   
+
+:hasSpecifiedNumericValue a owl:DatatypeProperty ;
+    rdfs:domain :Quality ;
+    rdfs:range xsd:float .
+
+:hasDescription a owl:DatatypeProperty ;
+    rdfs:domain :DescriptionOfManufacturingProcess ;
+    rdfs:range xsd:string .
+
+:digitalMaterialIdentifier a owl:DatatypeProperty ;
+    rdfs:domain :TestedMaterial ;
+    rdfs:range xsd:string .
+
+### Object Properties
+
+:typeOfLoading a owl:ObjectProperty ;
+    rdfs:domain :TypeOfLoading ;
+    rdfs:range xsd:string .
+	
+# data starts here
+
+ 
+:_20420194_0 a :TestStandard ;
+:testStandardApplied "True"^^xsd:boolean ;
+:testStandard "20420194.0"^^xsd:string.
+
+:InitialStress_230_0_RoMPa a :Quality;
+  :hasSpecifiedNumericValue "230.0"^^xsd:float;
+  :hasUnit "RoMPa"^^xsd:string.
+
+:_6_0 a :TestedMaterial ;
+  :digitalMaterialIdentifier "6.0"^^xsd:string.
+
+:SpecifiedTemperature a :Quality;
+   :hasSpecifiedNumericValue "980.0"^^xsd:float;
+   :hasUnit "C"^^xsd:string.
+
+:TypeOfLoading :typeOfLoading "None"^^xsd:string.
+
+:TestJob :dateOfTestStart "2023-02-08T09:06:00"^^xsd:dateTime.
+
+:TestJob :TestID "520578.0"^^xsd:string.
+
