@@ -37,3 +37,6 @@ New_app/IUC02_NextJS-main/IUC02_NextJS-main/pyvenv.cfg
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Claude Code local guidance (not for the remote repo)
+CLAUDE.md
