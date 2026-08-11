@@ -1,0 +1,35 @@
+name: Update from RWTH GitLab
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout GitHub repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Fetch RWTH repository
+        run: |
+          git remote add upstream https://git.rwth-aachen.de/nfdi-matwerk/iuc02.git
+          git fetch upstream
+
+      - name: Merge RWTH changes
+        run: |
+          git merge upstream/main --no-edit
+
+      - name: Push changes to GitHub
+        run: |
+          git push origin main
