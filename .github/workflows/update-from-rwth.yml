@@ -6,13 +6,17 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: update-from-rwth
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
+      - name: Checkout GitHub repository
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           ref: main
@@ -22,7 +26,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Update local main from GitHub
+      - name: Make local main match latest GitHub main
         run: |
           git fetch origin main
           git checkout main
@@ -37,8 +41,11 @@ jobs:
         run: |
           git merge upstream/main --no-edit
 
-      - name: Rebase on latest GitHub main and push
+      - name: Rebase on latest GitHub main
         run: |
           git fetch origin main
           git rebase origin/main
+
+      - name: Push changes to GitHub
+        run: |
           git push origin main
