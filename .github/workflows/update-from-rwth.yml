@@ -37,6 +37,8 @@ jobs:
         run: |
           git merge upstream/main --no-edit
 
-      - name: Push to GitHub
+      - name: Rebase on latest GitHub main and push
         run: |
+          git fetch origin main
+          git rebase origin/main
           git push origin main
