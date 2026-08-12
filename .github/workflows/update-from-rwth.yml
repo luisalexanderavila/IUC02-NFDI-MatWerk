@@ -11,31 +11,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout GitHub repository
+      - name: Checkout repository
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
+          ref: main
 
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Add and fetch RWTH repository
+      - name: Update local main from GitHub
+        run: |
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
+
+      - name: Fetch RWTH repository
         run: |
           git remote add upstream https://git.rwth-aachen.de/nfdi-matwerk/iuc02.git
           git fetch upstream
-          git fetch origin
-
-      - name: Update local main from GitHub
-        run: |
-          git checkout main
-          git merge origin/main --no-edit
 
       - name: Merge RWTH changes
         run: |
           git merge upstream/main --no-edit
 
-      - name: Push changes to GitHub
+      - name: Push to GitHub
         run: |
           git push origin main
