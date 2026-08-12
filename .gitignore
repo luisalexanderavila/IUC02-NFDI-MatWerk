@@ -22,11 +22,11 @@ node_modules/
 npm-debug.log*
 yarn-error.log*
 
-# Vendored New_app venv (Windows layout, not named venv/)
-New_app/IUC02_NextJS-main/IUC02_NextJS-main/Scripts/
-New_app/IUC02_NextJS-main/IUC02_NextJS-main/Lib/
-New_app/IUC02_NextJS-main/IUC02_NextJS-main/Include/
-New_app/IUC02_NextJS-main/IUC02_NextJS-main/pyvenv.cfg
+# Vendored Demonstrator_App-new venv (Windows layout, not named venv/)
+Demonstrator_App-new/Scripts/
+Demonstrator_App-new/Lib/
+Demonstrator_App-new/Include/
+Demonstrator_App-new/pyvenv.cfg
 
 # Secrets / local env config
 .env
