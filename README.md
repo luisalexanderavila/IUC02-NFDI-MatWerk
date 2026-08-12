@@ -32,7 +32,7 @@ Agent-based semantic data generator. Try out and read more about the App on its 
 
 ### Data transformation pipeline from ASCII to JSON
 
-In the folder "ParSing" you will find documentation and scripts regarding the data transformation pipeline from ASCII to JSON. A data validation against the community-agreed requirements profile at the level of JSON files is included.
+In the folder "Parsing" you will find documentation and scripts regarding the data transformation pipeline from ASCII to JSON. A data validation against the community-agreed requirements profile at the level of JSON files is included.
 
 ### Ontology Development - Knowledge Graph for Creep Reference Datasets
 
