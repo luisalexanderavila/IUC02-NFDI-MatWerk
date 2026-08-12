@@ -48,4 +48,4 @@ jobs:
 
       - name: Push changes to GitHub
         run: |
-          git push origin main
+          git push origin main --force-with-lease
