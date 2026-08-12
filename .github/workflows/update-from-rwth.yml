@@ -21,10 +21,16 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Fetch RWTH repository
+      - name: Add and fetch RWTH repository
         run: |
           git remote add upstream https://git.rwth-aachen.de/nfdi-matwerk/iuc02.git
           git fetch upstream
+          git fetch origin
+
+      - name: Update local main from GitHub
+        run: |
+          git checkout main
+          git merge origin/main --no-edit
 
       - name: Merge RWTH changes
         run: |
