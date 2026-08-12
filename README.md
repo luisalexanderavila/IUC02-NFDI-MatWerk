@@ -36,7 +36,7 @@ In the folder "ParSing" you will find documentation and scripts regarding the da
 
 ### Ontology Development - Knowledge Graph for Creep Reference Datasets
 
-In the folder "Ontology Development" you will find a previous (interrupted) work reagarding the Reference Data Ontoloty (RDO).
+In the folder "Reference_Dataset_Ontology" you will find a previous (interrupted) work reagarding the Reference Data Ontoloty (RDO).
 
 The current status of the developments related to the semantical representation of the published dataset and the integration into the ["The Materials Science and Engineering (MSE) Knowledge Graph"](https://nfdi.fiz-karlsruhe.de/matwerk/) are in the folder "Knowledge-Graph-for-Creep-Reference-Datasets".
 
